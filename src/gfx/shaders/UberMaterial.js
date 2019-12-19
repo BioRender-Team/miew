@@ -45,6 +45,8 @@ const defaultUniforms = THREE.UniformsUtils.merge([
     noiseTex: { type: 't', value: null },
     noiseTexelSize: { type: 'v2', value: null },
     srcTexelSize: { type: 'v2', value: null },
+    toonBorder: { type: 'v3', value: new THREE.Vector3(0.0, 0.7, 1.0) },
+    toonRange: { type: 'v2', value: new THREE.Vector2(0.5, 0.95) },
   },
 
 ]);
@@ -70,6 +72,8 @@ const uberOptionNames = [
   'noiseTex',
   'noiseTexelSize',
   'srcTexelSize',
+  'toonBorder',
+  'toonRange',
 ];
 
 function UberMaterial(params) {
@@ -168,6 +172,8 @@ UberMaterial.prototype.uberOptions = {
   noiseTex: noise.noiseTexture,
   noiseTexelSize: new THREE.Vector2(1.0 / noise.noiseWidth, 1.0 / noise.noiseHeight),
   srcTexelSize: new THREE.Vector2(1.0 / 800.0, 1.0 / 600.0),
+  toonBorder: new THREE.Vector3(0.0, 0.7, 1.0),
+  toonRange: new THREE.Vector2(0.5, 0.95),
 
   copy(source) {
     this.diffuse.copy(source.diffuse);
@@ -191,6 +197,8 @@ UberMaterial.prototype.uberOptions = {
     this.noiseTex = source.noiseTex;
     this.noiseTexelSize = source.noiseTexelSize;
     this.srcTexelSize = source.srcTexelSize;
+    this.toonBorder = source.toonBorder;
+    this.toonRange = source.toonRange;
   },
 };
 

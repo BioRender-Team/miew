@@ -50,6 +50,8 @@ uniform vec3 fixedColor;
 uniform float opacity;
 uniform float zClipValue;
 uniform float clipPlaneValue;
+uniform vec3 toonBorder;
+uniform vec2 toonRange;
 
 #ifdef NORMALS_TO_G_BUFFER
   varying vec3 viewNormal;
@@ -220,12 +222,12 @@ float unpackRGBAToDepth( const in vec4 v ) {
 
 ////////////////////////////////////////// All Lighting /////////////////////////////////////////////////
 #ifdef TOON_SHADING
-  #define LOW_TOON_BORDER 0.0
-  #define MEDIUM_TOON_BORDER 0.7
-  #define HIGH_TOON_BORDER 1.0
+  #define LOW_TOON_BORDER toonBorder.x
+  #define MEDIUM_TOON_BORDER toonBorder.y
+  #define HIGH_TOON_BORDER toonBorder.z
 
-  #define MEDIUM_TOON_RANGE 0.5
-  #define HIGH_TOON_RANGE 0.95
+  #define MEDIUM_TOON_RANGE toonRange.x
+  #define HIGH_TOON_RANGE toonRange.y
 #endif
 #if defined(USE_LIGHTS) && NUM_DIR_LIGHTS > 0
   struct ReflectedLight {
