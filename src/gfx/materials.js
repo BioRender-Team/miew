@@ -134,8 +134,8 @@ const materialList = [
       specular: neutralColor(0.0),
       shininess: 1,
       opacity: 1.0,
-      toonBorder: new THREE.Vector3(0.0, 0.7, 1.0),
-      toonRange: new THREE.Vector2(0.5, 0.95),
+      toonBorder: new THREE.Vector3(0.35, 0.7, 1.0),
+      toonRange: new THREE.Vector2(0.2, 0.75),
     },
     values: {
       lights: true,

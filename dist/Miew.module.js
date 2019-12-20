@@ -1,4 +1,4 @@
-/** Miew - 3D Molecular Viewer v0.8.4+20191219.215502.7bdabd9-mod Copyright (c) 2015-2019 EPAM Systems, Inc. */
+/** Miew - 3D Molecular Viewer v0.8.4+20191220.230330.2076591 Copyright (c) 2015-2019 EPAM Systems, Inc. */
 
 function _arrayWithHoles(arr) {
   if (Array.isArray(arr)) return arr;
@@ -43707,8 +43707,8 @@ var materialList = [{
     specular: neutralColor(0.0),
     shininess: 1,
     opacity: 1.0,
-    toonBorder: new Vector3(0.0, 0.7, 1.0),
-    toonRange: new Vector2(0.5, 0.95)
+    toonBorder: new Vector3(0.35, 0.7, 1.0),
+    toonRange: new Vector2(0.2, 0.75)
   },
   values: {
     lights: true,
@@ -61058,7 +61058,7 @@ Miew.prototype.getPalettes = function () {
   return palettes;
 };
 
-Miew.prototype.VERSION =  "0.8.4+20191219.215502.7bdabd9-mod" ; // Uncomment this to get debug trace:
+Miew.prototype.VERSION =  "0.8.4+20191220.230330.2076591" ; // Uncomment this to get debug trace:
 // Miew.prototype.debugTracer = new utils.DebugTracer(Miew.prototype);
 
 lodash.assign(Miew,
