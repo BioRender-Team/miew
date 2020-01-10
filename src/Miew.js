@@ -1937,7 +1937,9 @@ Miew.prototype.load = function (source, opts) {
     this.dispatchEvent(e.slaveEvent);
   });
 
-  this._spinner.spin(this._container);
+  if (this.settings.now.spinner) {
+    this._spinner.spin(this._container);
+  }
 
   const onLoadEnd = (anything) => {
     const jobIndex = this._loading.indexOf(job);
@@ -2332,7 +2334,9 @@ Miew.prototype.rebuild = function () {
 
   // Start asynchronous rebuild
   const self = this;
-  this._spinner.spin(this._container);
+  if (this.settings.now.spinner) {
+    this._spinner.spin(this._container);
+  }
   Promise.all(rebuildActions).then(() => {
     self._spinner.stop();
 
@@ -3033,7 +3037,9 @@ Miew.prototype.benchmarkGfx = function (force) {
 
     self.dispatchEvent({ type: 'profile' });
 
-    self._spinner.spin(self._container);
+    if (this.settings.now.spinner) {
+      this._spinner.spin(this._container);
+    }
     prof.runOnTicks(50, 1000, 2000).then((numResults) => {
       self._gfxScore = 0.0;
       if (numResults >= 5) {

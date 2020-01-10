@@ -898,6 +898,13 @@ const defaults = {
    */
   translationSpeed: 2,
 
+  /**
+   * If the loading spinner should be shown
+   * @type {boolean}
+   * @instance
+   */
+  spinner: true,
+
   debug: {
     example: 3.5,
     text: 'hello!',
