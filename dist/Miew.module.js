@@ -1,4 +1,4 @@
-/** Miew - 3D Molecular Viewer v0.8.4+20191220.230330.2076591 Copyright (c) 2015-2019 EPAM Systems, Inc. */
+/** Miew - 3D Molecular Viewer v0.8.4+20200110.213141.c1e9699-mod Copyright (c) 2015-2020 EPAM Systems, Inc. */
 
 function _arrayWithHoles(arr) {
   if (Array.isArray(arr)) return arr;
@@ -59037,6 +59037,8 @@ Miew.prototype.changeUnit = function (unitIdx, name) {
 
 
 Miew.prototype.rebuild = function () {
+  var _this6 = this;
+
   if (this._building) {
     this.logger.warn('Miew.rebuild(): already building!');
     return;
@@ -59077,6 +59079,10 @@ Miew.prototype.rebuild = function () {
     self._refreshTitle();
 
     self._building = false;
+
+    _this6.dispatchEvent({
+      type: 'onBuildDone'
+    });
   });
 };
 /** Mark all representations for rebuilding */
@@ -59114,7 +59120,7 @@ Miew.prototype.setNeedRender = function () {
 };
 
 Miew.prototype._extractRepresentation = function () {
-  var _this6 = this;
+  var _this7 = this;
 
   var changed = [];
 
@@ -59134,7 +59140,7 @@ Miew.prototype._extractRepresentation = function () {
 
     if (idx < 0) {
       if (visual.repCount() === ComplexVisual.NUM_REPRESENTATION_BITS) {
-        _this6.logger.warn("Number of representations is limited to ".concat(ComplexVisual.NUM_REPRESENTATION_BITS));
+        _this7.logger.warn("Number of representations is limited to ".concat(ComplexVisual.NUM_REPRESENTATION_BITS));
       }
 
       return;
@@ -59986,15 +59992,15 @@ Miew.prototype.screenshotSave = function (filename, width, height) {
 };
 
 Miew.prototype.save = function (opts) {
-  var _this7 = this;
+  var _this8 = this;
 
   this._export(opts.fileType).then(function (dataString) {
-    var filename = _this7._visuals[_this7._curVisualName]._complex.name;
+    var filename = _this8._visuals[_this8._curVisualName]._complex.name;
     utils.download(dataString, filename, opts.fileType);
   })["catch"](function (error) {
-    _this7.logger.error('Could not export data');
+    _this8.logger.error('Could not export data');
 
-    _this7.logger.debug(error);
+    _this8.logger.debug(error);
   });
 };
 
@@ -60438,66 +60444,66 @@ Miew.prototype._fogAlphaChanged = function () {
 };
 
 Miew.prototype._initOnSettingsChanged = function () {
-  var _this8 = this;
+  var _this9 = this;
 
   var on = function on(props, func) {
     props = lodash.isArray(props) ? props : [props];
     props.forEach(function (prop) {
-      _this8.settings.addEventListener("change:".concat(prop), func);
+      _this9.settings.addEventListener("change:".concat(prop), func);
     });
   };
 
   on('modes.VD.frame', function () {
-    var volume = _this8._getVolumeVisual();
+    var volume = _this9._getVolumeVisual();
 
     if (volume === null) return;
     volume.showFrame(settings.now.modes.VD.frame);
-    _this8._needRender = true;
+    _this9._needRender = true;
   });
   on('modes.VD.isoMode', function () {
-    var volume = _this8._getVolumeVisual();
+    var volume = _this9._getVolumeVisual();
 
     if (volume === null) return;
     volume.getMesh().material.updateDefines();
-    _this8._needRender = true;
+    _this9._needRender = true;
   });
   on('bg.color', function () {
-    _this8._onBgColorChanged();
+    _this9._onBgColorChanged();
   });
   on('ao', function () {
     var values = {
       normalsToGBuffer: settings.now.ao
     };
 
-    _this8._setUberMaterialValues(values);
+    _this9._setUberMaterialValues(values);
   });
   on('fogColor', function () {
-    _this8._onFogColorChanged();
+    _this9._onFogColorChanged();
   });
   on('fogColorEnable', function () {
-    _this8._onFogColorChanged();
+    _this9._onFogColorChanged();
   });
   on('bg.transparent', function (evt) {
-    var gfx = _this8._gfx;
+    var gfx = _this9._gfx;
 
     if (gfx) {
       gfx.renderer.setClearColor(settings.now.bg.color, Number(!settings.now.bg.transparent));
     } // update materials
 
 
-    _this8._updateMaterials({
+    _this9._updateMaterials({
       fogTransparent: evt.value
     });
 
-    _this8.rebuildAll();
+    _this9.rebuildAll();
   });
   on('draft.clipPlane', function (evt) {
     // update materials
-    _this8._updateMaterials({
+    _this9._updateMaterials({
       clipPlane: evt.value
     });
 
-    _this8.rebuildAll();
+    _this9.rebuildAll();
   });
   on('shadow.on', function (evt) {
     // update materials
@@ -60505,17 +60511,17 @@ Miew.prototype._initOnSettingsChanged = function () {
       shadowmap: evt.value,
       shadowmapType: settings.now.shadow.type
     };
-    var gfx = _this8._gfx;
+    var gfx = _this9._gfx;
 
     if (gfx) {
       gfx.renderer.shadowMap.enabled = Boolean(values.shadowmap);
     }
 
     if (values.shadowmap) {
-      _this8._updateShadowCamera();
+      _this9._updateShadowCamera();
     }
 
-    _this8._updateMaterials(values, true, function (object) {
+    _this9._updateMaterials(values, true, function (object) {
       if (values.shadowmap) {
         gfxutils.prepareObjMaterialForShadow(object);
       } else {
@@ -60523,83 +60529,83 @@ Miew.prototype._initOnSettingsChanged = function () {
       }
     });
 
-    _this8._needRender = true;
+    _this9._needRender = true;
   });
   on('shadow.type', function (evt) {
     // update materials if shadowmap is enable
     if (settings.now.shadow.on) {
-      _this8._updateMaterials({
+      _this9._updateMaterials({
         shadowmapType: evt.value
       }, true);
 
-      _this8._needRender = true;
+      _this9._needRender = true;
     }
   });
   on('shadow.radius', function (evt) {
-    for (var i = 0; i < _this8._gfx.scene.children.length; i++) {
-      if (_this8._gfx.scene.children[i].shadow !== undefined) {
-        var light = _this8._gfx.scene.children[i];
+    for (var i = 0; i < _this9._gfx.scene.children.length; i++) {
+      if (_this9._gfx.scene.children[i].shadow !== undefined) {
+        var light = _this9._gfx.scene.children[i];
         light.shadow.radius = evt.value;
-        _this8._needRender = true;
+        _this9._needRender = true;
       }
     }
   });
   on('fps', function () {
-    _this8._fps.show(settings.now.fps);
+    _this9._fps.show(settings.now.fps);
   });
   on(['fog', 'fogNearFactor', 'fogFarFactor'], function () {
-    _this8._updateFog();
+    _this9._updateFog();
 
-    _this8._needRender = true;
+    _this9._needRender = true;
   });
   on('fogAlpha', function () {
     var fogAlpha = settings.now.fogAlpha;
 
     if (fogAlpha < 0 || fogAlpha > 1) {
-      _this8.logger.warn('fogAlpha must belong range [0,1]');
+      _this9.logger.warn('fogAlpha must belong range [0,1]');
     }
 
-    _this8._fogAlphaChanged();
+    _this9._fogAlphaChanged();
 
-    _this8._needRender = true;
+    _this9._needRender = true;
   });
   on('autoResolution', function (evt) {
-    if (evt.value && !_this8._gfxScore) {
-      _this8.logger.warn('Benchmarks are missed, autoresolution will not work! ' + 'Autoresolution should be set during miew startup.');
+    if (evt.value && !_this9._gfxScore) {
+      _this9.logger.warn('Benchmarks are missed, autoresolution will not work! ' + 'Autoresolution should be set during miew startup.');
     }
   });
   on('stereo', function () {
-    if (settings.now.stereo === 'WEBVR' && typeof _this8.webVR === 'undefined') {
-      _this8.webVR = new WebVRPoC(function () {
-        _this8._needRender = true;
+    if (settings.now.stereo === 'WEBVR' && typeof _this9.webVR === 'undefined') {
+      _this9.webVR = new WebVRPoC(function () {
+        _this9._needRender = true;
 
-        _this8._onResize();
+        _this9._onResize();
       });
     }
 
-    if (_this8.webVR) {
-      _this8.webVR.toggle(settings.now.stereo === 'WEBVR', _this8._gfx);
+    if (_this9.webVR) {
+      _this9.webVR.toggle(settings.now.stereo === 'WEBVR', _this9._gfx);
     }
 
-    _this8._needRender = true;
+    _this9._needRender = true;
   });
   on(['transparency', 'palette'], function () {
-    _this8.rebuildAll();
+    _this9.rebuildAll();
   });
   on('resolution', function () {
     // update complex visuals
-    _this8.rebuildAll(); // update volume visual
+    _this9.rebuildAll(); // update volume visual
 
 
-    var volume = _this8._getVolumeVisual();
+    var volume = _this9._getVolumeVisual();
 
     if (volume) {
       volume.getMesh().material.updateDefines();
-      _this8._needRender = true;
+      _this9._needRender = true;
     }
   });
   on(['axes', 'fxaa', 'ao', 'outline.on', 'outline.color', 'outline.threshold', 'outline.thickness'], function () {
-    _this8._needRender = true;
+    _this9._needRender = true;
   });
 };
 /**
@@ -61058,7 +61064,7 @@ Miew.prototype.getPalettes = function () {
   return palettes;
 };
 
-Miew.prototype.VERSION =  "0.8.4+20191220.230330.2076591" ; // Uncomment this to get debug trace:
+Miew.prototype.VERSION =  "0.8.4+20200110.213141.c1e9699-mod" ; // Uncomment this to get debug trace:
 // Miew.prototype.debugTracer = new utils.DebugTracer(Miew.prototype);
 
 lodash.assign(Miew,

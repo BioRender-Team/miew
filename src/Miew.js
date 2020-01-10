@@ -2341,6 +2341,7 @@ Miew.prototype.rebuild = function () {
 
     self._refreshTitle();
     self._building = false;
+    this.dispatchEvent({ type: 'onBuildDone' });
   });
 };
 
