@@ -9116,10 +9116,9 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
-three@0.111.0:
-  version "0.111.0"
-  resolved "https://registry.yarnpkg.com/three/-/three-0.111.0.tgz#9cedb73e79b7f6bf2440cb67a273f883faa923b6"
-  integrity sha512-AcTqyGJ3H75AIusOuADy0LsP958QKQwm/YhABHFMzd6RFXPNVay1rlSbbG6WYv7KM72G2THMMwqbjQd4dVHMkQ==
+three@BioRender-Team/three.js#memory-leak-fix:
+  version "0.112.1"
+  resolved "https://codeload.github.com/BioRender-Team/three.js/tar.gz/65933b9f20ecdf83fb8bdff8dffcee81362ad93d"
 
 through2@^2.0.0:
   version "2.0.5"
