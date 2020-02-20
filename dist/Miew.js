@@ -1,4 +1,4 @@
-/** Miew - 3D Molecular Viewer v0.8.4+20200218.231815.80aade1-mod Copyright (c) 2015-2020 EPAM Systems, Inc. */
+/** Miew - 3D Molecular Viewer v0.8.4+20200220.170733.d87e23a-mod Copyright (c) 2015-2020 EPAM Systems, Inc. */
 
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -53726,6 +53726,7 @@
     return CSS2DRenderer;
   }();
 
+  var VK_SPACE = 32;
   var VK_LEFT = 37;
   var VK_UP = 38;
   var VK_RIGHT = 39;
@@ -54066,6 +54067,7 @@
   ObjectControls.prototype.constructor = ObjectControls;
 
   ObjectControls.prototype.resetKeys = function () {
+    this._pressedKeys[VK_SPACE] = false;
     this._pressedKeys[VK_LEFT] = false;
     this._pressedKeys[VK_UP] = false;
     this._pressedKeys[VK_RIGHT] = false;
@@ -54270,7 +54272,9 @@
     event.stopPropagation();
 
     if (this._state === STATE.NONE) {
-      if (event.button === 0) {
+      if (event.button === 2 || event.button === 0 && this._pressedKeys[VK_SPACE]) {
+        this._state = STATE.TRANSLATE_PIVOT;
+      } else if (event.button === 0) {
         this._affectedObj.stop(); // can edit only one object at a time
 
 
@@ -54295,8 +54299,6 @@
 
         this._affectedObj = workWithAltObj ? this._altObj : this._mainObj;
         this._state = workWithAltObj && event.ctrlKey && this._isTranslationAllowed ? STATE.TRANSLATE : STATE.ROTATE;
-      } else if (event.button === 2) {
-        this._state = STATE.TRANSLATE_PIVOT;
       }
     }
 
@@ -54471,6 +54473,7 @@
     }
 
     switch (event.keyCode) {
+      case VK_SPACE:
       case VK_LEFT:
       case VK_UP:
       case VK_RIGHT:
@@ -61140,7 +61143,7 @@
     return palettes;
   };
 
-  Miew.prototype.VERSION =  "0.8.4+20200218.231815.80aade1-mod" ; // Uncomment this to get debug trace:
+  Miew.prototype.VERSION =  "0.8.4+20200220.170733.d87e23a-mod" ; // Uncomment this to get debug trace:
   // Miew.prototype.debugTracer = new utils.DebugTracer(Miew.prototype);
 
   lodash.assign(Miew,
