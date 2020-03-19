@@ -1,8 +1,12 @@
+import _ from 'lodash';
 import * as THREE from 'three';
-import materials from './materials';
 import UberMaterial from './shaders/UberMaterial';
 import gfxutils from './gfxutils';
 import settings from '../settings';
+import materials from './materials';
+import chem from '../chem';
+
+const { selectors } = chem;
 
 class Representation {
   constructor(index, mode, colorer, selector) {
@@ -71,12 +75,12 @@ class Representation {
     }
     this.geo.visible = this.visible;
 
-    if (settings.now.shadow.on) {
-      gfxutils.processMaterialForShadow(this.geo, this.material);
-    }
-
     gfxutils.processObjRenderOrder(this.geo, this.materialPreset.id);
     gfxutils.processColFromPosMaterial(this.geo, this.material);
+
+    if (settings.now.shadow.on) {
+      gfxutils.createShadowmapMaterial(this.geo, this.material);
+    }
 
     return this.geo;
   }
@@ -107,9 +111,9 @@ class Representation {
   }
 
   /**
- * Create object that represents difference between current and another rep
- * anotherRep could be undefined. In this case everything is reported.
- */
+   * Create object that represents difference between current and another rep
+   * anotherRep could be undefined. In this case everything is reported.
+   */
   compare(repSettings) {
     const diff = {};
 
@@ -130,6 +134,54 @@ class Representation {
 
     if (!repSettings || this.materialPreset.id !== repSettings.material) {
       diff.material = this.materialPreset.id;
+    }
+
+    return diff;
+  }
+
+  /**
+   * Change representation. Write fields what was changed into new object, return it.
+   */
+  change(repSettings, complex, mode, color) {
+    const diff = {};
+
+    // modify selector
+    if (repSettings.selector) {
+      const newSelectorObject = selectors.parse(repSettings.selector).selector;
+      const newSelector = String(newSelectorObject);
+      if (this.selectorString !== newSelector) {
+        diff.selector = newSelector;
+        this.selectorString = newSelector;
+        this.selector = newSelectorObject;
+        this.markAtoms(complex);
+      }
+    }
+
+    // modify mode
+    if (repSettings.mode) {
+      const newMode = repSettings.mode;
+      if (!_.isEqual(this.mode.identify(), newMode)) {
+        diff.mode = newMode;
+        this.setMode(mode);
+      }
+    }
+
+    // modify colorer
+    if (repSettings.colorer) {
+      const newColorer = repSettings.colorer;
+      if (!_.isEqual(this.colorer.identify(), newColorer)) {
+        diff.colorer = newColorer;
+        this.colorer = color;
+      }
+    }
+
+    // modify material
+    if (repSettings.material) {
+      const newMaterial = repSettings.material;
+      if (!_.isEqual(this.materialPreset.id, newMaterial)) {
+        diff.material = newMaterial;
+        this.setMaterialPreset(materials.get(repSettings.material));
+      }
     }
 
     return diff;

@@ -35,7 +35,7 @@ import AOHorBlurMaterial from './gfx/shaders/AOHorBlurMaterial';
 import AOVertBlurWithBlendMaterial from './gfx/shaders/AOVertBlurWithBlendMaterial';
 import AnaglyphMaterial from './gfx/shaders/AnaglyphMaterial';
 import VolumeMaterial from './gfx/shaders/VolumeMaterial';
-import viewInterpolator from './gfx/ViewInterpolator';
+import ViewInterpolator from './gfx/ViewInterpolator';
 import EventDispatcher from './utils/EventDispatcher';
 import logger from './utils/logger';
 import Cookies from './utils/Cookies';
@@ -119,6 +119,8 @@ function Miew(opts) {
   }, opts);
   /** @type {?object} */
   this._gfx = null;
+  /** @type {ViewInterpolator} */
+  this._interpolator = new ViewInterpolator();
   /** @type {HTMLElement} */
   this._container = (opts && opts.container)
     || document.getElementById('miew-container')
@@ -162,7 +164,9 @@ function Miew(opts) {
   this._spinner = null;
   /** @type {JobHandle[]} */
   this._loading = [];
-  /** @type {?number} */
+  /** @type {?number}
+   * @deprecated until Animation system refactoring
+   */
   this._animInterval = null;
 
   /** @type {object} */
@@ -304,15 +308,16 @@ Miew.prototype.init = function () {
       if (settings.now.shadow.on) {
         self._updateShadowCamera();
       }
-      // route rotate and zoom events to the external API
+      // route rotate, zoom, translate and translatePivot events to the external API
       switch (e.action) {
         case 'rotate':
-          self.dispatchEvent({ type: 'rotate', angle: e.angle });
+          self.dispatchEvent({ type: 'rotate', quaternion: e.quaternion });
           break;
         case 'zoom':
           self.dispatchEvent({ type: 'zoom', factor: e.factor });
           break;
         default:
+          self.dispatchEvent({ type: e.action });
       }
       self.dispatchEvent({ type: 'transform' });
       self._needRender = true;
@@ -382,6 +387,24 @@ Miew.prototype._showCanvas = function () {
   _setContainerContents(this._container, this._gfx.renderer.domElement);
 };
 
+Miew.prototype._requestAnimationFrame = function (callback) {
+  const { xr } = this._gfx.renderer;
+  if (xr && xr.enabled) {
+    this._gfx.renderer.setAnimationLoop(callback);
+    return;
+  }
+  requestAnimationFrame(callback);
+};
+
+function arezSpritesSupported(context) {
+  return context.getExtension('EXT_frag_depth');
+}
+
+function isAOSupported(context) {
+  return (context.getExtension('WEBGL_depth_texture')
+  && context.getExtension('WEBGL_draw_buffers'));
+}
+
 /**
  * Initialize WebGL and set 3D scene up.
  * @private
@@ -401,17 +424,15 @@ Miew.prototype._initGfx = function () {
 
   gfx.renderer = new THREE.WebGLRenderer(webGLOptions);
   gfx.renderer.shadowMap.enabled = settings.now.shadow.on;
+  gfx.renderer.shadowMap.autoUpdate = false;
   gfx.renderer.shadowMap.type = THREE.PCFShadowMap;
   capabilities.init(gfx.renderer);
 
   // z-sprites and ambient occlusion possibility
-  if (!gfx.renderer.getContext().getExtension('EXT_frag_depth')) {
+  if (!arezSpritesSupported(gfx.renderer.getContext())) {
     settings.set('zSprites', false);
   }
-  if (
-    !gfx.renderer.getContext().getExtension('WEBGL_depth_texture')
-    || !gfx.renderer.getContext().getExtension('WEBGL_draw_buffers')
-  ) {
+  if (!isAOSupported(gfx.renderer.getContext())) {
     settings.set('ao', false);
   }
 
@@ -463,6 +484,7 @@ Miew.prototype._initGfx = function () {
   light12.shadow = new THREE.DirectionalLightShadow();
   light12.shadow.bias = 0.09;
   light12.shadow.radius = settings.now.shadow.radius;
+  light12.shadow.camera.layers.set(gfxutils.LAYERS.SHADOWMAP);
 
   const pixelRatio = gfx.renderer.getPixelRatio();
   const shadowMapSize = Math.max(gfx.width, gfx.height) * pixelRatio;
@@ -586,13 +608,7 @@ Miew.prototype._initGfx = function () {
   this._gfx = gfx;
   this._showCanvas();
 
-  if (settings.now.stereo === 'WEBVR') {
-    this.webVR = new WebVRPoC(() => {
-      this._needRender = true;
-      this._onResize();
-    });
-    this.webVR.toggle(true, gfx);
-  }
+  this._embedWebXR(settings.now.stereo === 'WEBVR');
 
   this._container.appendChild(gfx.renderer2d.getElement());
 
@@ -832,10 +848,9 @@ Miew.prototype.run = function () {
     }
 
     this._objectControls.enable(true);
-    viewInterpolator.resume();
+    this._interpolator.resume();
 
-    const device = this.webVR ? this.webVR.getDevice() : null;
-    (device || window).requestAnimationFrame(() => this._onTick());
+    this._requestAnimationFrame(() => this._onTick());
   }
 };
 
@@ -849,7 +864,7 @@ Miew.prototype.halt = function () {
     this._discardComponentEdit();
     this._discardFragmentEdit();
     this._objectControls.enable(false);
-    viewInterpolator.pause();
+    this._interpolator.pause();
     this._halting = true;
   }
 };
@@ -922,13 +937,12 @@ Miew.prototype._onTick = function () {
 
   this._fps.update();
 
-  const device = this.webVR ? this.webVR.getDevice() : null;
-  (device || window).requestAnimationFrame(() => this._onTick());
+  this._requestAnimationFrame(() => this._onTick());
 
   this._onUpdate();
   if (this._needRender) {
     this._onRender();
-    this._needRender = !settings.now.suspendRender || settings.now.stereo === 'WEBVR' || !!device;
+    this._needRender = !settings.now.suspendRender || settings.now.stereo === 'WEBVR';
   }
 };
 
@@ -1032,7 +1046,7 @@ Miew.prototype._onUpdate = function () {
 
   this._updateFog();
 
-  if (this._gfx.renderer.vr.enabled) {
+  if (this._gfx.renderer.xr.enabled) {
     this.webVR.updateMoleculeScale();
   }
 };
@@ -1080,6 +1094,8 @@ Miew.prototype._renderFrame = (function () {
     const pixelRatio = gfx.renderer.getPixelRatio();
     this._resizeOffscreenBuffers(_size.width * pixelRatio, _size.height * pixelRatio, stereo);
 
+    this._renderShadowMap();
+
     switch (stereo) {
       case 'WEBVR':
       case 'NONE':
@@ -1112,7 +1128,7 @@ Miew.prototype._renderFrame = (function () {
 
     gfx.renderer2d.render(gfx.scene, gfx.camera);
 
-    if (settings.now.axes && gfx.axes && !gfx.renderer.vr.enabled) {
+    if (settings.now.axes && gfx.axes && !gfx.renderer.xr.enabled) {
       gfx.axes.render(renderer);
     }
   };
@@ -1192,7 +1208,7 @@ Miew.prototype._renderScene = (function () {
     gfx.renderer.setClearColor(settings.now.bg.color, Number(!settings.now.bg.transparent));
     gfx.renderer.setRenderTarget(target);
     gfx.renderer.clear();
-    if (gfx.renderer.vr.enabled) {
+    if (gfx.renderer.xr.enabled) {
       gfx.renderer.render(gfx.scene, camera);
       return;
     }
@@ -1349,6 +1365,47 @@ Miew.prototype._renderOutline = (function () {
 
     gfx.renderer.setRenderTarget(targetBuffer);
     gfx.renderer.renderScreenQuad(_outlineMaterial);
+  };
+}());
+
+Miew.prototype._renderShadowMap = (function () {
+  const pars = { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat };
+
+  return function () {
+    if (!settings.now.shadow.on) {
+      return;
+    }
+
+    const gfx = this._gfx;
+    const currentRenderTarget = gfx.renderer.getRenderTarget();
+    const activeCubeFace = gfx.renderer.getActiveCubeFace();
+    const activeMipmapLevel = gfx.renderer.getActiveMipmapLevel();
+
+    const _state = gfx.renderer.state;
+
+    // Set GL state for depth map.
+    _state.setBlending(THREE.NoBlending);
+    _state.buffers.color.setClear(1, 1, 1, 1);
+    _state.buffers.depth.setTest(true);
+    _state.setScissorTest(false);
+
+    for (let i = 0; i < gfx.scene.children.length; i++) {
+      if (gfx.scene.children[i].type === 'DirectionalLight') {
+        const light = gfx.scene.children[i];
+
+        if (light.shadow.map == null) {
+          light.shadow.map = new THREE.WebGLRenderTarget(light.shadow.mapSize.width, light.shadow.mapSize.height, pars);
+          light.shadow.camera.updateProjectionMatrix();
+        }
+        light.shadow.updateMatrices(light);
+
+        gfx.renderer.setRenderTarget(light.shadow.map);
+        gfx.renderer.clear();
+
+        gfx.renderer.render(gfx.scene, light.shadow.camera);
+      }
+    }
+    gfx.renderer.setRenderTarget(currentRenderTarget, activeCubeFace, activeMipmapLevel);
   };
 }());
 
@@ -1662,6 +1719,7 @@ Miew.prototype._export = function (format) {
     this.logger.error('Could not find suitable exporter for this source');
     return Promise.reject(new Error('Could not find suitable exporter for this source'));
   }
+  this.dispatchEvent({ type: 'exporting' });
 
   if (this._visuals[this._curVisualName] instanceof ComplexVisual) {
     let dataSource = null;
@@ -1788,6 +1846,7 @@ function _fetchData(source, opts, job) {
     if (job.shouldCancel()) {
       throw new Error('Operation cancelled');
     }
+    job.notify({ type: 'fetching' });
 
     // allow for source shortcuts
     source = resolveSourceShortcut(source, opts);
@@ -1844,7 +1903,9 @@ function _fetchData(source, opts, job) {
       .then((data) => {
         console.timeEnd('fetch');
         opts.context.logger.info('Fetching finished');
+        // deprecated event since version 0.8.6
         job.notify({ type: 'fetchingFinished', data });
+        job.notify({ type: 'fetchingDone', data });
         return data;
       })
       .catch((error) => {
@@ -1854,7 +1915,9 @@ function _fetchData(source, opts, job) {
           opts.context.logger.debug(error.stack);
         }
         opts.context.logger.error('Fetching failed');
+        // deprecated event since version 0.8.6
         job.notify({ type: 'fetchingFinished', error });
+        job.notify({ type: 'fetchingDone', error });
         throw error;
       });
     resolve(promise);
@@ -1865,7 +1928,10 @@ function _parseData(data, opts, job) {
   if (job.shouldCancel()) {
     return Promise.reject(new Error('Operation cancelled'));
   }
+  // deprecated event since version 0.8.6
   job.notify({ type: 'parse' });
+
+  job.notify({ type: 'parsing' });
 
   const TheParser = _.head(io.parsers.find({ format: opts.fileType, ext: opts.fileExt, data }));
   if (!TheParser) {
@@ -1880,7 +1946,9 @@ function _parseData(data, opts, job) {
   return parser.parse()
     .then((dataSet) => {
       console.timeEnd('parse');
+      // deprecated event since version 0.8.6
       job.notify({ type: 'parsingFinished', data: dataSet });
+      job.notify({ type: 'parsingDone', data: dataSet });
       return dataSet;
     })
     .catch((error) => {
@@ -1891,7 +1959,9 @@ function _parseData(data, opts, job) {
         opts.context.logger.debug(error.stack);
       }
       opts.context.logger.error('Parsing failed');
+      // deprecated event since version 0.8.6
       job.notify({ type: 'parsingFinished', error });
+      job.notify({ type: 'parsingDone', error });
       throw error;
     });
 }
@@ -1927,9 +1997,12 @@ Miew.prototype.load = function (source, opts) {
     }
   }
 
-  viewInterpolator.reset();
+  this._interpolator.reset();
 
+  // deprecated event since version 0.8.6
   this.dispatchEvent({ type: 'load', options: opts, source });
+
+  this.dispatchEvent({ type: 'loading', options: opts, source });
 
   const job = new JobHandle();
   this._loading.push(job);
@@ -1948,6 +2021,7 @@ Miew.prototype.load = function (source, opts) {
     }
     this._spinner.stop();
     this._refreshTitle();
+    job.notify({ type: 'loadingDone', anything });
     return anything;
   };
 
@@ -1976,6 +2050,12 @@ Miew.prototype.unload = function (name) {
   }
 };
 
+/**
+ * Start new animation. Now is broken.
+ * @param fileData - new data to animate
+ * @private
+ * @deprecated until animation system refactoring.
+ */
 Miew.prototype._startAnimation = function (fileData) {
   this._stopAnimation();
   const self = this;
@@ -2010,6 +2090,11 @@ Miew.prototype._startAnimation = function (fileData) {
   this._continueAnimation();
 };
 
+/**
+ * Pause current animation. Now is broken.
+ * @private
+ * @deprecated until animation system refactoring.
+ */
 Miew.prototype._pauseAnimation = function () {
   if (this._animInterval === null) {
     return;
@@ -2028,6 +2113,11 @@ Miew.prototype._pauseAnimation = function () {
   }
 };
 
+/**
+ * Continue current animation after pausing. Now is broken.
+ * @private
+ * @deprecated until animation system refactoring.
+ */
 Miew.prototype._continueAnimation = function () {
   this._isAnimating = true;
   let minFrameTime = 1000 / settings.now.maxfps;
@@ -2065,6 +2155,11 @@ Miew.prototype._continueAnimation = function () {
   }, minFrameTime);
 };
 
+/**
+ * Stop current animation. Now is broken.
+ * @private
+ * @deprecated until animation system refactoring.
+ */
 Miew.prototype._stopAnimation = function () {
   if (this._animInterval === null) {
     return;
@@ -2181,8 +2276,10 @@ Miew.prototype._onLoad = function (dataSource, opts) {
   }
 
   if (opts.error) {
+    // deprecated event since version 0.8.6
     this.dispatchEvent({ type: 'onParseError', error: opts.error });
   } else {
+    // deprecated event since version 0.8.6
     this.dispatchEvent({ type: 'onParseDone' });
   }
 
@@ -2316,7 +2413,10 @@ Miew.prototype.rebuild = function () {
   }
   this._building = true;
 
+  // deprecated event since version 0.8.6
   this.dispatchEvent({ type: 'rebuild' });
+
+  this.dispatchEvent({ type: 'rebuilding' });
 
   this._rebuildObjects();
 
@@ -2344,6 +2444,7 @@ Miew.prototype.rebuild = function () {
     self._needRender = true;
 
     self._refreshTitle();
+    this.dispatchEvent({ type: 'buildingDone' });
     self._building = false;
     this.dispatchEvent({ type: 'onBuildDone' });
   });
@@ -2386,26 +2487,29 @@ Miew.prototype._extractRepresentation = function () {
 
     const selector = visual.buildSelectorFromMask(1 << visual.getSelectionBit());
     const defPreset = settings.now.presets.default;
-    const idx = visual.repAdd({
+    const res = visual.repAdd({
       selector,
       mode: defPreset[0].mode.id,
       colorer: defPreset[0].colorer.id,
       material: defPreset[0].material.id,
     });
-    if (idx < 0) {
+    if (!res) {
       if (visual.repCount() === ComplexVisual.NUM_REPRESENTATION_BITS) {
         this.logger.warn(`Number of representations is limited to ${ComplexVisual.NUM_REPRESENTATION_BITS}`);
       }
       return;
     }
 
-    visual.repCurrent(idx);
+    this.dispatchEvent({ type: 'repAdded', index: res.index, name: visual.name });
+    visual.repCurrent(res.index);
 
     changed.push(visual.name);
   });
 
   if (changed.length > 0) {
     this.logger.report(`New representation from selection for complexes: ${changed.join(', ')}`);
+    // deprecated event since 0.8.6
+    // Use repAdded event instead it. Make attention there are some differences
     this.dispatchEvent({ type: 'repAdd' });
   }
 };
@@ -2490,7 +2594,16 @@ Miew.prototype.repCurrent = function (index, name) {
  */
 Miew.prototype.rep = function (index, rep) {
   const visual = this._getComplexVisual('');
-  return visual ? visual.rep(index, rep) : null;
+  if (!visual) {
+    return null;
+  }
+  const res = visual.rep(index, rep);
+  if (res.status === 'created') {
+    this.dispatchEvent({ type: 'repAdded', index: res.index, name: visual.name });
+  } else if (res.status === 'changed') {
+    this.dispatchEvent({ type: 'repChanged', index: res.index, name: visual.name });
+  }
+  return res.desc;
 };
 
 /**
@@ -2510,7 +2623,16 @@ Miew.prototype.repGet = function (index, name) {
  */
 Miew.prototype.repAdd = function (rep, name) {
   const visual = this._getComplexVisual(name);
-  return visual ? visual.repAdd(rep) : -1;
+  if (!visual) {
+    return -1;
+  }
+
+  const res = visual.repAdd(rep);
+  if (res) {
+    this.dispatchEvent({ type: 'repAdded', index: res.index, name });
+    return res.index;
+  }
+  return -1;
 };
 
 /**
@@ -2519,7 +2641,12 @@ Miew.prototype.repAdd = function (rep, name) {
  */
 Miew.prototype.repRemove = function (index, name) {
   const visual = this._getComplexVisual(name);
-  return visual ? visual.repRemove(index) : null;
+  if (!visual) {
+    return;
+  }
+
+  visual.repRemove(index);
+  this.dispatchEvent({ type: 'repRemoved', index, name });
 };
 
 /**
@@ -2709,7 +2836,7 @@ Miew.prototype._onPick = function (event) {
   // update last pick & find complex
   let complex = null;
   if (event.obj.atom) {
-    complex = event.obj.atom.getResidue().getChain().getComplex();
+    complex = event.obj.atom.residue.getChain().getComplex();
     this._lastPick = event.obj.atom;
   } else if (event.obj.residue) {
     complex = event.obj.residue.getChain().getComplex();
@@ -2718,7 +2845,7 @@ Miew.prototype._onPick = function (event) {
     complex = event.obj.chain.getComplex();
     this._lastPick = event.obj.chain;
   } else if (event.obj.molecule) {
-    complex = event.obj.molecule.getComplex();
+    complex = event.obj.molecule.complex;
     this._lastPick = event.obj.molecule;
   } else {
     this._lastPick = null;
@@ -2852,25 +2979,17 @@ Miew.prototype._updateInfoPanel = function () {
 
   if (this._lastPick instanceof Atom) {
     atom = this._lastPick;
-    residue = atom._residue;
+    residue = atom.residue;
 
-    const an = atom.getName();
-    if (an.getNode() !== null) {
-      aName = an.getNode();
-    } else {
-      aName = an.getString();
-    }
-    const location = (atom._location !== 32) ? String.fromCharCode(atom._location) : ''; // 32 is code of white-space
-    secondLine = `${atom.element.fullName} #${atom._serial}${location}: \
+    aName = atom.name;
+    const location = (atom.location !== 32) ? String.fromCharCode(atom.location) : ''; // 32 is code of white-space
+    secondLine = `${atom.element.fullName} #${atom.serial}${location}: \
       ${residue._chain._name}.${residue._type._name}${residue._sequence}${residue._icode.trim()}.`;
-    if (typeof aName === 'string') {
-      // add atom name to second line in plain text form
-      secondLine += aName;
-    }
+    secondLine += aName;
 
-    coordLine = `Coord: (${atom._position.x.toFixed(2).toString()},\
-     ${atom._position.y.toFixed(2).toString()},\
-     ${atom._position.z.toFixed(2).toString()})`;
+    coordLine = `Coord: (${atom.position.x.toFixed(2).toString()},\
+     ${atom.position.y.toFixed(2).toString()},\
+     ${atom.position.z.toFixed(2).toString()})`;
   } else if (this._lastPick instanceof Residue) {
     residue = this._lastPick;
 
@@ -2887,13 +3006,6 @@ Miew.prototype._updateInfoPanel = function () {
   if (secondLine !== '') {
     info.appendChild(document.createElement('br'));
     info.appendChild(document.createTextNode(secondLine));
-  }
-
-  if (typeof aName !== 'string') {
-    // add atom name to second line in HTML form
-    const newNode = aName.cloneNode(true);
-    newNode.style.fontSize = '85%';
-    info.appendChild(newNode);
   }
 
   if (coordLine !== '') {
@@ -2929,56 +3041,67 @@ Miew.prototype._getAltObj = function () {
   };
 };
 
-Miew.prototype.resetPivot = function () {
+Miew.prototype.resetPivot = (function () {
   const boundingBox = new THREE.Box3();
-  this._forEachVisual((visual) => {
-    boundingBox.union(visual.getBoundaries().boundingBox);
-  });
+  const center = new THREE.Vector3();
 
-  boundingBox.getCenter(this._gfx.pivot.position);
-  this._gfx.pivot.position.negate();
-  this.dispatchEvent({ type: 'transform' });
-};
+  return function () {
+    boundingBox.makeEmpty();
+    this._forEachVisual((visual) => {
+      boundingBox.union(visual.getBoundaries().boundingBox);
+    });
 
-Miew.prototype.setPivotResidue = function (residue) {
-  const visual = this._getVisualForComplex(residue.getChain().getComplex());
-  if (!visual) {
-    return;
-  }
+    boundingBox.getCenter(center);
+    this._objectControls.setPivot(center.negate());
+    this.dispatchEvent({ type: 'transform' });
+  };
+}());
 
-  const pos = this._gfx.pivot.position;
-  if (residue._controlPoint) {
-    pos.copy(residue._controlPoint);
-  } else {
-    let x = 0;
-    let y = 0;
-    let z = 0;
-    const amount = residue._atoms.length;
-    for (let i = 0; i < amount; ++i) {
-      const p = residue._atoms[i]._position;
-      x += p.x / amount;
-      y += p.y / amount;
-      z += p.z / amount;
+Miew.prototype.setPivotResidue = (function () {
+  const center = new THREE.Vector3();
+
+  return function (residue) {
+    const visual = this._getVisualForComplex(residue.getChain().getComplex());
+    if (!visual) {
+      return;
     }
-    pos.set(x, y, z);
-  }
-  pos.applyMatrix4(visual.matrix);
-  pos.negate();
-  this.dispatchEvent({ type: 'transform' });
-};
 
-Miew.prototype.setPivotAtom = function (atom) {
-  const visual = this._getVisualForComplex(atom.getResidue().getChain().getComplex());
-  if (!visual) {
-    return;
-  }
+    if (residue._controlPoint) {
+      center.copy(residue._controlPoint);
+    } else {
+      let x = 0;
+      let y = 0;
+      let z = 0;
+      const amount = residue._atoms.length;
+      for (let i = 0; i < amount; ++i) {
+        const p = residue._atoms[i].position;
+        x += p.x / amount;
+        y += p.y / amount;
+        z += p.z / amount;
+      }
+      center.set(x, y, z);
+    }
+    center.applyMatrix4(visual.matrix).negate();
+    this._objectControls.setPivot(center);
+    this.dispatchEvent({ type: 'transform' });
+  };
+}());
 
-  const pos = this._gfx.pivot.position;
-  pos.copy(atom._position);
-  pos.applyMatrix4(visual.matrix);
-  pos.negate();
-  this.dispatchEvent({ type: 'transform' });
-};
+Miew.prototype.setPivotAtom = (function () {
+  const center = new THREE.Vector3();
+
+  return function (atom) {
+    const visual = this._getVisualForComplex(atom.residue.getChain().getComplex());
+    if (!visual) {
+      return;
+    }
+
+    center.copy(atom.position);
+    center.applyMatrix4(visual.matrix).negate();
+    this._objectControls.setPivot(center);
+    this.dispatchEvent({ type: 'transform' });
+  };
+}());
 
 Miew.prototype.getSelectionCenter = (function () {
   const _centerInVisual = new THREE.Vector3(0.0, 0.0, 0.0);
@@ -3006,7 +3129,7 @@ Miew.prototype.setPivotSubset = (function () {
   const _center = new THREE.Vector3(0.0, 0.0, 0.0);
 
   function _includesInCurSelection(atom, selectionBit) {
-    return atom._mask & (1 << selectionBit);
+    return atom.mask & (1 << selectionBit);
   }
 
   function _includesInSelector(atom, selector) {
@@ -3017,7 +3140,7 @@ Miew.prototype.setPivotSubset = (function () {
     const includesAtom = (selector) ? _includesInSelector : _includesInCurSelection;
 
     if (this.getSelectionCenter(_center, includesAtom, selector)) {
-      this._gfx.pivot.position.copy(_center);
+      this._objectControls.setPivot(_center);
       this.dispatchEvent({ type: 'transform' });
     } else {
       this.logger.warn('selection is empty. Center operation not performed');
@@ -3025,6 +3148,10 @@ Miew.prototype.setPivotSubset = (function () {
   };
 }());
 
+/**
+ * Starts profiling tool
+ * @deprecated since 0.8.6. There are plans to make it a separate tool outside Miew
+ */
 Miew.prototype.benchmarkGfx = function (force) {
   const self = this;
   const prof = new GfxProfiler(this._gfx.renderer);
@@ -3035,6 +3162,7 @@ Miew.prototype.benchmarkGfx = function (force) {
       return;
     }
 
+    // deprecated event since 0.8.6
     self.dispatchEvent({ type: 'profile' });
 
     if (this.settings.now.spinner) {
@@ -3155,9 +3283,13 @@ Miew.prototype.save = function (opts) {
   this._export(opts.fileType).then((dataString) => {
     const filename = this._visuals[this._curVisualName]._complex.name;
     utils.download(dataString, filename, opts.fileType);
+    this._refreshTitle();
+    this.dispatchEvent({ type: 'exportingDone' });
   }).catch((error) => {
     this.logger.error('Could not export data');
     this.logger.debug(error);
+    this._refreshTitle();
+    this.dispatchEvent({ type: 'exportingDone', error });
   });
 };
 
@@ -3533,6 +3665,16 @@ Miew.prototype._fogFarUpdateValue = function () {
   }
 };
 
+Miew.prototype._updateShadowmapMeshes = function (process) {
+  this._forEachComplexVisual((visual) => {
+    const reprList = visual._reprList;
+    for (let i = 0, n = reprList.length; i < n; ++i) {
+      const repr = reprList[i];
+      process(repr.geo, repr.material);
+    }
+  });
+};
+
 Miew.prototype._updateMaterials = function (values, needTraverse = false, process = undefined) {
   this._forEachComplexVisual((visual) => visual.setMaterialValues(values, needTraverse, process));
   for (let i = 0, n = this._objects.length; i < n; ++i) {
@@ -3550,6 +3692,26 @@ Miew.prototype._fogAlphaChanged = function () {
       fogAlpha: settings.now.fogAlpha,
     });
   });
+};
+
+Miew.prototype._embedWebXR = function () {
+  // switch off
+  if (settings.now.stereo !== 'WEBVR') {
+    if (this.webVR) {
+      this.webVR.disable();
+    }
+    this.webVR = null;
+    return;
+  }
+  // switch on
+  if (!this.webVR) {
+    this.webVR = new WebVRPoC(() => {
+      this._requestAnimationFrame(() => this._onTick());
+      this._needRender = true;
+      this._onResize();
+    });
+  }
+  this.webVR.enable(this._gfx);
 };
 
 Miew.prototype._initOnSettingsChanged = function () {
@@ -3581,8 +3743,20 @@ Miew.prototype._initOnSettingsChanged = function () {
   });
 
   on('ao', () => {
-    const values = { normalsToGBuffer: settings.now.ao };
-    this._setUberMaterialValues(values);
+    if (settings.now.ao && !isAOSupported(this._gfx.renderer.getContext())) {
+      this.logger.warn('Your device or browser does not support ao');
+      settings.set('ao', false);
+    } else {
+      const values = { normalsToGBuffer: settings.now.ao };
+      this._setUberMaterialValues(values);
+    }
+  });
+
+  on('zSprites', () => {
+    if (settings.now.zSprites && !arezSpritesSupported(this._gfx.renderer.getContext())) {
+      this.logger.warn('Your device or browser does not support zSprites');
+      settings.set('zSprites', false);
+    }
   });
 
   on('fogColor', () => {
@@ -3616,16 +3790,13 @@ Miew.prototype._initOnSettingsChanged = function () {
     if (gfx) {
       gfx.renderer.shadowMap.enabled = Boolean(values.shadowmap);
     }
+    this._updateMaterials(values, true);
     if (values.shadowmap) {
       this._updateShadowCamera();
+      this._updateShadowmapMeshes(gfxutils.createShadowmapMaterial);
+    } else {
+      this._updateShadowmapMeshes(gfxutils.removeShadowmapMaterial);
     }
-    this._updateMaterials(values, true, (object) => {
-      if (values.shadowmap) {
-        gfxutils.prepareObjMaterialForShadow(object);
-      } else {
-        object.customDepthMaterial = null;
-      }
-    });
     this._needRender = true;
   });
 
@@ -3673,15 +3844,7 @@ Miew.prototype._initOnSettingsChanged = function () {
   });
 
   on('stereo', () => {
-    if (settings.now.stereo === 'WEBVR' && typeof this.webVR === 'undefined') {
-      this.webVR = new WebVRPoC(() => {
-        this._needRender = true;
-        this._onResize();
-      });
-    }
-    if (this.webVR) {
-      this.webVR.toggle(settings.now.stereo === 'WEBVR', this._gfx);
-    }
+    this._embedWebXR(settings.now.stereo === 'WEBVR');
     this._needRender = true;
   });
 
@@ -3788,12 +3951,13 @@ Miew.prototype.view = function (expression) {
       }
     }
 
-    const srcView = viewInterpolator.createView();
+    const interpolator = self._interpolator;
+    const srcView = interpolator.createView();
     srcView.position.copy(pivot.position);
     srcView.scale = self._objectControls.getScale();
     srcView.orientation.copy(self._objectControls.getOrientation());
 
-    const dstView = viewInterpolator.createView();
+    const dstView = interpolator.createView();
     dstView.position.set(transform[0], transform[1], transform[2]);
 
     // hack to make preset views work after we moved centering offset to visual nodes
@@ -3805,7 +3969,7 @@ Miew.prototype.view = function (expression) {
     dstView.scale = transform[3]; // eslint-disable-line prefer-destructuring
     dstView.orientation.setFromEuler(new THREE.Euler(transform[4], transform[5], transform[6], eulerOrder));
 
-    viewInterpolator.setup(srcView, dstView);
+    interpolator.setup(srcView, dstView);
   }
 
   if (typeof expression === 'undefined') {
@@ -3823,15 +3987,16 @@ Miew.prototype._updateView = function () {
   const self = this;
   const { pivot } = this._gfx;
 
-  if (!viewInterpolator.wasStarted()) {
-    viewInterpolator.start();
+  const interpolator = this._interpolator;
+  if (!interpolator.wasStarted()) {
+    interpolator.start();
   }
 
-  if (!viewInterpolator.isMoving()) {
+  if (!interpolator.isMoving()) {
     return;
   }
 
-  const res = viewInterpolator.getCurrentView();
+  const res = interpolator.getCurrentView();
   if (res.success) {
     const curr = res.view;
     pivot.position.copy(curr.position);
@@ -3957,7 +4122,7 @@ Miew.prototype.projected = function (fullAtomName, complexName) {
     return false;
   }
 
-  const pos = atom._position.clone();
+  const pos = atom.position.clone();
   // we consider atom position to be affected only by common complex transform
   // ignoring any transformations that may add during editing
   this._gfx.pivot.updateMatrixWorldRecursive();
@@ -4025,7 +4190,7 @@ Miew.prototype.exportCML = function () {
     complex.forEachAtom((atom) => {
       if (atom.xmlNodeRef && atom.xmlNodeRef.xmlNode) {
         xml = atom.xmlNodeRef.xmlNode;
-        ap = atom.getPosition();
+        ap = atom.position;
         v4.set(ap.x, ap.y, ap.z, 1.0);
         v4.applyMatrix4(mat);
         xml.setAttribute('x3', v4.x.toString());

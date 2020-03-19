@@ -135,7 +135,7 @@ Menu.prototype._initializeTerminal = function () {
       }
     },
     {
-      greetings: 'Miew - 3D Molecular Viewer\nCopyright © 2015-2019 EPAM Systems, Inc.\n',
+      greetings: 'Miew - 3D Molecular Viewer\nCopyright © 2015-2020 EPAM Systems, Inc.\n',
       prompt: 'miew> ',
       name: 'miew',
       scrollOnEcho: true,
@@ -871,11 +871,8 @@ Menu.prototype._init = function () {
     const state = this.getAttribute('data-state');
     if (state === 'on') {
       self._onMenuOn();
-      return false;
-    }
-    if (state === 'off') {
+    } else if (state === 'off') {
       self._onMenuOff();
-      return false;
     }
     return false;
   });
@@ -886,12 +883,9 @@ Menu.prototype._init = function () {
     if (state === 'on') {
       self._onTerminalOn();
       this.setAttribute('data-state', 'off');
-      return false;
-    }
-    if (state === 'off') {
+    } else if (state === 'off') {
       self._onTerminalOff();
       this.setAttribute('data-state', 'on');
-      return false;
     }
     return false;
   });
@@ -1055,67 +1049,55 @@ Menu.prototype._init = function () {
   this._initRenderPanel();
   this._initToolsPanel();
   this._initSelectionPanel();
-  this._initMdPlayerControls();
 };
 
 Menu.prototype._initMiewEventListeners = function () {
   const self = this;
 
-  this._viewer.addEventListener('load', () => {
+  this._viewer.addEventListener('loading', () => {
     self._setTitle('Loading…');
-    self._setMdPlayerState();
   });
 
-  this._viewer.addEventListener('parse', () => {
+  this._viewer.addEventListener('fetching', () => {
+    self._setTitle('Fetching…');
+  });
+
+  this._viewer.addEventListener('parsing', () => {
     self._setTitle('Parsing…');
   });
 
-  this._viewer.addEventListener('convert', () => {
-    self._setTitle('Converting…');
-  });
-
-  this._viewer.addEventListener('rebuild', () => {
+  this._viewer.addEventListener('rebuilding', () => {
     self._setTitle('Building geometry…');
   });
 
-  this._viewer.addEventListener('profile', () => {
-    self._setTitle('Profiling…');
+  this._viewer.addEventListener('exporting', () => {
+    self._setTitle('Exporting…');
   });
 
   this._viewer.addEventListener('resize', () => {
     self._onResize();
   });
 
-  this._viewer.addEventListener('fetchingFinished', (e) => {
+  this._viewer.addEventListener('fetchingDone', (e) => {
     if (e.error) {
       self._updateInfo(e.data);
     }
   });
 
-  this._viewer.addEventListener('parsingFinished', (e) => {
+  this._viewer.addEventListener('parsingDone', (e) => {
     self._updateInfo(e.data);
     self._fillSourceList();
     self._fillReprList();
+
+    self.presetsPanel.actions.pdb.inputs.refresh(self);
   });
 
   this._viewer.addEventListener('titleChanged', (e) => {
     self._setTitle(e.data);
   });
 
-  this._viewer.addEventListener('mdPlayerStateChanged', (e) => {
-    self._setMdPlayerState(e.state);
-  });
-
   this._viewer.addEventListener('editModeChanged', (e) => {
     self._enableToolbar(e.data);
-  });
-
-  this._viewer.addEventListener('onParseError', () => {
-    self.presetsPanel.actions.pdb.inputs.refresh(self);
-  });
-
-  this._viewer.addEventListener('onParseDone', () => {
-    self.presetsPanel.actions.pdb.inputs.refresh(self);
   });
 };
 
@@ -2077,43 +2059,6 @@ Menu.prototype._setTitle = function (title) {
   $(`${this._menuId} [data-field="title"]`).text(title);
 };
 
-Menu.prototype._setMdPlayerState = function (state) {
-  const playBtn = $(`${this._menuId} [data-btn-type="md-player-play"]`);
-  const pauseBtn = $(`${this._menuId} [data-btn-type="md-player-pause"]`);
-  const loadingIndicator = $(`${this._menuId} [data-btn-type="md-player-loading"]`);
-  if (state) {
-    if (state.isPlaying) {
-      playBtn.hide();
-      pauseBtn.show();
-    } else {
-      playBtn.show();
-      pauseBtn.hide();
-    }
-    if (state.isLoading) {
-      loadingIndicator.show();
-    } else {
-      loadingIndicator.hide();
-    }
-  } else {
-    playBtn.hide();
-    pauseBtn.hide();
-    loadingIndicator.hide();
-  }
-};
-
-Menu.prototype._initMdPlayerControls = function () {
-  const playBtn = $(`${this._menuId} [data-btn-type="md-player-play"]`);
-  const pauseBtn = $(`${this._menuId} [data-btn-type="md-player-pause"]`);
-  const self = this;
-  playBtn.on('click', () => {
-    self._viewer._continueAnimation();
-  });
-  pauseBtn.on('click', () => {
-    self._viewer._pauseAnimation();
-  });
-  this._setMdPlayerState();
-};
-
 Menu.prototype._updateInfo = function (dataSource) {
   if (dataSource && dataSource.id !== 'Complex') {
     return;
@@ -2177,7 +2122,7 @@ Menu.prototype._updateInfo = function (dataSource) {
   const molecules = complex.getMolecules();
   const molList = createElement('ol');
   for (let i = 0; i < molecules.length; i++) {
-    molList.appendChild(createElement('li', null, molecules[i]._name));
+    molList.appendChild(createElement('li', null, molecules[i].name));
   }
   frag.appendChild(createElement('table', { 'class': 'table' }, [
     createElement(
