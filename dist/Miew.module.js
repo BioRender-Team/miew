@@ -1,4 +1,4 @@
-/** Miew - 3D Molecular Viewer v0.8.7+20200319.231737.35af45e-mod Copyright (c) 2015-2020 EPAM Systems, Inc. */
+/** Miew - 3D Molecular Viewer v0.8.7+20200508.214028.ce3e43d-mod Copyright (c) 2015-2020 EPAM Systems, Inc. */
 
 import _ from 'lodash';
 import * as THREE from 'three';
@@ -34779,6 +34779,7 @@ function Miew(opts) {
   /** @type {object} */
 
   this._sourceWindow = null;
+  this._resizeEventHandler = null;
   this.reset();
 
   if (this._repr) {
@@ -34988,6 +34989,8 @@ Miew.prototype.init = function () {
 
 Miew.prototype.term = function () {
   this._showMessage('Viewer has been terminated.');
+
+  this._removeListeners();
 
   this._loading.forEach(function (job) {
     job.cancel();
@@ -35229,9 +35232,21 @@ Miew.prototype._initGfx = function () {
 
 Miew.prototype._initListeners = function () {
   var self = this;
-  window.addEventListener('resize', function () {
+
+  this._resizeEventHandler = function () {
     self._onResize();
-  });
+  };
+
+  window.addEventListener('resize', this._resizeEventHandler);
+};
+/**
+ * Remove event listeners.
+ * @private
+ */
+
+
+Miew.prototype._removeListeners = function () {
+  window.removeEventListener('resize', this._resizeEventHandler);
 };
 /**
  * Try to add numbers to the base name to make it unique among visuals
@@ -39423,7 +39438,7 @@ Miew.prototype.getPalettes = function () {
   return palettes;
 };
 
-Miew.prototype.VERSION =  "0.8.7+20200319.231737.35af45e-mod" ; // Uncomment this to get debug trace:
+Miew.prototype.VERSION =  "0.8.7+20200508.214028.ce3e43d-mod" ; // Uncomment this to get debug trace:
 // Miew.prototype.debugTracer = new utils.DebugTracer(Miew.prototype);
 
 _.assign(Miew,

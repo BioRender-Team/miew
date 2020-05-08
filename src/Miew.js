@@ -180,6 +180,8 @@ function Miew(opts) {
   /** @type {object} */
   this._sourceWindow = null;
 
+  this._resizeEventHandler = null;
+
   this.reset();
 
   if (this._repr) {
@@ -359,6 +361,7 @@ Miew.prototype.init = function () {
  */
 Miew.prototype.term = function () {
   this._showMessage('Viewer has been terminated.');
+  this._removeListeners();
   this._loading.forEach((job) => {
     job.cancel();
   });
@@ -628,9 +631,18 @@ Miew.prototype._initGfx = function () {
  */
 Miew.prototype._initListeners = function () {
   const self = this;
-  window.addEventListener('resize', () => {
+  this._resizeEventHandler = () => {
     self._onResize();
-  });
+  };
+  window.addEventListener('resize', this._resizeEventHandler);
+};
+
+/**
+ * Remove event listeners.
+ * @private
+ */
+Miew.prototype._removeListeners = function () {
+  window.removeEventListener('resize', this._resizeEventHandler);
 };
 
 /**
