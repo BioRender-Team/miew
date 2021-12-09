@@ -1,27 +1,43 @@
-/** Miew - 3D Molecular Viewer v0.8.7+20200508.214028.ce3e43d-mod Copyright (c) 2015-2020 EPAM Systems, Inc. */
+/** Miew - 3D Molecular Viewer v0.8.7+20211209.134529.e4ac033-mod Copyright (c) 2015-2021 EPAM Systems, Inc. */
 
 import _ from 'lodash';
 import * as THREE from 'three';
-import { Vector3, Box3, Sphere, Math as Math$1, Vector2, DataTexture, LuminanceFormat, UnsignedByteType, UVMapping, ClampToEdgeWrapping, LinearFilter, Object3D, Group, RGBFormat, RepeatWrapping, NearestFilter, UniformsUtils, UniformsLib, Color, Matrix4, RawShaderMaterial, Material, DoubleSide, WebGLRenderer, MeshBasicMaterial, Scene, Mesh as Mesh$5, PlaneBufferGeometry, OrthographicCamera, PerspectiveCamera, StereoCamera, Raycaster, BufferAttribute, LineSegments, Line, LessEqualDepth, InstancedBufferGeometry, InstancedBufferAttribute, BufferGeometry, SphereBufferGeometry, Triangle as Triangle$1, Face3, Matrix3, CylinderBufferGeometry as CylinderBufferGeometry$1, Uint16BufferAttribute, Ray, ShaderMaterial, FrontSide, BackSide, Vector4, Plane, Geometry, LineBasicMaterial, PlaneGeometry, Layers, Quaternion, AxesHelper, CylinderGeometry, PCFShadowMap, Fog, DirectionalLight, DirectionalLightShadow, AmbientLight, WebGLRenderTarget, RGBAFormat, DepthTexture, UnsignedShortType, FloatType, NoBlending, Euler } from 'three';
+import { Matrix4 } from 'three';
 
+var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+function unwrapExports (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+}
+
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+var arrayWithHoles = createCommonjsModule(function (module) {
 function _arrayWithHoles(arr) {
   if (Array.isArray(arr)) return arr;
 }
 
-var arrayWithHoles = _arrayWithHoles;
+module.exports = _arrayWithHoles;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
 
+unwrapExports(arrayWithHoles);
+
+var iterableToArrayLimit = createCommonjsModule(function (module) {
 function _iterableToArrayLimit(arr, i) {
-  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
-    return;
-  }
+  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
 
+  if (_i == null) return;
   var _arr = [];
   var _n = true;
   var _d = false;
-  var _e = undefined;
+
+  var _s, _e;
 
   try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
       _arr.push(_s.value);
 
       if (i && _arr.length === i) break;
@@ -40,19 +56,66 @@ function _iterableToArrayLimit(arr, i) {
   return _arr;
 }
 
-var iterableToArrayLimit = _iterableToArrayLimit;
+module.exports = _iterableToArrayLimit;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
 
+unwrapExports(iterableToArrayLimit);
+
+var arrayLikeToArray = createCommonjsModule(function (module) {
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+module.exports = _arrayLikeToArray;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+unwrapExports(arrayLikeToArray);
+
+var unsupportedIterableToArray = createCommonjsModule(function (module) {
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+
+module.exports = _unsupportedIterableToArray;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+unwrapExports(unsupportedIterableToArray);
+
+var nonIterableRest = createCommonjsModule(function (module) {
 function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
-var nonIterableRest = _nonIterableRest;
+module.exports = _nonIterableRest;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
 
+unwrapExports(nonIterableRest);
+
+var slicedToArray = createCommonjsModule(function (module) {
 function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
 }
 
-var slicedToArray = _slicedToArray;
+module.exports = _slicedToArray;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+var _slicedToArray = unwrapExports(slicedToArray);
 
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -65,7 +128,7 @@ var __assign = (undefined && undefined.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-var defaults = {
+var defaults$1 = {
     lines: 12,
     length: 7,
     width: 5,
@@ -88,7 +151,7 @@ var defaults = {
 var Spinner = /** @class */ (function () {
     function Spinner(opts) {
         if (opts === void 0) { opts = {}; }
-        this.opts = __assign(__assign({}, defaults), opts);
+        this.opts = __assign(__assign({}, defaults$1), opts);
     }
     /**
      * Adds the spinner to the given target element. If this instance is already
@@ -244,14 +307,20 @@ function convertOffset(x, y, degrees) {
     ];
 }
 
+var classCallCheck = createCommonjsModule(function (module) {
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 }
 
-var classCallCheck = _classCallCheck;
+module.exports = _classCallCheck;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
 
+var _classCallCheck = unwrapExports(classCallCheck);
+
+var createClass = createCommonjsModule(function (module) {
 function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
@@ -268,13 +337,17 @@ function _createClass(Constructor, protoProps, staticProps) {
   return Constructor;
 }
 
-var createClass = _createClass;
+module.exports = _createClass;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+var _createClass = unwrapExports(createClass);
 
 //----------------------------------------------------------------------------
 // Timer
 var Timer = /*#__PURE__*/function () {
   function Timer() {
-    classCallCheck(this, Timer);
+    _classCallCheck(this, Timer);
 
     this.startTime = 0;
     this.oldTime = 0;
@@ -282,7 +355,7 @@ var Timer = /*#__PURE__*/function () {
     this.running = false;
   }
 
-  createClass(Timer, [{
+  _createClass(Timer, [{
     key: "start",
     value: function start() {
       this.startTime = Timer.now();
@@ -327,7 +400,7 @@ Timer.now = function () {
 
 var now = Timer.now;
 
-function createElement(tag, id, css) {
+function createElement$2(tag, id, css) {
   var element = document.createElement(tag);
   element.id = id;
   element.style.cssText = css;
@@ -336,10 +409,10 @@ function createElement(tag, id, css) {
 
 var Stats = /*#__PURE__*/function () {
   function Stats() {
-    classCallCheck(this, Stats);
+    _classCallCheck(this, Stats);
 
-    this.domElement = createElement('div', 'stats', 'padding:8px');
-    this._text = createElement('p', 'fps', 'margin:0;color:silver;font-size:large');
+    this.domElement = createElement$2('div', 'stats', 'padding:8px');
+    this._text = createElement$2('p', 'fps', 'margin:0;color:silver;font-size:large');
     this.domElement.appendChild(this._text);
     this._startTime = now();
     this._prevTime = this._startTime;
@@ -349,7 +422,7 @@ var Stats = /*#__PURE__*/function () {
     this._count = 0;
   }
 
-  createClass(Stats, [{
+  _createClass(Stats, [{
     key: "end",
     value: function end() {
       var time = now();
@@ -393,63 +466,6 @@ var Stats = /*#__PURE__*/function () {
   return Stats;
 }();
 
-var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-
-var _typeof_1 = createCommonjsModule(function (module) {
-function _typeof(obj) {
-  "@babel/helpers - typeof";
-
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    module.exports = _typeof = function _typeof(obj) {
-      return typeof obj;
-    };
-  } else {
-    module.exports = _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof(obj);
-}
-
-module.exports = _typeof;
-});
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-var assertThisInitialized = _assertThisInitialized;
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof_1(call) === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return assertThisInitialized(self);
-}
-
-var possibleConstructorReturn = _possibleConstructorReturn;
-
-var getPrototypeOf = createCommonjsModule(function (module) {
-function _getPrototypeOf(o) {
-  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-module.exports = _getPrototypeOf;
-});
-
 var setPrototypeOf = createCommonjsModule(function (module) {
 function _setPrototypeOf(o, p) {
   module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
@@ -457,12 +473,17 @@ function _setPrototypeOf(o, p) {
     return o;
   };
 
+  module.exports["default"] = module.exports, module.exports.__esModule = true;
   return _setPrototypeOf(o, p);
 }
 
 module.exports = _setPrototypeOf;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
 });
 
+unwrapExports(setPrototypeOf);
+
+var inherits = createCommonjsModule(function (module) {
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function");
@@ -478,31 +499,126 @@ function _inherits(subClass, superClass) {
   if (superClass) setPrototypeOf(subClass, superClass);
 }
 
-var inherits = _inherits;
+module.exports = _inherits;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
 
+var _inherits = unwrapExports(inherits);
+
+var _typeof_1 = createCommonjsModule(function (module) {
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+
+    module.exports["default"] = module.exports, module.exports.__esModule = true;
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+
+    module.exports["default"] = module.exports, module.exports.__esModule = true;
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+var _typeof = unwrapExports(_typeof_1);
+
+var assertThisInitialized = createCommonjsModule(function (module) {
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+module.exports = _assertThisInitialized;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+var _assertThisInitialized = unwrapExports(assertThisInitialized);
+
+var possibleConstructorReturn = createCommonjsModule(function (module) {
+var _typeof = _typeof_1["default"];
+
+
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
+  }
+
+  return assertThisInitialized(self);
+}
+
+module.exports = _possibleConstructorReturn;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+var _possibleConstructorReturn = unwrapExports(possibleConstructorReturn);
+
+var getPrototypeOf = createCommonjsModule(function (module) {
+function _getPrototypeOf(o) {
+  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  return _getPrototypeOf(o);
+}
+
+module.exports = _getPrototypeOf;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+var _getPrototypeOf = unwrapExports(getPrototypeOf);
+
+var isNativeFunction = createCommonjsModule(function (module) {
 function _isNativeFunction(fn) {
   return Function.toString.call(fn).indexOf("[native code]") !== -1;
 }
 
-var isNativeFunction = _isNativeFunction;
+module.exports = _isNativeFunction;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
 
-var construct = createCommonjsModule(function (module) {
-function isNativeReflectConstruct() {
+unwrapExports(isNativeFunction);
+
+var isNativeReflectConstruct = createCommonjsModule(function (module) {
+function _isNativeReflectConstruct() {
   if (typeof Reflect === "undefined" || !Reflect.construct) return false;
   if (Reflect.construct.sham) return false;
   if (typeof Proxy === "function") return true;
 
   try {
-    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
     return true;
   } catch (e) {
     return false;
   }
 }
 
+module.exports = _isNativeReflectConstruct;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+unwrapExports(isNativeReflectConstruct);
+
+var construct = createCommonjsModule(function (module) {
 function _construct(Parent, args, Class) {
   if (isNativeReflectConstruct()) {
     module.exports = _construct = Reflect.construct;
+    module.exports["default"] = module.exports, module.exports.__esModule = true;
   } else {
     module.exports = _construct = function _construct(Parent, args, Class) {
       var a = [null];
@@ -512,13 +628,18 @@ function _construct(Parent, args, Class) {
       if (Class) setPrototypeOf(instance, Class.prototype);
       return instance;
     };
+
+    module.exports["default"] = module.exports, module.exports.__esModule = true;
   }
 
   return _construct.apply(null, arguments);
 }
 
 module.exports = _construct;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
 });
+
+var _construct = unwrapExports(construct);
 
 var wrapNativeSuper = createCommonjsModule(function (module) {
 function _wrapNativeSuper(Class) {
@@ -552,11 +673,15 @@ function _wrapNativeSuper(Class) {
     return setPrototypeOf(Wrapper, Class);
   };
 
+  module.exports["default"] = module.exports, module.exports.__esModule = true;
   return _wrapNativeSuper(Class);
 }
 
 module.exports = _wrapNativeSuper;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
 });
+
+var _wrapNativeSuper = unwrapExports(wrapNativeSuper);
 
 /**
  * This class introduces the simplest event system.
@@ -817,6 +942,9 @@ Logger.prototype._message = function (priority, message) {
 
 var logger = new Logger();
 
+function _createSuper$1_(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1_(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1_() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 var browserType = {
   DEFAULT: 0,
   SAFARI: 1
@@ -892,7 +1020,7 @@ function getUrlParametersAsDict(url) {
   var a = getUrlParameters(url);
 
   for (var i = 0; i < a.length; ++i) {
-    var _a$i = slicedToArray(a[i], 2),
+    var _a$i = _slicedToArray(a[i], 2),
         key = _a$i[0],
         value = _a$i[1];
 
@@ -1092,21 +1220,23 @@ function DebugTracer(namespace) {
 DebugTracer.spaces = '                                                                                          ';
 
 var OutOfMemoryError = /*#__PURE__*/function (_Error) {
-  inherits(OutOfMemoryError, _Error);
+  _inherits(OutOfMemoryError, _Error);
+
+  var _super = _createSuper$1_(OutOfMemoryError);
 
   function OutOfMemoryError(message) {
     var _this;
 
-    classCallCheck(this, OutOfMemoryError);
+    _classCallCheck(this, OutOfMemoryError);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(OutOfMemoryError).call(this));
+    _this = _super.call(this);
     _this.name = 'OutOfMemoryError';
     _this.message = message;
     return _this;
   }
 
   return OutOfMemoryError;
-}( /*#__PURE__*/wrapNativeSuper(Error));
+}( /*#__PURE__*/_wrapNativeSuper(Error));
 
 function allocateTyped(TypedArrayName, size) {
   var result = null;
@@ -1354,7 +1484,7 @@ function download(data, filename, type) {
   }
 }
 
-function copySubArrays(src, dst, indices, itemSize) {
+function copySubArrays$2(src, dst, indices, itemSize) {
   for (var i = 0, n = indices.length; i < n; ++i) {
     for (var j = 0; j < itemSize; ++j) {
       dst[i * itemSize + j] = src[indices[i] * itemSize + j];
@@ -1454,7 +1584,7 @@ var utils = {
   getBrowser: getBrowser,
   shotOpen: shotOpen,
   shotDownload: shotDownload,
-  copySubArrays: copySubArrays,
+  copySubArrays: copySubArrays$2,
   shallowCloneNode: shallowCloneNode,
   correctSelectorIdentifier: correctSelectorIdentifier,
   getFileExtension: getFileExtension,
@@ -1464,20 +1594,26 @@ var utils = {
   mergeTypedArraysUnsafe: mergeTypedArraysUnsafe
 };
 
+function _createSuper$1Z(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1Z(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1Z() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var JobHandle = /*#__PURE__*/function (_EventDispatcher) {
-  inherits(JobHandle, _EventDispatcher);
+  _inherits(JobHandle, _EventDispatcher);
+
+  var _super = _createSuper$1Z(JobHandle);
 
   function JobHandle() {
     var _this;
 
-    classCallCheck(this, JobHandle);
+    _classCallCheck(this, JobHandle);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(JobHandle).call(this));
+    _this = _super.call(this);
     _this._shouldCancel = false;
     return _this;
   }
 
-  createClass(JobHandle, [{
+  _createClass(JobHandle, [{
     key: "cancel",
     value: function cancel() {
       this._shouldCancel = true;
@@ -1525,7 +1661,7 @@ var VERSION = 0; //-------------------------------------------------------------
  * @namespace
  */
 
-var defaults$1 = {
+var defaults = {
   /**
    * Default options for all available modes.
    * Use {@link Mode.id} as a dictionary key to access mode options.
@@ -2408,7 +2544,7 @@ function Settings() {
 }
 
 utils.deriveClass(Settings, EventDispatcher, {
-  defaults: defaults$1,
+  defaults: defaults,
   set: function set(path, value) {
     if (_.isString(path)) {
       var oldValue = _.get(this.now, path);
@@ -2432,8 +2568,8 @@ utils.deriveClass(Settings, EventDispatcher, {
     return _.get(this.now, path, defaultValue);
   },
   reset: function reset() {
-    var diff = utils.objectsDiff(defaults$1, this.now);
-    this.now = _.cloneDeep(defaults$1);
+    var diff = utils.objectsDiff(defaults, this.now);
+    this.now = _.cloneDeep(defaults);
     this.old = null;
 
     this._notifyChanges(diff);
@@ -2483,7 +2619,7 @@ utils.deriveClass(Settings, EventDispatcher, {
     this.set(diffs);
   },
   getDiffs: function getDiffs(versioned) {
-    var diffs = utils.objectsDiff(this.now, defaults$1);
+    var diffs = utils.objectsDiff(this.now, defaults);
 
     if (versioned) {
       diffs.VERSION = VERSION;
@@ -2492,11 +2628,11 @@ utils.deriveClass(Settings, EventDispatcher, {
     return diffs;
   },
   setPluginOpts: function setPluginOpts(plugin, opts) {
-    defaults$1.plugins[plugin] = _.cloneDeep(opts);
+    defaults.plugins[plugin] = _.cloneDeep(opts);
     this.now.plugins[plugin] = _.cloneDeep(opts);
   }
 });
-var settings = new Settings();
+var settings$1 = new Settings();
 
 var repIndex = 0;
 
@@ -2558,8 +2694,8 @@ function ensureRepList(opts) {
   var reps = opts.reps;
 
   if (!reps) {
-    var presets = settings.now.presets;
-    var preset = opts.preset || settings.now.preset;
+    var presets = settings$1.now.presets;
+    var preset = opts.preset || settings$1.now.preset;
     reps = presets[preset];
 
     if (!reps) {
@@ -2567,7 +2703,7 @@ function ensureRepList(opts) {
 
       var _Object$keys = Object.keys(presets);
 
-      var _Object$keys2 = slicedToArray(_Object$keys, 1);
+      var _Object$keys2 = _slicedToArray(_Object$keys, 1);
 
       preset = _Object$keys2[0];
       reps = presets[preset]; // fall back to any preset
@@ -2597,7 +2733,7 @@ function addObject(opts, params, options) {
     opts._objects = [];
   }
 
-  var _options = slicedToArray(options, 2),
+  var _options = _slicedToArray(options, 2),
       type = _options[0],
       newOpts = _options[1];
 
@@ -2642,7 +2778,7 @@ function extractArgs(input, defaultsDict, params) {
           var key = decodeURIComponent(pair[0]);
           var value = decodeURIComponent(pair[1]);
 
-          var adapter = adapters[_typeof_1(_.get(defaults, key))];
+          var adapter = adapters[_typeof(_.get(defaults, key))];
 
           if (adapter) {
             _.set(opts, key, adapter(value));
@@ -2677,7 +2813,7 @@ var actions = {
   o: 'object',
   object: function object(value, opts) {
     var params = [];
-    var options = extractArgs(value, settings.defaults.objects, params);
+    var options = extractArgs(value, settings$1.defaults.objects, params);
 
     if (!Array.isArray(options)) {
       options = [options];
@@ -2700,7 +2836,7 @@ var actions = {
 
     if (repIndex === opts.reps.length) {
       // if there is no rep to derive from, derive from the first rep of the default
-      opts.reps[repIndex] = repIndex > 0 ? utils.deriveDeep(opts.reps[repIndex - 1], true) : utils.deriveDeep(settings.defaults.presets["default"][0], true);
+      opts.reps[repIndex] = repIndex > 0 ? utils.deriveDeep(opts.reps[repIndex - 1], true) : utils.deriveDeep(settings$1.defaults.presets["default"][0], true);
     }
   },
   s: 'select',
@@ -2709,15 +2845,15 @@ var actions = {
   },
   m: 'mode',
   mode: function mode(value, opts) {
-    ensureRepAssign(opts, 'mode', extractArgs(value, settings.defaults.modes));
+    ensureRepAssign(opts, 'mode', extractArgs(value, settings$1.defaults.modes));
   },
   c: 'color',
   color: function color(value, opts) {
-    ensureRepAssign(opts, 'colorer', extractArgs(value, settings.defaults.colorers));
+    ensureRepAssign(opts, 'colorer', extractArgs(value, settings$1.defaults.colorers));
   },
   mt: 'material',
   material: function material(value, opts) {
-    ensureRepAssign(opts, 'material', extractArgs(value, settings.defaults.materials));
+    ensureRepAssign(opts, 'material', extractArgs(value, settings$1.defaults.materials));
   },
   dup: function dup(value, opts) {
     ensureRepList(opts);
@@ -2755,7 +2891,7 @@ function _fromArray(entries) {
 
 
     if (!action) {
-      var adapter = adapters[_typeof_1(_.get(settings.defaults, key))];
+      var adapter = adapters[_typeof(_.get(settings$1.defaults, key))];
 
       if (adapter) {
         _.set(opts, "settings.".concat(key), adapter(value));
@@ -3001,7 +3137,7 @@ function toScript(opts) {
   return commandsList.join('\n');
 }
 
-var options = {
+var options$1 = {
   fromURL: fromURL,
   fromAttr: fromAttr,
   adapters: adapters,
@@ -3009,6 +3145,7 @@ var options = {
   toScript: toScript
 };
 
+var defineProperty = createCommonjsModule(function (module) {
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -3024,7 +3161,11 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-var defineProperty = _defineProperty;
+module.exports = _defineProperty;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+var _defineProperty = unwrapExports(defineProperty);
 
 /**
  * Atom measurements.
@@ -3046,9 +3187,9 @@ var defineProperty = _defineProperty;
  * @exports Atom
  * @constructor
  */
-var Atom = /*#__PURE__*/function () {
+var Atom$2 = /*#__PURE__*/function () {
   function Atom(residue, name, type, position, role, het, serial, location, occupancy, temperature, charge) {
-    classCallCheck(this, Atom);
+    _classCallCheck(this, Atom);
 
     this.index = -1;
     this.residue = residue;
@@ -3078,7 +3219,7 @@ var Atom = /*#__PURE__*/function () {
     }
   }
 
-  createClass(Atom, [{
+  _createClass(Atom, [{
     key: "isHet",
     value: function isHet() {
       return this.het;
@@ -3136,7 +3277,7 @@ var Atom = /*#__PURE__*/function () {
   return Atom;
 }();
 
-defineProperty(Atom, "Flags", {
+_defineProperty(Atom$2, "Flags", {
   CARBON: 0x0001,
   // OXYGEN: 0x0002,
   // NITROGEN: 0x0004,
@@ -3146,8 +3287,8 @@ defineProperty(Atom, "Flags", {
   NONPOLARH: 0x1008
 });
 
-var Element = function Element(number, name, fullName, weight, radius, radiusBonding, hValency) {
-  classCallCheck(this, Element);
+var Element$a = function Element(number, name, fullName, weight, radius, radiusBonding, hValency) {
+  _classCallCheck(this, Element);
 
   this.number = number;
   this.name = name;
@@ -3158,7 +3299,7 @@ var Element = function Element(number, name, fullName, weight, radius, radiusBon
   this.hydrogenValency = hValency;
 };
 
-defineProperty(Element, "Constants", {
+_defineProperty(Element$a, "Constants", {
   /* eslint-disable no-magic-numbers */
   U1: 1,
   Lead: 2,
@@ -3169,37 +3310,37 @@ defineProperty(Element, "Constants", {
 
 });
 
-defineProperty(Element, "Role", {
+_defineProperty(Element$a, "Role", {
   /* eslint-disable no-magic-numbers */
-  N: Element.Constants.U1,
-  CA: Element.Constants.Lead,
-  C: Element.Constants.U2,
-  O: Element.Constants.Wing,
-  SG: Element.Constants.U18
+  N: Element$a.Constants.U1,
+  CA: Element$a.Constants.Lead,
+  C: Element$a.Constants.U2,
+  O: Element$a.Constants.Wing,
+  SG: Element$a.Constants.U18
   /* eslint-enable no-magic-numbers */
 
 });
 
-defineProperty(Element, "ByAtomicNumber", [
+_defineProperty(Element$a, "ByAtomicNumber", [
 /* eslint-disable no-magic-numbers */
-null, new Element(1, 'H', 'Hydrogen', 1.008, 1.2, 0.23, [1]), new Element(2, 'HE', 'Helium', 4.003, 1.4, 0.93, [0]), new Element(3, 'LI', 'Lithium', 6.941, 1.82, 0.68, [1]), new Element(4, 'BE', 'Beryllium', 9.012, 1.7, 0.35, [2]), new Element(5, 'B', 'Boron', 10.81, 2.08, 0.83, [3]), new Element(6, 'C', 'Carbon', 12.011, 1.95, 0.68, [4]), new Element(7, 'N', 'Nitrogen', 14.007, 1.85, 0.68, [3, 5]), new Element(8, 'O', 'Oxygen', 15.999, 1.7, 0.68, [2, 4]), new Element(9, 'F', 'Fluorine', 18.998, 1.73, 0.64, [1]), new Element(10, 'NE', 'Neon', 20.18, 1.54, 1.12, [0]), new Element(11, 'NA', 'Sodium', 22.99, 2.27, 0.97, [1]), new Element(12, 'MG', 'Magnesium', 24.305, 1.73, 1.1, [2]), new Element(13, 'AL', 'Aluminum', 26.981, 2.05, 1.35, [3]), new Element(14, 'SI', 'Silicon', 28.086, 2.1, 1.2, [4]), new Element(15, 'P', 'Phosphorus', 30.974, 2.08, 0.75, [3, 5]), new Element(16, 'S', 'Sulfur', 32.07, 2, 1.02, [2, 4, 6]), new Element(17, 'CL', 'Chlorine', 35.453, 1.97, 0.99, [1, 3, 5, 7]), new Element(18, 'AR', 'Argon', 39.948, 1.88, 1.57, [0]), new Element(19, 'K', 'Potassium', 39.1, 2.75, 1.33, [1]), new Element(20, 'CA', 'Calcium', 40.08, 1.973, 0.99, [2]), new Element(21, 'SC', 'Scandium', 44.956, 1.7, 1.44, [0]), new Element(22, 'TI', 'Titanium', 47.88, 1.7, 1.47, [0]), new Element(23, 'V', 'Vanadium', 50.941, 1.7, 1.33, [0]), new Element(24, 'CR', 'Chromium', 52, 1.7, 1.35, [0]), new Element(25, 'MN', 'Manganese', 54.938, 1.7, 1.35, [0]), new Element(26, 'FE', 'Iron', 55.847, 1.7, 1.34, [0]), new Element(27, 'CO', 'Cobalt', 58.93, 1.7, 1.33, [0]), new Element(28, 'NI', 'Nickel', 58.69, 1.63, 1.5, [0]), new Element(29, 'CU', 'Copper', 63.55, 1.4, 1.52, [0]), new Element(30, 'ZN', 'Zinc', 65.39, 1.39, 1.45, [0]), new Element(31, 'GA', 'Gallium', 69.72, 1.87, 1.22, [3]), new Element(32, 'GE', 'Germanium', 72.61, 1.7, 1.17, [4]), new Element(33, 'AS', 'Arsenic', 74.92, 1.85, 1.21, [3, 5]), new Element(34, 'SE', 'Selenium', 78.96, 1.9, 1.22, [2, 4, 6]), new Element(35, 'BR', 'Bromine', 79.9, 2.1, 1.21, [1, 3, 5, 7]), new Element(36, 'KR', 'Krypton', 83.8, 2.02, 1.91, [0]), new Element(37, 'RB', 'Rubidium', 85.47, 1.7, 1.47, [1]), new Element(38, 'SR', 'Strontium', 87.62, 1.7, 1.12, [2]), new Element(39, 'Y', 'Yttrium', 88.91, 1.7, 1.78, [0]), new Element(40, 'ZR', 'Zirconium', 91.22, 1.7, 1.56, [0]), new Element(41, 'NB', 'Niobium', 92.91, 1.7, 1.48, [0]), new Element(42, 'MO', 'Molybdenum', 95.94, 1.7, 1.47, [0]), new Element(43, 'TC', 'Technetium', 98.91, 1.7, 1.35, [0]), new Element(44, 'RU', 'Ruthenium', 101.07, 1.7, 1.4, [0]), new Element(45, 'RH', 'Rhodium', 102.91, 1.7, 1.45, [0]), new Element(46, 'PD', 'Palladium', 106.42, 1.63, 1.5, [0]), new Element(47, 'AG', 'Silver', 107.87, 1.72, 1.59, [0]), new Element(48, 'CD', 'Cadmium', 112.41, 1.58, 1.69, [0]), new Element(49, 'IN', 'Indium', 114.82, 1.93, 1.63, [3]), new Element(50, 'SN', 'Tin', 118.71, 2.17, 1.46, [2, 4]), new Element(51, 'SB', 'Antimony', 121.75, 2.2, 1.46, [3, 5]), new Element(52, 'TE', 'Tellurium', 127.6, 2.06, 1.47, [2, 4, 6]), new Element(53, 'I', 'Iodine', 126.91, 2.15, 1.4, [1, 3, 5, 7]), new Element(54, 'XE', 'Xenon', 131.29, 2.16, 1.98, [0]), new Element(55, 'CS', 'Cesium', 132.91, 1.7, 1.67, [1]), new Element(56, 'BA', 'Barium', 137.33, 1.7, 1.34, [2]), new Element(57, 'LA', 'Lanthanum', 138.91, 1.7, 1.87, [0]), new Element(58, 'CE', 'Cerium', 140.12, 1.7, 1.83, [0]), new Element(59, 'PR', 'Praseodymium', 140.91, 1.7, 1.82, [0]), new Element(60, 'ND', 'Neodymium', 144.24, 1.7, 1.81, [0]), new Element(61, 'PM', 'Promethium', 144.9, 1.7, 1.8, [0]), new Element(62, 'SM', 'Samarium', 150.36, 1.7, 1.8, [0]), new Element(63, 'EU', 'Europium', 151.96, 1.7, 1.99, [0]), new Element(64, 'GD', 'Gadolinium', 157.25, 1.7, 1.79, [0]), new Element(65, 'TB', 'Terbium', 158.93, 1.7, 1.76, [0]), new Element(66, 'DY', 'Dysprosium', 162.5, 1.7, 1.75, [0]), new Element(67, 'HO', 'Holmium', 164.93, 1.7, 1.74, [0]), new Element(68, 'ER', 'Erbium', 167.26, 1.7, 1.73, [0]), new Element(69, 'TM', 'Thulium', 168.93, 1.7, 1.72, [0]), new Element(70, 'YB', 'Ytterbium', 173.04, 1.7, 1.94, [0]), new Element(71, 'LU', 'Lutetium', 174.97, 1.7, 1.72, [0]), new Element(72, 'HF', 'Hafnium', 178.49, 1.7, 1.57, [0]), new Element(73, 'TA', 'Tantalum', 180.95, 1.7, 1.43, [0]), new Element(74, 'W', 'Tungsten', 183.85, 1.7, 1.37, [0]), new Element(75, 'RE', 'Rhenium', 186.21, 1.7, 1.35, [0]), new Element(76, 'OS', 'Osmium', 190.2, 1.7, 1.37, [0]), new Element(77, 'IR', 'Iridium', 192.22, 1.7, 1.32, [0]), new Element(78, 'PT', 'Platinum', 195.08, 1.72, 1.5, [0]), new Element(79, 'AU', 'Gold', 196.97, 1.66, 1.5, [0]), new Element(80, 'HG', 'Mercury', 200.59, 1.55, 1.7, [0]), new Element(81, 'TL', 'Thallium', 204.38, 1.96, 1.55, [1, 3]), new Element(82, 'PB', 'Lead', 207.2, 2.02, 1.54, [2, 4]), new Element(83, 'BI', 'Bismuth', 208.98, 1.7, 1.54, [3, 5]), new Element(84, 'PO', 'Polonium', 210, 1.7, 1.68, [2, 4, 6]), new Element(85, 'AT', 'Astatine', 210, 1.7, 1.7, [1, 3, 5, 7]), new Element(86, 'RN', 'Radon', 222, 1.7, 2.4, [0]), new Element(87, 'FR', 'Francium', 223, 1.7, 2, [1]), new Element(88, 'RA', 'Radium', 226.03, 1.7, 1.9, [2]), new Element(89, 'AC', 'Actinium', 227.03, 1.7, 1.88, [0]), new Element(90, 'TH', 'Thorium', 232.04, 1.7, 1.79, [0]), new Element(91, 'PA', 'Protactinium', 231.04, 1.7, 1.61, [0]), new Element(92, 'U', 'Uranium', 238.03, 1.86, 1.58, [0]), new Element(93, 'NP', 'Neptunium', 237.05, 1.7, 1.55, [0]), new Element(94, 'PU', 'Plutonium', 239.1, 1.7, 1.53, [0]), new Element(95, 'AM', 'Americium', 243.1, 1.7, 1.51, [0]), new Element(96, 'CM', 'Curium', 247.1, 1.7, 1.5, [0]), new Element(97, 'BK', 'Berkelium', 247.1, 1.7, 1.5, [0]), new Element(98, 'CF', 'Californium', 252.1, 1.7, 1.5, [0]), new Element(99, 'ES', 'Einsteinium', 252.1, 1.7, 1.5, [0]), new Element(100, 'FM', 'Fermium', 257.1, 1.7, 1.5, [0]), new Element(101, 'MD', 'Mendelevium', 256.1, 1.7, 1.5, [0]), new Element(102, 'NO', 'Nobelium', 259.1, 1.7, 1.5, [0]), new Element(103, 'LR', 'Lawrencium', 260.1, 1.7, 1.5, [0]), new Element(104, 'RF', 'Rutherfordium', 261, 1.7, 1.6, [0]), new Element(105, 'DB', 'Dubnium', 262, 1.7, 1.6, [0]), new Element(106, 'SG', 'Seaborgium', 263, 1.7, 1.6, [0]), new Element(107, 'BH', 'Bohrium', 262, 1.7, 1.6, [0]), new Element(108, 'HS', 'Hassium', 265, 1.7, 1.6, [0]), new Element(109, 'MT', 'Meitnerium', 268, 1.7, 1.6, [0])
+null, new Element$a(1, 'H', 'Hydrogen', 1.008, 1.2, 0.23, [1]), new Element$a(2, 'HE', 'Helium', 4.003, 1.4, 0.93, [0]), new Element$a(3, 'LI', 'Lithium', 6.941, 1.82, 0.68, [1]), new Element$a(4, 'BE', 'Beryllium', 9.012, 1.7, 0.35, [2]), new Element$a(5, 'B', 'Boron', 10.81, 2.08, 0.83, [3]), new Element$a(6, 'C', 'Carbon', 12.011, 1.95, 0.68, [4]), new Element$a(7, 'N', 'Nitrogen', 14.007, 1.85, 0.68, [3, 5]), new Element$a(8, 'O', 'Oxygen', 15.999, 1.7, 0.68, [2, 4]), new Element$a(9, 'F', 'Fluorine', 18.998, 1.73, 0.64, [1]), new Element$a(10, 'NE', 'Neon', 20.18, 1.54, 1.12, [0]), new Element$a(11, 'NA', 'Sodium', 22.99, 2.27, 0.97, [1]), new Element$a(12, 'MG', 'Magnesium', 24.305, 1.73, 1.1, [2]), new Element$a(13, 'AL', 'Aluminum', 26.981, 2.05, 1.35, [3]), new Element$a(14, 'SI', 'Silicon', 28.086, 2.1, 1.2, [4]), new Element$a(15, 'P', 'Phosphorus', 30.974, 2.08, 0.75, [3, 5]), new Element$a(16, 'S', 'Sulfur', 32.07, 2, 1.02, [2, 4, 6]), new Element$a(17, 'CL', 'Chlorine', 35.453, 1.97, 0.99, [1, 3, 5, 7]), new Element$a(18, 'AR', 'Argon', 39.948, 1.88, 1.57, [0]), new Element$a(19, 'K', 'Potassium', 39.1, 2.75, 1.33, [1]), new Element$a(20, 'CA', 'Calcium', 40.08, 1.973, 0.99, [2]), new Element$a(21, 'SC', 'Scandium', 44.956, 1.7, 1.44, [0]), new Element$a(22, 'TI', 'Titanium', 47.88, 1.7, 1.47, [0]), new Element$a(23, 'V', 'Vanadium', 50.941, 1.7, 1.33, [0]), new Element$a(24, 'CR', 'Chromium', 52, 1.7, 1.35, [0]), new Element$a(25, 'MN', 'Manganese', 54.938, 1.7, 1.35, [0]), new Element$a(26, 'FE', 'Iron', 55.847, 1.7, 1.34, [0]), new Element$a(27, 'CO', 'Cobalt', 58.93, 1.7, 1.33, [0]), new Element$a(28, 'NI', 'Nickel', 58.69, 1.63, 1.5, [0]), new Element$a(29, 'CU', 'Copper', 63.55, 1.4, 1.52, [0]), new Element$a(30, 'ZN', 'Zinc', 65.39, 1.39, 1.45, [0]), new Element$a(31, 'GA', 'Gallium', 69.72, 1.87, 1.22, [3]), new Element$a(32, 'GE', 'Germanium', 72.61, 1.7, 1.17, [4]), new Element$a(33, 'AS', 'Arsenic', 74.92, 1.85, 1.21, [3, 5]), new Element$a(34, 'SE', 'Selenium', 78.96, 1.9, 1.22, [2, 4, 6]), new Element$a(35, 'BR', 'Bromine', 79.9, 2.1, 1.21, [1, 3, 5, 7]), new Element$a(36, 'KR', 'Krypton', 83.8, 2.02, 1.91, [0]), new Element$a(37, 'RB', 'Rubidium', 85.47, 1.7, 1.47, [1]), new Element$a(38, 'SR', 'Strontium', 87.62, 1.7, 1.12, [2]), new Element$a(39, 'Y', 'Yttrium', 88.91, 1.7, 1.78, [0]), new Element$a(40, 'ZR', 'Zirconium', 91.22, 1.7, 1.56, [0]), new Element$a(41, 'NB', 'Niobium', 92.91, 1.7, 1.48, [0]), new Element$a(42, 'MO', 'Molybdenum', 95.94, 1.7, 1.47, [0]), new Element$a(43, 'TC', 'Technetium', 98.91, 1.7, 1.35, [0]), new Element$a(44, 'RU', 'Ruthenium', 101.07, 1.7, 1.4, [0]), new Element$a(45, 'RH', 'Rhodium', 102.91, 1.7, 1.45, [0]), new Element$a(46, 'PD', 'Palladium', 106.42, 1.63, 1.5, [0]), new Element$a(47, 'AG', 'Silver', 107.87, 1.72, 1.59, [0]), new Element$a(48, 'CD', 'Cadmium', 112.41, 1.58, 1.69, [0]), new Element$a(49, 'IN', 'Indium', 114.82, 1.93, 1.63, [3]), new Element$a(50, 'SN', 'Tin', 118.71, 2.17, 1.46, [2, 4]), new Element$a(51, 'SB', 'Antimony', 121.75, 2.2, 1.46, [3, 5]), new Element$a(52, 'TE', 'Tellurium', 127.6, 2.06, 1.47, [2, 4, 6]), new Element$a(53, 'I', 'Iodine', 126.91, 2.15, 1.4, [1, 3, 5, 7]), new Element$a(54, 'XE', 'Xenon', 131.29, 2.16, 1.98, [0]), new Element$a(55, 'CS', 'Cesium', 132.91, 1.7, 1.67, [1]), new Element$a(56, 'BA', 'Barium', 137.33, 1.7, 1.34, [2]), new Element$a(57, 'LA', 'Lanthanum', 138.91, 1.7, 1.87, [0]), new Element$a(58, 'CE', 'Cerium', 140.12, 1.7, 1.83, [0]), new Element$a(59, 'PR', 'Praseodymium', 140.91, 1.7, 1.82, [0]), new Element$a(60, 'ND', 'Neodymium', 144.24, 1.7, 1.81, [0]), new Element$a(61, 'PM', 'Promethium', 144.9, 1.7, 1.8, [0]), new Element$a(62, 'SM', 'Samarium', 150.36, 1.7, 1.8, [0]), new Element$a(63, 'EU', 'Europium', 151.96, 1.7, 1.99, [0]), new Element$a(64, 'GD', 'Gadolinium', 157.25, 1.7, 1.79, [0]), new Element$a(65, 'TB', 'Terbium', 158.93, 1.7, 1.76, [0]), new Element$a(66, 'DY', 'Dysprosium', 162.5, 1.7, 1.75, [0]), new Element$a(67, 'HO', 'Holmium', 164.93, 1.7, 1.74, [0]), new Element$a(68, 'ER', 'Erbium', 167.26, 1.7, 1.73, [0]), new Element$a(69, 'TM', 'Thulium', 168.93, 1.7, 1.72, [0]), new Element$a(70, 'YB', 'Ytterbium', 173.04, 1.7, 1.94, [0]), new Element$a(71, 'LU', 'Lutetium', 174.97, 1.7, 1.72, [0]), new Element$a(72, 'HF', 'Hafnium', 178.49, 1.7, 1.57, [0]), new Element$a(73, 'TA', 'Tantalum', 180.95, 1.7, 1.43, [0]), new Element$a(74, 'W', 'Tungsten', 183.85, 1.7, 1.37, [0]), new Element$a(75, 'RE', 'Rhenium', 186.21, 1.7, 1.35, [0]), new Element$a(76, 'OS', 'Osmium', 190.2, 1.7, 1.37, [0]), new Element$a(77, 'IR', 'Iridium', 192.22, 1.7, 1.32, [0]), new Element$a(78, 'PT', 'Platinum', 195.08, 1.72, 1.5, [0]), new Element$a(79, 'AU', 'Gold', 196.97, 1.66, 1.5, [0]), new Element$a(80, 'HG', 'Mercury', 200.59, 1.55, 1.7, [0]), new Element$a(81, 'TL', 'Thallium', 204.38, 1.96, 1.55, [1, 3]), new Element$a(82, 'PB', 'Lead', 207.2, 2.02, 1.54, [2, 4]), new Element$a(83, 'BI', 'Bismuth', 208.98, 1.7, 1.54, [3, 5]), new Element$a(84, 'PO', 'Polonium', 210, 1.7, 1.68, [2, 4, 6]), new Element$a(85, 'AT', 'Astatine', 210, 1.7, 1.7, [1, 3, 5, 7]), new Element$a(86, 'RN', 'Radon', 222, 1.7, 2.4, [0]), new Element$a(87, 'FR', 'Francium', 223, 1.7, 2, [1]), new Element$a(88, 'RA', 'Radium', 226.03, 1.7, 1.9, [2]), new Element$a(89, 'AC', 'Actinium', 227.03, 1.7, 1.88, [0]), new Element$a(90, 'TH', 'Thorium', 232.04, 1.7, 1.79, [0]), new Element$a(91, 'PA', 'Protactinium', 231.04, 1.7, 1.61, [0]), new Element$a(92, 'U', 'Uranium', 238.03, 1.86, 1.58, [0]), new Element$a(93, 'NP', 'Neptunium', 237.05, 1.7, 1.55, [0]), new Element$a(94, 'PU', 'Plutonium', 239.1, 1.7, 1.53, [0]), new Element$a(95, 'AM', 'Americium', 243.1, 1.7, 1.51, [0]), new Element$a(96, 'CM', 'Curium', 247.1, 1.7, 1.5, [0]), new Element$a(97, 'BK', 'Berkelium', 247.1, 1.7, 1.5, [0]), new Element$a(98, 'CF', 'Californium', 252.1, 1.7, 1.5, [0]), new Element$a(99, 'ES', 'Einsteinium', 252.1, 1.7, 1.5, [0]), new Element$a(100, 'FM', 'Fermium', 257.1, 1.7, 1.5, [0]), new Element$a(101, 'MD', 'Mendelevium', 256.1, 1.7, 1.5, [0]), new Element$a(102, 'NO', 'Nobelium', 259.1, 1.7, 1.5, [0]), new Element$a(103, 'LR', 'Lawrencium', 260.1, 1.7, 1.5, [0]), new Element$a(104, 'RF', 'Rutherfordium', 261, 1.7, 1.6, [0]), new Element$a(105, 'DB', 'Dubnium', 262, 1.7, 1.6, [0]), new Element$a(106, 'SG', 'Seaborgium', 263, 1.7, 1.6, [0]), new Element$a(107, 'BH', 'Bohrium', 262, 1.7, 1.6, [0]), new Element$a(108, 'HS', 'Hassium', 265, 1.7, 1.6, [0]), new Element$a(109, 'MT', 'Meitnerium', 268, 1.7, 1.6, [0])
 /* eslint-enable no-magic-numbers */
 ]);
 
-defineProperty(Element, "ByName", {
+_defineProperty(Element$a, "ByName", {
   // Duplicate atomic numbers (isotopes)
 
   /* eslint-disable no-magic-numbers */
-  D: new Element(1, 'D', 'Deuterium', 2.014, 1.2, 0.23, [1]),
-  T: new Element(1, 'T', 'Tritium', 3.016, 1.2, 0.23, [1])
+  D: new Element$a(1, 'D', 'Deuterium', 2.014, 1.2, 0.23, [1]),
+  T: new Element$a(1, 'T', 'Tritium', 3.016, 1.2, 0.23, [1])
   /* eslint-enable no-magic-numbers */
   // All regular elements will be added later, automatically
 
 });
 
 (function () {
-  var byAtomicNumber = Element.ByAtomicNumber;
-  var byName = Element.ByName;
+  var byAtomicNumber = Element$a.ByAtomicNumber;
+  var byName = Element$a.ByName;
 
   for (var i = 0, n = byAtomicNumber.length; i < n; ++i) {
     var element = byAtomicNumber[i];
@@ -3211,11 +3352,11 @@ defineProperty(Element, "ByName", {
 })(); // find atom type by chemical element (or create if missing)
 
 
-Element.getByName = function (element) {
-  var type = Element.ByName[element];
+Element$a.getByName = function (element) {
+  var type = Element$a.ByName[element];
 
   if (!type) {
-    type = Element.ByName[element] = new Element(0, element, 'Unknown', 0, 1.0, 0.01, [0]);
+    type = Element$a.ByName[element] = new Element$a(0, element, 'Unknown', 0, 1.0, 0.01, [0]);
   }
 
   return type;
@@ -3249,9 +3390,9 @@ function getAtomPos(atom) {
  */
 
 
-var Bond = /*#__PURE__*/function () {
+var Bond$5 = /*#__PURE__*/function () {
   function Bond(left, right, order, type, fixed) {
-    classCallCheck(this, Bond);
+    _classCallCheck(this, Bond);
 
     this._left = left;
     this._right = right;
@@ -3266,7 +3407,7 @@ var Bond = /*#__PURE__*/function () {
     this._type = type;
   }
 
-  createClass(Bond, [{
+  _createClass(Bond, [{
     key: "getLeft",
     value: function getLeft() {
       return this._left;
@@ -3453,9 +3594,9 @@ var Bond = /*#__PURE__*/function () {
   return Bond;
 }();
 
-defineProperty(Bond, "BondType", cBondTypes);
+_defineProperty(Bond$5, "BondType", cBondTypes);
 
-Bond.prototype.BondType = cBondTypes;
+Bond$5.prototype.BondType = cBondTypes;
 
 var cNucleicControlNames = ['C3\'', 'C3*', 'P', 'H5T', 'H3T'];
 var cNucleicWing1Names = ['OP1', 'O1P'];
@@ -3483,9 +3624,9 @@ var cCylinderTarget = [{
  * @constructor
  */
 
-var Residue = /*#__PURE__*/function () {
+var Residue$1 = /*#__PURE__*/function () {
   function Residue(chain, type, sequence, icode) {
-    classCallCheck(this, Residue);
+    _classCallCheck(this, Residue);
 
     this._chain = chain;
     this._component = null;
@@ -3512,7 +3653,7 @@ var Residue = /*#__PURE__*/function () {
   } // Getters and setters
 
 
-  createClass(Residue, [{
+  _createClass(Residue, [{
     key: "getChain",
     value: function getChain() {
       return this._chain;
@@ -3546,7 +3687,7 @@ var Residue = /*#__PURE__*/function () {
   }, {
     key: "addAtom",
     value: function addAtom(name, type, xyz, role, het, serial, altLoc, occupancy, tempFactor, charge) {
-      var atom = new Atom(this, name, type, xyz, role, het, serial, altLoc, occupancy, tempFactor, charge);
+      var atom = new Atom$2(this, name, type, xyz, role, het, serial, altLoc, occupancy, tempFactor, charge);
 
       var complex = this._chain.getComplex();
 
@@ -3689,7 +3830,7 @@ var Residue = /*#__PURE__*/function () {
     value: function _innerFinalize(prevRes, prev, nextRes, dst, chainAsNucleic, getAtomPosition) {
       var bFirstInChain = prev === null;
       var lp = getAtomPosition(this._leadAtom);
-      var currLeadPos = new Vector3(lp.x, lp.y, lp.z);
+      var currLeadPos = new THREE.Vector3(lp.x, lp.y, lp.z);
 
       if (chainAsNucleic) {
         this._detectLeadWing(dst, nextRes, getAtomPosition);
@@ -3750,7 +3891,7 @@ var Residue = /*#__PURE__*/function () {
     value: function _finalize() {
       var self = this;
 
-      var _this$_atoms = slicedToArray(this._atoms, 1);
+      var _this$_atoms = _slicedToArray(this._atoms, 1);
 
       this._firstAtom = _this$_atoms[0];
       this._lastAtom = this._atoms[this._atoms.length - 1];
@@ -3764,13 +3905,13 @@ var Residue = /*#__PURE__*/function () {
 
       this.forEachAtom(function (a) {
         if (self._leadAtom === null) {
-          if (a.role === Element.Constants.Lead) {
+          if (a.role === Element$a.Constants.Lead) {
             self._leadAtom = a;
           }
         }
 
         if (self._wingAtom === null) {
-          if (a.role === Element.Constants.Wing) {
+          if (a.role === Element$a.Constants.Wing) {
             self._wingAtom = a;
           }
         }
@@ -3826,9 +3967,9 @@ var Residue = /*#__PURE__*/function () {
  * @exports ResidueType
  * @constructor
  */
-var ResidueType = /*#__PURE__*/function () {
+var ResidueType$1 = /*#__PURE__*/function () {
   function ResidueType(name, fullName, letterCode) {
-    classCallCheck(this, ResidueType);
+    _classCallCheck(this, ResidueType);
 
     this._name = name;
     this._fullName = fullName;
@@ -3836,7 +3977,7 @@ var ResidueType = /*#__PURE__*/function () {
     this.flags = 0x0000;
   }
 
-  createClass(ResidueType, [{
+  _createClass(ResidueType, [{
     key: "getName",
     value: function getName() {
       return this._name;
@@ -3848,59 +3989,59 @@ var ResidueType = /*#__PURE__*/function () {
 }(); // Flag combinations
 
 
-defineProperty(ResidueType, "StandardTypes", {
+_defineProperty(ResidueType$1, "StandardTypes", {
   /* eslint-disable no-magic-numbers */
-  ALA: new ResidueType('ALA', 'Alanine', 'A'),
-  ARG: new ResidueType('ARG', 'Arginine', 'R'),
-  ASN: new ResidueType('ASN', 'Asparagine', 'N'),
-  ASP: new ResidueType('ASP', 'Aspartic Acid', 'D'),
-  CYS: new ResidueType('CYS', 'Cysteine', 'C'),
-  GLN: new ResidueType('GLN', 'Glutamine', 'Q'),
-  GLU: new ResidueType('GLU', 'Glutamic Acid', 'E'),
-  GLY: new ResidueType('GLY', 'Glycine', 'G'),
-  HIS: new ResidueType('HIS', 'Histidine', 'H'),
-  ILE: new ResidueType('ILE', 'Isoleucine', 'I'),
-  LEU: new ResidueType('LEU', 'Leucine', 'L'),
-  LYS: new ResidueType('LYS', 'Lysine', 'K'),
-  MET: new ResidueType('MET', 'Methionine', 'M'),
-  PHE: new ResidueType('PHE', 'Phenylalanine', 'F'),
-  PRO: new ResidueType('PRO', 'Proline', 'P'),
-  PYL: new ResidueType('PYL', 'Pyrrolysine', 'O'),
-  SEC: new ResidueType('SEC', 'Selenocysteine', 'U'),
-  SER: new ResidueType('SER', 'Serine', 'S'),
-  THR: new ResidueType('THR', 'Threonine', 'T'),
-  TRP: new ResidueType('TRP', 'Tryptophan', 'W'),
-  TYR: new ResidueType('TYR', 'Tyrosine', 'Y'),
-  VAL: new ResidueType('VAL', 'Valine', 'V'),
-  A: new ResidueType('A', 'Adenine', 'A'),
-  C: new ResidueType('C', 'Cytosine', 'C'),
-  G: new ResidueType('G', 'Guanine', 'G'),
-  I: new ResidueType('I', 'Inosine', 'I'),
-  T: new ResidueType('T', 'Thymine', 'T'),
-  U: new ResidueType('U', 'Uracil', 'U'),
-  DA: new ResidueType('DA', 'Adenine', 'A'),
-  DC: new ResidueType('DC', 'Cytosine', 'C'),
-  DG: new ResidueType('DG', 'Guanine', 'G'),
-  DI: new ResidueType('DI', 'Inosine', 'I'),
-  DT: new ResidueType('DT', 'Thymine', 'T'),
-  DU: new ResidueType('DU', 'Uracil', 'U'),
-  '+A': new ResidueType('+A', 'Adenine', 'A'),
-  '+C': new ResidueType('+C', 'Cytosine', 'C'),
-  '+G': new ResidueType('+G', 'Guanine', 'G'),
-  '+I': new ResidueType('+I', 'Inosine', 'I'),
-  '+T': new ResidueType('+T', 'Thymine', 'T'),
-  '+U': new ResidueType('+U', 'Uracil', 'U'),
-  WAT: new ResidueType('WAT', 'Water', ''),
-  H2O: new ResidueType('H2O', 'Water', ''),
-  HOH: new ResidueType('HOH', 'Water', ''),
-  DOD: new ResidueType('DOD', 'Water', ''),
-  UNK: new ResidueType('UNK', 'Unknown', ''),
-  UNL: new ResidueType('UNL', 'Unknown Ligand', '')
+  ALA: new ResidueType$1('ALA', 'Alanine', 'A'),
+  ARG: new ResidueType$1('ARG', 'Arginine', 'R'),
+  ASN: new ResidueType$1('ASN', 'Asparagine', 'N'),
+  ASP: new ResidueType$1('ASP', 'Aspartic Acid', 'D'),
+  CYS: new ResidueType$1('CYS', 'Cysteine', 'C'),
+  GLN: new ResidueType$1('GLN', 'Glutamine', 'Q'),
+  GLU: new ResidueType$1('GLU', 'Glutamic Acid', 'E'),
+  GLY: new ResidueType$1('GLY', 'Glycine', 'G'),
+  HIS: new ResidueType$1('HIS', 'Histidine', 'H'),
+  ILE: new ResidueType$1('ILE', 'Isoleucine', 'I'),
+  LEU: new ResidueType$1('LEU', 'Leucine', 'L'),
+  LYS: new ResidueType$1('LYS', 'Lysine', 'K'),
+  MET: new ResidueType$1('MET', 'Methionine', 'M'),
+  PHE: new ResidueType$1('PHE', 'Phenylalanine', 'F'),
+  PRO: new ResidueType$1('PRO', 'Proline', 'P'),
+  PYL: new ResidueType$1('PYL', 'Pyrrolysine', 'O'),
+  SEC: new ResidueType$1('SEC', 'Selenocysteine', 'U'),
+  SER: new ResidueType$1('SER', 'Serine', 'S'),
+  THR: new ResidueType$1('THR', 'Threonine', 'T'),
+  TRP: new ResidueType$1('TRP', 'Tryptophan', 'W'),
+  TYR: new ResidueType$1('TYR', 'Tyrosine', 'Y'),
+  VAL: new ResidueType$1('VAL', 'Valine', 'V'),
+  A: new ResidueType$1('A', 'Adenine', 'A'),
+  C: new ResidueType$1('C', 'Cytosine', 'C'),
+  G: new ResidueType$1('G', 'Guanine', 'G'),
+  I: new ResidueType$1('I', 'Inosine', 'I'),
+  T: new ResidueType$1('T', 'Thymine', 'T'),
+  U: new ResidueType$1('U', 'Uracil', 'U'),
+  DA: new ResidueType$1('DA', 'Adenine', 'A'),
+  DC: new ResidueType$1('DC', 'Cytosine', 'C'),
+  DG: new ResidueType$1('DG', 'Guanine', 'G'),
+  DI: new ResidueType$1('DI', 'Inosine', 'I'),
+  DT: new ResidueType$1('DT', 'Thymine', 'T'),
+  DU: new ResidueType$1('DU', 'Uracil', 'U'),
+  '+A': new ResidueType$1('+A', 'Adenine', 'A'),
+  '+C': new ResidueType$1('+C', 'Cytosine', 'C'),
+  '+G': new ResidueType$1('+G', 'Guanine', 'G'),
+  '+I': new ResidueType$1('+I', 'Inosine', 'I'),
+  '+T': new ResidueType$1('+T', 'Thymine', 'T'),
+  '+U': new ResidueType$1('+U', 'Uracil', 'U'),
+  WAT: new ResidueType$1('WAT', 'Water', ''),
+  H2O: new ResidueType$1('H2O', 'Water', ''),
+  HOH: new ResidueType$1('HOH', 'Water', ''),
+  DOD: new ResidueType$1('DOD', 'Water', ''),
+  UNK: new ResidueType$1('UNK', 'Unknown', ''),
+  UNL: new ResidueType$1('UNL', 'Unknown Ligand', '')
   /* eslint-enable no-magic-numbers */
 
 });
 
-defineProperty(ResidueType, "Flags", {
+_defineProperty(ResidueType$1, "Flags", {
   // Amino acids
 
   /** Amino acid residue */
@@ -3943,7 +4084,7 @@ defineProperty(ResidueType, "Flags", {
 
 function _addFlag(flag, list) {
   for (var i = 0, n = list.length; i < n; ++i) {
-    var res = ResidueType.StandardTypes[list[i]];
+    var res = ResidueType$1.StandardTypes[list[i]];
 
     if (res) {
       res.flags |= flag;
@@ -3951,7 +4092,7 @@ function _addFlag(flag, list) {
   }
 }
 
-var Flags = ResidueType.Flags;
+var Flags = ResidueType$1.Flags;
 
 _addFlag(Flags.WATER, ['WAT', 'H2O', 'HOH', 'DOD']);
 
@@ -4007,7 +4148,7 @@ function _addParam(param, list) {
   for (var i = 0, n = keys.length; i < n; ++i) {
     var key = keys[i];
     var value = list[key];
-    ResidueType.StandardTypes[key][param] = value;
+    ResidueType$1.StandardTypes[key][param] = value;
   }
 }
 
@@ -4034,9 +4175,9 @@ var ChainType = {
  * @constructor
  */
 
-var Chain = /*#__PURE__*/function () {
+var Chain$2 = /*#__PURE__*/function () {
   function Chain(complex, name) {
-    classCallCheck(this, Chain);
+    _classCallCheck(this, Chain);
 
     this._complex = complex;
     this._name = name;
@@ -4047,7 +4188,7 @@ var Chain = /*#__PURE__*/function () {
     this.maxSequence = Number.NEGATIVE_INFINITY;
   }
 
-  createClass(Chain, [{
+  _createClass(Chain, [{
     key: "getComplex",
     value: function getComplex() {
       return this._complex;
@@ -4066,7 +4207,7 @@ var Chain = /*#__PURE__*/function () {
     key: "_determineType",
     value: function _determineType() {
       var residues = this._residues;
-      var _ResidueType$Flags = ResidueType.Flags,
+      var _ResidueType$Flags = ResidueType$1.Flags,
           PROTEIN = _ResidueType$Flags.PROTEIN,
           NUCLEIC = _ResidueType$Flags.NUCLEIC;
       this.type = ChainType.UNKNOWN;
@@ -4118,19 +4259,19 @@ var Chain = /*#__PURE__*/function () {
         var curr = residues[i]; // TODO: skip invalid residues
 
         {
-            // eslint-disable-line no-constant-condition
-            curr._finalize2(prev, next, this.type === ChainType.NUCLEIC);
+          // eslint-disable-line no-constant-condition
+          curr._finalize2(prev, next, this.type === ChainType.NUCLEIC);
 
-            prev = curr;
-          }
+          prev = curr;
+        }
       } // fix very first wing
 
 
       if (residues.length > 1 && residues[1]._wingVector) {
         var p = residues[1]._wingVector;
-        residues[0]._wingVector = new Vector3(p.x, p.y, p.z);
+        residues[0]._wingVector = new THREE.Vector3(p.x, p.y, p.z);
       } else if (residues.length > 0) {
-        residues[0]._wingVector = new Vector3(1, 0, 0);
+        residues[0]._wingVector = new THREE.Vector3(1, 0, 0);
       }
     }
   }, {
@@ -4157,7 +4298,7 @@ var Chain = /*#__PURE__*/function () {
         prevData = currData;
       }
 
-      frameRes[residues[0]._index]._wingVector = n > 1 ? frameRes[residues[1]._index]._wingVector : new Vector3(1, 0, 0);
+      frameRes[residues[0]._index]._wingVector = n > 1 ? frameRes[residues[1]._index]._wingVector : new THREE.Vector3(1, 0, 0);
     }
     /**
      * Create a new residue.
@@ -4177,13 +4318,13 @@ var Chain = /*#__PURE__*/function () {
         type = this._complex.addResidueType(name);
       }
 
-      var residue = new Residue(this, type, sequence, iCode);
+      var residue = new Residue$1(this, type, sequence, iCode);
 
       this._complex.addResidue(residue);
 
       this._residues.push(residue);
 
-      if (type.flags & (ResidueType.Flags.NUCLEIC | ResidueType.Flags.PROTEIN)) {
+      if (type.flags & (ResidueType$1.Flags.NUCLEIC | ResidueType$1.Flags.PROTEIN)) {
         if (this.maxSequence < sequence) {
           this.maxSequence = sequence;
         }
@@ -4238,7 +4379,7 @@ var StructuralElement = /*#__PURE__*/function () {
    * @param {Residue} term Terminal residue.
    */
   function StructuralElement(type, init, term) {
-    classCallCheck(this, StructuralElement);
+    _classCallCheck(this, StructuralElement);
 
     /**
      * Secondary structure type.
@@ -4276,10 +4417,10 @@ var StructuralElement = /*#__PURE__*/function () {
    */
 
 
-  createClass(StructuralElement, [{
+  _createClass(StructuralElement, [{
     key: "_finalize",
     value: function _finalize(serialAtomMap, residueHash, complex) {
-      if (this.init instanceof Residue && this.term instanceof Residue) {
+      if (this.init instanceof Residue$1 && this.term instanceof Residue$1) {
         return;
       } // Link all intermediate residues to this structural element
 
@@ -4367,28 +4508,33 @@ StructuralElement.Generic = {
   /** Just a protein section with no particular conformation. */
   LOOP: 'loop'
 };
-var StructuralElementType = StructuralElement.Type;
+var StructuralElementType$5 = StructuralElement.Type;
 var StructuralElementGeneric = StructuralElement.Generic;
 /**
  * A mapping from specific types to generic ones.
  * @type {Object<StructuralElement.Type, StructuralElement.Generic>}
  */
 
-StructuralElement.genericByType = (_StructuralElement$ge = {}, defineProperty(_StructuralElement$ge, StructuralElementType.STRAND, StructuralElementGeneric.STRAND), defineProperty(_StructuralElement$ge, StructuralElementType.HELIX_310, StructuralElementGeneric.HELIX), defineProperty(_StructuralElement$ge, StructuralElementType.HELIX_ALPHA, StructuralElementGeneric.HELIX), defineProperty(_StructuralElement$ge, StructuralElementType.HELIX_PI, StructuralElementGeneric.HELIX), defineProperty(_StructuralElement$ge, StructuralElementType.HELIX, StructuralElementGeneric.HELIX), _StructuralElement$ge);
+StructuralElement.genericByType = (_StructuralElement$ge = {}, _defineProperty(_StructuralElement$ge, StructuralElementType$5.STRAND, StructuralElementGeneric.STRAND), _defineProperty(_StructuralElement$ge, StructuralElementType$5.HELIX_310, StructuralElementGeneric.HELIX), _defineProperty(_StructuralElement$ge, StructuralElementType$5.HELIX_ALPHA, StructuralElementGeneric.HELIX), _defineProperty(_StructuralElement$ge, StructuralElementType$5.HELIX_PI, StructuralElementGeneric.HELIX), _defineProperty(_StructuralElement$ge, StructuralElementType$5.HELIX, StructuralElementGeneric.HELIX), _StructuralElement$ge);
 
-var StructuralElementType$1 = StructuralElement.Type;
+function _createSuper$1Y(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1Y(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1Y() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var StructuralElementType$4 = StructuralElement.Type;
 var typeByPDBHelixClass = {
-  1: StructuralElementType$1.HELIX_ALPHA,
-  3: StructuralElementType$1.HELIX_PI,
-  5: StructuralElementType$1.HELIX_310
+  1: StructuralElementType$4.HELIX_ALPHA,
+  3: StructuralElementType$4.HELIX_PI,
+  5: StructuralElementType$4.HELIX_310
 };
 /**
  * Helical secondary structure of a protein.
  * @extends StructuralElement
  */
 
-var Helix = /*#__PURE__*/function (_StructuralElement) {
-  inherits(Helix, _StructuralElement);
+var Helix$3 = /*#__PURE__*/function (_StructuralElement) {
+  _inherits(Helix, _StructuralElement);
+
+  var _super = _createSuper$1Y(Helix);
 
   /**
    * Create a helix.
@@ -4405,9 +4551,9 @@ var Helix = /*#__PURE__*/function (_StructuralElement) {
   function Helix(helixClass, init, term, serial, name, comment, length) {
     var _this;
 
-    classCallCheck(this, Helix);
+    _classCallCheck(this, Helix);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(Helix).call(this, typeByPDBHelixClass[helixClass] || StructuralElement.Type.HELIX, init, term));
+    _this = _super.call(this, typeByPDBHelixClass[helixClass] || StructuralElement.Type.HELIX, init, term);
     /**
      * Serial number of the helix (see PDB Format).
      * @type {number}
@@ -4438,6 +4584,7 @@ var Helix = /*#__PURE__*/function (_StructuralElement) {
   return Helix;
 }(StructuralElement);
 
+var superPropBase = createCommonjsModule(function (module) {
 function _superPropBase(object, property) {
   while (!Object.prototype.hasOwnProperty.call(object, property)) {
     object = getPrototypeOf(object);
@@ -4447,12 +4594,17 @@ function _superPropBase(object, property) {
   return object;
 }
 
-var superPropBase = _superPropBase;
+module.exports = _superPropBase;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+unwrapExports(superPropBase);
 
 var get = createCommonjsModule(function (module) {
-function _get(target, property, receiver) {
+function _get() {
   if (typeof Reflect !== "undefined" && Reflect.get) {
     module.exports = _get = Reflect.get;
+    module.exports["default"] = module.exports, module.exports.__esModule = true;
   } else {
     module.exports = _get = function _get(target, property, receiver) {
       var base = superPropBase(target, property);
@@ -4460,26 +4612,36 @@ function _get(target, property, receiver) {
       var desc = Object.getOwnPropertyDescriptor(base, property);
 
       if (desc.get) {
-        return desc.get.call(receiver);
+        return desc.get.call(arguments.length < 3 ? target : receiver);
       }
 
       return desc.value;
     };
+
+    module.exports["default"] = module.exports, module.exports.__esModule = true;
   }
 
-  return _get(target, property, receiver || target);
+  return _get.apply(this, arguments);
 }
 
 module.exports = _get;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
 });
 
+var _get = unwrapExports(get);
+
+function _createSuper$1X(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1X(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1X() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * A single strand of a sheet in a protein secondary structure.
  * @extends StructuralElement
  */
 
-var Strand = /*#__PURE__*/function (_StructuralElement) {
-  inherits(Strand, _StructuralElement);
+var Strand$3 = /*#__PURE__*/function (_StructuralElement) {
+  _inherits(Strand, _StructuralElement);
+
+  var _super = _createSuper$1X(Strand);
 
   /**
    * Create a strand.
@@ -4497,9 +4659,9 @@ var Strand = /*#__PURE__*/function (_StructuralElement) {
   function Strand(sheet, init, term, sense, atomCur, atomPrev) {
     var _this;
 
-    classCallCheck(this, Strand);
+    _classCallCheck(this, Strand);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(Strand).call(this, StructuralElement.Type.STRAND, init, term));
+    _this = _super.call(this, StructuralElement.Type.STRAND, init, term);
     /**
      * Parent sheet this strand belongs to.
      * @type {Sheet}
@@ -4543,10 +4705,10 @@ var Strand = /*#__PURE__*/function (_StructuralElement) {
    */
 
 
-  createClass(Strand, [{
+  _createClass(Strand, [{
     key: "_finalize",
     value: function _finalize(serialAtomMap, residueHash, complex) {
-      get(getPrototypeOf(Strand.prototype), "_finalize", this).call(this, serialAtomMap, residueHash, complex);
+      _get(_getPrototypeOf(Strand.prototype), "_finalize", this).call(this, serialAtomMap, residueHash, complex);
 
       var as = this.atomCur;
 
@@ -4575,9 +4737,9 @@ var Strand = /*#__PURE__*/function (_StructuralElement) {
  * @constructor
  */
 
-var Sheet = /*#__PURE__*/function () {
+var Sheet$3 = /*#__PURE__*/function () {
   function Sheet(name, width) {
-    classCallCheck(this, Sheet);
+    _classCallCheck(this, Sheet);
 
     this._name = name;
     this._width = width;
@@ -4585,7 +4747,7 @@ var Sheet = /*#__PURE__*/function () {
   } // Getters and setters
 
 
-  createClass(Sheet, [{
+  _createClass(Sheet, [{
     key: "getName",
     value: function getName() {
       return this._name;
@@ -4605,7 +4767,7 @@ var Sheet = /*#__PURE__*/function () {
   }, {
     key: "addEmptyStrand",
     value: function addEmptyStrand() {
-      this._strands.push(new Strand(null, null, null, null, null, null));
+      this._strands.push(new Strand$3(null, null, null, null, null, null));
     }
   }, {
     key: "_finalize",
@@ -4642,13 +4804,13 @@ var Sheet = /*#__PURE__*/function () {
  * @constructor
  */
 
-var SGroup = /*#__PURE__*/function () {
+var SGroup$1 = /*#__PURE__*/function () {
   function SGroup(id, name, position, atoms, saveNode) {
-    classCallCheck(this, SGroup);
+    _classCallCheck(this, SGroup);
 
     this._id = id;
     this._name = name;
-    this._position = position || new Vector3();
+    this._position = position || new THREE.Vector3();
     this._atoms = atoms || [];
     this._charge = 0; // default group charge
 
@@ -4663,7 +4825,7 @@ var SGroup = /*#__PURE__*/function () {
    */
 
 
-  createClass(SGroup, [{
+  _createClass(SGroup, [{
     key: "getName",
     value: function getName() {
       return this._name;
@@ -4687,8 +4849,8 @@ var SGroup = /*#__PURE__*/function () {
         return; // nothing to do if we are not relative
       }
 
-      var bLow = new Vector3(nLimon, nLimon, nLimon);
-      var bHight = new Vector3(-nLimon, -nLimon, -nLimon);
+      var bLow = new THREE.Vector3(nLimon, nLimon, nLimon);
+      var bHight = new THREE.Vector3(-nLimon, -nLimon, -nLimon);
 
       for (var j = 0, n = this._atoms.length; j < n; j++) {
         var aPos = this._atoms[j].position;
@@ -4782,7 +4944,7 @@ var SGroup = /*#__PURE__*/function () {
     recoverable: (boolean: TRUE when the parser has a error recovery rule available for this particular error)
   }
 */
-var parser = function () {
+var parser$1 = function () {
   var o = function o(k, v, _o, l) {
     for (_o = _o || {}, l = k.length; l--; _o[k[l]] = v) {
     }
@@ -5604,19 +5766,23 @@ var parser = function () {
 }();
 
 var SelectionParser = {
-  parser: parser
+  parser: parser$1
 };
 var SelectionParser_1 = SelectionParser.parser;
 
+function _createSuper$1W(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1W(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1W() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var Range = /*#__PURE__*/function () {
   function Range(min, max) {
-    classCallCheck(this, Range);
+    _classCallCheck(this, Range);
 
     this.min = min;
     this.max = typeof max === 'undefined' ? min : max;
   }
 
-  createClass(Range, [{
+  _createClass(Range, [{
     key: "includes",
     value: function includes(value) {
       return this.min <= value && value <= this.max;
@@ -5641,7 +5807,7 @@ var Range = /*#__PURE__*/function () {
 
 var List = /*#__PURE__*/function () {
   function List(arg) {
-    classCallCheck(this, List);
+    _classCallCheck(this, List);
 
     if (arg instanceof this.constructor) {
       return arg;
@@ -5656,7 +5822,7 @@ var List = /*#__PURE__*/function () {
     }
   }
 
-  createClass(List, [{
+  _createClass(List, [{
     key: "append",
     value: function append(value) {
       var values = this._values;
@@ -5700,15 +5866,17 @@ var List = /*#__PURE__*/function () {
 
 
 var RangeList = /*#__PURE__*/function (_List) {
-  inherits(RangeList, _List);
+  _inherits(RangeList, _List);
+
+  var _super = _createSuper$1W(RangeList);
 
   function RangeList() {
-    classCallCheck(this, RangeList);
+    _classCallCheck(this, RangeList);
 
-    return possibleConstructorReturn(this, getPrototypeOf(RangeList).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(RangeList, [{
+  _createClass(RangeList, [{
     key: "includes",
     value: function includes(value) {
       var list = this._values;
@@ -5730,14 +5898,16 @@ var RangeList = /*#__PURE__*/function (_List) {
 var valuesArray = [];
 
 var ValueList = /*#__PURE__*/function (_List2) {
-  inherits(ValueList, _List2);
+  _inherits(ValueList, _List2);
+
+  var _super2 = _createSuper$1W(ValueList);
 
   function ValueList(arg, upperOnly) {
     var _this;
 
-    classCallCheck(this, ValueList);
+    _classCallCheck(this, ValueList);
 
-    var list = _this = possibleConstructorReturn(this, getPrototypeOf(ValueList).call(this, arg));
+    var list = _this = _super2.call(this, arg);
 
     if (upperOnly) {
       _this.upperOnly = true;
@@ -5754,10 +5924,10 @@ var ValueList = /*#__PURE__*/function (_List2) {
       _this.upperOnly = false;
     }
 
-    return possibleConstructorReturn(_this, list);
+    return _possibleConstructorReturn(_this, list);
   }
 
-  createClass(ValueList, [{
+  _createClass(ValueList, [{
     key: "includes",
     value: function includes(value) {
       // we do not convert to upper case here for perfomance reasons
@@ -5785,14 +5955,14 @@ var ValueList = /*#__PURE__*/function (_List2) {
   }, {
     key: "append",
     value: function append(value) {
-      get(getPrototypeOf(ValueList.prototype), "append", this).call(this, this._validate(value));
+      _get(_getPrototypeOf(ValueList.prototype), "append", this).call(this, this._validate(value));
 
       return this;
     }
   }, {
     key: "remove",
     value: function remove(value) {
-      get(getPrototypeOf(ValueList.prototype), "remove", this).call(this, this._validate(value));
+      _get(_getPrototypeOf(ValueList.prototype), "remove", this).call(this, this._validate(value));
 
       return this;
     }
@@ -5801,14 +5971,17 @@ var ValueList = /*#__PURE__*/function (_List2) {
   return ValueList;
 }(List);
 
+function _createSuper$1V(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1V(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1V() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /** Base class for atom selectors. */
 
 var Selector = /*#__PURE__*/function () {
   function Selector() {
-    classCallCheck(this, Selector);
+    _classCallCheck(this, Selector);
   }
 
-  createClass(Selector, [{
+  _createClass(Selector, [{
     key: "toString",
     value: function toString() {
       return this.keyword;
@@ -5828,19 +6001,21 @@ Selector.prototype.keyword = 'error';
 /** Base class for list-based atom selectors. */
 
 var ListSelector = /*#__PURE__*/function (_Selector) {
-  inherits(ListSelector, _Selector);
+  _inherits(ListSelector, _Selector);
+
+  var _super = _createSuper$1V(ListSelector);
 
   function ListSelector(list) {
     var _this;
 
-    classCallCheck(this, ListSelector);
+    _classCallCheck(this, ListSelector);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(ListSelector).call(this));
+    _this = _super.call(this);
     _this.list = list;
     return _this;
   }
 
-  createClass(ListSelector, [{
+  _createClass(ListSelector, [{
     key: "toString",
     value: function toString() {
       return "".concat(this.keyword, " ").concat(this.list);
@@ -5856,39 +6031,45 @@ var ListSelector = /*#__PURE__*/function (_Selector) {
 }(Selector);
 
 var RangeListSelector = /*#__PURE__*/function (_ListSelector) {
-  inherits(RangeListSelector, _ListSelector);
+  _inherits(RangeListSelector, _ListSelector);
+
+  var _super2 = _createSuper$1V(RangeListSelector);
 
   function RangeListSelector(arg) {
-    classCallCheck(this, RangeListSelector);
+    _classCallCheck(this, RangeListSelector);
 
-    return possibleConstructorReturn(this, getPrototypeOf(RangeListSelector).call(this, new RangeList(arg)));
+    return _super2.call(this, new RangeList(arg));
   }
 
   return RangeListSelector;
 }(ListSelector);
 
 var ValueListSelector = /*#__PURE__*/function (_ListSelector2) {
-  inherits(ValueListSelector, _ListSelector2);
+  _inherits(ValueListSelector, _ListSelector2);
+
+  var _super3 = _createSuper$1V(ValueListSelector);
 
   function ValueListSelector(arg, caseSensitive) {
-    classCallCheck(this, ValueListSelector);
+    _classCallCheck(this, ValueListSelector);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ValueListSelector).call(this, new ValueList(arg, !caseSensitive)));
+    return _super3.call(this, new ValueList(arg, !caseSensitive));
   }
 
   return ValueListSelector;
 }(ListSelector);
 
 var NoneSelector = /*#__PURE__*/function (_Selector2) {
-  inherits(NoneSelector, _Selector2);
+  _inherits(NoneSelector, _Selector2);
+
+  var _super4 = _createSuper$1V(NoneSelector);
 
   function NoneSelector() {
-    classCallCheck(this, NoneSelector);
+    _classCallCheck(this, NoneSelector);
 
-    return possibleConstructorReturn(this, getPrototypeOf(NoneSelector).apply(this, arguments));
+    return _super4.apply(this, arguments);
   }
 
-  createClass(NoneSelector, [{
+  _createClass(NoneSelector, [{
     key: "includesAtom",
     value: function includesAtom(_atom) {
       return false;
@@ -5902,15 +6083,17 @@ NoneSelector.prototype.name = 'None';
 NoneSelector.prototype.keyword = 'none';
 
 var AllSelector = /*#__PURE__*/function (_Selector3) {
-  inherits(AllSelector, _Selector3);
+  _inherits(AllSelector, _Selector3);
+
+  var _super5 = _createSuper$1V(AllSelector);
 
   function AllSelector() {
-    classCallCheck(this, AllSelector);
+    _classCallCheck(this, AllSelector);
 
-    return possibleConstructorReturn(this, getPrototypeOf(AllSelector).apply(this, arguments));
+    return _super5.apply(this, arguments);
   }
 
-  createClass(AllSelector, [{
+  _createClass(AllSelector, [{
     key: "includesAtom",
     value: function includesAtom(_atom) {
       return true;
@@ -5923,25 +6106,30 @@ var AllSelector = /*#__PURE__*/function (_Selector3) {
 AllSelector.prototype.name = 'All';
 AllSelector.prototype.keyword = 'all';
 
+function _createSuper$1U(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1U(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1U() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 // Operators
 //----------------------------------------------------------------------------
 
 var none = new NoneSelector();
 
 var PrefixOperator = /*#__PURE__*/function (_Selector) {
-  inherits(PrefixOperator, _Selector);
+  _inherits(PrefixOperator, _Selector);
+
+  var _super = _createSuper$1U(PrefixOperator);
 
   function PrefixOperator(rhs) {
     var _this;
 
-    classCallCheck(this, PrefixOperator);
+    _classCallCheck(this, PrefixOperator);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(PrefixOperator).call(this));
+    _this = _super.call(this);
     _this.rhs = rhs || none;
     return _this;
   }
 
-  createClass(PrefixOperator, [{
+  _createClass(PrefixOperator, [{
     key: "toString",
     value: function toString() {
       var rhs = this.rhs.priority && this.rhs.priority > this.priority ? "(".concat(this.rhs, ")") : this.rhs;
@@ -5960,20 +6148,22 @@ var PrefixOperator = /*#__PURE__*/function (_Selector) {
 PrefixOperator.prototype.priority = 1;
 
 var InfixOperator = /*#__PURE__*/function (_Selector2) {
-  inherits(InfixOperator, _Selector2);
+  _inherits(InfixOperator, _Selector2);
+
+  var _super2 = _createSuper$1U(InfixOperator);
 
   function InfixOperator(lhs, rhs) {
     var _this2;
 
-    classCallCheck(this, InfixOperator);
+    _classCallCheck(this, InfixOperator);
 
-    _this2 = possibleConstructorReturn(this, getPrototypeOf(InfixOperator).call(this));
+    _this2 = _super2.call(this);
     _this2.lhs = lhs || none;
     _this2.rhs = rhs || none;
     return _this2;
   }
 
-  createClass(InfixOperator, [{
+  _createClass(InfixOperator, [{
     key: "toString",
     value: function toString() {
       var lhs = this.lhs.priority && this.lhs.priority > this.priority ? "(".concat(this.lhs, ")") : this.lhs;
@@ -5992,6 +6182,9 @@ var InfixOperator = /*#__PURE__*/function (_Selector2) {
 
 InfixOperator.prototype.priority = 1000;
 
+function _createSuper$1T(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1T(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1T() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 var keywords = {}; //----------------------------------------------------------------------------
 // Named selectors
 //----------------------------------------------------------------------------
@@ -6006,7 +6199,7 @@ function defineSelector(name, SelectorClass) {
       args[_key] = arguments[_key];
     }
 
-    return construct(SelectorClass, args);
+    return _construct(SelectorClass, args);
   };
 
   factory.SelectorClass = SelectorClass;
@@ -6015,15 +6208,17 @@ function defineSelector(name, SelectorClass) {
 }
 
 defineSelector('Serial', /*#__PURE__*/function (_RangeListSelector) {
-  inherits(SerialSelector, _RangeListSelector);
+  _inherits(SerialSelector, _RangeListSelector);
+
+  var _super = _createSuper$1T(SerialSelector);
 
   function SerialSelector() {
-    classCallCheck(this, SerialSelector);
+    _classCallCheck(this, SerialSelector);
 
-    return possibleConstructorReturn(this, getPrototypeOf(SerialSelector).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(SerialSelector, [{
+  _createClass(SerialSelector, [{
     key: "includesAtom",
     value: function includesAtom(atom) {
       return this.list.includes(atom.serial);
@@ -6033,15 +6228,17 @@ defineSelector('Serial', /*#__PURE__*/function (_RangeListSelector) {
   return SerialSelector;
 }(RangeListSelector));
 defineSelector('Name', /*#__PURE__*/function (_ValueListSelector) {
-  inherits(NameSelector, _ValueListSelector);
+  _inherits(NameSelector, _ValueListSelector);
+
+  var _super2 = _createSuper$1T(NameSelector);
 
   function NameSelector() {
-    classCallCheck(this, NameSelector);
+    _classCallCheck(this, NameSelector);
 
-    return possibleConstructorReturn(this, getPrototypeOf(NameSelector).apply(this, arguments));
+    return _super2.apply(this, arguments);
   }
 
-  createClass(NameSelector, [{
+  _createClass(NameSelector, [{
     key: "includesAtom",
     value: function includesAtom(atom) {
       return this.list.includes(atom.name);
@@ -6051,15 +6248,17 @@ defineSelector('Name', /*#__PURE__*/function (_ValueListSelector) {
   return NameSelector;
 }(ValueListSelector));
 defineSelector('AltLoc', /*#__PURE__*/function (_ValueListSelector2) {
-  inherits(AltLocSelector, _ValueListSelector2);
+  _inherits(AltLocSelector, _ValueListSelector2);
+
+  var _super3 = _createSuper$1T(AltLocSelector);
 
   function AltLocSelector() {
-    classCallCheck(this, AltLocSelector);
+    _classCallCheck(this, AltLocSelector);
 
-    return possibleConstructorReturn(this, getPrototypeOf(AltLocSelector).apply(this, arguments));
+    return _super3.apply(this, arguments);
   }
 
-  createClass(AltLocSelector, [{
+  _createClass(AltLocSelector, [{
     key: "includesAtom",
     value: function includesAtom(atom) {
       return this.list.includes(String.fromCharCode(atom.location));
@@ -6069,15 +6268,17 @@ defineSelector('AltLoc', /*#__PURE__*/function (_ValueListSelector2) {
   return AltLocSelector;
 }(ValueListSelector));
 defineSelector('Elem', /*#__PURE__*/function (_ValueListSelector3) {
-  inherits(ElemSelector, _ValueListSelector3);
+  _inherits(ElemSelector, _ValueListSelector3);
+
+  var _super4 = _createSuper$1T(ElemSelector);
 
   function ElemSelector() {
-    classCallCheck(this, ElemSelector);
+    _classCallCheck(this, ElemSelector);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ElemSelector).apply(this, arguments));
+    return _super4.apply(this, arguments);
   }
 
-  createClass(ElemSelector, [{
+  _createClass(ElemSelector, [{
     key: "includesAtom",
     value: function includesAtom(atom) {
       return this.list.includes(atom.element.name);
@@ -6087,15 +6288,17 @@ defineSelector('Elem', /*#__PURE__*/function (_ValueListSelector3) {
   return ElemSelector;
 }(ValueListSelector));
 defineSelector('Residue', /*#__PURE__*/function (_ValueListSelector4) {
-  inherits(ResidueSelector, _ValueListSelector4);
+  _inherits(ResidueSelector, _ValueListSelector4);
+
+  var _super5 = _createSuper$1T(ResidueSelector);
 
   function ResidueSelector() {
-    classCallCheck(this, ResidueSelector);
+    _classCallCheck(this, ResidueSelector);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ResidueSelector).apply(this, arguments));
+    return _super5.apply(this, arguments);
   }
 
-  createClass(ResidueSelector, [{
+  _createClass(ResidueSelector, [{
     key: "includesAtom",
     value: function includesAtom(atom) {
       return this.list.includes(atom.residue._type._name);
@@ -6105,15 +6308,17 @@ defineSelector('Residue', /*#__PURE__*/function (_ValueListSelector4) {
   return ResidueSelector;
 }(ValueListSelector));
 defineSelector('Sequence', /*#__PURE__*/function (_RangeListSelector2) {
-  inherits(SequenceSelector, _RangeListSelector2);
+  _inherits(SequenceSelector, _RangeListSelector2);
+
+  var _super6 = _createSuper$1T(SequenceSelector);
 
   function SequenceSelector() {
-    classCallCheck(this, SequenceSelector);
+    _classCallCheck(this, SequenceSelector);
 
-    return possibleConstructorReturn(this, getPrototypeOf(SequenceSelector).apply(this, arguments));
+    return _super6.apply(this, arguments);
   }
 
-  createClass(SequenceSelector, [{
+  _createClass(SequenceSelector, [{
     key: "includesAtom",
     value: function includesAtom(atom) {
       return this.list.includes(atom.residue._sequence);
@@ -6123,15 +6328,17 @@ defineSelector('Sequence', /*#__PURE__*/function (_RangeListSelector2) {
   return SequenceSelector;
 }(RangeListSelector));
 defineSelector('ICode', /*#__PURE__*/function (_ValueListSelector5) {
-  inherits(ICodeSelector, _ValueListSelector5);
+  _inherits(ICodeSelector, _ValueListSelector5);
+
+  var _super7 = _createSuper$1T(ICodeSelector);
 
   function ICodeSelector(arg) {
-    classCallCheck(this, ICodeSelector);
+    _classCallCheck(this, ICodeSelector);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ICodeSelector).call(this, arg, true));
+    return _super7.call(this, arg, true);
   }
 
-  createClass(ICodeSelector, [{
+  _createClass(ICodeSelector, [{
     key: "includesAtom",
     value: function includesAtom(atom) {
       return this.list.includes(atom.residue._icode);
@@ -6141,15 +6348,17 @@ defineSelector('ICode', /*#__PURE__*/function (_ValueListSelector5) {
   return ICodeSelector;
 }(ValueListSelector));
 defineSelector('ResIdx', /*#__PURE__*/function (_RangeListSelector3) {
-  inherits(ResIdxSelector, _RangeListSelector3);
+  _inherits(ResIdxSelector, _RangeListSelector3);
+
+  var _super8 = _createSuper$1T(ResIdxSelector);
 
   function ResIdxSelector() {
-    classCallCheck(this, ResIdxSelector);
+    _classCallCheck(this, ResIdxSelector);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ResIdxSelector).apply(this, arguments));
+    return _super8.apply(this, arguments);
   }
 
-  createClass(ResIdxSelector, [{
+  _createClass(ResIdxSelector, [{
     key: "includesAtom",
     value: function includesAtom(atom) {
       return this.list.includes(atom.residue._index);
@@ -6159,15 +6368,17 @@ defineSelector('ResIdx', /*#__PURE__*/function (_RangeListSelector3) {
   return ResIdxSelector;
 }(RangeListSelector));
 defineSelector('Chain', /*#__PURE__*/function (_ValueListSelector6) {
-  inherits(ChainSelector, _ValueListSelector6);
+  _inherits(ChainSelector, _ValueListSelector6);
+
+  var _super9 = _createSuper$1T(ChainSelector);
 
   function ChainSelector(arg) {
-    classCallCheck(this, ChainSelector);
+    _classCallCheck(this, ChainSelector);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ChainSelector).call(this, arg, true));
+    return _super9.call(this, arg, true);
   }
 
-  createClass(ChainSelector, [{
+  _createClass(ChainSelector, [{
     key: "includesAtom",
     value: function includesAtom(atom) {
       return this.list.includes(atom.residue._chain._name);
@@ -6177,15 +6388,17 @@ defineSelector('Chain', /*#__PURE__*/function (_ValueListSelector6) {
   return ChainSelector;
 }(ValueListSelector));
 defineSelector('Hetatm', /*#__PURE__*/function (_Selector) {
-  inherits(HetatmSelector, _Selector);
+  _inherits(HetatmSelector, _Selector);
+
+  var _super10 = _createSuper$1T(HetatmSelector);
 
   function HetatmSelector() {
-    classCallCheck(this, HetatmSelector);
+    _classCallCheck(this, HetatmSelector);
 
-    return possibleConstructorReturn(this, getPrototypeOf(HetatmSelector).apply(this, arguments));
+    return _super10.apply(this, arguments);
   }
 
-  createClass(HetatmSelector, [{
+  _createClass(HetatmSelector, [{
     key: "includesAtom",
     value: function includesAtom(atom) {
       return atom.het;
@@ -6195,36 +6408,40 @@ defineSelector('Hetatm', /*#__PURE__*/function (_Selector) {
   return HetatmSelector;
 }(Selector));
 defineSelector('PolarH', /*#__PURE__*/function (_Selector2) {
-  inherits(PolarHSelector, _Selector2);
+  _inherits(PolarHSelector, _Selector2);
+
+  var _super11 = _createSuper$1T(PolarHSelector);
 
   function PolarHSelector() {
-    classCallCheck(this, PolarHSelector);
+    _classCallCheck(this, PolarHSelector);
 
-    return possibleConstructorReturn(this, getPrototypeOf(PolarHSelector).apply(this, arguments));
+    return _super11.apply(this, arguments);
   }
 
-  createClass(PolarHSelector, [{
+  _createClass(PolarHSelector, [{
     key: "includesAtom",
     value: function includesAtom(atom) {
-      return (atom.flags & Atom.Flags.NONPOLARH) === Atom.Flags.HYDROGEN;
+      return (atom.flags & Atom$2.Flags.NONPOLARH) === Atom$2.Flags.HYDROGEN;
     }
   }]);
 
   return PolarHSelector;
 }(Selector));
 defineSelector('NonPolarH', /*#__PURE__*/function (_Selector3) {
-  inherits(NonPolarHSelector, _Selector3);
+  _inherits(NonPolarHSelector, _Selector3);
+
+  var _super12 = _createSuper$1T(NonPolarHSelector);
 
   function NonPolarHSelector() {
-    classCallCheck(this, NonPolarHSelector);
+    _classCallCheck(this, NonPolarHSelector);
 
-    return possibleConstructorReturn(this, getPrototypeOf(NonPolarHSelector).apply(this, arguments));
+    return _super12.apply(this, arguments);
   }
 
-  createClass(NonPolarHSelector, [{
+  _createClass(NonPolarHSelector, [{
     key: "includesAtom",
     value: function includesAtom(atom) {
-      return (atom.flags & Atom.Flags.NONPOLARH) === Atom.Flags.NONPOLARH;
+      return (atom.flags & Atom$2.Flags.NONPOLARH) === Atom$2.Flags.NONPOLARH;
     }
   }]);
 
@@ -6242,15 +6459,17 @@ function defineOperator(name, priority, OperatorClass) {
 }
 
 defineOperator('Not', 1, /*#__PURE__*/function (_PrefixOperator) {
-  inherits(NotOperator, _PrefixOperator);
+  _inherits(NotOperator, _PrefixOperator);
+
+  var _super13 = _createSuper$1T(NotOperator);
 
   function NotOperator() {
-    classCallCheck(this, NotOperator);
+    _classCallCheck(this, NotOperator);
 
-    return possibleConstructorReturn(this, getPrototypeOf(NotOperator).apply(this, arguments));
+    return _super13.apply(this, arguments);
   }
 
-  createClass(NotOperator, [{
+  _createClass(NotOperator, [{
     key: "includesAtom",
     value: function includesAtom(atom) {
       return !this.rhs.includesAtom(atom);
@@ -6260,15 +6479,17 @@ defineOperator('Not', 1, /*#__PURE__*/function (_PrefixOperator) {
   return NotOperator;
 }(PrefixOperator));
 defineOperator('And', 2, /*#__PURE__*/function (_InfixOperator) {
-  inherits(AndOperator, _InfixOperator);
+  _inherits(AndOperator, _InfixOperator);
+
+  var _super14 = _createSuper$1T(AndOperator);
 
   function AndOperator() {
-    classCallCheck(this, AndOperator);
+    _classCallCheck(this, AndOperator);
 
-    return possibleConstructorReturn(this, getPrototypeOf(AndOperator).apply(this, arguments));
+    return _super14.apply(this, arguments);
   }
 
-  createClass(AndOperator, [{
+  _createClass(AndOperator, [{
     key: "includesAtom",
     value: function includesAtom(atom) {
       return this.lhs.includesAtom(atom) && this.rhs.includesAtom(atom);
@@ -6278,15 +6499,17 @@ defineOperator('And', 2, /*#__PURE__*/function (_InfixOperator) {
   return AndOperator;
 }(InfixOperator));
 defineOperator('Or', 3, /*#__PURE__*/function (_InfixOperator2) {
-  inherits(OrOperator, _InfixOperator2);
+  _inherits(OrOperator, _InfixOperator2);
+
+  var _super15 = _createSuper$1T(OrOperator);
 
   function OrOperator() {
-    classCallCheck(this, OrOperator);
+    _classCallCheck(this, OrOperator);
 
-    return possibleConstructorReturn(this, getPrototypeOf(OrOperator).apply(this, arguments));
+    return _super15.apply(this, arguments);
   }
 
-  createClass(OrOperator, [{
+  _createClass(OrOperator, [{
     key: "includesAtom",
     value: function includesAtom(atom) {
       return this.lhs.includesAtom(atom) || this.rhs.includesAtom(atom);
@@ -6300,15 +6523,17 @@ defineOperator('Or', 3, /*#__PURE__*/function (_InfixOperator2) {
 
 function byResidueTypeFlag(flag, name) {
   return defineSelector(name, /*#__PURE__*/function (_Selector4) {
-    inherits(_class, _Selector4);
+    _inherits(_class, _Selector4);
+
+    var _super16 = _createSuper$1T(_class);
 
     function _class() {
-      classCallCheck(this, _class);
+      _classCallCheck(this, _class);
 
-      return possibleConstructorReturn(this, getPrototypeOf(_class).apply(this, arguments));
+      return _super16.apply(this, arguments);
     }
 
-    createClass(_class, [{
+    _createClass(_class, [{
       key: "includesAtom",
       value: function includesAtom(atom) {
         return (atom.residue._type.flags & flag) !== 0;
@@ -6319,51 +6544,51 @@ function byResidueTypeFlag(flag, name) {
   }(Selector));
 }
 
-byResidueTypeFlag(ResidueType.Flags.PROTEIN, 'Protein');
-byResidueTypeFlag(ResidueType.Flags.BASIC, 'Basic');
-byResidueTypeFlag(ResidueType.Flags.ACIDIC, 'Acidic');
-byResidueTypeFlag(ResidueType.Flags.BASIC | ResidueType.Flags.ACIDIC, 'Charged');
-byResidueTypeFlag(ResidueType.Flags.POLAR, 'Polar');
-byResidueTypeFlag(ResidueType.Flags.NONPOLAR, 'NonPolar');
-byResidueTypeFlag(ResidueType.Flags.AROMATIC, 'Aromatic');
-byResidueTypeFlag(ResidueType.Flags.NUCLEIC, 'Nucleic');
-byResidueTypeFlag(ResidueType.Flags.PURINE, 'Purine');
-byResidueTypeFlag(ResidueType.Flags.PYRIMIDINE, 'Pyrimidine');
-byResidueTypeFlag(ResidueType.Flags.WATER, 'Water'); //----------------------------------------------------------------------------
+byResidueTypeFlag(ResidueType$1.Flags.PROTEIN, 'Protein');
+byResidueTypeFlag(ResidueType$1.Flags.BASIC, 'Basic');
+byResidueTypeFlag(ResidueType$1.Flags.ACIDIC, 'Acidic');
+byResidueTypeFlag(ResidueType$1.Flags.BASIC | ResidueType$1.Flags.ACIDIC, 'Charged');
+byResidueTypeFlag(ResidueType$1.Flags.POLAR, 'Polar');
+byResidueTypeFlag(ResidueType$1.Flags.NONPOLAR, 'NonPolar');
+byResidueTypeFlag(ResidueType$1.Flags.AROMATIC, 'Aromatic');
+byResidueTypeFlag(ResidueType$1.Flags.NUCLEIC, 'Nucleic');
+byResidueTypeFlag(ResidueType$1.Flags.PURINE, 'Purine');
+byResidueTypeFlag(ResidueType$1.Flags.PYRIMIDINE, 'Pyrimidine');
+byResidueTypeFlag(ResidueType$1.Flags.WATER, 'Water'); //----------------------------------------------------------------------------
 
-var selectors = Object.create(keywords);
-selectors.Selector = Selector;
-selectors.RangeListSelector = RangeListSelector;
-selectors.ValueListSelector = ValueListSelector;
-selectors.Range = Range;
-selectors.RangeList = RangeList;
-selectors.ValueList = ValueList;
-selectors.PrefixOperator = PrefixOperator;
-selectors.InfixOperator = InfixOperator;
-selectors.Context = Object.create({});
+var selectors$5 = Object.create(keywords);
+selectors$5.Selector = Selector;
+selectors$5.RangeListSelector = RangeListSelector;
+selectors$5.ValueListSelector = ValueListSelector;
+selectors$5.Range = Range;
+selectors$5.RangeList = RangeList;
+selectors$5.ValueList = ValueList;
+selectors$5.PrefixOperator = PrefixOperator;
+selectors$5.InfixOperator = InfixOperator;
+selectors$5.Context = Object.create({});
 
-selectors.GetSelector = function (key) {
-  if (!selectors.Context.hasOwnProperty(key)) {
+selectors$5.GetSelector = function (key) {
+  if (!selectors$5.Context.hasOwnProperty(key)) {
     var exc = {
       message: "selector ".concat(key, " is not registered")
     };
     throw exc;
   }
 
-  return selectors.Context[key] || NULL_SELECTOR;
+  return selectors$5.Context[key] || NULL_SELECTOR;
 };
 
-selectors.ClearContext = function () {
-  Object.keys(selectors.Context).forEach(function (k) {
-    delete selectors.Context[k];
+selectors$5.ClearContext = function () {
+  Object.keys(selectors$5.Context).forEach(function (k) {
+    delete selectors$5.Context[k];
   });
 };
 
-selectors.keyword = function (key) {
+selectors$5.keyword = function (key) {
   return keywords[key.toLowerCase()] || keywords.none;
 };
 
-selectors.parse = function (str) {
+selectors$5.parse = function (str) {
   var res = {};
 
   try {
@@ -6376,7 +6601,7 @@ selectors.parse = function (str) {
   return res;
 };
 
-SelectionParser_1.yy = selectors;
+SelectionParser_1.yy = selectors$5;
 SelectionParser_1.yy.parseError = SelectionParser_1.parseError; // workaround for incorrect JISON parser generator for AMD module
 
 /**
@@ -6388,17 +6613,17 @@ SelectionParser_1.yy.parseError = SelectionParser_1.parseError; // workaround fo
 
 var BiologicalUnit = /*#__PURE__*/function () {
   function BiologicalUnit(complex) {
-    classCallCheck(this, BiologicalUnit);
+    _classCallCheck(this, BiologicalUnit);
 
     this._complex = complex;
-    this._selector = selectors.keyword('All')();
+    this._selector = selectors$5.keyword('All')();
     this._boundaries = {
-      boundingBox: new Box3(),
-      boundingSphere: new Sphere()
+      boundingBox: new THREE.Box3(),
+      boundingSphere: new THREE.Sphere()
     };
   }
 
-  createClass(BiologicalUnit, [{
+  _createClass(BiologicalUnit, [{
     key: "computeBoundaries",
     value: function computeBoundaries() {
       var atoms = this._complex._atoms;
@@ -6409,10 +6634,10 @@ var BiologicalUnit = /*#__PURE__*/function () {
 
       if (n === 1) {
         boundingBox.expandByPoint(atoms[0].position);
-        var bbc = new Vector3();
+        var bbc = new THREE.Vector3();
         boundingBox.getCenter(bbc);
         var s = 2 * atoms[0].element.radius;
-        boundingBox.setFromCenterAndSize(bbc, new Vector3(s, s, s));
+        boundingBox.setFromCenterAndSize(bbc, new THREE.Vector3(s, s, s));
       } else {
         for (var i = 0; i < n; ++i) {
           if (selector.includesAtom(atoms[i])) {
@@ -6423,7 +6648,7 @@ var BiologicalUnit = /*#__PURE__*/function () {
 
 
       var radiusSquared = 0.0;
-      var center = new Vector3();
+      var center = new THREE.Vector3();
       boundingBox.getCenter(center);
 
       if (n === 1) {
@@ -6468,6 +6693,9 @@ var BiologicalUnit = /*#__PURE__*/function () {
   return BiologicalUnit;
 }();
 
+function _createSuper$1S(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1S(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1S() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * Biological assembly.
  *
@@ -6475,30 +6703,32 @@ var BiologicalUnit = /*#__PURE__*/function () {
  * @constructor
  */
 
-var Assembly = /*#__PURE__*/function (_BiologicalUnit) {
-  inherits(Assembly, _BiologicalUnit);
+var Assembly$3 = /*#__PURE__*/function (_BiologicalUnit) {
+  _inherits(Assembly, _BiologicalUnit);
+
+  var _super = _createSuper$1S(Assembly);
 
   function Assembly(complex) {
     var _this;
 
-    classCallCheck(this, Assembly);
+    _classCallCheck(this, Assembly);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(Assembly).call(this, complex));
+    _this = _super.call(this, complex);
     _this.chains = [];
     _this.matrices = [];
     return _this;
   }
 
-  createClass(Assembly, [{
+  _createClass(Assembly, [{
     key: "computeBoundaries",
     value: function computeBoundaries() {
-      get(getPrototypeOf(Assembly.prototype), "computeBoundaries", this).call(this); // fix up the boundaries
+      _get(_getPrototypeOf(Assembly.prototype), "computeBoundaries", this).call(this); // fix up the boundaries
 
 
       var matrices = this.matrices;
       var oldCenter = this._boundaries.boundingSphere.center;
       var oldRad = this._boundaries.boundingSphere.radius;
-      var boundingBox = this._boundaries.boundingBox = new Box3();
+      var boundingBox = this._boundaries.boundingBox = new THREE.Box3();
       boundingBox.makeEmpty();
 
       for (var i = 0, n = matrices.length; i < n; ++i) {
@@ -6506,9 +6736,9 @@ var Assembly = /*#__PURE__*/function (_BiologicalUnit) {
       }
 
       var newRad = boundingBox.max.distanceTo(boundingBox.min) / 2 + oldRad;
-      var center = new Vector3();
+      var center = new THREE.Vector3();
       boundingBox.getCenter(center);
-      this._boundaries.boundingSphere = new Sphere().set(center, newRad);
+      this._boundaries.boundingSphere = new THREE.Sphere().set(center, newRad);
       boundingBox.max.addScalar(oldRad);
       boundingBox.min.subScalar(oldRad);
     }
@@ -6541,9 +6771,9 @@ var Assembly = /*#__PURE__*/function (_BiologicalUnit) {
     key: "finalize",
     value: function finalize() {
       if (this.chains.length > 0) {
-        this._selector = selectors.keyword('Chain')(this.chains);
+        this._selector = selectors$5.keyword('Chain')(this.chains);
       } else {
-        this._selector = selectors.keyword('None')();
+        this._selector = selectors$5.keyword('None')();
       }
     }
   }]);
@@ -6563,7 +6793,7 @@ var Assembly = /*#__PURE__*/function (_BiologicalUnit) {
  */
 var Component = /*#__PURE__*/function () {
   function Component(complex) {
-    classCallCheck(this, Component);
+    _classCallCheck(this, Component);
 
     this._complex = complex;
     this._index = -1;
@@ -6573,7 +6803,7 @@ var Component = /*#__PURE__*/function () {
     this._residueCount = 0;
   }
 
-  createClass(Component, [{
+  _createClass(Component, [{
     key: "getResidues",
     value: function getResidues() {
       return this._complex._residues;
@@ -6756,7 +6986,7 @@ var cBigPrime = 89237;
 
 var AtomPairs = /*#__PURE__*/function () {
   function AtomPairs(maxPairsEstimate) {
-    classCallCheck(this, AtomPairs);
+    _classCallCheck(this, AtomPairs);
 
     this.numPairs = 0;
     this.numMaxPairs = maxPairsEstimate;
@@ -6777,7 +7007,7 @@ var AtomPairs = /*#__PURE__*/function () {
    */
 
 
-  createClass(AtomPairs, [{
+  _createClass(AtomPairs, [{
     key: "destroy",
     value: function destroy() {
       this.intBuffer = null;
@@ -6871,7 +7101,7 @@ function _isAtomEligible(atom) {
 
 var AutoBond = /*#__PURE__*/function () {
   function AutoBond(complex) {
-    classCallCheck(this, AutoBond);
+    _classCallCheck(this, AutoBond);
 
     this._complex = complex;
     this._maxRad = 1.8;
@@ -6888,7 +7118,7 @@ var AutoBond = /*#__PURE__*/function () {
    */
 
 
-  createClass(AutoBond, [{
+  _createClass(AutoBond, [{
     key: "_addExistingPairs",
     value: function _addExistingPairs() {
       var atoms = this._complex.getAtoms();
@@ -6946,7 +7176,7 @@ var AutoBond = /*#__PURE__*/function () {
 
         var dist2 = posA.distanceToSquared(atomB.position);
         var rB = atomB.element.radiusBonding;
-        var maxAcceptable =  rA + rB + cBondTolerance ;
+        var maxAcceptable = rA + rB + cBondTolerance ;
 
         if (dist2 > maxAcceptable * maxAcceptable) {
           return;
@@ -7003,7 +7233,7 @@ var AutoBond = /*#__PURE__*/function () {
       var left = indexA < indexB ? atomA : atomB;
       var right = indexA < indexB ? atomB : atomA;
 
-      var newBond = this._complex.addBond(left, right, 0, Bond.BondType.UNKNOWN, false);
+      var newBond = this._complex.addBond(left, right, 0, Bond$5.BondType.UNKNOWN, false);
 
       bondsA.push(newBond);
       atomB.bonds.push(newBond);
@@ -7068,8 +7298,8 @@ var AutoBond = /*#__PURE__*/function () {
 }();
 
 var cCrossThresh = 0.1;
-var cAromaticType = Bond.BondType.AROMATIC;
-var cAromaticAtoms = [Element.ByName.C.number, Element.ByName.N.number // Element.ByName.O.number,
+var cAromaticType = Bond$5.BondType.AROMATIC;
+var cAromaticAtoms = [Element$a.ByName.C.number, Element$a.ByName.N.number // Element.ByName.O.number,
 // Element.ByName.S.number,
 ];
 /** Conditions for bonds:
@@ -7079,9 +7309,9 @@ var cAromaticAtoms = [Element.ByName.C.number, Element.ByName.N.number // Elemen
    */
 
 var _coDirVectors = function () {
-  var v1Tmp = new Vector3();
-  var v2Tmp = new Vector3();
-  var cp = new Vector3();
+  var v1Tmp = new THREE.Vector3();
+  var v2Tmp = new THREE.Vector3();
+  var cp = new THREE.Vector3();
   return function (v1, v2) {
     v1Tmp.copy(v1).normalize();
     v2Tmp.copy(v2).normalize();
@@ -7112,7 +7342,7 @@ function _anotherAtom(bond, currAtom) {
 
 function _cosBetween(v1, v2) {
   var theta = v1.dot(v2) / Math.sqrt(v1.lengthSq() * v2.lengthSq());
-  return Math$1.clamp(theta, -1, 1);
+  return THREE.Math.clamp(theta, -1, 1);
 }
 
 function _markAromatic(bond) {
@@ -7121,17 +7351,17 @@ function _markAromatic(bond) {
 
 var Cycle = /*#__PURE__*/function () {
   function Cycle(atomsList) {
-    classCallCheck(this, Cycle);
+    _classCallCheck(this, Cycle);
 
     this.atoms = atomsList;
     this.update();
   }
 
-  createClass(Cycle, [{
+  _createClass(Cycle, [{
     key: "update",
     value: function update() {
       var atoms = this.atoms;
-      var center = new Vector3();
+      var center = new THREE.Vector3();
       var nA = atoms.length;
 
       for (var j = 0; j < nA; ++j) {
@@ -7192,7 +7422,7 @@ function _checkCycleComplex(cycle) {
 
 var AromaticLoopsMarker = /*#__PURE__*/function () {
   function AromaticLoopsMarker(complex) {
-    classCallCheck(this, AromaticLoopsMarker);
+    _classCallCheck(this, AromaticLoopsMarker);
 
     this._complex = complex;
     var bondsData = new Array(complex._bonds.length);
@@ -7209,7 +7439,7 @@ var AromaticLoopsMarker = /*#__PURE__*/function () {
     this._resetCycles();
   }
 
-  createClass(AromaticLoopsMarker, [{
+  _createClass(AromaticLoopsMarker, [{
     key: "_resetCycles",
     value: function _resetCycles() {
       this._cycles = [];
@@ -7314,7 +7544,7 @@ var AromaticLoopsMarker = /*#__PURE__*/function () {
       // start from left to right
       this._currStart = bond._left;
 
-      if (this._tryBond(bond, bond._right, new Vector3())) {
+      if (this._tryBond(bond, bond._right, new THREE.Vector3())) {
         _insertAscending(this._bondsData[bond._index], this._currIdx);
 
         this._cycles[this._currIdx].push(bond._left);
@@ -7431,12 +7661,12 @@ function _getCircleSliceRadiusRange(center, radius, yMin, yMax) {
 
 var VoxelWorld = /*#__PURE__*/function () {
   function VoxelWorld(box, vCellSizeHint) {
-    classCallCheck(this, VoxelWorld);
+    _classCallCheck(this, VoxelWorld);
 
     this._box = box.clone();
-    var size = new Vector3();
+    var size = new THREE.Vector3();
     box.getSize(size);
-    this._count = size.clone().divide(vCellSizeHint).floor().max(new Vector3(1, 1, 1));
+    this._count = size.clone().divide(vCellSizeHint).floor().max(new THREE.Vector3(1, 1, 1));
     this._last = this._count.clone().subScalar(1);
     this._cellSize = size.clone().divide(this._count);
     this._cellInnerR = 0.5 * Math.min(Math.min(this._cellSize.x, this._cellSize.y), this._cellSize.z);
@@ -7460,7 +7690,7 @@ var VoxelWorld = /*#__PURE__*/function () {
    */
 
 
-  createClass(VoxelWorld, [{
+  _createClass(VoxelWorld, [{
     key: "addAtoms",
     value: function addAtoms(complex) {
       var self = this;
@@ -7761,17 +7991,17 @@ var VoxelWorld = /*#__PURE__*/function () {
   return VoxelWorld;
 }();
 
-defineProperty(VoxelWorld, "_zero", new Vector3(0, 0, 0));
+_defineProperty(VoxelWorld, "_zero", new THREE.Vector3(0, 0, 0));
 
-defineProperty(VoxelWorld, "_voxel", new Vector3());
+_defineProperty(VoxelWorld, "_voxel", new THREE.Vector3());
 
-defineProperty(VoxelWorld, "_xRange", new Vector2());
+_defineProperty(VoxelWorld, "_xRange", new THREE.Vector2());
 
-defineProperty(VoxelWorld, "_yRange", new Vector2());
+_defineProperty(VoxelWorld, "_yRange", new THREE.Vector2());
 
-defineProperty(VoxelWorld, "_zRange", new Vector2());
+_defineProperty(VoxelWorld, "_zRange", new THREE.Vector2());
 
-defineProperty(VoxelWorld, "_vCenter", new Vector3());
+_defineProperty(VoxelWorld, "_vCenter", new THREE.Vector3());
 
 var MINIMAL_DISTANCE = 0.5;
 var MIN_HBOND_ENERGY = -9.9;
@@ -7784,7 +8014,7 @@ var MAX_RESIDUES_THRESHOLD = 1000;
 
 var HBondInfo = /*#__PURE__*/function () {
   function HBondInfo(complex) {
-    classCallCheck(this, HBondInfo);
+    _classCallCheck(this, HBondInfo);
 
     this._complex = complex;
     this._hbonds = []; // array of bond info for each residue
@@ -7798,11 +8028,11 @@ var HBondInfo = /*#__PURE__*/function () {
     }
   }
 
-  createClass(HBondInfo, [{
+  _createClass(HBondInfo, [{
     key: "isBond",
     value: function isBond(from, to) {
       if (this._hbonds[from]) {
-        var _this$_hbonds$from$ac = slicedToArray(this._hbonds[from].acceptor, 2),
+        var _this$_hbonds$from$ac = _slicedToArray(this._hbonds[from].acceptor, 2),
             acc0 = _this$_hbonds$from$ac[0],
             acc1 = _this$_hbonds$from$ac[1];
 
@@ -7825,28 +8055,28 @@ var HBondInfo = /*#__PURE__*/function () {
       for (var i = 0; i < this._complex._residues.length - 1; ++i) {
         var ri = this._complex._residues[i];
 
-        if ((ri.getType().flags & ResidueType.Flags.PROTEIN) === 0) {
+        if ((ri.getType().flags & ResidueType$1.Flags.PROTEIN) === 0) {
           continue;
         } // get predecessor in chain
 
 
         var preri = null;
 
-        if (i > 0 && this._complex._residues[i - 1].getType().flags & ResidueType.Flags.PROTEIN && ri._sequence === this._complex._residues[i - 1]._sequence + 1) {
+        if (i > 0 && this._complex._residues[i - 1].getType().flags & ResidueType$1.Flags.PROTEIN && ri._sequence === this._complex._residues[i - 1]._sequence + 1) {
           preri = this._complex._residues[i - 1];
         }
 
         for (var j = i + 1; j < this._complex._residues.length; ++j) {
           var rj = this._complex._residues[j];
 
-          if ((rj.getType().flags & ResidueType.Flags.PROTEIN) === 0) {
+          if ((rj.getType().flags & ResidueType$1.Flags.PROTEIN) === 0) {
             continue;
           } // get predecessor in chain
 
 
           var prerj = null;
 
-          if (this._complex._residues[j - 1].getType().flags & ResidueType.Flags.PROTEIN && rj._sequence === this._complex._residues[j - 1]._sequence + 1) {
+          if (this._complex._residues[j - 1].getType().flags & ResidueType$1.Flags.PROTEIN && rj._sequence === this._complex._residues[j - 1]._sequence + 1) {
             prerj = this._complex._residues[j - 1];
           }
 
@@ -7881,7 +8111,7 @@ var HBondInfo = /*#__PURE__*/function () {
           return;
         }
 
-        if ((rj.getType().flags & ResidueType.Flags.PROTEIN) === 0) {
+        if ((rj.getType().flags & ResidueType$1.Flags.PROTEIN) === 0) {
           return;
         }
 
@@ -7893,7 +8123,7 @@ var HBondInfo = /*#__PURE__*/function () {
 
         var prerj = rj._index > 0 ? residues[rj._index - 1] : null;
 
-        if (prerj && ((prerj.getType().flags & ResidueType.Flags.PROTEIN) === 0 || rj._sequence !== prerj._sequence + 1)) {
+        if (prerj && ((prerj.getType().flags & ResidueType$1.Flags.PROTEIN) === 0 || rj._sequence !== prerj._sequence + 1)) {
           prerj = null;
         }
 
@@ -7907,14 +8137,14 @@ var HBondInfo = /*#__PURE__*/function () {
       for (var i = 0; i < residues.length - 1; ++i) {
         ri = residues[i];
 
-        if ((ri.getType().flags & ResidueType.Flags.PROTEIN) === 0) {
+        if ((ri.getType().flags & ResidueType$1.Flags.PROTEIN) === 0) {
           continue;
         } // get predecessor in chain
 
 
         preri = i > 0 ? residues[i - 1] : null;
 
-        if (preri && ((preri.getType().flags & ResidueType.Flags.PROTEIN) === 0 || ri._sequence !== preri._sequence + 1)) {
+        if (preri && ((preri.getType().flags & ResidueType$1.Flags.PROTEIN) === 0 || ri._sequence !== preri._sequence + 1)) {
           preri = null;
         }
 
@@ -7953,7 +8183,7 @@ var HBondInfo = /*#__PURE__*/function () {
     key: "_residueGetNH",
     value: function _residueGetNH(prev, res) {
       var _this$_residueGetCO = this._residueGetCO(prev),
-          _this$_residueGetCO2 = slicedToArray(_this$_residueGetCO, 2),
+          _this$_residueGetCO2 = _slicedToArray(_this$_residueGetCO, 2),
           c = _this$_residueGetCO2[0],
           o = _this$_residueGetCO2[1];
 
@@ -7986,12 +8216,12 @@ var HBondInfo = /*#__PURE__*/function () {
 
       if (donor.getType().getName() !== 'PRO') {
         var _this$_residueGetNH = this._residueGetNH(predonor, donor),
-            _this$_residueGetNH2 = slicedToArray(_this$_residueGetNH, 2),
+            _this$_residueGetNH2 = _slicedToArray(_this$_residueGetNH, 2),
             n = _this$_residueGetNH2[0],
             h = _this$_residueGetNH2[1];
 
         var _this$_residueGetCO3 = this._residueGetCO(acceptor),
-            _this$_residueGetCO4 = slicedToArray(_this$_residueGetCO3, 2),
+            _this$_residueGetCO4 = _slicedToArray(_this$_residueGetCO3, 2),
             c = _this$_residueGetCO4[0],
             o = _this$_residueGetCO4[1];
 
@@ -8083,6 +8313,11 @@ var HBondInfo = /*#__PURE__*/function () {
   return HBondInfo;
 }();
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 var BridgeType = Object.freeze({
   NO_BRIDGE: 0,
   PARALLEL: 1,
@@ -8094,7 +8329,7 @@ var HelixFlag = Object.freeze({
   END: 3,
   START_AND_END: 4
 });
-var StructureType = Object.freeze({
+var StructureType$1 = Object.freeze({
   STRAND: 'E',
   BRIDGE: 'B',
   HELIX_310: 'G',
@@ -8107,14 +8342,14 @@ var StructureType = Object.freeze({
 
 var SecondaryStructureMap = /*#__PURE__*/function () {
   function SecondaryStructureMap(complex) {
-    classCallCheck(this, SecondaryStructureMap);
+    _classCallCheck(this, SecondaryStructureMap);
 
     this._complex = complex;
 
     this._build();
   }
 
-  createClass(SecondaryStructureMap, [{
+  _createClass(SecondaryStructureMap, [{
     key: "_build",
     value: function _build() {
       var self = this;
@@ -8143,7 +8378,7 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
         var len = 0;
 
         for (; len < chain.length; ++len) {
-          if ((chain[len].getType().flags & ResidueType.Flags.PROTEIN) === 0) {
+          if ((chain[len].getType().flags & ResidueType$1.Flags.PROTEIN) === 0) {
             break;
           }
         }
@@ -8170,20 +8405,20 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
           if (this._hbonds.isBond(inResidues[i + stride]._index, inResidues[i]._index)
           /* && NoChainBreak(res[i], res[i + stride]) */
           ) {
-              this._helixFlags[stride][inResidues[i + stride]._index] = HelixFlag.END;
+            this._helixFlags[stride][inResidues[i + stride]._index] = HelixFlag.END;
 
-              for (var j = i + 1; j < i + stride; ++j) {
-                if (typeof this._helixFlags[stride][inResidues[j]._index] === 'undefined') {
-                  this._helixFlags[stride][inResidues[j]._index] = HelixFlag.MIDDLE;
-                }
-              }
-
-              if (this._helixFlags[stride][inResidues[i]._index] === HelixFlag.END) {
-                this._helixFlags[stride][inResidues[i]._index] = HelixFlag.START_AND_END;
-              } else {
-                this._helixFlags[stride][inResidues[i]._index] = HelixFlag.START;
+            for (var j = i + 1; j < i + stride; ++j) {
+              if (typeof this._helixFlags[stride][inResidues[j]._index] === 'undefined') {
+                this._helixFlags[stride][inResidues[j]._index] = HelixFlag.MIDDLE;
               }
             }
+
+            if (this._helixFlags[stride][inResidues[i]._index] === HelixFlag.END) {
+              this._helixFlags[stride][inResidues[i]._index] = HelixFlag.START_AND_END;
+            } else {
+              this._helixFlags[stride][inResidues[i]._index] = HelixFlag.START;
+            }
+          }
         }
       }
 
@@ -8196,7 +8431,7 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
       for (var _i4 = 1; _i4 + 4 < chainLength; ++_i4) {
         if (this._isHelixStart(inResidues[_i4]._index, 4) && this._isHelixStart(inResidues[_i4 - 1]._index, 4)) {
           for (var _j = _i4; _j <= _i4 + 3; ++_j) {
-            this._ss[inResidues[_j]._index] = StructureType.HELIX_ALPHA;
+            this._ss[inResidues[_j]._index] = StructureType$1.HELIX_ALPHA;
           }
         }
       }
@@ -8206,12 +8441,12 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
           var empty = true;
 
           for (var _j2 = _i5; empty && _j2 <= _i5 + 2; ++_j2) {
-            empty = typeof this._ss[inResidues[_j2]._index] === 'undefined' || this._ss[inResidues[_j2]._index] === StructureType.HELIX_310;
+            empty = typeof this._ss[inResidues[_j2]._index] === 'undefined' || this._ss[inResidues[_j2]._index] === StructureType$1.HELIX_310;
           }
 
           if (empty) {
             for (var _j3 = _i5; _j3 <= _i5 + 2; ++_j3) {
-              this._ss[inResidues[_j3]._index] = StructureType.HELIX_310;
+              this._ss[inResidues[_j3]._index] = StructureType$1.HELIX_310;
             }
           }
         }
@@ -8222,12 +8457,12 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
           var _empty = true;
 
           for (var _j4 = _i6; _empty && _j4 <= _i6 + 4; ++_j4) {
-            _empty = typeof this._ss[inResidues[_j4]._index] === 'undefined' || this._ss[inResidues[_j4]._index] === StructureType.HELIX_PI || inPreferPiHelices && this._ss[inResidues[_j4]._index] === StructureType.HELIX_ALPHA;
+            _empty = typeof this._ss[inResidues[_j4]._index] === 'undefined' || this._ss[inResidues[_j4]._index] === StructureType$1.HELIX_PI || inPreferPiHelices && this._ss[inResidues[_j4]._index] === StructureType$1.HELIX_ALPHA;
           }
 
           if (_empty) {
             for (var _j5 = _i6; _j5 <= _i6 + 4; ++_j5) {
-              this._ss[inResidues[_j5]._index] = StructureType.HELIX_PI;
+              this._ss[inResidues[_j5]._index] = StructureType$1.HELIX_PI;
             }
           }
         }
@@ -8244,9 +8479,9 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
           }
 
           if (isTurn) {
-            this._ss[inResidues[_i7]._index] = StructureType.TURN;
+            this._ss[inResidues[_i7]._index] = StructureType$1.TURN;
           } else if (this._bend[inResidues[_i7]._index]) {
-            this._ss[inResidues[_i7]._index] = StructureType.BEND;
+            this._ss[inResidues[_i7]._index] = StructureType$1.BEND;
           }
         }
       }
@@ -8345,12 +8580,12 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
 
 
               var found = false;
-              var _iteratorNormalCompletion = true;
-              var _didIteratorError = false;
-              var _iteratorError = undefined;
+
+              var _iterator = _createForOfIteratorHelper(bridges),
+                  _step;
 
               try {
-                for (var _iterator = bridges[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                for (_iterator.s(); !(_step = _iterator.n()).done;) {
                   var bridge = _step.value;
 
                   if (type !== bridge.type || ri._index !== bridge.i[bridge.i.length - 1] + 1) {
@@ -8373,18 +8608,9 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
                 } // this bridge cannot be attached anywhere, start a new sequence
 
               } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
+                _iterator.e(err);
               } finally {
-                try {
-                  if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-                    _iterator["return"]();
-                  }
-                } finally {
-                  if (_didIteratorError) {
-                    throw _iteratorError;
-                  }
-                }
+                _iterator.f();
               }
 
               if (!found) {
@@ -8466,19 +8692,19 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
 
         do {
           toMove = new Set();
-          var _iteratorNormalCompletion2 = true;
-          var _didIteratorError2 = false;
-          var _iteratorError2 = undefined;
+
+          var _iterator2 = _createForOfIteratorHelper(sheetset.values()),
+              _step2;
 
           try {
-            for (var _iterator2 = sheetset.values()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
               var _a = _step2.value;
-              var _iteratorNormalCompletion4 = true;
-              var _didIteratorError4 = false;
-              var _iteratorError4 = undefined;
+
+              var _iterator4 = _createForOfIteratorHelper(ladderset.values()),
+                  _step4;
 
               try {
-                for (var _iterator4 = ladderset.values()[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
                   var _b = _step4.value;
 
                   if (this._areBridgesLinked(_a, _b)) {
@@ -8486,67 +8712,38 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
                   }
                 }
               } catch (err) {
-                _didIteratorError4 = true;
-                _iteratorError4 = err;
+                _iterator4.e(err);
               } finally {
-                try {
-                  if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
-                    _iterator4["return"]();
-                  }
-                } finally {
-                  if (_didIteratorError4) {
-                    throw _iteratorError4;
-                  }
-                }
+                _iterator4.f();
               }
             }
           } catch (err) {
-            _didIteratorError2 = true;
-            _iteratorError2 = err;
+            _iterator2.e(err);
           } finally {
-            try {
-              if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-                _iterator2["return"]();
-              }
-            } finally {
-              if (_didIteratorError2) {
-                throw _iteratorError2;
-              }
-            }
+            _iterator2.f();
           }
 
-          var _iteratorNormalCompletion3 = true;
-          var _didIteratorError3 = false;
-          var _iteratorError3 = undefined;
+          var _iterator3 = _createForOfIteratorHelper(toMove.values()),
+              _step3;
 
           try {
-            for (var _iterator3 = toMove.values()[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
               _bridge = _step3.value;
               sheetset.add(_bridge);
               ladderset["delete"](_bridge);
             }
           } catch (err) {
-            _didIteratorError3 = true;
-            _iteratorError3 = err;
+            _iterator3.e(err);
           } finally {
-            try {
-              if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
-                _iterator3["return"]();
-              }
-            } finally {
-              if (_didIteratorError3) {
-                throw _iteratorError3;
-              }
-            }
+            _iterator3.f();
           }
         } while (toMove.size > 0);
 
-        var _iteratorNormalCompletion5 = true;
-        var _didIteratorError5 = false;
-        var _iteratorError5 = undefined;
+        var _iterator5 = _createForOfIteratorHelper(sheetset.values()),
+            _step5;
 
         try {
-          for (var _iterator5 = sheetset.values()[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+          for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
             _bridge = _step5.value;
             _bridge.ladder = ladder;
             _bridge.sheet = sheet;
@@ -8554,18 +8751,9 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
             ++ladder;
           }
         } catch (err) {
-          _didIteratorError5 = true;
-          _iteratorError5 = err;
+          _iterator5.e(err);
         } finally {
-          try {
-            if (!_iteratorNormalCompletion5 && _iterator5["return"] != null) {
-              _iterator5["return"]();
-            }
-          } finally {
-            if (_didIteratorError5) {
-              throw _iteratorError5;
-            }
-          }
+          _iterator5.f();
         }
 
         ++sheet;
@@ -8592,10 +8780,10 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
           }
         }
 
-        var ss = StructureType.BRIDGE;
+        var ss = StructureType$1.BRIDGE;
 
         if (_bridge2.i.length > 1) {
-          ss = StructureType.STRAND;
+          ss = StructureType$1.STRAND;
         }
 
         if (_bridge2.type === BridgeType.PARALLEL) {
@@ -8641,14 +8829,14 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
         }
 
         for (var _k4 = _bridge2.i[0]; _k4 <= _bridge2.i[_bridge2.i.length - 1]; ++_k4) {
-          if (this._ss[_k4] !== StructureType.STRAND) {
+          if (this._ss[_k4] !== StructureType$1.STRAND) {
             this._ss[_k4] = ss;
             this._sheet[_k4] = _bridge2.sheet;
           }
         }
 
         for (var _k5 = _bridge2.j[0]; _k5 <= _bridge2.j[_bridge2.j.length - 1]; ++_k5) {
-          if (this._ss[_k5] !== StructureType.STRAND) {
+          if (this._ss[_k5] !== StructureType$1.STRAND) {
             this._ss[_k5] = ss;
             this._sheet[_k5] = _bridge2.sheet;
           }
@@ -8682,12 +8870,12 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
     value: function _areBridgesLinked(a, b) {
       var ai = new Set(a.i);
       var aj = new Set(a.j);
-      var _iteratorNormalCompletion6 = true;
-      var _didIteratorError6 = false;
-      var _iteratorError6 = undefined;
+
+      var _iterator6 = _createForOfIteratorHelper(b.i),
+          _step6;
 
       try {
-        for (var _iterator6 = b.i[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+        for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
           var i = _step6.value;
 
           if (ai.has(i) || aj.has(i)) {
@@ -8695,26 +8883,16 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
           }
         }
       } catch (err) {
-        _didIteratorError6 = true;
-        _iteratorError6 = err;
+        _iterator6.e(err);
       } finally {
-        try {
-          if (!_iteratorNormalCompletion6 && _iterator6["return"] != null) {
-            _iterator6["return"]();
-          }
-        } finally {
-          if (_didIteratorError6) {
-            throw _iteratorError6;
-          }
-        }
+        _iterator6.f();
       }
 
-      var _iteratorNormalCompletion7 = true;
-      var _didIteratorError7 = false;
-      var _iteratorError7 = undefined;
+      var _iterator7 = _createForOfIteratorHelper(b.j),
+          _step7;
 
       try {
-        for (var _iterator7 = b.j[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+        for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
           var _i11 = _step7.value;
 
           if (ai.has(_i11) || aj.has(_i11)) {
@@ -8722,18 +8900,9 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
           }
         }
       } catch (err) {
-        _didIteratorError7 = true;
-        _iteratorError7 = err;
+        _iterator7.e(err);
       } finally {
-        try {
-          if (!_iteratorNormalCompletion7 && _iterator7["return"] != null) {
-            _iterator7["return"]();
-          }
-        } finally {
-          if (_didIteratorError7) {
-            throw _iteratorError7;
-          }
-        }
+        _iterator7.f();
       }
 
       return false;
@@ -8753,15 +8922,15 @@ var SecondaryStructureMap = /*#__PURE__*/function () {
 
   return SecondaryStructureMap;
 }();
-SecondaryStructureMap.StructureType = StructureType;
+SecondaryStructureMap.StructureType = StructureType$1;
 
 var _helixClassMap, _loopMap;
 var VOXEL_SIZE = 5.0;
-var StructureType$1 = SecondaryStructureMap.StructureType;
-var StructuralElementType$2 = StructuralElement.Type; // see http://www.wwpdb.org/documentation/file-format-content/format33/sect5.html#HELIX
+var StructureType = SecondaryStructureMap.StructureType;
+var StructuralElementType$3 = StructuralElement.Type; // see http://www.wwpdb.org/documentation/file-format-content/format33/sect5.html#HELIX
 
-var helixClassMap = (_helixClassMap = {}, defineProperty(_helixClassMap, StructureType$1.HELIX_ALPHA, 1), defineProperty(_helixClassMap, StructureType$1.HELIX_PI, 3), defineProperty(_helixClassMap, StructureType$1.HELIX_310, 5), _helixClassMap);
-var loopMap = (_loopMap = {}, defineProperty(_loopMap, StructureType$1.BRIDGE, StructuralElementType$2.BRIDGE), defineProperty(_loopMap, StructureType$1.TURN, StructuralElementType$2.TURN), defineProperty(_loopMap, StructureType$1.BEND, StructuralElementType$2.BEND), defineProperty(_loopMap, StructureType$1.LOOP, StructuralElementType$2.COIL), _loopMap);
+var helixClassMap = (_helixClassMap = {}, _defineProperty(_helixClassMap, StructureType.HELIX_ALPHA, 1), _defineProperty(_helixClassMap, StructureType.HELIX_PI, 3), _defineProperty(_helixClassMap, StructureType.HELIX_310, 5), _helixClassMap);
+var loopMap = (_loopMap = {}, _defineProperty(_loopMap, StructureType.BRIDGE, StructuralElementType$3.BRIDGE), _defineProperty(_loopMap, StructureType.TURN, StructuralElementType$3.TURN), _defineProperty(_loopMap, StructureType.BEND, StructuralElementType$3.BEND), _defineProperty(_loopMap, StructureType.LOOP, StructuralElementType$3.COIL), _loopMap);
 /**
  * The entire complex of the molecules under study.
  *
@@ -8769,16 +8938,16 @@ var loopMap = (_loopMap = {}, defineProperty(_loopMap, StructureType$1.BRIDGE, S
  * @constructor
  */
 
-var Complex = /*#__PURE__*/function () {
+var Complex$9 = /*#__PURE__*/function () {
   function Complex() {
-    classCallCheck(this, Complex);
+    _classCallCheck(this, Complex);
 
     this._chains = [];
     this._components = [];
     this._helices = [];
     this._sheets = [];
     this.structures = [];
-    this._residueTypes = Object.create(ResidueType.StandardTypes);
+    this._residueTypes = Object.create(ResidueType$1.StandardTypes);
     this._atoms = [];
     this._residues = [];
     this._bonds = [];
@@ -8791,7 +8960,7 @@ var Complex = /*#__PURE__*/function () {
     this._currentUnit = 0; // default biological unit is the asymmetric unit
   }
 
-  createClass(Complex, [{
+  _createClass(Complex, [{
     key: "addAtom",
     value: function addAtom(atom) {
       var index = this._atoms.length;
@@ -8852,7 +9021,7 @@ var Complex = /*#__PURE__*/function () {
   }, {
     key: "addResidueType",
     value: function addResidueType(resName) {
-      var rt = this._residueTypes[resName] = new ResidueType(resName, 'Unknown', '');
+      var rt = this._residueTypes[resName] = new ResidueType$1(resName, 'Unknown', '');
       return rt;
     }
   }, {
@@ -8934,7 +9103,7 @@ var Complex = /*#__PURE__*/function () {
   }, {
     key: "addChain",
     value: function addChain(name) {
-      var result = new Chain(this, name);
+      var result = new Chain$2(this, name);
 
       this._chains.push(result);
 
@@ -9044,7 +9213,7 @@ var Complex = /*#__PURE__*/function () {
   }, {
     key: "addBond",
     value: function addBond(left, right, order, type, fixed) {
-      var bond = new Bond(left, right, order, type, fixed);
+      var bond = new Bond$5(left, right, order, type, fixed);
 
       this._bonds.push(bond);
 
@@ -9375,12 +9544,12 @@ var Complex = /*#__PURE__*/function () {
       for (i = 0, n = atoms.length; i < n; ++i) {
         var atom = atoms[i];
 
-        if (atom.flags & Atom.Flags.HYDROGEN && atom.bonds.length === 1) {
+        if (atom.flags & Atom$2.Flags.HYDROGEN && atom.bonds.length === 1) {
           var _bond = atom.bonds[0];
           var other = _bond._left !== atom && _bond._left || _bond._right;
 
-          if (other.flags & Atom.Flags.CARBON) {
-            atom.flags |= Atom.Flags.NONPOLARH;
+          if (other.flags & Atom$2.Flags.CARBON) {
+            atom.flags |= Atom$2.Flags.NONPOLARH;
           }
         }
       }
@@ -9459,7 +9628,7 @@ var Complex = /*#__PURE__*/function () {
       var setMask = mask;
       var clearMask = ~setMask;
       var count = 0;
-      var totalSelector = selectors.keyword('And')(selector, this.getSelector());
+      var totalSelector = selectors$5.keyword('And')(selector, this.getSelector());
       this.forEachAtom(function (atom) {
         if (totalSelector.includesAtom(atom)) {
           atom.mask |= setMask;
@@ -9576,7 +9745,7 @@ var Complex = /*#__PURE__*/function () {
     value: function getVoxelWorld() {
       if (!this.hasOwnProperty('_voxelWorld')) {
         try {
-          this._voxelWorld = new VoxelWorld(this.getDefaultBoundaries().boundingBox, new Vector3(VOXEL_SIZE, VOXEL_SIZE, VOXEL_SIZE));
+          this._voxelWorld = new VoxelWorld(this.getDefaultBoundaries().boundingBox, new THREE.Vector3(VOXEL_SIZE, VOXEL_SIZE, VOXEL_SIZE));
 
           this._voxelWorld.addAtoms(this);
         } catch (e) {
@@ -9705,7 +9874,7 @@ var Complex = /*#__PURE__*/function () {
         var item = sheets[index];
 
         if (!item) {
-          item = sheets[index] = new Sheet(String(index), 0);
+          item = sheets[index] = new Sheet$3(String(index), 0);
         }
 
         return item;
@@ -9728,7 +9897,7 @@ var Complex = /*#__PURE__*/function () {
             curStructure.term = curResidue;
           }
 
-          if (curStructure instanceof Helix) {
+          if (curStructure instanceof Helix$3) {
             curStructure.length++;
           }
 
@@ -9739,13 +9908,13 @@ var Complex = /*#__PURE__*/function () {
         var helixClass = helixClassMap[curCode];
         var loopType = loopMap[curCode];
 
-        if (curCode === StructureType$1.STRAND) {
+        if (curCode === StructureType.STRAND) {
           var curSheet = getSheet(curSheetIndex);
-          curStructure = new Strand(curSheet, curResidue, curResidue, 0, null, null);
+          curStructure = new Strand$3(curSheet, curResidue, curResidue, 0, null, null);
           curSheet.addStrand(curStructure);
         } else if (helixClass !== undefined) {
           lastHelixIndex++;
-          curStructure = new Helix(helixClass, curResidue, curResidue, lastHelixIndex, String(lastHelixIndex), '', 1);
+          curStructure = new Helix$3(helixClass, curResidue, curResidue, lastHelixIndex, String(lastHelixIndex), '', 1);
           helices.push(curStructure);
         } else if (loopType !== undefined) {
           curStructure = new StructuralElement(loopType, curResidue, curResidue);
@@ -9771,8 +9940,8 @@ var Complex = /*#__PURE__*/function () {
   return Complex;
 }();
 
-Complex.prototype.id = 'Complex';
-Complex.prototype.name = '';
+Complex$9.prototype.id = 'Complex';
+Complex$9.prototype.name = '';
 
 function pow2ceil(v) {
   var p = 2;
@@ -9801,16 +9970,16 @@ function pow2ceil(v) {
  */
 
 
-var Volume = /*#__PURE__*/function () {
+var Volume$2 = /*#__PURE__*/function () {
   function Volume(type, dimensions, box, vecSize, data, volumeInfo) {
-    classCallCheck(this, Volume);
+    _classCallCheck(this, Volume);
 
     this._box = box.clone();
     this._dimVec = Math.max(Math.floor(vecSize || 1), 1);
     this._volumeInfo = volumeInfo;
 
     if (dimensions instanceof Array) {
-      var _dimensions = slicedToArray(dimensions, 3);
+      var _dimensions = _slicedToArray(dimensions, 3);
 
       this._dimX = _dimensions[0];
       this._dimY = _dimensions[1];
@@ -9881,7 +10050,7 @@ var Volume = /*#__PURE__*/function () {
   } // default getter assumes it's a scalar field
 
 
-  createClass(Volume, [{
+  _createClass(Volume, [{
     key: "getValue",
     value: function getValue(x, y, z) {
       return this._data[x + y * this._rowElements + z * this._planeElements];
@@ -9916,11 +10085,11 @@ var Volume = /*#__PURE__*/function () {
   }, {
     key: "getCellSize",
     value: function getCellSize() {
-      var boxSize = new Vector3();
+      var boxSize = new THREE.Vector3();
 
       this._box.getSize(boxSize);
 
-      var res = new Vector3();
+      var res = new THREE.Vector3();
       res.x = this._dimX > 1 ? boxSize.x / (this._dimX - 1) : 0;
       res.y = this._dimY > 1 ? boxSize.y / (this._dimY - 1) : 0;
       res.z = this._dimZ > 1 ? boxSize.z / (this._dimZ - 1) : 0;
@@ -9940,7 +10109,7 @@ var Volume = /*#__PURE__*/function () {
       var vl = this.getCellSize(); // gradient axis scaling values and averaging factors, to correctly
       // calculate the gradient for volumes with irregular cell spacing
 
-      var vs = new Vector3(-0.5 / vl.x, -0.5 / vl.y, -0.5 / vl.z); // TODO Check for intended bug in VMD (min is zero)
+      var vs = new THREE.Vector3(-0.5 / vl.x, -0.5 / vl.y, -0.5 / vl.z); // TODO Check for intended bug in VMD (min is zero)
 
       function clamp(val, min, max) {
         return Math.min(max, Math.max(min, val));
@@ -10070,7 +10239,7 @@ var Volume = /*#__PURE__*/function () {
         }
       }
 
-      var texture = new DataTexture(data, width, height, LuminanceFormat, UnsignedByteType, UVMapping, ClampToEdgeWrapping, ClampToEdgeWrapping, LinearFilter, LinearFilter);
+      var texture = new THREE.DataTexture(data, width, height, THREE.LuminanceFormat, THREE.UnsignedByteType, THREE.UVMapping, THREE.ClampToEdgeWrapping, THREE.ClampToEdgeWrapping, THREE.LinearFilter, THREE.LinearFilter);
       texture.needsUpdate = true;
       return texture;
     }
@@ -10110,7 +10279,7 @@ var Volume = /*#__PURE__*/function () {
   return Volume;
 }();
 
-Volume.prototype.id = 'Volume';
+Volume$2.prototype.id = 'Volume';
 
 /**
  * Residue Molecule.
@@ -10122,9 +10291,9 @@ Volume.prototype.id = 'Volume';
  * @exports Molecule
  * @constructor
  */
-var Molecule = /*#__PURE__*/function () {
+var Molecule$8 = /*#__PURE__*/function () {
   function Molecule(complex, name, index) {
-    classCallCheck(this, Molecule);
+    _classCallCheck(this, Molecule);
 
     this.complex = complex;
     this.name = name || '';
@@ -10133,7 +10302,7 @@ var Molecule = /*#__PURE__*/function () {
     this.index = index || -1; // start with 1
   }
 
-  createClass(Molecule, [{
+  _createClass(Molecule, [{
     key: "forEachResidue",
     value: function forEachResidue(process) {
       var residues = this.residues;
@@ -10160,35 +10329,41 @@ var Molecule = /*#__PURE__*/function () {
 }();
 
 var chem = {
-  Atom: Atom,
-  Element: Element,
-  Bond: Bond,
-  Residue: Residue,
-  ResidueType: ResidueType,
-  Chain: Chain,
-  Helix: Helix,
-  Strand: Strand,
-  Sheet: Sheet,
-  SGroup: SGroup,
-  Assembly: Assembly,
-  Complex: Complex,
-  Volume: Volume,
+  Atom: Atom$2,
+  Element: Element$a,
+  Bond: Bond$5,
+  Residue: Residue$1,
+  ResidueType: ResidueType$1,
+  Chain: Chain$2,
+  Helix: Helix$3,
+  Strand: Strand$3,
+  Sheet: Sheet$3,
+  SGroup: SGroup$1,
+  Assembly: Assembly$3,
+  Complex: Complex$9,
+  Volume: Volume$2,
   VoxelWorld: VoxelWorld,
-  selectors: selectors,
-  Molecule: Molecule
+  selectors: selectors$5,
+  Molecule: Molecule$8
 };
 
+function _createSuper$1R(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1R(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1R() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var CSS2DObject = /*#__PURE__*/function (_THREE$Object3D) {
-  inherits(CSS2DObject, _THREE$Object3D);
+  _inherits(CSS2DObject, _THREE$Object3D);
+
+  var _super = _createSuper$1R(CSS2DObject);
 
   function CSS2DObject(element) {
     var _this;
 
-    classCallCheck(this, CSS2DObject);
+    _classCallCheck(this, CSS2DObject);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(CSS2DObject).call(this));
+    _this = _super.call(this);
 
-    var self = assertThisInitialized(_this);
+    var self = _assertThisInitialized(_this);
 
     _this._element = element;
     _this._element.style.position = 'absolute';
@@ -10202,7 +10377,7 @@ var CSS2DObject = /*#__PURE__*/function (_THREE$Object3D) {
     return _this;
   }
 
-  createClass(CSS2DObject, [{
+  _createClass(CSS2DObject, [{
     key: "getElement",
     value: function getElement() {
       return this._element;
@@ -10244,18 +10419,24 @@ var CSS2DObject = /*#__PURE__*/function (_THREE$Object3D) {
   }]);
 
   return CSS2DObject;
-}(Object3D);
+}(THREE.Object3D);
+
+function _createSuper$1Q(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1Q(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1Q() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 var RCGroup = /*#__PURE__*/function (_THREE$Group) {
-  inherits(RCGroup, _THREE$Group);
+  _inherits(RCGroup, _THREE$Group);
+
+  var _super = _createSuper$1Q(RCGroup);
 
   function RCGroup() {
-    classCallCheck(this, RCGroup);
+    _classCallCheck(this, RCGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(RCGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(RCGroup, [{
+  _createClass(RCGroup, [{
     key: "raycast",
     value: function raycast(raycaster, intersects) {
       if (!this.visible) {
@@ -10323,7 +10504,7 @@ var RCGroup = /*#__PURE__*/function (_THREE$Group) {
   }]);
 
   return RCGroup;
-}(Group);
+}(THREE.Group);
 
 var vertexScreenQuadShader = "uniform mat4 projectionMatrix;\nuniform mat4 modelViewMatrix;\n\nattribute vec2 uv;\nattribute vec3 position;\n\nvarying vec2 vUv;\n\nvoid main() {\n  vUv = uv;\n  gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n}\n";
 
@@ -10333,7 +10514,7 @@ var fragmentScreenQuadFromTexWithDistortion = "precision highp float;\n\nvarying
 
 var vertexShader = "float INSTANCED_SPRITE_OVERSCALE = 1.3;\n\nattribute vec3 normal;\n\n#ifdef NORMALS_TO_G_BUFFER\n  varying vec3 viewNormal;\n#endif\n#if !defined (SPHERE_SPRITE) && !defined (CYLINDER_SPRITE)\n  varying vec3 vNormal;\n#endif\n\n#ifdef THICK_LINE\n  attribute vec4 position; // W contains vert pos or neg offset\n#else\n  attribute vec3 position;\n#endif\n\nvarying vec3 vWorldPosition;\nvarying vec3 vViewPosition;\n\n#ifdef ATTR_ALPHA_COLOR\n  attribute float alphaColor;\n  varying float alphaCol;\n#endif\n\n#if defined(USE_LIGHTS) && defined(SHADOWMAP)\n\t#if NUM_DIR_LIGHTS > 0\n\t\tuniform mat4 directionalShadowMatrix[ NUM_DIR_LIGHTS ];\n\t\tvarying vec4 vDirectionalShadowCoord[ NUM_DIR_LIGHTS ];\n\t\tvarying vec3 vDirectionalShadowNormal[ NUM_DIR_LIGHTS ];\n\t#endif\n#endif\n\n#ifdef ATTR_COLOR\n  attribute vec3 color;\n  varying vec3 vColor;\n#endif\n\n#ifdef ATTR_COLOR2\n  attribute vec3 color2;\n  varying vec3 vColor2;\n  attribute vec2 uv;\n  #ifndef CYLINDER_SPRITE\n    varying vec2 vUv;\n  #endif\n#endif\n\n#ifdef INSTANCED_POS\n  attribute vec4 offset;\n  #ifdef SPHERE_SPRITE\n    varying vec4 instOffset;\n  varying vec4 spritePosEye;\n  #endif\n#endif\n\n#ifdef INSTANCED_MATRIX\n  attribute vec4 matVector1;\n  attribute vec4 matVector2;\n  attribute vec4 matVector3;\n  attribute vec4 invmatVector1;\n  attribute vec4 invmatVector2;\n  attribute vec4 invmatVector3;\n\n  #ifdef CYLINDER_SPRITE\n    varying vec4 matVec1;\n    varying vec4 matVec2;\n    varying vec4 matVec3;\n    varying vec4 invmatVec1;\n    varying vec4 invmatVec2;\n    varying vec4 invmatVec3;\n  #endif\n#endif\n\nuniform mat4 modelViewMatrix; // optional\nuniform mat4 projectionMatrix; // optional\nuniform mat3 normalMatrix; // optional\nuniform mat4 modelMatrix; // optional\n\n#ifdef DASHED_LINE\n  attribute float lineDistance;\n  varying float vLineDistance;\n#endif\n\n#ifdef THICK_LINE\n  attribute vec3 direction;\n  uniform mat4 projMatrixInv;\n  uniform vec2 viewport;\n  uniform float lineWidth;\n\n  vec4 transform(vec4 coord){\n    return projectionMatrix * modelViewMatrix * coord;\n  }\n\n  vec2 project(vec4 device){\n    vec3 device_normal = device.xyz/device.w;\n    vec2 clip_pos = (device_normal*0.5+0.5).xy;\n    return clip_pos * viewport;\n  }\n\n  vec4 unproject(vec2 screen, float z, float w){\n    vec2 clip_pos = screen/viewport;\n    vec2 device_normal = clip_pos*2.0-1.0;\n    return vec4(device_normal*w, z, w);\n  }\n#endif\n\n\n/////////////////////////////////////////// Main ///////////////////////////////////////////////\nvoid main() {\n\n#ifdef ATTR_ALPHA_COLOR\n  alphaCol = alphaColor;\n#endif\n\n#ifdef INSTANCED_MATRIX\n  vec3 objectNormal = vec3(\n    dot(normal, matVector1.xyz),\n    dot(normal, matVector2.xyz),\n    dot(normal, matVector3.xyz));\n#else\n  vec3 objectNormal = vec3( normal );\n#endif\n\nvec3 transformedNormal = normalMatrix * objectNormal;\n\n#if !defined (SPHERE_SPRITE) && !defined (CYLINDER_SPRITE)\n  vNormal = normalize(transformedNormal);\n#endif\n\n#ifdef NORMALS_TO_G_BUFFER\n  viewNormal = normalize(mat3(modelViewMatrix)*objectNormal);\n#endif\n\n  vec4 localPos = vec4(position.xyz, 1.0);\n  vec4 worldPos = modelMatrix * localPos;\n  vec4 mvPosition = modelViewMatrix * localPos;\n\n// make thick line offset\n#ifdef THICK_LINE\n   // get screen pos\n   vec4 dPos = transform(vec4(position.xyz, 1.0));\n   vec2 sPos = project(dPos);\n   // move pos forward\n   vec3 position2 = position.xyz + direction.xyz * 0.5;\n   // get screen offset pos\n   vec4 dPos2 = transform(vec4(position2.xyz, 1.0));\n   vec2 sPos2 = project(dPos2);\n   // screen line direction\n   vec2 sDir = normalize(sPos2 - sPos);\n   // vertex offset (orthogonal to line direction)\n   vec2 offset1 = vec2(-sDir.y, sDir.x);\n   // move screen vertex\n   vec2 newPos = sPos + offset1 * position.w * lineWidth;\n   // get moved pos in view space\n   vec4 dNewPos =  unproject(newPos, dPos.z, dPos.w);\n   mvPosition.xyz = (projMatrixInv * dNewPos).xyz;\n#endif // THICK_LINE\n\n#ifdef INSTANCED_POS\n  #ifdef SPHERE_SPRITE\n    instOffset = offset;\n\n    vec4 posEye = modelViewMatrix * vec4( offset.xyz, 1.0 );\n    float scale = length(modelViewMatrix[0]);\n    mvPosition = posEye + vec4( position.xyz * offset.w * scale * INSTANCED_SPRITE_OVERSCALE, 0.0 );\n    posEye.w = offset.w * scale;\n\n    spritePosEye = posEye;\n #else\n    localPos = vec4( offset.xyz + position.xyz * offset.w, 1.0 );\n    worldPos = modelMatrix * localPos;\n    mvPosition = modelViewMatrix * localPos;\n  #endif\n#endif\n\n#ifdef INSTANCED_MATRIX\n  #ifdef CYLINDER_SPRITE\n    matVec1 = matVector1;\n    matVec2 = matVector2;\n    matVec3 = matVector3;\n    invmatVec1 = invmatVector1;\n    invmatVec2 = invmatVector2;\n    invmatVec3 = invmatVector3;\n\n    // calculate eye coords of cylinder endpoints\n    vec4 v = vec4(0, -0.5, 0, 1);\n    vec4 p1 = modelViewMatrix * vec4(dot(v, matVector1), dot(v, matVector2), dot(v, matVector3), 1.0);\n    v.y = 0.5;\n    vec4 p2 = modelViewMatrix * vec4(dot(v, matVector1), dot(v, matVector2), dot(v, matVector3), 1.0);\n\n    // sprite is placed at the center of cylinder\n    vec4 posEye;\n    posEye.xyz = mix(p1.xyz, p2.xyz, 0.5);\n    posEye.w = 1.0;\n\n    // basic sprite size at screen plane (covers only cylinder axis)\n    vec2 spriteSizeScreen = abs(p2.xy / p2.z - p1.xy / p1.z);\n\n    // cylinder radius in eye space\n    float rad = length(modelViewMatrix[0]) * length(vec3(matVector1.x, matVector2.x, matVector3.x));\n\n    // full sprite size in eye coords\n    float minZ = min(abs(p1.z), abs(p2.z));\n    vec2 spriteSize = INSTANCED_SPRITE_OVERSCALE  * abs(posEye.z) *\n      (spriteSizeScreen + 2.0 * rad / minZ);\n\n    mvPosition = posEye + vec4( position.xy * 0.5 * spriteSize, 0, 0 );\n  #else\n    localPos = vec4(dot(localPos, matVector1), dot(localPos, matVector2), dot(localPos, matVector3), 1.0);\n    worldPos = modelMatrix * localPos;\n    mvPosition = modelViewMatrix * localPos;\n  #endif\n#endif\n\n  gl_Position = projectionMatrix * mvPosition;\n\n  vWorldPosition = worldPos.xyz;\n  vViewPosition = - mvPosition.xyz;\n\n#if defined(USE_LIGHTS) && defined(SHADOWMAP)\n\t#if NUM_DIR_LIGHTS > 0\n\t  vec4 worldPosition;\n\t  // see THREE.WebGLProgram.unrollLoops\n\t  #pragma unroll_loop\n\t  for ( int i = 0; i < NUM_DIR_LIGHTS; i ++ ) {\n      vDirectionalShadowCoord[ i ] = directionalShadowMatrix[ i ] * vec4(vWorldPosition, 1.0);\n      vDirectionalShadowNormal[ i ] = (directionalShadowMatrix[ i ] * (modelMatrix * vec4(objectNormal, 0.0))).xyz;\n\t  }\n\t#endif\n#endif\n\n#ifdef ATTR_COLOR\n  vColor = color.xyz;\n#endif\n\n#ifdef ATTR_COLOR2\n  vColor2 = color2;\n  #ifndef CYLINDER_SPRITE\n    vUv = uv;\n  #endif\n#endif\n\n#ifdef DASHED_LINE\n  vLineDistance = lineDistance;\n#endif\n}\n";
 
-var fragmentShader = "#if defined (NORMALS_TO_G_BUFFER)\n  #define fragColor gl_FragData[0]\n#else\n  #define fragColor gl_FragColor\n#endif\n\n#ifdef ATTR_ALPHA_COLOR\n  varying float alphaCol;\n#endif\n\n#ifdef COLOR_FROM_POS\n  uniform mat4 world2colorMatrix;\n#endif\n\n#if defined(USE_LIGHTS) && defined(SHADOWMAP)\n\t#if NUM_DIR_LIGHTS > 0\n\t\tuniform sampler2D directionalShadowMap[ NUM_DIR_LIGHTS ];\n\t\tvarying vec4 vDirectionalShadowCoord[ NUM_DIR_LIGHTS ];\n\t\tvarying vec3 vDirectionalShadowNormal[ NUM_DIR_LIGHTS ];\n\n    #ifdef SHADOWMAP_PCF_RAND\n      // We use 4 instead uniform variable or define because this value is used in for(... i < value; ...) with\n      // unroll_loop and unroll_loop has pattern:\n      // /#pragma unroll_loop[\\s]+?for \\( int i \\= (\\d+)\\; i < (\\d+)\\; i \\+\\+ \\) \\{([\\s\\S]+?)(?=\\})\\}/g\n      uniform vec2 samplesKernel[4]; // 4 is length of _samplesKernel which is defined in UberMaterial.js\n      uniform sampler2D noiseTex;\n      uniform vec2 noiseTexelSize;\n      uniform vec2 srcTexelSize;\n      uniform mat4 projectionMatrix;\n    #endif\n\t#endif\n#endif\n\n#ifdef ATTR_COLOR\n  varying vec3 vColor;\n#endif\n\n#ifdef ATTR_COLOR2\n  varying vec3 vColor2;\n  #ifndef CYLINDER_SPRITE\n    varying vec2 vUv;\n  #endif\n#endif\n\nuniform vec3 diffuse;\nuniform vec3 emissive;\nuniform vec3 specular;\nuniform float shininess;\nuniform vec3 fixedColor;\nuniform float opacity;\nuniform float zClipValue;\nuniform float clipPlaneValue;\nuniform vec3 toonBorder;\nuniform vec2 toonRange;\n\n#ifdef NORMALS_TO_G_BUFFER\n  varying vec3 viewNormal;\n#endif\n\n#define PI 3.14159265359\n#define RECIPROCAL_PI 0.31830988618\n#define saturate(a) clamp( a, 0.0, 1.0 )\n\n#ifdef USE_FOG\n  uniform vec3 fogColor;\n  uniform float fogAlpha;\n  uniform float fogNear;\n  uniform float fogFar;\n#endif\n\nvarying vec3 vWorldPosition; // world position of the pixel (invalid when INSTANCED_SPRITE is defined)\nvarying vec3 vViewPosition;\n\n#if !defined (SPHERE_SPRITE) && !defined (CYLINDER_SPRITE)\n  varying vec3 vNormal;\n#endif\n\n/////////////////////////////////////////// ZSprites ////////////////////////////////////////////////\n#ifdef SPHERE_SPRITE\n  varying vec4 spritePosEye;\n#endif\n\n#if defined(SPHERE_SPRITE) || defined(CYLINDER_SPRITE)\n  uniform float zOffset;\n  uniform mat4 projectionMatrix;\n\n  float calcDepthForSprites(vec4 pixelPosEye, float zOffset, mat4 projMatrix) {\n    vec4 pixelPosScreen = projMatrix * pixelPosEye;\n    return 0.5 * (pixelPosScreen.z / pixelPosScreen.w + 1.0) + zOffset;\n  }\n#endif\n\n#ifdef SPHERE_SPRITE\n  varying vec4 instOffset;\n  uniform mat4 modelMatrix;\n  uniform mat4 modelViewMatrix;\n  uniform mat4 invModelViewMatrix;\n  uniform mat3 normalMatrix;\n\n  float intersect_ray_sphere(in vec3 origin, in vec3 ray, out vec3 point) {\n\n    // intersect XZ-projected ray with circle\n    float a = dot(ray, ray);\n    float b = dot(ray, origin);\n    float c = dot(origin, origin) - 1.0;\n    float det = b * b - a * c;\n    if (det < 0.0) return -1.0;\n    float t1 = (-b - sqrt(det)) / a;\n    float t2 = (-b + sqrt(det)) / a;\n\n    // calculate both intersection points\n    vec3 p1 = origin + ray * t1;\n    vec3 p2 = origin + ray * t2;\n\n    // choose nearest point\n    if (t1 >= 0.0) {\n      point = p1;\n      return t1;\n    }\n    if (t2 >= 0.0) {\n      point = p2;\n      return t2;\n    }\n\n    return -1.0;\n  }\n\n  float get_sphere_point(in vec3 pixelPosEye, out vec3 point) {\n    // transform camera pos into sphere local coords\n    vec4 v = invModelViewMatrix * vec4(0.0, 0.0, 0.0, 1.0);\n    vec3 origin = (v.xyz - instOffset.xyz) / instOffset.w;\n\n    // transform (camera -> pixel) ray into cylinder local coords\n    v = invModelViewMatrix * vec4(pixelPosEye, 0.0);\n    vec3 ray = normalize(v.xyz);\n\n    return intersect_ray_sphere(origin, ray, point);\n  }\n#endif\n\n#ifdef CYLINDER_SPRITE\n  varying vec4 matVec1;\n  varying vec4 matVec2;\n  varying vec4 matVec3;\n  varying vec4 invmatVec1;\n  varying vec4 invmatVec2;\n  varying vec4 invmatVec3;\n\n  uniform mat4 modelMatrix;\n  uniform mat4 modelViewMatrix;\n  uniform mat4 invModelViewMatrix;\n  uniform mat3 normalMatrix;\n\n  float intersect_ray_cylinder(in vec3 origin, in vec3 ray, out vec3 point) {\n\n    // intersect XZ-projected ray with circle\n    float a = dot(ray.xz, ray.xz);\n    float b = dot(ray.xz, origin.xz);\n    float c = dot(origin.xz, origin.xz) - 1.0;\n    float det = b * b - a * c;\n    if (det < 0.0) return -1.0;\n    float t1 = (-b - sqrt(det)) / a;\n    float t2 = (-b + sqrt(det)) / a;\n\n    // calculate both intersection points\n    vec3 p1 = origin + ray * t1;\n    vec3 p2 = origin + ray * t2;\n\n    // choose nearest point\n    float halfHeight = 0.5;\n    if (t1 >= 0.0 && p1.y >= -halfHeight && p1.y <= halfHeight) {\n      point = p1;\n      return t1;\n    }\n    if (t2 >= 0.0 && p2.y >= -halfHeight && p2.y <= halfHeight) {\n      point = p2;\n      return t2;\n    }\n\n    return -1.0;\n  }\n\n  float get_cylinder_point(in vec3 pixelPosEye, out vec3 point) {\n    // transform camera pos into cylinder local coords\n    vec4 v = invModelViewMatrix * vec4(0.0, 0.0, 0.0, 1.0);\n    vec3 origin = vec3(\n      dot(v, invmatVec1),\n      dot(v, invmatVec2),\n      dot(v, invmatVec3));\n\n    // transform (camera -> pixel) ray into cylinder local coords\n    v = invModelViewMatrix * vec4(pixelPosEye, 0.0);\n    vec3 ray = vec3(\n      dot(v, invmatVec1),\n      dot(v, invmatVec2),\n      dot(v, invmatVec3));\n    ray = normalize(ray);\n\n    return intersect_ray_cylinder(origin, ray, point);\n  }\n#endif\n\n///////////////////////////////////// Pack and unpack ///////////////////////////////////////////////\nconst float PackUpscale = 256. / 255.; // fraction -> 0..1 (including 1)\nconst float UnpackDownscale = 255. / 256.; // 0..1 -> fraction (excluding 1)\n\nconst vec3 PackFactors = vec3( 256. * 256. * 256., 256. * 256.,  256. );\nconst vec4 UnpackFactors = UnpackDownscale / vec4( PackFactors, 1. );\n\n\nconst float ShiftRight8 = 1. / 256.;\n\nvec4 packDepthToRGBA( const in float v ) {\n  vec4 r = vec4( fract( v * PackFactors ), v );\n  r.yzw -= r.xyz * ShiftRight8; // tidy overflow\n  return r * PackUpscale;\n}\n\nfloat unpackRGBAToDepth( const in vec4 v ) {\n  return dot( v, UnpackFactors );\n}\n\n////////////////////////////////////////// All Lighting /////////////////////////////////////////////////\n#ifdef TOON_SHADING\n  #define LOW_TOON_BORDER toonBorder.x\n  #define MEDIUM_TOON_BORDER toonBorder.y\n  #define HIGH_TOON_BORDER toonBorder.z\n\n  #define MEDIUM_TOON_RANGE toonRange.x\n  #define HIGH_TOON_RANGE toonRange.y\n#endif\n#if defined(USE_LIGHTS) && NUM_DIR_LIGHTS > 0\n  struct ReflectedLight {\n    vec3 directDiffuse;\n    vec3 directSpecular;\n    vec3 indirectDiffuse;\n  };\n\n  struct BlinnPhongMaterial {\n    vec3  diffuseColor;\n    vec3  specularColor;\n    float specularShininess;\n  };\n\n  struct GeometricContext {\n    vec3 normal;\n    vec3 viewDir;\n  };\n\n  struct DirectionalLight {\n    vec3 direction;\n    vec3 color;\n\n    int shadow;\n    vec2 shadowMapSize;\n    float shadowBias;\n    float shadowRadius;\n  };\n\n  uniform DirectionalLight directionalLights[ NUM_DIR_LIGHTS ];\n  uniform vec3 ambientLightColor;\n\n  /////////////////////////////////////////// Shadowmap ////////////////////////////////////////////////\n\n  #if defined(SHADOWMAP)\n  \tfloat texture2DCompare( sampler2D depths, vec2 uv, float compare ) {\n  \t\treturn step( compare, unpackRGBAToDepth( texture2D( depths, uv ) ) );\n  \t}\n\n    float getShadow( sampler2D shadowMap, DirectionalLight dirLight, vec4 shadowCoord, vec3 vViewPosition, vec3 vNormal ) {\n   \t  float shadow = 0.0;\n\n      // When shadows for sprites will appear use here for them normals as it done for G-buffer\n      shadowCoord.xyz += dirLight.shadowBias * vNormal;\n      shadowCoord.xyz /= shadowCoord.w;\n\n      bvec4 inFrustumVec = bvec4 ( shadowCoord.x >= 0.0, shadowCoord.x <= 1.0, shadowCoord.y >= 0.0, shadowCoord.y <= 1.0 );\n      bool inFrustum = all( inFrustumVec );\n      bvec2 frustumTestVec = bvec2( inFrustum, shadowCoord.z <= 1.0 );\n      bool frustumTest = all( frustumTestVec );\n\n      if ( frustumTest ) {\n        #ifdef SHADOWMAP_BASIC\n      \t  shadow = texture2DCompare( shadowMap, shadowCoord.xy, shadowCoord.z );\n      \t#endif\n\n      \t#ifdef SHADOWMAP_PCF_SHARP\n      \t  vec2 texelSize = vec2( 1.0 ) / dirLight.shadowMapSize;\n\n            float dx0 = - texelSize.x * dirLight.shadowRadius;\n            float dy0 = - texelSize.y * dirLight.shadowRadius;\n            float dx1 = + texelSize.x * dirLight.shadowRadius;\n            float dy1 = + texelSize.y * dirLight.shadowRadius;\n\n            shadow = (\n            \ttexture2DCompare( shadowMap, shadowCoord.xy + vec2( dx0, dy0 ), shadowCoord.z ) +\n            \ttexture2DCompare( shadowMap, shadowCoord.xy + vec2( 0.0, dy0 ), shadowCoord.z ) +\n            \ttexture2DCompare( shadowMap, shadowCoord.xy + vec2( dx1, dy0 ), shadowCoord.z ) +\n            \ttexture2DCompare( shadowMap, shadowCoord.xy + vec2( dx0, 0.0 ), shadowCoord.z ) +\n            \ttexture2DCompare( shadowMap, shadowCoord.xy, shadowCoord.z ) +\n            \ttexture2DCompare( shadowMap, shadowCoord.xy + vec2( dx1, 0.0 ), shadowCoord.z ) +\n            \ttexture2DCompare( shadowMap, shadowCoord.xy + vec2( dx0, dy1 ), shadowCoord.z ) +\n            \ttexture2DCompare( shadowMap, shadowCoord.xy + vec2( 0.0, dy1 ), shadowCoord.z ) +\n            \ttexture2DCompare( shadowMap, shadowCoord.xy + vec2( dx1, dy1 ), shadowCoord.z )\n            ) * ( 1.0 / 9.0 );\n        #endif\n\n        #ifdef SHADOWMAP_PCF_RAND\n          vec2 texelSize = vec2( 1.0 ) / dirLight.shadowMapSize;\n\n          vec4 vUv = ((projectionMatrix * vec4(vViewPosition, 1.0)) + 1.0) / 2.0;\n          vec2 vUvNoise = vUv.xy / srcTexelSize * noiseTexelSize;\n\n          vec2 noiseVec = normalize(texture2D(noiseTex, vUvNoise).rg);\n          mat2 mNoise = mat2(noiseVec.x, noiseVec.y, -noiseVec.y, noiseVec.x);\n\n          vec2 offset;\n          #pragma unroll_loop\n          for ( int i = 0; i < 4; i ++ ) { // 4 is length of _samplesKernel which is defined in UberMaterial.js\n            offset = mNoise * ( normalize( samplesKernel[ i ]) * texelSize * dirLight.shadowRadius );\n            shadow +=  texture2DCompare( shadowMap, shadowCoord.xy + offset, shadowCoord.z );\n          }\n          shadow /= float( 4 ); // 4 is length of _samplesKernel which is defined in UberMaterial.js\n        #endif\n      }\n      return shadow;//(shadow != 1.0) ? 0.5 : 1.0;//vec4(shadow, shadow, shadow, 1.0);\n   }\n  #endif\n\n  /////////////////////////////////////////// Lighting /////////////////////////////////////////////////\n\n  vec3 BRDF_Diffuse_Lambert( const in vec3 diffuseColor ) {\n    return RECIPROCAL_PI * diffuseColor;\n  } // validated\n\n  vec3 F_Schlick( const in vec3 specularColor, const in float dotLH ) {\n    // Original approximation by Christophe Schlick '94\n    //;float fresnel = pow( 1.0 - dotLH, 5.0 );\n    // Optimized variant (presented by Epic at SIGGRAPH '13)\n    float fresnel = exp2( ( -5.55473 * dotLH - 6.98316 ) * dotLH );\n    return ( 1.0 - specularColor ) * fresnel + specularColor;\n  } // validated\n\n  float G_BlinnPhong_Implicit( /* const in float dotNL, const in float dotNV */ ) {\n    // geometry term is (n dot l)(n dot v) / 4(n dot l)(n dot v)\n    return 0.25;\n  }\n\n  float D_BlinnPhong( const in float shininess, const in float dotNH ) {\n    return RECIPROCAL_PI * ( shininess * 0.5 + 1.0 ) * pow( dotNH, shininess );\n  }\n\n  vec3 BRDF_Specular_BlinnPhong( const in DirectionalLight incidentLight, const in GeometricContext geometry, const in vec3 specularColor, const in float shininess ) {\n    vec3 halfDir = normalize( incidentLight.direction + geometry.viewDir );\n    float dotNH = saturate(dot( geometry.normal, halfDir ));\n    float dotLH = saturate(dot( incidentLight.direction, halfDir ));\n\n    vec3 F = F_Schlick( specularColor, dotLH );\n    float G = G_BlinnPhong_Implicit( /* dotNL, dotNV */ );\n    float D = D_BlinnPhong( shininess, dotNH );\n\n    return F * ( G * D );\n  } // validated\n\n  void RE_Direct_BlinnPhong( const in DirectionalLight directLight, const in GeometricContext geometry, const in BlinnPhongMaterial material, inout ReflectedLight reflectedLight, float penumbra ) {\n\n    float dotNL = saturate( dot( geometry.normal, directLight.direction ));\n    #ifdef TOON_SHADING\n      if(dotNL < MEDIUM_TOON_RANGE){\n        dotNL = LOW_TOON_BORDER;\n      }\n      else if(dotNL < HIGH_TOON_RANGE){\n        dotNL = MEDIUM_TOON_BORDER;\n      }\n      else{\n        dotNL = HIGH_TOON_BORDER;\n      }\n    #endif\n\n    vec3 irradiance = dotNL * directLight.color * PI;\n    reflectedLight.directDiffuse += penumbra * irradiance * BRDF_Diffuse_Lambert( material.diffuseColor );\n    reflectedLight.directSpecular += penumbra * irradiance * BRDF_Specular_BlinnPhong( directLight, geometry, material.specularColor, material.specularShininess );\n  }\n\n  void RE_IndirectDiffuse_BlinnPhong( const in vec3 irradiance, const in BlinnPhongMaterial material, inout ReflectedLight reflectedLight ) {\n    reflectedLight.indirectDiffuse += irradiance * BRDF_Diffuse_Lambert( material.diffuseColor );\n  }\n\n  vec3 calcLighting(const in GeometricContext geometry, const in BlinnPhongMaterial material, vec3 vViewPosition) {\n    ReflectedLight reflectedLight = ReflectedLight( vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ));\n    vec3 irradiance = ambientLightColor * PI;\n\n    float shadowMask = 1.0;\n    // see THREE.WebGLProgram.unrollLoops\n  \t#pragma unroll_loop\n  \t  for ( int i = 0; i < NUM_DIR_LIGHTS; i ++ ) {\n  \t    #ifdef SHADOWMAP\n  \t    if ( directionalLights[ i ].shadow > 0 ) shadowMask = getShadow( directionalShadowMap[ i ], directionalLights[ i ], vDirectionalShadowCoord[ i ], vViewPosition, vDirectionalShadowNormal[ i ] );\n  \t    #endif\n\n  \t\t  if ( shadowMask > 0.0 ) RE_Direct_BlinnPhong( directionalLights[ i ], geometry, material, reflectedLight, shadowMask );\n  \t\t}\n\n    RE_IndirectDiffuse_BlinnPhong(irradiance, material, reflectedLight);\n\n    return saturate(reflectedLight.indirectDiffuse + reflectedLight.directDiffuse + reflectedLight.directSpecular);\n  }\n#endif\n\n/////////////////////////////////////////// Dashed Line ///////////////////////////////////////////////\n#ifdef DASHED_LINE\n  uniform float dashedLineSize;\n  uniform float dashedLinePeriod;\n  varying float vLineDistance;\n#endif\n\n/////////////////////////////////////////// Main ///////////////////////////////////////////////\nvoid main() {\n\n#ifdef CLIP_PLANE\n  if (vViewPosition.z < clipPlaneValue) discard;\n#endif\n\n#ifdef ZCLIP\n  if (vViewPosition.z < zClipValue) discard;\n#endif\n\n  vec4 pixelPosWorld = vec4(vWorldPosition, 1.0);\n  vec4 pixelPosEye;\n\n#ifdef SPHERE_SPRITE\n\n  vec3 viewNormalSprites;\n  vec3 normal;\n\n/* quick-and-dirty method\n  normal.xy = ' + INSTANCED_SPRITE_OVERSCALE + ' * (2.0 * vUv - 1.0);\n  float r2 = dot(normal.xy, normal.xy);\n  if (r2 > 1.0) discard;\n  float normalZ = sqrt(1.0 - r2);\n  normal.z = normalZ;\n  normal = normal * ( -1.0 + 2.0 * float( gl_FrontFacing ) );\n  pixelPosEye = vec4(spritePosEye.xyz, 1.0);\n  pixelPosEye.z += spritePosEye.w * normalZ;\n*/\n\n  // ray-trace sphere surface\n  {\n    vec3 p;\n    if (get_sphere_point(-vViewPosition, p) < 0.0) discard;\n    pixelPosWorld = modelMatrix * vec4(instOffset.xyz + p * instOffset.w, 1.0);\n    // pixelPosEye = modelViewMatrix * vec4(instOffset.xyz + p * instOffset.w, 1.0);\n    pixelPosEye = vec4(spritePosEye.xyz, 1.0);\n    pixelPosEye.z += instOffset.w *\n      (modelViewMatrix[0][2] * p.x +\n       modelViewMatrix[1][2] * p.y +\n       modelViewMatrix[2][2] * p.z);\n    normal = normalize(normalMatrix * p);\n    #ifdef NORMALS_TO_G_BUFFER\n      viewNormalSprites = normalize(mat3(modelViewMatrix)*p);\n    #endif\n  }\n\n#endif\n\n#ifdef CYLINDER_SPRITE\n  vec3 normal;\n  vec3 viewNormalSprites;\n  float cylinderY = 0.0;\n\n    // ray-trace cylinder surface\n    {\n      vec3 p;\n      if (get_cylinder_point(-vViewPosition, p) < 0.0) discard;\n\n      cylinderY = 0.5 * (p.y + 1.0);\n\n      vec4 v = vec4(p, 1.0);\n      v = vec4(dot(v, matVec1), dot(v, matVec2), dot(v, matVec3), 1.0);\n      pixelPosWorld = modelMatrix * v;\n      pixelPosEye = modelViewMatrix * v;\n\n      vec3 localNormal = normalize(vec3(p.x, 0.0, p.z));\n      normal = vec3(\n        dot(localNormal, matVec1.xyz),\n        dot(localNormal, matVec2.xyz),\n        dot(localNormal, matVec3.xyz));\n      #ifdef NORMALS_TO_G_BUFFER\n        viewNormalSprites = normalize(mat3(modelViewMatrix)*normal);\n      #endif\n      normal = normalize(normalMatrix * normal);\n    }\n#endif\n\n  #ifdef ATTR_COLOR\n    vec3 vertexColor = vColor;\n  #else\n    vec3 vertexColor = vec3(1.0, 1.0, 1.0);\n  #endif\n\n  #ifdef ATTR_COLOR2\n    #ifdef CYLINDER_SPRITE\n      float colorCoef = cylinderY; // cylinder parameter is calculated from ray-tracing\n    #else\n      float colorCoef = vUv.y; // cylinder parameter is interpolated as tex coord\n    #endif\n      // choose either color or color2\n    vertexColor = mix(vColor2, vColor, step(0.5, colorCoef));\n  #endif\n\n  // negative red component is a special condition\n  if (vertexColor.x < 0.0) discard;\n\n  #ifdef DASHED_LINE\n    if ( mod( vLineDistance, dashedLinePeriod ) > dashedLineSize ) discard;\n  #endif\n\n  // transparency prepass writes only z, so we don't need to calc the color\n  #ifdef PREPASS_TRANSP\n    fragColor = vec4(1.0, 1.0, 1.0, 1.0);\n    #if defined(SPHERE_SPRITE) || defined(CYLINDER_SPRITE)\n      gl_FragDepthEXT = calcDepthForSprites(pixelPosEye, zOffset, projectionMatrix);\n    #endif\n    return;\n  #endif\n\n    float totalOpacity = opacity;\n\n  #ifdef ATTR_ALPHA_COLOR\n    totalOpacity *= alphaCol;\n  #endif\n\n  // discard fully transparent pixels\n  if (totalOpacity == 0.0) discard;\n\n  #ifdef FAKE_OPACITY\n    // discard pixels in checker pattern\n    vec2 dm_coord = floor(gl_FragCoord.xy);\n    dm_coord = fract(dm_coord * 0.5);\n    if (totalOpacity < 1.0 && (dm_coord.x < 0.5 ^^ dm_coord.y < 0.5)) discard;\n    vec4 diffuseColor = vec4(diffuse, 1.0);\n  #else\n    vec4 diffuseColor = vec4(diffuse, totalOpacity);\n  #endif\n\n  float flipNormal;\n  #if !defined (SPHERE_SPRITE) && !defined (CYLINDER_SPRITE)\n    flipNormal = 1.0;\n    #ifdef DOUBLE_SIDED\n      flipNormal = float( gl_FrontFacing );\n    #endif\n    vec3 normal = normalize( vNormal ) * flipNormal;\n  #endif\n\n    diffuseColor.rgb *= vertexColor;\n\n  #if defined(SPHERE_SPRITE) || defined(CYLINDER_SPRITE)\n    gl_FragDepthEXT = calcDepthForSprites(pixelPosEye, zOffset, projectionMatrix);\n  #endif\n\n  #ifdef NORMALS_TO_G_BUFFER\n    #if defined (SPHERE_SPRITE) || defined (CYLINDER_SPRITE)\n      vec3 viewNormaInColor = viewNormalSprites;\n      float frontFaced = 1.0;\n    #else\n      vec3 viewNormaInColor = viewNormal;\n      float frontFaced = float( gl_FrontFacing );\n    #endif\n    // [-1, 1] -> [0, 1]\n    viewNormaInColor = 0.5 * viewNormaInColor + 0.5;\n    gl_FragData[1] = vec4(viewNormaInColor, frontFaced);\n  #endif\n\n  #if defined(USE_LIGHTS) && NUM_DIR_LIGHTS > 0\n    GeometricContext geometry = GeometricContext(normal, normalize( vViewPosition ));\n    BlinnPhongMaterial material = BlinnPhongMaterial(diffuseColor.rgb, specular, shininess);\n    vec3 outgoingLight = calcLighting(geometry, material, vViewPosition);\n  #else\n    vec3 outgoingLight = diffuseColor.rgb;\n  #endif\n\n  #ifdef COLOR_FROM_DEPTH\n    float depth = 0.0;\n    #if defined(SPHERE_SPRITE) || defined(CYLINDER_SPRITE)\n      gl_FragDepthEXT = calcDepthForSprites(pixelPosEye, zOffset, projectionMatrix);\n      depth = gl_FragDepthEXT;\n    #else\n      depth = gl_FragCoord.z;\n    #endif\n    fragColor = packDepthToRGBA(depth);\n    return;\n  #endif\n\n  #ifdef COLOR_FROM_POS\n    fragColor = world2colorMatrix * pixelPosWorld;\n  #else\n    #ifdef OVERRIDE_COLOR\n      fragColor = vec4(fixedColor, diffuseColor.a);\n    #else\n      fragColor = vec4(outgoingLight, diffuseColor.a);//vec4(vNormal, 1.0);\n    #endif\n\n    #ifdef USE_FOG\n      float viewDistance;\n      #if defined(SPHERE_SPRITE) || defined(CYLINDER_SPRITE)\n        viewDistance = abs(pixelPosEye.z);\n      #else\n        viewDistance = vViewPosition.z;\n      #endif\n      float fogFactor = smoothstep( fogNear, fogFar, viewDistance) * fogAlpha;\n      #ifdef FOG_TRANSPARENT\n        fragColor.a = fragColor.a * (1.0 - fogFactor);\n      #else\n        fragColor.rgb = mix( fragColor.rgb, fogColor, fogFactor );\n      #endif\n    #endif\n\n  #endif\n}\n";
+var fragmentShader$6 = "#if defined (NORMALS_TO_G_BUFFER)\n  #define fragColor gl_FragData[0]\n#else\n  #define fragColor gl_FragColor\n#endif\n\n#ifdef ATTR_ALPHA_COLOR\n  varying float alphaCol;\n#endif\n\n#ifdef COLOR_FROM_POS\n  uniform mat4 world2colorMatrix;\n#endif\n\n#if defined(USE_LIGHTS) && defined(SHADOWMAP)\n\t#if NUM_DIR_LIGHTS > 0\n\t\tuniform sampler2D directionalShadowMap[ NUM_DIR_LIGHTS ];\n\t\tvarying vec4 vDirectionalShadowCoord[ NUM_DIR_LIGHTS ];\n\t\tvarying vec3 vDirectionalShadowNormal[ NUM_DIR_LIGHTS ];\n\n    #ifdef SHADOWMAP_PCF_RAND\n      // We use 4 instead uniform variable or define because this value is used in for(... i < value; ...) with\n      // unroll_loop and unroll_loop has pattern:\n      // /#pragma unroll_loop[\\s]+?for \\( int i \\= (\\d+)\\; i < (\\d+)\\; i \\+\\+ \\) \\{([\\s\\S]+?)(?=\\})\\}/g\n      uniform vec2 samplesKernel[4]; // 4 is length of _samplesKernel which is defined in UberMaterial.js\n      uniform sampler2D noiseTex;\n      uniform vec2 noiseTexelSize;\n      uniform vec2 srcTexelSize;\n      uniform mat4 projectionMatrix;\n    #endif\n\t#endif\n#endif\n\n#ifdef ATTR_COLOR\n  varying vec3 vColor;\n#endif\n\n#ifdef ATTR_COLOR2\n  varying vec3 vColor2;\n  #ifndef CYLINDER_SPRITE\n    varying vec2 vUv;\n  #endif\n#endif\n\nuniform vec3 diffuse;\nuniform vec3 emissive;\nuniform vec3 specular;\nuniform float shininess;\nuniform vec3 fixedColor;\nuniform float opacity;\nuniform float zClipValue;\nuniform float clipPlaneValue;\nuniform vec3 toonBorder;\nuniform vec2 toonRange;\n\n#ifdef NORMALS_TO_G_BUFFER\n  varying vec3 viewNormal;\n#endif\n\n#define PI 3.14159265359\n#define RECIPROCAL_PI 0.31830988618\n#define saturate(a) clamp( a, 0.0, 1.0 )\n\n#ifdef USE_FOG\n  uniform vec3 fogColor;\n  uniform float fogAlpha;\n  uniform float fogNear;\n  uniform float fogFar;\n#endif\n\nvarying vec3 vWorldPosition; // world position of the pixel (invalid when INSTANCED_SPRITE is defined)\nvarying vec3 vViewPosition;\n\n#if !defined (SPHERE_SPRITE) && !defined (CYLINDER_SPRITE)\n  varying vec3 vNormal;\n#endif\n\n/////////////////////////////////////////// ZSprites ////////////////////////////////////////////////\n#ifdef SPHERE_SPRITE\n  varying vec4 spritePosEye;\n#endif\n\n#if defined(SPHERE_SPRITE) || defined(CYLINDER_SPRITE)\n  uniform float zOffset;\n  uniform mat4 projectionMatrix;\n\n  float calcDepthForSprites(vec4 pixelPosEye, float zOffset, mat4 projMatrix) {\n    vec4 pixelPosScreen = projMatrix * pixelPosEye;\n    return 0.5 * (pixelPosScreen.z / pixelPosScreen.w + 1.0) + zOffset;\n  }\n#endif\n\n#ifdef SPHERE_SPRITE\n  varying vec4 instOffset;\n  uniform mat4 modelMatrix;\n  uniform mat4 modelViewMatrix;\n  uniform mat4 invModelViewMatrix;\n  uniform mat3 normalMatrix;\n\n  float intersect_ray_sphere(in vec3 origin, in vec3 ray, out vec3 point) {\n\n    // intersect XZ-projected ray with circle\n    float a = dot(ray, ray);\n    float b = dot(ray, origin);\n    float c = dot(origin, origin) - 1.0;\n    float det = b * b - a * c;\n    if (det < 0.0) return -1.0;\n    float t1 = (-b - sqrt(det)) / a;\n    float t2 = (-b + sqrt(det)) / a;\n\n    // calculate both intersection points\n    vec3 p1 = origin + ray * t1;\n    vec3 p2 = origin + ray * t2;\n\n    // choose nearest point\n    if (t1 >= 0.0) {\n      point = p1;\n      return t1;\n    }\n    if (t2 >= 0.0) {\n      point = p2;\n      return t2;\n    }\n\n    return -1.0;\n  }\n\n  float get_sphere_point(in vec3 pixelPosEye, out vec3 point) {\n    // transform camera pos into sphere local coords\n    vec4 v = invModelViewMatrix * vec4(0.0, 0.0, 0.0, 1.0);\n    vec3 origin = (v.xyz - instOffset.xyz) / instOffset.w;\n\n    // transform (camera -> pixel) ray into cylinder local coords\n    v = invModelViewMatrix * vec4(pixelPosEye, 0.0);\n    vec3 ray = normalize(v.xyz);\n\n    return intersect_ray_sphere(origin, ray, point);\n  }\n#endif\n\n#ifdef CYLINDER_SPRITE\n  varying vec4 matVec1;\n  varying vec4 matVec2;\n  varying vec4 matVec3;\n  varying vec4 invmatVec1;\n  varying vec4 invmatVec2;\n  varying vec4 invmatVec3;\n\n  uniform mat4 modelMatrix;\n  uniform mat4 modelViewMatrix;\n  uniform mat4 invModelViewMatrix;\n  uniform mat3 normalMatrix;\n\n  float intersect_ray_cylinder(in vec3 origin, in vec3 ray, out vec3 point) {\n\n    // intersect XZ-projected ray with circle\n    float a = dot(ray.xz, ray.xz);\n    float b = dot(ray.xz, origin.xz);\n    float c = dot(origin.xz, origin.xz) - 1.0;\n    float det = b * b - a * c;\n    if (det < 0.0) return -1.0;\n    float t1 = (-b - sqrt(det)) / a;\n    float t2 = (-b + sqrt(det)) / a;\n\n    // calculate both intersection points\n    vec3 p1 = origin + ray * t1;\n    vec3 p2 = origin + ray * t2;\n\n    // choose nearest point\n    float halfHeight = 0.5;\n    if (t1 >= 0.0 && p1.y >= -halfHeight && p1.y <= halfHeight) {\n      point = p1;\n      return t1;\n    }\n    if (t2 >= 0.0 && p2.y >= -halfHeight && p2.y <= halfHeight) {\n      point = p2;\n      return t2;\n    }\n\n    return -1.0;\n  }\n\n  float get_cylinder_point(in vec3 pixelPosEye, out vec3 point) {\n    // transform camera pos into cylinder local coords\n    vec4 v = invModelViewMatrix * vec4(0.0, 0.0, 0.0, 1.0);\n    vec3 origin = vec3(\n      dot(v, invmatVec1),\n      dot(v, invmatVec2),\n      dot(v, invmatVec3));\n\n    // transform (camera -> pixel) ray into cylinder local coords\n    v = invModelViewMatrix * vec4(pixelPosEye, 0.0);\n    vec3 ray = vec3(\n      dot(v, invmatVec1),\n      dot(v, invmatVec2),\n      dot(v, invmatVec3));\n    ray = normalize(ray);\n\n    return intersect_ray_cylinder(origin, ray, point);\n  }\n#endif\n\n///////////////////////////////////// Pack and unpack ///////////////////////////////////////////////\nconst float PackUpscale = 256. / 255.; // fraction -> 0..1 (including 1)\nconst float UnpackDownscale = 255. / 256.; // 0..1 -> fraction (excluding 1)\n\nconst vec3 PackFactors = vec3( 256. * 256. * 256., 256. * 256.,  256. );\nconst vec4 UnpackFactors = UnpackDownscale / vec4( PackFactors, 1. );\n\n\nconst float ShiftRight8 = 1. / 256.;\n\nvec4 packDepthToRGBA( const in float v ) {\n  vec4 r = vec4( fract( v * PackFactors ), v );\n  r.yzw -= r.xyz * ShiftRight8; // tidy overflow\n  return r * PackUpscale;\n}\n\nfloat unpackRGBAToDepth( const in vec4 v ) {\n  return dot( v, UnpackFactors );\n}\n\n////////////////////////////////////////// All Lighting /////////////////////////////////////////////////\n#ifdef TOON_SHADING\n  #define LOW_TOON_BORDER toonBorder.x\n  #define MEDIUM_TOON_BORDER toonBorder.y\n  #define HIGH_TOON_BORDER toonBorder.z\n\n  #define MEDIUM_TOON_RANGE toonRange.x\n  #define HIGH_TOON_RANGE toonRange.y\n#endif\n#if defined(USE_LIGHTS) && NUM_DIR_LIGHTS > 0\n  struct ReflectedLight {\n    vec3 directDiffuse;\n    vec3 directSpecular;\n    vec3 indirectDiffuse;\n  };\n\n  struct BlinnPhongMaterial {\n    vec3  diffuseColor;\n    vec3  specularColor;\n    float specularShininess;\n  };\n\n  struct GeometricContext {\n    vec3 normal;\n    vec3 viewDir;\n  };\n\n  struct DirectionalLight {\n    vec3 direction;\n    vec3 color;\n\n    int shadow;\n    vec2 shadowMapSize;\n    float shadowBias;\n    float shadowRadius;\n  };\n\n  uniform DirectionalLight directionalLights[ NUM_DIR_LIGHTS ];\n  uniform vec3 ambientLightColor;\n\n  /////////////////////////////////////////// Shadowmap ////////////////////////////////////////////////\n\n  #if defined(SHADOWMAP)\n  \tfloat texture2DCompare( sampler2D depths, vec2 uv, float compare ) {\n  \t\treturn step( compare, unpackRGBAToDepth( texture2D( depths, uv ) ) );\n  \t}\n\n    float getShadow( sampler2D shadowMap, DirectionalLight dirLight, vec4 shadowCoord, vec3 vViewPosition, vec3 vNormal ) {\n   \t  float shadow = 0.0;\n\n      // When shadows for sprites will appear use here for them normals as it done for G-buffer\n      shadowCoord.xyz += dirLight.shadowBias * vNormal;\n      shadowCoord.xyz /= shadowCoord.w;\n\n      bvec4 inFrustumVec = bvec4 ( shadowCoord.x >= 0.0, shadowCoord.x <= 1.0, shadowCoord.y >= 0.0, shadowCoord.y <= 1.0 );\n      bool inFrustum = all( inFrustumVec );\n      bvec2 frustumTestVec = bvec2( inFrustum, shadowCoord.z <= 1.0 );\n      bool frustumTest = all( frustumTestVec );\n\n      if ( frustumTest ) {\n        #ifdef SHADOWMAP_BASIC\n      \t  shadow = texture2DCompare( shadowMap, shadowCoord.xy, shadowCoord.z );\n      \t#endif\n\n      \t#ifdef SHADOWMAP_PCF_SHARP\n      \t  vec2 texelSize = vec2( 1.0 ) / dirLight.shadowMapSize;\n\n            float dx0 = - texelSize.x * dirLight.shadowRadius;\n            float dy0 = - texelSize.y * dirLight.shadowRadius;\n            float dx1 = + texelSize.x * dirLight.shadowRadius;\n            float dy1 = + texelSize.y * dirLight.shadowRadius;\n\n            shadow = (\n            \ttexture2DCompare( shadowMap, shadowCoord.xy + vec2( dx0, dy0 ), shadowCoord.z ) +\n            \ttexture2DCompare( shadowMap, shadowCoord.xy + vec2( 0.0, dy0 ), shadowCoord.z ) +\n            \ttexture2DCompare( shadowMap, shadowCoord.xy + vec2( dx1, dy0 ), shadowCoord.z ) +\n            \ttexture2DCompare( shadowMap, shadowCoord.xy + vec2( dx0, 0.0 ), shadowCoord.z ) +\n            \ttexture2DCompare( shadowMap, shadowCoord.xy, shadowCoord.z ) +\n            \ttexture2DCompare( shadowMap, shadowCoord.xy + vec2( dx1, 0.0 ), shadowCoord.z ) +\n            \ttexture2DCompare( shadowMap, shadowCoord.xy + vec2( dx0, dy1 ), shadowCoord.z ) +\n            \ttexture2DCompare( shadowMap, shadowCoord.xy + vec2( 0.0, dy1 ), shadowCoord.z ) +\n            \ttexture2DCompare( shadowMap, shadowCoord.xy + vec2( dx1, dy1 ), shadowCoord.z )\n            ) * ( 1.0 / 9.0 );\n        #endif\n\n        #ifdef SHADOWMAP_PCF_RAND\n          vec2 texelSize = vec2( 1.0 ) / dirLight.shadowMapSize;\n\n          vec4 vUv = ((projectionMatrix * vec4(vViewPosition, 1.0)) + 1.0) / 2.0;\n          vec2 vUvNoise = vUv.xy / srcTexelSize * noiseTexelSize;\n\n          vec2 noiseVec = normalize(texture2D(noiseTex, vUvNoise).rg);\n          mat2 mNoise = mat2(noiseVec.x, noiseVec.y, -noiseVec.y, noiseVec.x);\n\n          vec2 offset;\n          #pragma unroll_loop\n          for ( int i = 0; i < 4; i ++ ) { // 4 is length of _samplesKernel which is defined in UberMaterial.js\n            offset = mNoise * ( normalize( samplesKernel[ i ]) * texelSize * dirLight.shadowRadius );\n            shadow +=  texture2DCompare( shadowMap, shadowCoord.xy + offset, shadowCoord.z );\n          }\n          shadow /= float( 4 ); // 4 is length of _samplesKernel which is defined in UberMaterial.js\n        #endif\n      }\n      return shadow;//(shadow != 1.0) ? 0.5 : 1.0;//vec4(shadow, shadow, shadow, 1.0);\n   }\n  #endif\n\n  /////////////////////////////////////////// Lighting /////////////////////////////////////////////////\n\n  vec3 BRDF_Diffuse_Lambert( const in vec3 diffuseColor ) {\n    return RECIPROCAL_PI * diffuseColor;\n  } // validated\n\n  vec3 F_Schlick( const in vec3 specularColor, const in float dotLH ) {\n    // Original approximation by Christophe Schlick '94\n    //;float fresnel = pow( 1.0 - dotLH, 5.0 );\n    // Optimized variant (presented by Epic at SIGGRAPH '13)\n    float fresnel = exp2( ( -5.55473 * dotLH - 6.98316 ) * dotLH );\n    return ( 1.0 - specularColor ) * fresnel + specularColor;\n  } // validated\n\n  float G_BlinnPhong_Implicit( /* const in float dotNL, const in float dotNV */ ) {\n    // geometry term is (n dot l)(n dot v) / 4(n dot l)(n dot v)\n    return 0.25;\n  }\n\n  float D_BlinnPhong( const in float shininess, const in float dotNH ) {\n    return RECIPROCAL_PI * ( shininess * 0.5 + 1.0 ) * pow( dotNH, shininess );\n  }\n\n  vec3 BRDF_Specular_BlinnPhong( const in DirectionalLight incidentLight, const in GeometricContext geometry, const in vec3 specularColor, const in float shininess ) {\n    vec3 halfDir = normalize( incidentLight.direction + geometry.viewDir );\n    float dotNH = saturate(dot( geometry.normal, halfDir ));\n    float dotLH = saturate(dot( incidentLight.direction, halfDir ));\n\n    vec3 F = F_Schlick( specularColor, dotLH );\n    float G = G_BlinnPhong_Implicit( /* dotNL, dotNV */ );\n    float D = D_BlinnPhong( shininess, dotNH );\n\n    return F * ( G * D );\n  } // validated\n\n  void RE_Direct_BlinnPhong( const in DirectionalLight directLight, const in GeometricContext geometry, const in BlinnPhongMaterial material, inout ReflectedLight reflectedLight, float penumbra ) {\n\n    float dotNL = saturate( dot( geometry.normal, directLight.direction ));\n    #ifdef TOON_SHADING\n      if(dotNL < MEDIUM_TOON_RANGE){\n        dotNL = LOW_TOON_BORDER;\n      }\n      else if(dotNL < HIGH_TOON_RANGE){\n        dotNL = MEDIUM_TOON_BORDER;\n      }\n      else{\n        dotNL = HIGH_TOON_BORDER;\n      }\n    #endif\n\n    vec3 irradiance = dotNL * directLight.color * PI;\n    reflectedLight.directDiffuse += penumbra * irradiance * BRDF_Diffuse_Lambert( material.diffuseColor );\n    reflectedLight.directSpecular += penumbra * irradiance * BRDF_Specular_BlinnPhong( directLight, geometry, material.specularColor, material.specularShininess );\n  }\n\n  void RE_IndirectDiffuse_BlinnPhong( const in vec3 irradiance, const in BlinnPhongMaterial material, inout ReflectedLight reflectedLight ) {\n    reflectedLight.indirectDiffuse += irradiance * BRDF_Diffuse_Lambert( material.diffuseColor );\n  }\n\n  vec3 calcLighting(const in GeometricContext geometry, const in BlinnPhongMaterial material, vec3 vViewPosition) {\n    ReflectedLight reflectedLight = ReflectedLight( vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ));\n    vec3 irradiance = ambientLightColor * PI;\n\n    float shadowMask = 1.0;\n    // see THREE.WebGLProgram.unrollLoops\n  \t#pragma unroll_loop\n  \t  for ( int i = 0; i < NUM_DIR_LIGHTS; i ++ ) {\n  \t    #ifdef SHADOWMAP\n  \t    if ( directionalLights[ i ].shadow > 0 ) shadowMask = getShadow( directionalShadowMap[ i ], directionalLights[ i ], vDirectionalShadowCoord[ i ], vViewPosition, vDirectionalShadowNormal[ i ] );\n  \t    #endif\n\n  \t\t  if ( shadowMask > 0.0 ) RE_Direct_BlinnPhong( directionalLights[ i ], geometry, material, reflectedLight, shadowMask );\n  \t\t}\n\n    RE_IndirectDiffuse_BlinnPhong(irradiance, material, reflectedLight);\n\n    return saturate(reflectedLight.indirectDiffuse + reflectedLight.directDiffuse + reflectedLight.directSpecular);\n  }\n#endif\n\n/////////////////////////////////////////// Dashed Line ///////////////////////////////////////////////\n#ifdef DASHED_LINE\n  uniform float dashedLineSize;\n  uniform float dashedLinePeriod;\n  varying float vLineDistance;\n#endif\n\n/////////////////////////////////////////// Main ///////////////////////////////////////////////\nvoid main() {\n\n#ifdef CLIP_PLANE\n  if (vViewPosition.z < clipPlaneValue) discard;\n#endif\n\n#ifdef ZCLIP\n  if (vViewPosition.z < zClipValue) discard;\n#endif\n\n  vec4 pixelPosWorld = vec4(vWorldPosition, 1.0);\n  vec4 pixelPosEye;\n\n#ifdef SPHERE_SPRITE\n\n  vec3 viewNormalSprites;\n  vec3 normal;\n\n/* quick-and-dirty method\n  normal.xy = ' + INSTANCED_SPRITE_OVERSCALE + ' * (2.0 * vUv - 1.0);\n  float r2 = dot(normal.xy, normal.xy);\n  if (r2 > 1.0) discard;\n  float normalZ = sqrt(1.0 - r2);\n  normal.z = normalZ;\n  normal = normal * ( -1.0 + 2.0 * float( gl_FrontFacing ) );\n  pixelPosEye = vec4(spritePosEye.xyz, 1.0);\n  pixelPosEye.z += spritePosEye.w * normalZ;\n*/\n\n  // ray-trace sphere surface\n  {\n    vec3 p;\n    if (get_sphere_point(-vViewPosition, p) < 0.0) discard;\n    pixelPosWorld = modelMatrix * vec4(instOffset.xyz + p * instOffset.w, 1.0);\n    // pixelPosEye = modelViewMatrix * vec4(instOffset.xyz + p * instOffset.w, 1.0);\n    pixelPosEye = vec4(spritePosEye.xyz, 1.0);\n    pixelPosEye.z += instOffset.w *\n      (modelViewMatrix[0][2] * p.x +\n       modelViewMatrix[1][2] * p.y +\n       modelViewMatrix[2][2] * p.z);\n    normal = normalize(normalMatrix * p);\n    #ifdef NORMALS_TO_G_BUFFER\n      viewNormalSprites = normalize(mat3(modelViewMatrix)*p);\n    #endif\n  }\n\n#endif\n\n#ifdef CYLINDER_SPRITE\n  vec3 normal;\n  vec3 viewNormalSprites;\n  float cylinderY = 0.0;\n\n    // ray-trace cylinder surface\n    {\n      vec3 p;\n      if (get_cylinder_point(-vViewPosition, p) < 0.0) discard;\n\n      cylinderY = 0.5 * (p.y + 1.0);\n\n      vec4 v = vec4(p, 1.0);\n      v = vec4(dot(v, matVec1), dot(v, matVec2), dot(v, matVec3), 1.0);\n      pixelPosWorld = modelMatrix * v;\n      pixelPosEye = modelViewMatrix * v;\n\n      vec3 localNormal = normalize(vec3(p.x, 0.0, p.z));\n      normal = vec3(\n        dot(localNormal, matVec1.xyz),\n        dot(localNormal, matVec2.xyz),\n        dot(localNormal, matVec3.xyz));\n      #ifdef NORMALS_TO_G_BUFFER\n        viewNormalSprites = normalize(mat3(modelViewMatrix)*normal);\n      #endif\n      normal = normalize(normalMatrix * normal);\n    }\n#endif\n\n  #ifdef ATTR_COLOR\n    vec3 vertexColor = vColor;\n  #else\n    vec3 vertexColor = vec3(1.0, 1.0, 1.0);\n  #endif\n\n  #ifdef ATTR_COLOR2\n    #ifdef CYLINDER_SPRITE\n      float colorCoef = cylinderY; // cylinder parameter is calculated from ray-tracing\n    #else\n      float colorCoef = vUv.y; // cylinder parameter is interpolated as tex coord\n    #endif\n      // choose either color or color2\n    vertexColor = mix(vColor2, vColor, step(0.5, colorCoef));\n  #endif\n\n  // negative red component is a special condition\n  if (vertexColor.x < 0.0) discard;\n\n  #ifdef DASHED_LINE\n    if ( mod( vLineDistance, dashedLinePeriod ) > dashedLineSize ) discard;\n  #endif\n\n  // transparency prepass writes only z, so we don't need to calc the color\n  #ifdef PREPASS_TRANSP\n    fragColor = vec4(1.0, 1.0, 1.0, 1.0);\n    #if defined(SPHERE_SPRITE) || defined(CYLINDER_SPRITE)\n      gl_FragDepthEXT = calcDepthForSprites(pixelPosEye, zOffset, projectionMatrix);\n    #endif\n    return;\n  #endif\n\n    float totalOpacity = opacity;\n\n  #ifdef ATTR_ALPHA_COLOR\n    totalOpacity *= alphaCol;\n  #endif\n\n  // discard fully transparent pixels\n  if (totalOpacity == 0.0) discard;\n\n  #ifdef FAKE_OPACITY\n    // discard pixels in checker pattern\n    vec2 dm_coord = floor(gl_FragCoord.xy);\n    dm_coord = fract(dm_coord * 0.5);\n    if (totalOpacity < 1.0 && (dm_coord.x < 0.5 ^^ dm_coord.y < 0.5)) discard;\n    vec4 diffuseColor = vec4(diffuse, 1.0);\n  #else\n    vec4 diffuseColor = vec4(diffuse, totalOpacity);\n  #endif\n\n  float flipNormal;\n  #if !defined (SPHERE_SPRITE) && !defined (CYLINDER_SPRITE)\n    flipNormal = 1.0;\n    #ifdef DOUBLE_SIDED\n      flipNormal = float( gl_FrontFacing );\n    #endif\n    vec3 normal = normalize( vNormal ) * flipNormal;\n  #endif\n\n    diffuseColor.rgb *= vertexColor;\n\n  #if defined(SPHERE_SPRITE) || defined(CYLINDER_SPRITE)\n    gl_FragDepthEXT = calcDepthForSprites(pixelPosEye, zOffset, projectionMatrix);\n  #endif\n\n  #ifdef NORMALS_TO_G_BUFFER\n    #if defined (SPHERE_SPRITE) || defined (CYLINDER_SPRITE)\n      vec3 viewNormaInColor = viewNormalSprites;\n      float frontFaced = 1.0;\n    #else\n      vec3 viewNormaInColor = viewNormal;\n      float frontFaced = float( gl_FrontFacing );\n    #endif\n    // [-1, 1] -> [0, 1]\n    viewNormaInColor = 0.5 * viewNormaInColor + 0.5;\n    gl_FragData[1] = vec4(viewNormaInColor, frontFaced);\n  #endif\n\n  #if defined(USE_LIGHTS) && NUM_DIR_LIGHTS > 0\n    GeometricContext geometry = GeometricContext(normal, normalize( vViewPosition ));\n    BlinnPhongMaterial material = BlinnPhongMaterial(diffuseColor.rgb, specular, shininess);\n    vec3 outgoingLight = calcLighting(geometry, material, vViewPosition);\n  #else\n    vec3 outgoingLight = diffuseColor.rgb;\n  #endif\n\n  #ifdef COLOR_FROM_DEPTH\n    float depth = 0.0;\n    #if defined(SPHERE_SPRITE) || defined(CYLINDER_SPRITE)\n      gl_FragDepthEXT = calcDepthForSprites(pixelPosEye, zOffset, projectionMatrix);\n      depth = gl_FragDepthEXT;\n    #else\n      depth = gl_FragCoord.z;\n    #endif\n    fragColor = packDepthToRGBA(depth);\n    return;\n  #endif\n\n  #ifdef COLOR_FROM_POS\n    fragColor = world2colorMatrix * pixelPosWorld;\n  #else\n    #ifdef OVERRIDE_COLOR\n      fragColor = vec4(fixedColor, diffuseColor.a);\n    #else\n      fragColor = vec4(outgoingLight, diffuseColor.a);//vec4(vNormal, 1.0);\n    #endif\n\n    #ifdef USE_FOG\n      float viewDistance;\n      #if defined(SPHERE_SPRITE) || defined(CYLINDER_SPRITE)\n        viewDistance = abs(pixelPosEye.z);\n      #else\n        viewDistance = vViewPosition.z;\n      #endif\n      float fogFactor = smoothstep( fogNear, fogFar, viewDistance) * fogAlpha;\n      #ifdef FOG_TRANSPARENT\n        fragColor.a = fragColor.a * (1.0 - fogFactor);\n      #else\n        fragColor.rgb = mix( fragColor.rgb, fogColor, fogFactor );\n      #endif\n    #endif\n\n  #endif\n}\n";
 
 var capabilities = {
   precision: 'mediump',
@@ -10352,12 +10533,12 @@ var noiseHeight = 4;
 
 var _noiseData = new Uint8Array([24, 52, 0, 254, 145, 0, 122, 0, 0, 7, 170, 0, 34, 214, 0, 173, 8, 0, 86, 249, 0, 160, 4, 0, 226, 46, 0, 224, 211, 0, 3, 157, 0, 174, 247, 0, 12, 182, 0, 220, 216, 0, 1, 109, 0, 253, 154, 0]);
 
-var _noiseWrapS = RepeatWrapping;
-var _noiseWrapT = RepeatWrapping;
-var _noiseMinFilter = NearestFilter;
-var _noiseMagFilter = NearestFilter;
-var _noiseMapping = UVMapping;
-var noiseTexture = new DataTexture(_noiseData, noiseWidth, noiseHeight, RGBFormat, UnsignedByteType, _noiseMapping, _noiseWrapS, _noiseWrapT, _noiseMagFilter, _noiseMinFilter, 1);
+var _noiseWrapS = THREE.RepeatWrapping;
+var _noiseWrapT = THREE.RepeatWrapping;
+var _noiseMinFilter = THREE.NearestFilter;
+var _noiseMagFilter = THREE.NearestFilter;
+var _noiseMapping = THREE.UVMapping;
+var noiseTexture = new THREE.DataTexture(_noiseData, noiseWidth, noiseHeight, THREE.RGBFormat, THREE.UnsignedByteType, _noiseMapping, _noiseWrapS, _noiseWrapT, _noiseMagFilter, _noiseMinFilter, 1);
 noiseTexture.needsUpdate = true;
 var noise = {
   noiseWidth: noiseWidth,
@@ -10365,24 +10546,24 @@ var noise = {
   noiseTexture: noiseTexture
 };
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 // If you want to change length of _samplesKernel, please, remember change it in Uber.frag too.
 // You can easy find places for replace using word:_samplesKernel
 
-var _samplesKernel = [new Vector2(-0.541978, 0.840393), new Vector2(0.125533, -0.992089), new Vector2(0.374329, 0.927296), new Vector2(-0.105475, 0.994422)];
-var defaultUniforms = UniformsUtils.merge([UniformsLib.fog, UniformsLib.lights, {
+var _samplesKernel$1 = [new THREE.Vector2(-0.541978, 0.840393), new THREE.Vector2(0.125533, -0.992089), new THREE.Vector2(0.374329, 0.927296), new THREE.Vector2(-0.105475, 0.994422)];
+var defaultUniforms = THREE.UniformsUtils.merge([THREE.UniformsLib.fog, THREE.UniformsLib.lights, {
   // are updated automatically by three.js (see THREE.ShaderLib.common)
   diffuse: {
-    value: new Color(0xeeeeee)
+    value: new THREE.Color(0xeeeeee)
   },
   opacity: {
     value: 1.0
   },
   specular: {
     type: 'c',
-    value: new Color(0x111111)
+    value: new THREE.Color(0x111111)
   },
   shininess: {
     type: 'f',
@@ -10390,7 +10571,7 @@ var defaultUniforms = UniformsUtils.merge([UniformsLib.fog, UniformsLib.lights, 
   },
   fixedColor: {
     type: 'c',
-    value: new Color(0xffffff)
+    value: new THREE.Color(0xffffff)
   },
   zOffset: {
     type: 'f',
@@ -10406,11 +10587,11 @@ var defaultUniforms = UniformsUtils.merge([UniformsLib.fog, UniformsLib.lights, 
   },
   invModelViewMatrix: {
     type: '4fv',
-    value: new Matrix4()
+    value: new THREE.Matrix4()
   },
   world2colorMatrix: {
     type: '4fv',
-    value: new Matrix4()
+    value: new THREE.Matrix4()
   },
   dashedLineSize: {
     type: 'f',
@@ -10422,11 +10603,11 @@ var defaultUniforms = UniformsUtils.merge([UniformsLib.fog, UniformsLib.lights, 
   },
   projMatrixInv: {
     type: '4fv',
-    value: new Matrix4()
+    value: new THREE.Matrix4()
   },
   viewport: {
     type: 'v2',
-    value: new Vector2()
+    value: new THREE.Vector2()
   },
   lineWidth: {
     type: 'f',
@@ -10455,17 +10636,17 @@ var defaultUniforms = UniformsUtils.merge([UniformsLib.fog, UniformsLib.lights, 
   },
   toonBorder: {
     type: 'v3',
-    value: new Vector3(0.0, 0.7, 1.0)
+    value: new THREE.Vector3(0.0, 0.7, 1.0)
   },
   toonRange: {
     type: 'v2',
-    value: new Vector2(0.5, 0.95)
+    value: new THREE.Vector2(0.5, 0.95)
   }
 }]);
 var uberOptionNames = ['shininess', 'opacity', 'zOffset', 'diffuse', 'specular', 'fixedColor', 'zClipCoef', 'zClipValue', 'clipPlaneValue', 'world2colorMatrix', 'dashedLineSize', 'dashedLinePeriod', 'projMatrixInv', 'viewport', 'lineWidth', 'fogAlpha', 'samplesKernel', 'noiseTex', 'noiseTexelSize', 'srcTexelSize', 'toonBorder', 'toonRange'];
 
 function UberMaterial(params) {
-  RawShaderMaterial.call(this); // add fog
+  THREE.RawShaderMaterial.call(this); // add fog
 
   this.fog = true; // used for instanced geometry
 
@@ -10513,18 +10694,18 @@ function UberMaterial(params) {
 
   this.uberOptions = Object.create(UberMaterial.prototype.uberOptions); // set default values
 
-  RawShaderMaterial.prototype.setValues.call(this, {
-    uniforms: UniformsUtils.clone(defaultUniforms),
+  THREE.RawShaderMaterial.prototype.setValues.call(this, {
+    uniforms: THREE.UniformsUtils.clone(defaultUniforms),
     vertexShader: this.precisionString() + vertexShader,
-    fragmentShader: this.precisionString() + fragmentShader,
+    fragmentShader: this.precisionString() + fragmentShader$6,
     lights: true,
     fog: true,
-    side: DoubleSide
+    side: THREE.DoubleSide
   });
   this.setValues(params);
 }
 
-UberMaterial.prototype = Object.create(RawShaderMaterial.prototype);
+UberMaterial.prototype = Object.create(THREE.RawShaderMaterial.prototype);
 UberMaterial.prototype.constructor = UberMaterial;
 
 UberMaterial.prototype.precisionString = function () {
@@ -10535,15 +10716,15 @@ UberMaterial.prototype.precisionString = function () {
 
 
 UberMaterial.prototype.uberOptions = {
-  diffuse: new Color(0xffffff),
+  diffuse: new THREE.Color(0xffffff),
   // used in phong lighting
-  specular: new Color(0x111111),
+  specular: new THREE.Color(0x111111),
   // used in phong lighting
   shininess: 30,
   // used in phong lighting
   opacity: 1,
   // set mesh opacity
-  fixedColor: new Color(0xffffff),
+  fixedColor: new THREE.Color(0xffffff),
   // color to override (see OVERRIDE_COLOR)
   zOffset: 0.0,
   // used fo zsprites (see SPHERE_SPRITE CYLINDER_SPRITE)
@@ -10553,19 +10734,19 @@ UberMaterial.prototype.uberOptions = {
   //  value to clip Surfs in shader  (see ZCLIP)
   clipPlaneValue: 0.0,
   // value to clip scene globally (see CLIPPLANE)
-  world2colorMatrix: new Matrix4(),
+  world2colorMatrix: new THREE.Matrix4(),
   dashedLineSize: 0.1,
   dashedLinePeriod: 0.3,
-  projMatrixInv: new Matrix4(),
-  viewport: new Vector2(800, 600),
+  projMatrixInv: new THREE.Matrix4(),
+  viewport: new THREE.Vector2(800, 600),
   lineWidth: 2.0,
   fogAlpha: 1.0,
-  samplesKernel: _samplesKernel,
+  samplesKernel: _samplesKernel$1,
   noiseTex: noise.noiseTexture,
-  noiseTexelSize: new Vector2(1.0 / noise.noiseWidth, 1.0 / noise.noiseHeight),
-  srcTexelSize: new Vector2(1.0 / 800.0, 1.0 / 600.0),
-  toonBorder: new Vector3(0.0, 0.7, 1.0),
-  toonRange: new Vector2(0.5, 0.95),
+  noiseTexelSize: new THREE.Vector2(1.0 / noise.noiseWidth, 1.0 / noise.noiseHeight),
+  srcTexelSize: new THREE.Vector2(1.0 / 800.0, 1.0 / 600.0),
+  toonBorder: new THREE.Vector3(0.0, 0.7, 1.0),
+  toonRange: new THREE.Vector2(0.5, 0.95),
   copy: function copy(source) {
     this.diffuse.copy(source.diffuse);
     this.specular.copy(source.specular);
@@ -10595,10 +10776,10 @@ UberMaterial.prototype.uberOptions = {
 };
 
 UberMaterial.prototype.copy = function (source) {
-  RawShaderMaterial.prototype.copy.call(this, source);
+  THREE.RawShaderMaterial.prototype.copy.call(this, source);
   this.fragmentShader = source.fragmentShader;
   this.vertexShader = source.vertexShader;
-  this.uniforms = UniformsUtils.clone(source.uniforms);
+  this.uniforms = THREE.UniformsUtils.clone(source.uniforms);
   this.defines = _objectSpread({}, source.defines);
   this.extensions = source.extensions;
   this.fog = source.fog;
@@ -10642,7 +10823,7 @@ UberMaterial.prototype.setValues = function (values) {
   } // set direct values
 
 
-  RawShaderMaterial.prototype.setValues.call(this, values);
+  THREE.RawShaderMaterial.prototype.setValues.call(this, values);
   var defines = {};
   var extensions = {};
 
@@ -10760,7 +10941,7 @@ UberMaterial.prototype.setUberOptions = function (values) {
       continue;
     }
 
-    if (this.uberOptions[key] instanceof Color) {
+    if (this.uberOptions[key] instanceof THREE.Color) {
       this.uberOptions[key] = values[key].clone();
     } else {
       this.uberOptions[key] = values[key];
@@ -10770,7 +10951,7 @@ UberMaterial.prototype.setUberOptions = function (values) {
 
 UberMaterial.prototype.clone = function (shallow) {
   if (!shallow) {
-    return Material.prototype.clone.call(this);
+    return THREE.Material.prototype.clone.call(this);
   }
 
   return this.createInstance();
@@ -10780,7 +10961,7 @@ UberMaterial.prototype.updateUniforms = function () {
   var self = this;
   uberOptionNames.forEach(function (p) {
     if (self.uniforms.hasOwnProperty(p)) {
-      if (self.uberOptions[p] instanceof Color || self.uberOptions[p] instanceof Matrix4) {
+      if (self.uberOptions[p] instanceof THREE.Color || self.uberOptions[p] instanceof THREE.Matrix4) {
         self.uniforms[p].value = self.uberOptions[p].clone();
       } else {
         self.uniforms[p].value = self.uberOptions[p];
@@ -10789,6 +10970,9 @@ UberMaterial.prototype.updateUniforms = function () {
   });
 };
 
+function _createSuper$1P(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1P(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1P() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 var LAYERS = {
   DEFAULT: 0,
   VOLUME: 1,
@@ -10801,14 +10985,14 @@ var LAYERS = {
 var SELECTION_LAYERS = [// These layers, that are used in the selection by ray casting
 LAYERS.DEFAULT, LAYERS.TRANSPARENT];
 
-Object3D.prototype.resetTransform = function () {
+THREE.Object3D.prototype.resetTransform = function () {
   this.position.set(0, 0, 0);
   this.quaternion.set(0, 0, 0, 1);
   this.scale.set(1, 1, 1);
 }; // update world matrix of this object and all its ancestors
 
 
-Object3D.prototype.updateMatrixWorldRecursive = function () {
+THREE.Object3D.prototype.updateMatrixWorldRecursive = function () {
   if (this.parent != null) {
     this.parent.updateMatrixWorldRecursive();
   }
@@ -10817,11 +11001,11 @@ Object3D.prototype.updateMatrixWorldRecursive = function () {
 }; // add object to parent, saving objects' world transform
 
 
-Object3D.prototype.addSavingWorldTransform = function () {
-  var _worldMatrixInverse = new Matrix4();
+THREE.Object3D.prototype.addSavingWorldTransform = function () {
+  var _worldMatrixInverse = new THREE.Matrix4();
 
   return function (object) {
-    if (object instanceof Object3D) {
+    if (object instanceof THREE.Object3D) {
       _worldMatrixInverse.getInverse(this.matrixWorld);
 
       _worldMatrixInverse.multiply(object.matrixWorld);
@@ -10834,20 +11018,20 @@ Object3D.prototype.addSavingWorldTransform = function () {
 }(); // render a tiny transparent quad in the center of the screen
 
 
-WebGLRenderer.prototype.renderDummyQuad = function () {
-  var _material = new MeshBasicMaterial({
+THREE.WebGLRenderer.prototype.renderDummyQuad = function () {
+  var _material = new THREE.MeshBasicMaterial({
     transparent: true,
     opacity: 0.0,
     depthWrite: false
   });
 
-  var _scene = new Scene();
+  var _scene = new THREE.Scene();
 
-  var _quad = new Mesh$5(new PlaneBufferGeometry(0.01, 0.01), _material);
+  var _quad = new THREE.Mesh(new THREE.PlaneBufferGeometry(0.01, 0.01), _material);
 
   _scene.add(_quad);
 
-  var _camera = new OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -10000, 10000);
+  var _camera = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -10000, 10000);
 
   _camera.position.z = 100;
   return function () {
@@ -10855,14 +11039,14 @@ WebGLRenderer.prototype.renderDummyQuad = function () {
   };
 }();
 
-WebGLRenderer.prototype.renderScreenQuad = function () {
-  var _scene = new Scene();
+THREE.WebGLRenderer.prototype.renderScreenQuad = function () {
+  var _scene = new THREE.Scene();
 
-  var _quad = new Mesh$5(new PlaneBufferGeometry(1.0, 1.0));
+  var _quad = new THREE.Mesh(new THREE.PlaneBufferGeometry(1.0, 1.0));
 
   _scene.add(_quad);
 
-  var _camera = new OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -10000, 10000);
+  var _camera = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -10000, 10000);
 
   _camera.position.z = 100;
   return function (material) {
@@ -10871,14 +11055,14 @@ WebGLRenderer.prototype.renderScreenQuad = function () {
   };
 }();
 
-Matrix4.prototype.isIdentity = function () {
-  var identity = new Matrix4();
+THREE.Matrix4.prototype.isIdentity = function () {
+  var identity = new THREE.Matrix4();
   return function () {
     return identity.equals(this);
   };
 }();
 
-Matrix4.prototype.applyToPointsArray = function (array, stride, w) {
+THREE.Matrix4.prototype.applyToPointsArray = function (array, stride, w) {
   if (!array || !stride || stride < 3) {
     return array;
   }
@@ -10901,10 +11085,12 @@ Matrix4.prototype.applyToPointsArray = function (array, stride, w) {
 };
 
 var ScreenQuadMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
-  inherits(ScreenQuadMaterial, _THREE$RawShaderMater);
+  _inherits(ScreenQuadMaterial, _THREE$RawShaderMater);
+
+  var _super = _createSuper$1P(ScreenQuadMaterial);
 
   function ScreenQuadMaterial(params) {
-    classCallCheck(this, ScreenQuadMaterial);
+    _classCallCheck(this, ScreenQuadMaterial);
 
     if (params.uniforms === undefined) {
       params.uniforms = {};
@@ -10918,13 +11104,13 @@ var ScreenQuadMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
     params.transparent = false;
     params.depthTest = false;
     params.depthWrite = false;
-    return possibleConstructorReturn(this, getPrototypeOf(ScreenQuadMaterial).call(this, params));
+    return _super.call(this, params);
   }
 
   return ScreenQuadMaterial;
-}(RawShaderMaterial);
+}(THREE.RawShaderMaterial);
 
-WebGLRenderer.prototype.renderScreenQuadFromTex = function () {
+THREE.WebGLRenderer.prototype.renderScreenQuadFromTex = function () {
   var _material = new ScreenQuadMaterial({
     uniforms: {
       opacity: {
@@ -10944,7 +11130,7 @@ WebGLRenderer.prototype.renderScreenQuadFromTex = function () {
   };
 }();
 
-WebGLRenderer.prototype.renderScreenQuadFromTexWithDistortion = function () {
+THREE.WebGLRenderer.prototype.renderScreenQuadFromTexWithDistortion = function () {
   var _material = new ScreenQuadMaterial({
     uniforms: {
       coef: {
@@ -10966,11 +11152,11 @@ WebGLRenderer.prototype.renderScreenQuadFromTexWithDistortion = function () {
  */
 
 
-PerspectiveCamera.prototype.setMinimalFov = function (angle) {
+THREE.PerspectiveCamera.prototype.setMinimalFov = function (angle) {
   if (this.aspect >= 1.0) {
     this.fov = angle;
   } else {
-    this.fov = Math$1.radToDeg(2 * Math.atan(Math.tan(Math$1.degToRad(angle) * 0.5) / this.aspect));
+    this.fov = THREE.Math.radToDeg(2 * Math.atan(Math.tan(THREE.Math.degToRad(angle) * 0.5) / this.aspect));
   }
 };
 /**
@@ -10979,7 +11165,7 @@ PerspectiveCamera.prototype.setMinimalFov = function (angle) {
  */
 
 
-StereoCamera.prototype.updateHalfSized = function (camera, angle) {
+THREE.StereoCamera.prototype.updateHalfSized = function (camera, angle) {
   var originalAspect = camera.aspect;
   var originalFov = camera.fov;
   camera.aspect = originalAspect / 2.0;
@@ -10996,8 +11182,8 @@ StereoCamera.prototype.updateHalfSized = function (camera, angle) {
  */
 
 
-PerspectiveCamera.prototype.setDistanceToFit = function (radius, angle) {
-  this.position.z = radius / Math.sin(0.5 * Math$1.degToRad(angle));
+THREE.PerspectiveCamera.prototype.setDistanceToFit = function (radius, angle) {
+  this.position.z = radius / Math.sin(0.5 * THREE.Math.degToRad(angle));
 };
 /**
  * @param {RCGroup} gfxObj - All objects on scene.
@@ -11007,7 +11193,7 @@ PerspectiveCamera.prototype.setDistanceToFit = function (radius, angle) {
  */
 
 
-Raycaster.prototype.intersectVisibleObject = function (gfxObj, camera, clipPlane, fogFarPlane) {
+THREE.Raycaster.prototype.intersectVisibleObject = function (gfxObj, camera, clipPlane, fogFarPlane) {
   var intersects = this.intersectObject(gfxObj, false);
 
   if (intersects.length === 0) {
@@ -11018,7 +11204,7 @@ Raycaster.prototype.intersectVisibleObject = function (gfxObj, camera, clipPlane
   var nearPlane = Math.min(camera.near, clipPlane);
   var i;
   var p = intersects[0];
-  var v = new Vector3();
+  var v = new THREE.Vector3();
 
   for (i = 0; i < intersects.length; ++i) {
     p = intersects[i];
@@ -11046,8 +11232,8 @@ Raycaster.prototype.intersectVisibleObject = function (gfxObj, camera, clipPlane
   return p;
 };
 
-Matrix4.prototype.extractScale = function () {
-  var _v = new Vector3();
+THREE.Matrix4.prototype.extractScale = function () {
+  var _v = new THREE.Vector3();
 
   return function (scale) {
     if (scale === undefined) {
@@ -11072,12 +11258,12 @@ Matrix4.prototype.extractScale = function () {
 
 function _calcCylinderMatrix(posBegin, posEnd, radius) {
   var posCenter = posBegin.clone().lerp(posEnd, 0.5);
-  var matScale = new Matrix4();
+  var matScale = new THREE.Matrix4();
   matScale.makeScale(radius, posBegin.distanceTo(posEnd), radius);
-  var matRotHalf = new Matrix4();
+  var matRotHalf = new THREE.Matrix4();
   matRotHalf.makeRotationX(Math.PI / 2);
-  var matRotLook = new Matrix4();
-  var vUp = new Vector3(0, 1, 0);
+  var matRotLook = new THREE.Matrix4();
+  var vUp = new THREE.Vector3(0, 1, 0);
   matRotLook.lookAt(posCenter, posEnd, vUp);
   matRotLook.multiply(matRotHalf);
   matRotLook.multiply(matScale);
@@ -11086,9 +11272,9 @@ function _calcCylinderMatrix(posBegin, posEnd, radius) {
 }
 
 function _calcChunkMatrix(eye, target, up, rad) {
-  var matScale = new Matrix4();
+  var matScale = new THREE.Matrix4();
   matScale.makeScale(rad.x, rad.y, 0);
-  var matRotLook = new Matrix4();
+  var matRotLook = new THREE.Matrix4();
   matRotLook.lookAt(eye, target, up);
   matRotLook.multiply(matScale);
   matRotLook.setPosition(eye);
@@ -11097,7 +11283,7 @@ function _calcChunkMatrix(eye, target, up, rad) {
 
 function _forEachMeshInGroup(group, process) {
   function processObj(object) {
-    if (object instanceof Mesh$5) {
+    if (object instanceof THREE.Mesh) {
       process(object);
     }
 
@@ -11112,11 +11298,11 @@ function _forEachMeshInGroup(group, process) {
 function _countMeshTriangles(mesh) {
   var geom = mesh.geometry;
 
-  if (geom instanceof InstancedBufferGeometry) {
+  if (geom instanceof THREE.InstancedBufferGeometry) {
     var attribs = geom.attributes;
 
     for (var property in attribs) {
-      if (attribs.hasOwnProperty(property) && attribs[property] instanceof InstancedBufferAttribute) {
+      if (attribs.hasOwnProperty(property) && attribs[property] instanceof THREE.InstancedBufferAttribute) {
         var currAttr = attribs[property];
         var indexSize = geom.index ? geom.index.array.length / 3 : 0;
         return indexSize * currAttr.array.length / currAttr.itemSize;
@@ -11126,7 +11312,7 @@ function _countMeshTriangles(mesh) {
     return 0;
   }
 
-  if (geom instanceof BufferGeometry) {
+  if (geom instanceof THREE.BufferGeometry) {
     return geom.index ? geom.index.array.length / 3 : 0;
   }
 
@@ -11173,7 +11359,7 @@ function _buildDistorionMesh(widthSegments, heightSegements, coef) {
     return 1.0 / dr;
   }
 
-  var geo = new PlaneBufferGeometry(2.0, 2.0, widthSegments, heightSegements);
+  var geo = new THREE.PlaneBufferGeometry(2.0, 2.0, widthSegments, heightSegements);
   var pos = geo.getAttribute('position');
 
   for (var i = 0; i < pos.count; ++i) {
@@ -11186,7 +11372,7 @@ function _buildDistorionMesh(widthSegments, heightSegements, coef) {
   return geo;
 }
 
-BufferAttribute.prototype.copyAtList = function (attribute, indexList) {
+THREE.BufferAttribute.prototype.copyAtList = function (attribute, indexList) {
   console.assert(this.itemSize === attribute.itemSize, 'false: BufferAttribute.copyAtList buffers have different item size.');
   var itemSize = this.itemSize;
 
@@ -11226,7 +11412,7 @@ function removeChildren(object) {
 
 function clearTree(object) {
   object.traverse(function (obj) {
-    if (obj instanceof Mesh$5 || obj instanceof LineSegments || obj instanceof Line) {
+    if (obj instanceof THREE.Mesh || obj instanceof THREE.LineSegments || obj instanceof THREE.Line) {
       obj.geometry.dispose();
     }
   });
@@ -11275,7 +11461,7 @@ function applyTransformsToMeshes(root, mtc) {
     return;
   }
 
-  var meshes = _getMeshesArr(root, [Mesh$5, LineSegments, Line]);
+  var meshes = _getMeshesArr(root, [THREE.Mesh, THREE.LineSegments, THREE.Line]);
 
   for (var i = 0, n = meshes.length; i < n; ++i) {
     var mesh = meshes[i];
@@ -11300,7 +11486,7 @@ function processTransparentMaterial(root, material) {
     return;
   }
 
-  var meshes = _getMeshesArr(root, [Mesh$5, LineSegments]);
+  var meshes = _getMeshesArr(root, [THREE.Mesh, THREE.LineSegments]);
 
   var _loop = function _loop(i, n) {
     var mesh = meshes[i];
@@ -11346,7 +11532,7 @@ function processColFromPosMaterial(root, material) {
     return;
   }
 
-  var meshes = _getMeshesArr(root, [Mesh$5, LineSegments]);
+  var meshes = _getMeshesArr(root, [THREE.Mesh, THREE.LineSegments]);
 
   var _loop2 = function _loop2(i, n) {
     var mesh = meshes[i];
@@ -11385,7 +11571,7 @@ function createShadowmapMaterial(root, material) {
     return;
   }
 
-  var meshes = _getMeshesArr(root, [Mesh$5, LineSegments]);
+  var meshes = _getMeshesArr(root, [THREE.Mesh, THREE.LineSegments]);
 
   var _loop3 = function _loop3(i, n) {
     var mesh = meshes[i];
@@ -11439,7 +11625,7 @@ function removeShadowmapMaterial(root, material) {
     return;
   }
 
-  var meshes = _getMeshesArr(root, [Mesh$5, LineSegments]);
+  var meshes = _getMeshesArr(root, [THREE.Mesh, THREE.LineSegments]);
 
   for (var i = 0, n = meshes.length; i < n; ++i) {
     var mesh = meshes[i];
@@ -11465,7 +11651,7 @@ function processObjRenderOrder(root, idMaterial) {
 function makeVisibleMeshes(object, checker) {
   if (object && object.traverse) {
     object.traverse(function (obj) {
-      if (obj instanceof Mesh$5) {
+      if (obj instanceof THREE.Mesh) {
         obj.visible = checker(obj);
       }
     });
@@ -11478,12 +11664,12 @@ function applySelectionMaterial(geo) {
       node.material = node.material.clone(true); // using z-offset to magically fix selection rendering artifact (on z-sprites)
 
       node.material.setValues({
-        depthFunc: LessEqualDepth,
+        depthFunc: THREE.LessEqualDepth,
         overrideColor: true,
         fog: false
       });
       node.material.setUberOptions({
-        fixedColor: new Color(0xFFFF00),
+        fixedColor: new THREE.Color(0xFFFF00),
         zOffset: -1e-6
       });
     }
@@ -11491,7 +11677,7 @@ function applySelectionMaterial(geo) {
 }
 
 function getMiddlePoint(point1, point2, optionalTarget) {
-  var result = optionalTarget || new Vector3();
+  var result = optionalTarget || new THREE.Vector3();
   result.set(0, 0, 0);
   result.addScaledVector(point1, 0.5);
   result.addScaledVector(point2, 0.5);
@@ -11523,8 +11709,8 @@ var gfxutils = {
 };
 
 var _defaultBoundaries = {
-  boundingBox: new Box3(new Vector3(-1, -1, -1), new Vector3(1, 1, 1)),
-  boundingSphere: new Sphere(new Vector3(0, 0, 0), 1)
+  boundingBox: new THREE.Box3(new THREE.Vector3(-1, -1, -1), new THREE.Vector3(1, 1, 1)),
+  boundingSphere: new THREE.Sphere(new THREE.Vector3(0, 0, 0), 1)
 };
 
 function Visual(name, dataSource) {
@@ -11549,35 +11735,49 @@ Visual.prototype.getBoundaries = function () {
   return _defaultBoundaries;
 };
 
+var arrayWithoutHoles = createCommonjsModule(function (module) {
 function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
-      arr2[i] = arr[i];
-    }
-
-    return arr2;
-  }
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
 }
 
-var arrayWithoutHoles = _arrayWithoutHoles;
+module.exports = _arrayWithoutHoles;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
 
+unwrapExports(arrayWithoutHoles);
+
+var iterableToArray = createCommonjsModule(function (module) {
 function _iterableToArray(iter) {
-  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
 }
 
-var iterableToArray = _iterableToArray;
+module.exports = _iterableToArray;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
 
+unwrapExports(iterableToArray);
+
+var nonIterableSpread = createCommonjsModule(function (module) {
 function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance");
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
-var nonIterableSpread = _nonIterableSpread;
+module.exports = _nonIterableSpread;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
 
+unwrapExports(nonIterableSpread);
+
+var toConsumableArray = createCommonjsModule(function (module) {
 function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
 }
 
-var toConsumableArray = _toConsumableArray;
+module.exports = _toConsumableArray;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+var _toConsumableArray = unwrapExports(toConsumableArray);
 
 function _ensureArray(x) {
   if (x === null || x === undefined || Array.isArray(x)) {
@@ -11605,11 +11805,11 @@ var EntityList = /*#__PURE__*/function () {
     var entities = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
     var indices = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ['id'];
 
-    classCallCheck(this, EntityList);
+    _classCallCheck(this, EntityList);
 
     this._list = [];
     this._dict = {};
-    this._indices = toConsumableArray(indices);
+    this._indices = _toConsumableArray(indices);
 
     this._indices.forEach(function (index) {
       _this._dict[index] = {};
@@ -11630,9 +11830,9 @@ var EntityList = /*#__PURE__*/function () {
    */
 
 
-  createClass(EntityList, [{
+  _createClass(EntityList, [{
     key: "register",
-
+    value:
     /**
      * Add an entity to this list.
      *
@@ -11640,7 +11840,7 @@ var EntityList = /*#__PURE__*/function () {
      *   properties specified as indices on construction.
      * @see EntityList#unregister
      */
-    value: function register(entity) {
+    function register(entity) {
       var _this2 = this;
 
       EntityList.registerInList(this._list, entity);
@@ -11678,8 +11878,22 @@ var EntityList = /*#__PURE__*/function () {
      */
 
   }, {
-    key: "keys",
+    key: "all",
+    get: function get() {
+      return _toConsumableArray(this._list);
+    }
+    /**
+     * The first registered entity.
+     * Use it if you do not care which entity you are referring to.
+     *
+     * @type {Object=}
+     */
 
+  }, {
+    key: "first",
+    get: function get() {
+      return this._list[0];
+    }
     /**
      * Retrieve a list of keys for the index.
      *
@@ -11688,6 +11902,9 @@ var EntityList = /*#__PURE__*/function () {
      * @returns {!Array<string>} An unordered list of keys in the index, i.e. particular property
      *   values for all registered entities.
      */
+
+  }, {
+    key: "keys",
     value: function keys(index) {
       return Object.keys(this._dict[index || this._indices[0]]);
     }
@@ -11712,23 +11929,6 @@ var EntityList = /*#__PURE__*/function () {
       }
 
       return undefined;
-    }
-  }, {
-    key: "all",
-    get: function get() {
-      return toConsumableArray(this._list);
-    }
-    /**
-     * The first registered entity.
-     * Use it if you do not care which entity you are referring to.
-     *
-     * @type {Object=}
-     */
-
-  }, {
-    key: "first",
-    get: function get() {
-      return this._list[0];
     }
   }], [{
     key: "registerInList",
@@ -11823,26 +12023,30 @@ function makeContextDependent(prototype) {
     },
     settings: {
       get: function get() {
-        return this.context && this.context.settings ? this.context.settings : settings;
+        return this.context && this.context.settings ? this.context.settings : settings$1;
       }
     }
   });
 }
 
+function _createSuper$1O(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1O(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1O() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var CollisionSphere = /*#__PURE__*/function () {
   function CollisionSphere(position, radius) {
-    classCallCheck(this, CollisionSphere);
+    _classCallCheck(this, CollisionSphere);
 
     this._position = position;
     this._radius = radius;
   }
 
-  createClass(CollisionSphere, [{
+  _createClass(CollisionSphere, [{
     key: "raycast",
     value: function raycast(raycaster) {
       var sphere = CollisionSphere._sphere;
       sphere.set(this._position, this._radius);
-      var p = new Vector3();
+      var p = new THREE.Vector3();
 
       if (raycaster.ray.intersectSphere(sphere, p)) {
         return {
@@ -11858,109 +12062,111 @@ var CollisionSphere = /*#__PURE__*/function () {
   return CollisionSphere;
 }();
 
-defineProperty(CollisionSphere, "_sphere", new Sphere());
+_defineProperty(CollisionSphere, "_sphere", new THREE.Sphere());
 
 var SphereCollisionGeo = function SphereCollisionGeo(base) {
-  return (/*#__PURE__*/function (_base) {
-      inherits(_class, _base);
+  return /*#__PURE__*/function (_base) {
+    _inherits(_class, _base);
 
-      function _class(count) {
-        var _getPrototypeOf2;
+    var _super = _createSuper$1O(_class);
 
-        var _this;
+    function _class(count) {
+      var _this;
 
-        classCallCheck(this, _class);
+      _classCallCheck(this, _class);
 
-        for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-          args[_key - 1] = arguments[_key];
-        }
-
-        _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(_class)).call.apply(_getPrototypeOf2, [this].concat(args)));
-        _this._objects = new Array(count);
-        _this.boundingSphere = null;
-        _this.boundingBox = null;
-        return _this;
+      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        args[_key - 1] = arguments[_key];
       }
 
-      createClass(_class, [{
-        key: "setSphere",
-        value: function setSphere(idx, position, radius) {
-          this._objects[idx] = new CollisionSphere(position, radius);
-        }
-      }, {
-        key: "raycast",
-        value: function raycast(raycaster, intersects) {
-          // TODO raycast with bounding sphere? How to deal with updates?
-          for (var i = 0, n = this._objects.length; i < n; ++i) {
-            var inters = this._objects[i].raycast(raycaster);
+      _this = _super.call.apply(_super, [this].concat(args));
+      _this._objects = new Array(count);
+      _this.boundingSphere = null;
+      _this.boundingBox = null;
+      return _this;
+    }
 
-            if (inters) {
-              inters.chunkIdx = i;
-              intersects.push(inters);
-            }
+    _createClass(_class, [{
+      key: "setSphere",
+      value: function setSphere(idx, position, radius) {
+        this._objects[idx] = new CollisionSphere(position, radius);
+      }
+    }, {
+      key: "raycast",
+      value: function raycast(raycaster, intersects) {
+        // TODO raycast with bounding sphere? How to deal with updates?
+        for (var i = 0, n = this._objects.length; i < n; ++i) {
+          var inters = this._objects[i].raycast(raycaster);
+
+          if (inters) {
+            inters.chunkIdx = i;
+            intersects.push(inters);
           }
         }
-      }, {
-        key: "computeBoundingBox",
-        value: function computeBoundingBox() {
-          var objects = this._objects;
-          var boundingBox = this.boundingBox;
+      }
+    }, {
+      key: "computeBoundingBox",
+      value: function computeBoundingBox() {
+        var objects = this._objects;
+        var boundingBox = this.boundingBox;
 
-          if (boundingBox === null) {
-            this.boundingBox = boundingBox = new Box3();
-          }
+        if (boundingBox === null) {
+          this.boundingBox = boundingBox = new THREE.Box3();
+        }
 
-          boundingBox.makeEmpty();
+        boundingBox.makeEmpty();
 
-          for (var i = 0, n = objects.length; i < n; ++i) {
-            boundingBox.expandByPoint(objects[i]._position);
+        for (var i = 0, n = objects.length; i < n; ++i) {
+          boundingBox.expandByPoint(objects[i]._position);
+        }
+      }
+    }, {
+      key: "computeBoundingSphere",
+      value: function computeBoundingSphere() {
+        this.computeBoundingBox();
+        var objects = this._objects;
+        var boundingBox = this.boundingBox; // Build bounding sphere
+
+        var radiusSquared = 0.0;
+        var center = new THREE.Vector3();
+        boundingBox.getCenter(center);
+
+        for (var i = 0, n = objects.length; i < n; ++i) {
+          var pos = objects[i]._position;
+          var lengthSquared = center.distanceToSquared(pos);
+
+          if (radiusSquared < lengthSquared) {
+            radiusSquared = lengthSquared;
           }
         }
-      }, {
-        key: "computeBoundingSphere",
-        value: function computeBoundingSphere() {
-          this.computeBoundingBox();
-          var objects = this._objects;
-          var boundingBox = this.boundingBox; // Build bounding sphere
 
-          var radiusSquared = 0.0;
-          var center = new Vector3();
-          boundingBox.getCenter(center);
-
-          for (var i = 0, n = objects.length; i < n; ++i) {
-            var pos = objects[i]._position;
-            var lengthSquared = center.distanceToSquared(pos);
-
-            if (radiusSquared < lengthSquared) {
-              radiusSquared = lengthSquared;
-            }
-          }
-
-          if (this.boundingSphere === null) {
-            this.boundingSphere = new Sphere();
-          }
-
-          this.boundingSphere.set(center, Math.sqrt(radiusSquared));
+        if (this.boundingSphere === null) {
+          this.boundingSphere = new THREE.Sphere();
         }
-      }]);
 
-      return _class;
-    }(base)
-  );
+        this.boundingSphere.set(center, Math.sqrt(radiusSquared));
+      }
+    }]);
+
+    return _class;
+  }(base);
 };
 
-var tmpColor = new Color();
-var OFFSET_SIZE = 4;
-var COLOR_SIZE = 3;
+function _createSuper$1N(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1N(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1N() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var tmpColor$4 = new THREE.Color();
+var OFFSET_SIZE$1 = 4;
+var COLOR_SIZE$3 = 3;
 var copySubArrays$1 = utils.copySubArrays;
 
-function setArrayXYZ(arr, idx, x, y, z) {
+function setArrayXYZ$2(arr, idx, x, y, z) {
   arr[idx] = x;
   arr[idx + 1] = y;
   arr[idx + 2] = z;
 }
 
-function setArrayXYZW(arr, idx, x, y, z, w) {
+function setArrayXYZW$2(arr, idx, x, y, z, w) {
   arr[idx] = x;
   arr[idx + 1] = y;
   arr[idx + 2] = z;
@@ -11968,32 +12174,34 @@ function setArrayXYZW(arr, idx, x, y, z, w) {
 }
 
 var InstancedSpheresGeometry = /*#__PURE__*/function (_SphereCollisionGeo) {
-  inherits(InstancedSpheresGeometry, _SphereCollisionGeo);
+  _inherits(InstancedSpheresGeometry, _SphereCollisionGeo);
+
+  var _super = _createSuper$1N(InstancedSpheresGeometry);
 
   function InstancedSpheresGeometry(spheresCount, sphereComplexity, useZSprites) {
     var _this;
 
-    classCallCheck(this, InstancedSpheresGeometry);
+    _classCallCheck(this, InstancedSpheresGeometry);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(InstancedSpheresGeometry).call(this, spheresCount));
-    _this._sphGeometry = useZSprites ? new PlaneBufferGeometry(2, 2, 1, 1) : new SphereBufferGeometry(1, sphereComplexity * 2, sphereComplexity, 0, Math.PI * 2, 0, Math.PI);
+    _this = _super.call(this, spheresCount);
+    _this._sphGeometry = useZSprites ? new THREE.PlaneBufferGeometry(2, 2, 1, 1) : new THREE.SphereBufferGeometry(1, sphereComplexity * 2, sphereComplexity, 0, Math.PI * 2, 0, Math.PI);
 
     _this._init(spheresCount, _this._sphGeometry);
 
     return _this;
   }
 
-  createClass(InstancedSpheresGeometry, [{
+  _createClass(InstancedSpheresGeometry, [{
     key: "setItem",
     value: function setItem(itemIdx, itemPos, itemRad) {
-      setArrayXYZW(this._offsets, itemIdx * OFFSET_SIZE, itemPos.x, itemPos.y, itemPos.z, itemRad);
+      setArrayXYZW$2(this._offsets, itemIdx * OFFSET_SIZE$1, itemPos.x, itemPos.y, itemPos.z, itemRad);
       this.setSphere(itemIdx, itemPos, itemRad);
     }
   }, {
     key: "setColor",
     value: function setColor(itemIdx, colorVal) {
-      tmpColor.set(colorVal);
-      setArrayXYZ(this._colors, itemIdx * COLOR_SIZE, tmpColor.r, tmpColor.g, tmpColor.b);
+      tmpColor$4.set(colorVal);
+      setArrayXYZ$2(this._colors, itemIdx * COLOR_SIZE$3, tmpColor$4.r, tmpColor$4.g, tmpColor$4.b);
     }
   }, {
     key: "startUpdate",
@@ -12027,12 +12235,12 @@ var InstancedSpheresGeometry = /*#__PURE__*/function (_SphereCollisionGeo) {
     key: "getSubset",
     value: function getSubset(chunkIndices) {
       var instanceCount = chunkIndices.length;
-      var geom = new InstancedBufferGeometry();
+      var geom = new THREE.InstancedBufferGeometry();
 
       this._init.call(geom, instanceCount, this._sphGeometry);
 
-      copySubArrays$1(this._offsets, geom._offsets, chunkIndices, OFFSET_SIZE);
-      copySubArrays$1(this._colors, geom._colors, chunkIndices, COLOR_SIZE);
+      copySubArrays$1(this._offsets, geom._offsets, chunkIndices, OFFSET_SIZE$1);
+      copySubArrays$1(this._colors, geom._colors, chunkIndices, COLOR_SIZE$3);
       geom.boundingSphere = this.boundingSphere;
       geom.boundingBox = this.boundingBox;
       return [geom];
@@ -12041,21 +12249,24 @@ var InstancedSpheresGeometry = /*#__PURE__*/function (_SphereCollisionGeo) {
     key: "_init",
     value: function _init(spheresCount, sphereGeo) {
       this.copy(sphereGeo);
-      this._offsets = utils.allocateTyped(Float32Array, spheresCount * OFFSET_SIZE);
-      this._colors = utils.allocateTyped(Float32Array, spheresCount * COLOR_SIZE);
+      this._offsets = utils.allocateTyped(Float32Array, spheresCount * OFFSET_SIZE$1);
+      this._colors = utils.allocateTyped(Float32Array, spheresCount * COLOR_SIZE$3);
       var alpha = this._alpha = utils.allocateTyped(Float32Array, spheresCount);
 
       _.fill(alpha, 1.0);
 
-      this.setAttribute('offset', new InstancedBufferAttribute(this._offsets, OFFSET_SIZE, false, 1));
-      this.setAttribute('color', new InstancedBufferAttribute(this._colors, COLOR_SIZE, false, 1));
-      this.setAttribute('alphaColor', new InstancedBufferAttribute(alpha, 1, false, 1));
+      this.setAttribute('offset', new THREE.InstancedBufferAttribute(this._offsets, OFFSET_SIZE$1, false, 1));
+      this.setAttribute('color', new THREE.InstancedBufferAttribute(this._colors, COLOR_SIZE$3, false, 1));
+      this.setAttribute('alphaColor', new THREE.InstancedBufferAttribute(alpha, 1, false, 1));
     }
   }]);
 
   return InstancedSpheresGeometry;
-}(SphereCollisionGeo(InstancedBufferGeometry));
+}(SphereCollisionGeo(THREE.InstancedBufferGeometry));
 
+function _createSuper$1M(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1M(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1M() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * This class adds raycasting interface to indexed
  * THREE.BufferGeometry.
@@ -12063,20 +12274,22 @@ var InstancedSpheresGeometry = /*#__PURE__*/function (_SphereCollisionGeo) {
  */
 
 var RaycastableBufferGeometry = /*#__PURE__*/function (_THREE$BufferGeometry) {
-  inherits(RaycastableBufferGeometry, _THREE$BufferGeometry);
+  _inherits(RaycastableBufferGeometry, _THREE$BufferGeometry);
+
+  var _super = _createSuper$1M(RaycastableBufferGeometry);
 
   function RaycastableBufferGeometry() {
-    classCallCheck(this, RaycastableBufferGeometry);
+    _classCallCheck(this, RaycastableBufferGeometry);
 
-    return possibleConstructorReturn(this, getPrototypeOf(RaycastableBufferGeometry).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(RaycastableBufferGeometry, [{
+  _createClass(RaycastableBufferGeometry, [{
     key: "uvIntersection",
-    // This method was copied from three.js
-    value: function uvIntersection(point, p1, p2, p3, uv1, uv2, uv3) {
+    value: // This method was copied from three.js
+    function uvIntersection(point, p1, p2, p3, uv1, uv2, uv3) {
       var barycoord = RaycastableBufferGeometry._barycoord;
-      Triangle$1.barycoordFromPoint(point, p1, p2, p3, barycoord);
+      THREE.Triangle.barycoordFromPoint(point, p1, p2, p3, barycoord);
       uv1.multiplyScalar(barycoord.x);
       uv2.multiplyScalar(barycoord.y);
       uv3.multiplyScalar(barycoord.z);
@@ -12119,9 +12332,9 @@ var RaycastableBufferGeometry = /*#__PURE__*/function (_THREE$BufferGeometry) {
           intersection.uv = this.uvIntersection(intersectionPoint, vA, vB, vC, uvA, uvB, uvC);
         }
 
-        var normal = new Vector3();
-        Triangle$1.getNormal(vA, vB, vC, normal);
-        intersection.face = new Face3(a, b, c, normal);
+        var normal = new THREE.Vector3();
+        THREE.Triangle.getNormal(vA, vB, vC, normal);
+        intersection.face = new THREE.Face3(a, b, c, normal);
         intersection.faceIndex = a;
       }
 
@@ -12175,27 +12388,30 @@ var RaycastableBufferGeometry = /*#__PURE__*/function (_THREE$BufferGeometry) {
   }]);
 
   return RaycastableBufferGeometry;
-}(BufferGeometry);
+}(THREE.BufferGeometry);
 
-defineProperty(RaycastableBufferGeometry, "_vA", new Vector3());
+_defineProperty(RaycastableBufferGeometry, "_vA", new THREE.Vector3());
 
-defineProperty(RaycastableBufferGeometry, "_vB", new Vector3());
+_defineProperty(RaycastableBufferGeometry, "_vB", new THREE.Vector3());
 
-defineProperty(RaycastableBufferGeometry, "_vC", new Vector3());
+_defineProperty(RaycastableBufferGeometry, "_vC", new THREE.Vector3());
 
-defineProperty(RaycastableBufferGeometry, "_uvA", new Vector2());
+_defineProperty(RaycastableBufferGeometry, "_uvA", new THREE.Vector2());
 
-defineProperty(RaycastableBufferGeometry, "_uvB", new Vector2());
+_defineProperty(RaycastableBufferGeometry, "_uvB", new THREE.Vector2());
 
-defineProperty(RaycastableBufferGeometry, "_uvC", new Vector2());
+_defineProperty(RaycastableBufferGeometry, "_uvC", new THREE.Vector2());
 
-defineProperty(RaycastableBufferGeometry, "_barycoord", new Vector3());
+_defineProperty(RaycastableBufferGeometry, "_barycoord", new THREE.Vector3());
 
-defineProperty(RaycastableBufferGeometry, "_intersectionPoint", new Vector3());
+_defineProperty(RaycastableBufferGeometry, "_intersectionPoint", new THREE.Vector3());
 
-var MAX_IDC_16BIT = 65535;
-var VEC_SIZE = 3;
-var tmpColor$1 = new Color();
+function _createSuper$1L(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1L(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1L() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var MAX_IDC_16BIT$1 = 65535;
+var VEC_SIZE$4 = 3;
+var tmpColor$3 = new THREE.Color();
 /**
  * This class represents geometry which consists of separate chunks.
  * Each chunk has same index and similar geometry with equal points and faces count.
@@ -12204,14 +12420,16 @@ var tmpColor$1 = new Color();
  */
 
 var ChunkedObjectsGeometry = /*#__PURE__*/function (_RaycastableBufferGeo) {
-  inherits(ChunkedObjectsGeometry, _RaycastableBufferGeo);
+  _inherits(ChunkedObjectsGeometry, _RaycastableBufferGeo);
+
+  var _super = _createSuper$1L(ChunkedObjectsGeometry);
 
   function ChunkedObjectsGeometry(chunkGeo, chunksCount) {
     var _this;
 
-    classCallCheck(this, ChunkedObjectsGeometry);
+    _classCallCheck(this, ChunkedObjectsGeometry);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(ChunkedObjectsGeometry).call(this));
+    _this = _super.call(this);
 
     if (_this.constructor === ChunkedObjectsGeometry) {
       throw new Error('Can not instantiate abstract class!');
@@ -12224,7 +12442,7 @@ var ChunkedObjectsGeometry = /*#__PURE__*/function (_RaycastableBufferGeo) {
     return _this;
   }
 
-  createClass(ChunkedObjectsGeometry, [{
+  _createClass(ChunkedObjectsGeometry, [{
     key: "startUpdate",
     value: function startUpdate() {
       return true;
@@ -12239,15 +12457,15 @@ var ChunkedObjectsGeometry = /*#__PURE__*/function (_RaycastableBufferGeo) {
   }, {
     key: "setColor",
     value: function setColor(chunkIdx, colorVal) {
-      tmpColor$1.set(colorVal);
+      tmpColor$3.set(colorVal);
       var colors = this._colors;
       var chunkSize = this._chunkSize;
 
       for (var i = chunkIdx * chunkSize, end = i + chunkSize; i < end; ++i) {
-        var idx = i * VEC_SIZE;
-        colors[idx] = tmpColor$1.r;
-        colors[idx + 1] = tmpColor$1.g;
-        colors[idx + 2] = tmpColor$1.b;
+        var idx = i * VEC_SIZE$4;
+        colors[idx] = tmpColor$3.r;
+        colors[idx + 1] = tmpColor$3.g;
+        colors[idx + 2] = tmpColor$3.b;
       }
     }
   }, {
@@ -12275,7 +12493,7 @@ var ChunkedObjectsGeometry = /*#__PURE__*/function (_RaycastableBufferGeo) {
     value: function raycast(raycaster, intersects) {
       var inters = [];
 
-      get(getPrototypeOf(ChunkedObjectsGeometry.prototype), "raycast", this).call(this, raycaster, inters);
+      _get(_getPrototypeOf(ChunkedObjectsGeometry.prototype), "raycast", this).call(this, raycaster, inters);
 
       var facesPerChunk = this._chunkGeo.index.count / 3;
 
@@ -12292,7 +12510,7 @@ var ChunkedObjectsGeometry = /*#__PURE__*/function (_RaycastableBufferGeo) {
     key: "getSubset",
     value: function getSubset(chunkIndices) {
       var instanceCount = chunkIndices.length;
-      var geom = new BufferGeometry();
+      var geom = new THREE.BufferGeometry();
 
       this._init.call(geom, this._chunkGeo, instanceCount);
 
@@ -12302,7 +12520,7 @@ var ChunkedObjectsGeometry = /*#__PURE__*/function (_RaycastableBufferGeo) {
       var dstPos = geom._positions;
       var dstNorm = geom._normals;
       var dstColor = geom._colors;
-      var chunkSize = this._chunkSize * VEC_SIZE;
+      var chunkSize = this._chunkSize * VEC_SIZE$4;
 
       for (var i = 0, n = chunkIndices.length; i < n; ++i) {
         var dstPtOffset = i * chunkSize;
@@ -12324,12 +12542,12 @@ var ChunkedObjectsGeometry = /*#__PURE__*/function (_RaycastableBufferGeo) {
       var chunkIndex = chunkGeo.index.array;
       var chunkIndexSize = chunkIndex.length;
       var pointsCount = this._chunkSize * chunksCount;
-      var use32bitIndex = pointsCount > MAX_IDC_16BIT;
+      var use32bitIndex = pointsCount > MAX_IDC_16BIT$1;
       var indexSize = chunkIndexSize * chunksCount;
       var index = this._index = utils.allocateTyped(use32bitIndex ? Uint32Array : Uint16Array, indexSize);
-      this._positions = utils.allocateTyped(Float32Array, pointsCount * VEC_SIZE);
-      this._normals = utils.allocateTyped(Float32Array, pointsCount * VEC_SIZE);
-      this._colors = utils.allocateTyped(Float32Array, pointsCount * VEC_SIZE);
+      this._positions = utils.allocateTyped(Float32Array, pointsCount * VEC_SIZE$4);
+      this._normals = utils.allocateTyped(Float32Array, pointsCount * VEC_SIZE$4);
+      this._colors = utils.allocateTyped(Float32Array, pointsCount * VEC_SIZE$4);
       var alpha = this._alpha = utils.allocateTyped(Float32Array, pointsCount);
 
       _.fill(alpha, 1.0);
@@ -12344,43 +12562,48 @@ var ChunkedObjectsGeometry = /*#__PURE__*/function (_RaycastableBufferGeo) {
         }
       }
 
-      this.setIndex(new BufferAttribute(this._index, 1));
-      this.setAttribute('position', new BufferAttribute(this._positions, VEC_SIZE));
-      this.setAttribute('normal', new BufferAttribute(this._normals, VEC_SIZE));
-      this.setAttribute('color', new BufferAttribute(this._colors, VEC_SIZE));
-      this.setAttribute('alphaColor', new BufferAttribute(alpha, 1));
+      this.setIndex(new THREE.BufferAttribute(this._index, 1));
+      this.setAttribute('position', new THREE.BufferAttribute(this._positions, VEC_SIZE$4));
+      this.setAttribute('normal', new THREE.BufferAttribute(this._normals, VEC_SIZE$4));
+      this.setAttribute('color', new THREE.BufferAttribute(this._colors, VEC_SIZE$4));
+      this.setAttribute('alphaColor', new THREE.BufferAttribute(alpha, 1));
     }
   }]);
 
   return ChunkedObjectsGeometry;
 }(RaycastableBufferGeometry);
 
-var VEC_SIZE$1 = 3;
+function _createSuper$1K(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1K(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1K() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var VEC_SIZE$3 = 3;
 
 var SimpleSpheresGeometry = /*#__PURE__*/function (_SphereCollisionGeo) {
-  inherits(SimpleSpheresGeometry, _SphereCollisionGeo);
+  _inherits(SimpleSpheresGeometry, _SphereCollisionGeo);
+
+  var _super = _createSuper$1K(SimpleSpheresGeometry);
 
   function SimpleSpheresGeometry(spheresCount, sphereComplexity) {
     var _this;
 
-    classCallCheck(this, SimpleSpheresGeometry);
+    _classCallCheck(this, SimpleSpheresGeometry);
 
-    var sphGeometry = new SphereBufferGeometry(1, sphereComplexity * 2, sphereComplexity, 0, Math.PI * 2, 0, Math.PI);
-    _this = possibleConstructorReturn(this, getPrototypeOf(SimpleSpheresGeometry).call(this, spheresCount, sphGeometry, spheresCount));
+    var sphGeometry = new THREE.SphereBufferGeometry(1, sphereComplexity * 2, sphereComplexity, 0, Math.PI * 2, 0, Math.PI);
+    _this = _super.call(this, spheresCount, sphGeometry, spheresCount);
     var normals = _this._normals;
     var geoNormals = sphGeometry.attributes.normal.array;
     var chunkSize = _this._chunkSize;
     _this._chunkPos = _this._chunkGeo.attributes.position.array;
-    _this._tmpPositions = utils.allocateTyped(Float32Array, chunkSize * VEC_SIZE$1);
+    _this._tmpPositions = utils.allocateTyped(Float32Array, chunkSize * VEC_SIZE$3);
 
     for (var i = 0; i < spheresCount; ++i) {
-      normals.set(geoNormals, chunkSize * VEC_SIZE$1 * i);
+      normals.set(geoNormals, chunkSize * VEC_SIZE$3 * i);
     }
 
     return _this;
   }
 
-  createClass(SimpleSpheresGeometry, [{
+  _createClass(SimpleSpheresGeometry, [{
     key: "setItem",
     value: function setItem(itemIdx, itemPos, itemRad) {
       var tmpPos = this._tmpPositions;
@@ -12394,7 +12617,7 @@ var SimpleSpheresGeometry = /*#__PURE__*/function (_SphereCollisionGeo) {
         tmpPos[idx + 2] = itemPos.z + geoPos[idx + 2] * itemRad;
       }
 
-      this._positions.set(tmpPos, chunkSize * itemIdx * VEC_SIZE$1);
+      this._positions.set(tmpPos, chunkSize * itemIdx * VEC_SIZE$3);
 
       this.setSphere(itemIdx, itemPos, itemRad);
     }
@@ -12403,21 +12626,26 @@ var SimpleSpheresGeometry = /*#__PURE__*/function (_SphereCollisionGeo) {
   return SimpleSpheresGeometry;
 }(SphereCollisionGeo(ChunkedObjectsGeometry));
 
+function _createSuper$1J(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1J(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1J() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 var VEC_SIZE$2 = 3;
-var centerPos = new Vector3();
-var tmpVector = new Vector3();
-var normMtx = new Matrix3();
+var centerPos = new THREE.Vector3();
+var tmpVector$2 = new THREE.Vector3();
+var normMtx$1 = new THREE.Matrix3();
 
 var Simple2CCylindersGeometry = /*#__PURE__*/function (_ChunkedObjectsGeomet) {
-  inherits(Simple2CCylindersGeometry, _ChunkedObjectsGeomet);
+  _inherits(Simple2CCylindersGeometry, _ChunkedObjectsGeomet);
+
+  var _super = _createSuper$1J(Simple2CCylindersGeometry);
 
   function Simple2CCylindersGeometry(instanceCount, polyComplexity) {
     var _this;
 
-    classCallCheck(this, Simple2CCylindersGeometry);
+    _classCallCheck(this, Simple2CCylindersGeometry);
 
-    var cylGeometry = new CylinderBufferGeometry$1(1, 1, 1.0, Math.max(3, polyComplexity), 2, true);
-    _this = possibleConstructorReturn(this, getPrototypeOf(Simple2CCylindersGeometry).call(this, cylGeometry, 2 * instanceCount));
+    var cylGeometry = new THREE.CylinderBufferGeometry(1, 1, 1.0, Math.max(3, polyComplexity), 2, true);
+    _this = _super.call(this, cylGeometry, 2 * instanceCount);
     var chunkSize = _this._chunkSize;
     _this._chunkPos = _this._chunkGeo.attributes.position.array;
     _this._chunkNorms = _this._chunkGeo.attributes.normal.array;
@@ -12425,7 +12653,7 @@ var Simple2CCylindersGeometry = /*#__PURE__*/function (_ChunkedObjectsGeomet) {
     return _this;
   }
 
-  createClass(Simple2CCylindersGeometry, [{
+  _createClass(Simple2CCylindersGeometry, [{
     key: "setItem",
     value: function setItem(itemIdx, botPos, topPos, itemRad) {
       var chunkSize = this._chunkSize;
@@ -12436,14 +12664,14 @@ var Simple2CCylindersGeometry = /*#__PURE__*/function (_ChunkedObjectsGeomet) {
       var geoNorm = this._chunkNorms;
       centerPos.lerpVectors(botPos, topPos, 0.5);
       var mtx1 = gfxutils.calcCylinderMatrix(botPos, centerPos, itemRad);
-      normMtx.getNormalMatrix(mtx1);
+      normMtx$1.getNormalMatrix(mtx1);
       var idx;
 
       for (var i = 0; i < chunkSize; ++i) {
         idx = i * VEC_SIZE$2;
-        tmpVector.fromArray(geoPos, idx);
-        tmpVector.applyMatrix4(mtx1);
-        tmpVector.toArray(tmpArray, idx);
+        tmpVector$2.fromArray(geoPos, idx);
+        tmpVector$2.applyMatrix4(mtx1);
+        tmpVector$2.toArray(tmpArray, idx);
       }
 
       this._positions.set(tmpArray, firstOffset); // now shift center to get another part of the cylinder
@@ -12462,9 +12690,9 @@ var Simple2CCylindersGeometry = /*#__PURE__*/function (_ChunkedObjectsGeomet) {
 
       for (var _i2 = 0; _i2 < chunkSize; ++_i2) {
         idx = _i2 * VEC_SIZE$2;
-        tmpVector.fromArray(geoNorm, idx);
-        tmpVector.applyMatrix3(normMtx);
-        tmpVector.toArray(tmpArray, idx);
+        tmpVector$2.fromArray(geoNorm, idx);
+        tmpVector$2.applyMatrix3(normMtx$1);
+        tmpVector$2.toArray(tmpArray, idx);
       }
 
       this._normals.set(tmpArray, firstOffset);
@@ -12476,29 +12704,34 @@ var Simple2CCylindersGeometry = /*#__PURE__*/function (_ChunkedObjectsGeomet) {
     value: function setColor(itemIdx, colorVal1, colorVal2) {
       var first = 2 * itemIdx;
 
-      get(getPrototypeOf(Simple2CCylindersGeometry.prototype), "setColor", this).call(this, first, colorVal1);
+      _get(_getPrototypeOf(Simple2CCylindersGeometry.prototype), "setColor", this).call(this, first, colorVal1);
 
       var second = first + 1;
 
-      get(getPrototypeOf(Simple2CCylindersGeometry.prototype), "setColor", this).call(this, second, colorVal2);
+      _get(_getPrototypeOf(Simple2CCylindersGeometry.prototype), "setColor", this).call(this, second, colorVal2);
     }
   }]);
 
   return Simple2CCylindersGeometry;
 }(ChunkedObjectsGeometry);
 
+function _createSuper$1I(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1I(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1I() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 var MAX_POINTS_COUNT_16BIT = 65536;
 var PTS_PER_TRIANGLE = 3;
 
 var CylinderBufferGeometry = /*#__PURE__*/function (_THREE$BufferGeometry) {
-  inherits(CylinderBufferGeometry, _THREE$BufferGeometry);
+  _inherits(CylinderBufferGeometry, _THREE$BufferGeometry);
+
+  var _super = _createSuper$1I(CylinderBufferGeometry);
 
   function CylinderBufferGeometry(radiusTop, radiusBottom, height, radialSegments, heightSegments, openEnded) {
     var _this;
 
-    classCallCheck(this, CylinderBufferGeometry);
+    _classCallCheck(this, CylinderBufferGeometry);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(CylinderBufferGeometry).call(this));
+    _this = _super.call(this);
     var thetaStart = 0;
     var thetaLength = 2 * Math.PI;
     _this.type = 'CylinderBufferGeometry';
@@ -12517,12 +12750,12 @@ var CylinderBufferGeometry = /*#__PURE__*/function (_THREE$BufferGeometry) {
     var heightHalf = height / 2;
     /* eslint-disable no-magic-numbers */
 
-    var positions = new BufferAttribute(utils.allocateTyped(Float32Array, vertexCount * 3), 3);
-    var normals = new BufferAttribute(utils.allocateTyped(Float32Array, vertexCount * 3), 3);
-    var indices = new Uint16BufferAttribute(utils.allocateTyped(Uint16Array, facesCount * PTS_PER_TRIANGLE), 1);
+    var positions = new THREE.BufferAttribute(utils.allocateTyped(Float32Array, vertexCount * 3), 3);
+    var normals = new THREE.BufferAttribute(utils.allocateTyped(Float32Array, vertexCount * 3), 3);
+    var indices = new THREE.Uint16BufferAttribute(utils.allocateTyped(Uint16Array, facesCount * PTS_PER_TRIANGLE), 1);
     /* eslint-enable no-magic-numbers */
 
-    var uvs = new BufferAttribute(utils.allocateTyped(Float32Array, vertexCount * 2), 2);
+    var uvs = new THREE.BufferAttribute(utils.allocateTyped(Float32Array, vertexCount * 2), 2);
     console.assert(vertexCount < MAX_POINTS_COUNT_16BIT, 'false: Cylinder Geometry has too many vertices (65536 max).');
     var currVtxIdx = 0;
     var currFaceIdx = 0;
@@ -12552,7 +12785,7 @@ var CylinderBufferGeometry = /*#__PURE__*/function (_THREE$BufferGeometry) {
         var vx = radius * Math.sin(u * thetaLength + thetaStart);
         var vy = v * height - heightHalf;
         var vz = radius * Math.cos(u * thetaLength + thetaStart);
-        var normal = new Vector3(vx, Math.sqrt(vx * vx + vz * vz) * tanTheta, vz).normalize();
+        var normal = new THREE.Vector3(vx, Math.sqrt(vx * vx + vz * vz) * tanTheta, vz).normalize();
         positions.setXYZ(currVtxIdx, vx, vy, vz);
         normals.setXYZ(currVtxIdx, normal.x, normal.y, normal.z);
         uvs.setXY(currVtxIdx, u, v);
@@ -12614,7 +12847,7 @@ var CylinderBufferGeometry = /*#__PURE__*/function (_THREE$BufferGeometry) {
     return _this;
   }
 
-  createClass(CylinderBufferGeometry, [{
+  _createClass(CylinderBufferGeometry, [{
     key: "clone",
     value: function clone() {
       var parameters = this.parameters;
@@ -12623,13 +12856,16 @@ var CylinderBufferGeometry = /*#__PURE__*/function (_THREE$BufferGeometry) {
   }]);
 
   return CylinderBufferGeometry;
-}(BufferGeometry);
+}(THREE.BufferGeometry);
 
-var tmpColor$2 = new Color();
-var invMatrix = new Matrix4();
-var OFFSET_SIZE$1 = 4;
-var COLOR_SIZE$1 = 3;
-var copySubArrays$2 = utils.copySubArrays;
+function _createSuper$1H(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1H(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1H() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var tmpColor$2 = new THREE.Color();
+var invMatrix = new THREE.Matrix4();
+var OFFSET_SIZE = 4;
+var COLOR_SIZE$2 = 3;
+var copySubArrays = utils.copySubArrays;
 
 function setArrayXYZ$1(arr, idx, x, y, z) {
   arr[idx] = x;
@@ -12687,26 +12923,28 @@ function _assignOpacity(cylinderInfo, color1, color2) {
     var info = cylinderInfo[i];
 
     if (!info.first) {
-      color1[COLOR_SIZE$1 * i] = -0.5;
+      color1[COLOR_SIZE$2 * i] = -0.5;
     }
 
     if (!info.second) {
-      color2[COLOR_SIZE$1 * i] = -0.5;
+      color2[COLOR_SIZE$2 * i] = -0.5;
     }
   }
 }
 
 var Instanced2CCylindersGeometry = /*#__PURE__*/function (_THREE$InstancedBuffe) {
-  inherits(Instanced2CCylindersGeometry, _THREE$InstancedBuffe);
+  _inherits(Instanced2CCylindersGeometry, _THREE$InstancedBuffe);
+
+  var _super = _createSuper$1H(Instanced2CCylindersGeometry);
 
   function Instanced2CCylindersGeometry(instanceCount, polyComplexity, useZSprites, openEnded) {
     var _this;
 
-    classCallCheck(this, Instanced2CCylindersGeometry);
+    _classCallCheck(this, Instanced2CCylindersGeometry);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(Instanced2CCylindersGeometry).call(this));
+    _this = _super.call(this);
     _this._useZSprites = useZSprites;
-    _this._cylGeometry = useZSprites ? new PlaneBufferGeometry(2, 2, 1, 1) : new CylinderBufferGeometry(1, 1, 1.0, Math.max(3, polyComplexity), 2, openEnded);
+    _this._cylGeometry = useZSprites ? new THREE.PlaneBufferGeometry(2, 2, 1, 1) : new CylinderBufferGeometry(1, 1, 1.0, Math.max(3, polyComplexity), 2, openEnded);
 
     _this._init(instanceCount, _this._cylGeometry, _this._useZSprites);
 
@@ -12714,12 +12952,12 @@ var Instanced2CCylindersGeometry = /*#__PURE__*/function (_THREE$InstancedBuffe)
     return _this;
   }
 
-  createClass(Instanced2CCylindersGeometry, [{
+  _createClass(Instanced2CCylindersGeometry, [{
     key: "setItem",
     value: function setItem(itemIdx, botPos, topPos, itemRad) {
       var matrix = gfxutils.calcCylinderMatrix(botPos, topPos, itemRad);
       var me = matrix.elements;
-      var mtxOffset = itemIdx * OFFSET_SIZE$1;
+      var mtxOffset = itemIdx * OFFSET_SIZE;
 
       this._collisionGeo.setItem(itemIdx, botPos, topPos, itemRad);
 
@@ -12738,7 +12976,7 @@ var Instanced2CCylindersGeometry = /*#__PURE__*/function (_THREE$InstancedBuffe)
   }, {
     key: "setColor",
     value: function setColor(itemIdx, colorVal1, colorVal2) {
-      var colorIdx = itemIdx * COLOR_SIZE$1;
+      var colorIdx = itemIdx * COLOR_SIZE$2;
       tmpColor$2.set(colorVal1);
       setArrayXYZ$1(this._color1, colorIdx, tmpColor$2.r, tmpColor$2.g, tmpColor$2.b);
       tmpColor$2.set(colorVal2);
@@ -12810,22 +13048,22 @@ var Instanced2CCylindersGeometry = /*#__PURE__*/function (_THREE$InstancedBuffe)
 
       var cylinderIndices = info.indices;
       var instanceCount = cylinderIndices.length;
-      var geom = new InstancedBufferGeometry();
+      var geom = new THREE.InstancedBufferGeometry();
 
       this._init.call(geom, instanceCount, this._cylGeometry, this._useZSprites);
 
-      copySubArrays$2(this._matVector1, geom._matVector1, cylinderIndices, OFFSET_SIZE$1);
-      copySubArrays$2(this._matVector2, geom._matVector2, cylinderIndices, OFFSET_SIZE$1);
-      copySubArrays$2(this._matVector3, geom._matVector3, cylinderIndices, OFFSET_SIZE$1);
+      copySubArrays(this._matVector1, geom._matVector1, cylinderIndices, OFFSET_SIZE);
+      copySubArrays(this._matVector2, geom._matVector2, cylinderIndices, OFFSET_SIZE);
+      copySubArrays(this._matVector3, geom._matVector3, cylinderIndices, OFFSET_SIZE);
 
       if (this._useZSprites) {
-        copySubArrays$2(this._invmatVector1, geom._invmatVector1, cylinderIndices, OFFSET_SIZE$1);
-        copySubArrays$2(this._invmatVector2, geom._invmatVector2, cylinderIndices, OFFSET_SIZE$1);
-        copySubArrays$2(this._invmatVector3, geom._invmatVector3, cylinderIndices, OFFSET_SIZE$1);
+        copySubArrays(this._invmatVector1, geom._invmatVector1, cylinderIndices, OFFSET_SIZE);
+        copySubArrays(this._invmatVector2, geom._invmatVector2, cylinderIndices, OFFSET_SIZE);
+        copySubArrays(this._invmatVector3, geom._invmatVector3, cylinderIndices, OFFSET_SIZE);
       }
 
-      copySubArrays$2(this._color1, geom._color1, cylinderIndices, COLOR_SIZE$1);
-      copySubArrays$2(this._color2, geom._color2, cylinderIndices, COLOR_SIZE$1);
+      copySubArrays(this._color1, geom._color1, cylinderIndices, COLOR_SIZE$2);
+      copySubArrays(this._color2, geom._color2, cylinderIndices, COLOR_SIZE$2);
 
       _assignOpacity(info.cylinderInfo, geom._color1, geom._color2);
 
@@ -12842,52 +13080,55 @@ var Instanced2CCylindersGeometry = /*#__PURE__*/function (_THREE$InstancedBuffe)
     key: "_init",
     value: function _init(instanceCount, cylinderGeo, useZSprites) {
       this.copy(cylinderGeo);
-      this._matVector1 = utils.allocateTyped(Float32Array, instanceCount * OFFSET_SIZE$1);
-      this._matVector2 = utils.allocateTyped(Float32Array, instanceCount * OFFSET_SIZE$1);
-      this._matVector3 = utils.allocateTyped(Float32Array, instanceCount * OFFSET_SIZE$1);
-      this._color1 = utils.allocateTyped(Float32Array, instanceCount * COLOR_SIZE$1);
-      this._color2 = utils.allocateTyped(Float32Array, instanceCount * COLOR_SIZE$1);
+      this._matVector1 = utils.allocateTyped(Float32Array, instanceCount * OFFSET_SIZE);
+      this._matVector2 = utils.allocateTyped(Float32Array, instanceCount * OFFSET_SIZE);
+      this._matVector3 = utils.allocateTyped(Float32Array, instanceCount * OFFSET_SIZE);
+      this._color1 = utils.allocateTyped(Float32Array, instanceCount * COLOR_SIZE$2);
+      this._color2 = utils.allocateTyped(Float32Array, instanceCount * COLOR_SIZE$2);
       var alpha = this._alpha = utils.allocateTyped(Float32Array, instanceCount);
 
       _.fill(alpha, 1.0);
 
-      this.setAttribute('matVector1', new InstancedBufferAttribute(this._matVector1, OFFSET_SIZE$1, false, 1));
-      this.setAttribute('matVector2', new InstancedBufferAttribute(this._matVector2, OFFSET_SIZE$1, false, 1));
-      this.setAttribute('matVector3', new InstancedBufferAttribute(this._matVector3, OFFSET_SIZE$1, false, 1));
-      this.setAttribute('color', new InstancedBufferAttribute(this._color1, COLOR_SIZE$1, false, 1));
-      this.setAttribute('color2', new InstancedBufferAttribute(this._color2, COLOR_SIZE$1, false, 1));
-      this.setAttribute('alphaColor', new InstancedBufferAttribute(this._alpha, 1, false, 1));
+      this.setAttribute('matVector1', new THREE.InstancedBufferAttribute(this._matVector1, OFFSET_SIZE, false, 1));
+      this.setAttribute('matVector2', new THREE.InstancedBufferAttribute(this._matVector2, OFFSET_SIZE, false, 1));
+      this.setAttribute('matVector3', new THREE.InstancedBufferAttribute(this._matVector3, OFFSET_SIZE, false, 1));
+      this.setAttribute('color', new THREE.InstancedBufferAttribute(this._color1, COLOR_SIZE$2, false, 1));
+      this.setAttribute('color2', new THREE.InstancedBufferAttribute(this._color2, COLOR_SIZE$2, false, 1));
+      this.setAttribute('alphaColor', new THREE.InstancedBufferAttribute(this._alpha, 1, false, 1));
 
       if (useZSprites) {
-        this._invmatVector1 = utils.allocateTyped(Float32Array, instanceCount * OFFSET_SIZE$1);
-        this._invmatVector2 = utils.allocateTyped(Float32Array, instanceCount * OFFSET_SIZE$1);
-        this._invmatVector3 = utils.allocateTyped(Float32Array, instanceCount * OFFSET_SIZE$1);
-        this.setAttribute('invmatVector1', new InstancedBufferAttribute(this._invmatVector1, OFFSET_SIZE$1, false, 1));
-        this.setAttribute('invmatVector2', new InstancedBufferAttribute(this._invmatVector2, OFFSET_SIZE$1, false, 1));
-        this.setAttribute('invmatVector3', new InstancedBufferAttribute(this._invmatVector3, OFFSET_SIZE$1, false, 1));
+        this._invmatVector1 = utils.allocateTyped(Float32Array, instanceCount * OFFSET_SIZE);
+        this._invmatVector2 = utils.allocateTyped(Float32Array, instanceCount * OFFSET_SIZE);
+        this._invmatVector3 = utils.allocateTyped(Float32Array, instanceCount * OFFSET_SIZE);
+        this.setAttribute('invmatVector1', new THREE.InstancedBufferAttribute(this._invmatVector1, OFFSET_SIZE, false, 1));
+        this.setAttribute('invmatVector2', new THREE.InstancedBufferAttribute(this._invmatVector2, OFFSET_SIZE, false, 1));
+        this.setAttribute('invmatVector3', new THREE.InstancedBufferAttribute(this._invmatVector3, OFFSET_SIZE, false, 1));
       }
     }
   }]);
 
   return Instanced2CCylindersGeometry;
-}(InstancedBufferGeometry);
+}(THREE.InstancedBufferGeometry);
 
-var VEC_SIZE$3 = 3;
+function _createSuper$1G(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1G(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1G() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var VEC_SIZE$1 = 3;
 var TRI_SIZE = 3;
-var tmpPrev = new Vector3();
-var tmpNext = new Vector3();
-var tmpRes = new Vector3();
-var simpleNormal = new Vector3(1.0, 0.0, 0.0);
-var normalOnCut = new Vector3();
-var nearRingPt = new Vector3();
+var tmpPrev = new THREE.Vector3();
+var tmpNext = new THREE.Vector3();
+var tmpRes = new THREE.Vector3();
+var simpleNormal = new THREE.Vector3(1.0, 0.0, 0.0);
+var normalOnCut = new THREE.Vector3();
+var nearRingPt = new THREE.Vector3();
 
 function _createExtrudedChunkGeometry(shape, ringsCount) {
-  var geo = new BufferGeometry();
+  var geo = new THREE.BufferGeometry();
   var ptsCount = shape.length;
   var totalPts = ptsCount * ringsCount;
   var type = totalPts <= 65536 ? Uint16Array : Uint32Array;
   var facesPerChunk = (ringsCount - 1) * ptsCount * 2;
-  var indices = new BufferAttribute(utils.allocateTyped(type, facesPerChunk * TRI_SIZE), 1);
+  var indices = new THREE.BufferAttribute(utils.allocateTyped(type, facesPerChunk * TRI_SIZE), 1);
   var currVtxIdx = 0;
   var currFaceIdx = 0;
 
@@ -12910,41 +13151,43 @@ function _createExtrudedChunkGeometry(shape, ringsCount) {
   }
 
   geo.setIndex(indices);
-  var pos = utils.allocateTyped(Float32Array, totalPts * VEC_SIZE$3);
-  geo.setAttribute('position', new BufferAttribute(pos, VEC_SIZE$3));
+  var pos = utils.allocateTyped(Float32Array, totalPts * VEC_SIZE$1);
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, VEC_SIZE$1));
   geo._positions = shape;
   return geo;
 }
 
 var ExtrudedObjectsGeometry = /*#__PURE__*/function (_ChunkedObjectsGeomet) {
-  inherits(ExtrudedObjectsGeometry, _ChunkedObjectsGeomet);
+  _inherits(ExtrudedObjectsGeometry, _ChunkedObjectsGeomet);
+
+  var _super = _createSuper$1G(ExtrudedObjectsGeometry);
 
   function ExtrudedObjectsGeometry(shape, ringsCount, chunksCount) {
     var _this;
 
-    classCallCheck(this, ExtrudedObjectsGeometry);
+    _classCallCheck(this, ExtrudedObjectsGeometry);
 
     var chunkGeo = _createExtrudedChunkGeometry(shape, ringsCount);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(ExtrudedObjectsGeometry).call(this, chunkGeo, chunksCount));
+    _this = _super.call(this, chunkGeo, chunksCount);
     _this._ringsCount = ringsCount;
     var tmpShape = _this._tmpShape = [];
 
     for (var i = 0; i < shape.length; ++i) {
-      tmpShape[i] = new Vector3();
+      tmpShape[i] = new THREE.Vector3();
     }
 
     return _this;
   }
 
-  createClass(ExtrudedObjectsGeometry, [{
+  _createClass(ExtrudedObjectsGeometry, [{
     key: "setItem",
     value: function setItem(itemIdx, matrices) {
       var hasSlope = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
       var hasCut = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
       var ptsCount = this._chunkGeo._positions.length;
       var ringsCount = this._ringsCount;
-      var chunkStartIdx = ptsCount * this._ringsCount * itemIdx * VEC_SIZE$3;
+      var chunkStartIdx = ptsCount * this._ringsCount * itemIdx * VEC_SIZE$1;
 
       this._setPoints(matrices, ptsCount, ringsCount, chunkStartIdx);
 
@@ -12968,7 +13211,7 @@ var ExtrudedObjectsGeometry = /*#__PURE__*/function (_ChunkedObjectsGeomet) {
       for (var i = 0, vtxIdx = chunkStartIdx; i < ringsCount; ++i) {
         var mtx = matrices[i];
 
-        for (var j = 0; j < ptsCount; ++j, vtxIdx += VEC_SIZE$3) {
+        for (var j = 0; j < ptsCount; ++j, vtxIdx += VEC_SIZE$1) {
           tmpShape[j].copy(shape[j]).applyMatrix4(mtx).toArray(positions, vtxIdx);
         }
       }
@@ -12976,7 +13219,7 @@ var ExtrudedObjectsGeometry = /*#__PURE__*/function (_ChunkedObjectsGeomet) {
   }, {
     key: "_setBaseNormals",
     value: function _setBaseNormals(ptsCount, ringsCount, chunkStartIdx) {
-      var nPtsInRing = ptsCount * VEC_SIZE$3;
+      var nPtsInRing = ptsCount * VEC_SIZE$1;
 
       for (var i = 0, vtxIdx = chunkStartIdx; i < ringsCount; ++i, vtxIdx += nPtsInRing) {
         this._countNormalsInRing(ptsCount, vtxIdx, false);
@@ -12986,12 +13229,12 @@ var ExtrudedObjectsGeometry = /*#__PURE__*/function (_ChunkedObjectsGeomet) {
     key: "_setSlopeNormals",
     value: function _setSlopeNormals(ptsCount, ringsCount, chunkStartIdx) {
       var normals = this._normals;
-      var nPtsInRing = ptsCount * VEC_SIZE$3;
+      var nPtsInRing = ptsCount * VEC_SIZE$1;
       var vtxIdx = chunkStartIdx; // First ring
       // In all cases, besides cut, second ring is coincident to first. So values of first ring's normals doesn't
       // matter (In the cut case special handler will be applied later and will set them to correct values)
 
-      for (var j = 0; j < ptsCount; ++j, vtxIdx += VEC_SIZE$3) {
+      for (var j = 0; j < ptsCount; ++j, vtxIdx += VEC_SIZE$1) {
         simpleNormal.toArray(normals, vtxIdx);
       } // second ring
       // If it isn't first Item we take normals' values from the last ring of the previous item (these rings are coincident)
@@ -12999,7 +13242,7 @@ var ExtrudedObjectsGeometry = /*#__PURE__*/function (_ChunkedObjectsGeomet) {
 
 
       if (vtxIdx - 2 * nPtsInRing > 0) {
-        for (var _j = 0; _j < ptsCount; ++_j, vtxIdx += VEC_SIZE$3) {
+        for (var _j = 0; _j < ptsCount; ++_j, vtxIdx += VEC_SIZE$1) {
           tmpRes.fromArray(normals, vtxIdx - 2 * nPtsInRing).toArray(normals, vtxIdx);
         }
       } else {
@@ -13027,11 +13270,11 @@ var ExtrudedObjectsGeometry = /*#__PURE__*/function (_ChunkedObjectsGeomet) {
       var tmpShape = this._tmpShape;
       var normals = this._normals;
       tmpShape[0].fromArray(this._positions, vtxIdx);
-      tmpShape[ptsCount - 1].fromArray(this._positions, vtxIdx + (ptsCount - 1) * VEC_SIZE$3);
+      tmpShape[ptsCount - 1].fromArray(this._positions, vtxIdx + (ptsCount - 1) * VEC_SIZE$1);
 
-      for (var j = 0; j < ptsCount; ++j, vtxIdx += VEC_SIZE$3) {
+      for (var j = 0; j < ptsCount; ++j, vtxIdx += VEC_SIZE$1) {
         if (j < ptsCount - 1) {
-          tmpShape[j + 1].fromArray(this._positions, vtxIdx + VEC_SIZE$3);
+          tmpShape[j + 1].fromArray(this._positions, vtxIdx + VEC_SIZE$1);
         }
 
         if (isSlope) {
@@ -13057,23 +13300,23 @@ var ExtrudedObjectsGeometry = /*#__PURE__*/function (_ChunkedObjectsGeomet) {
       var positions = this._positions;
       var normals = this._normals;
       var tmpShape = this._tmpShape;
-      var nPtsInRing = ptsCount * VEC_SIZE$3; // Normal to the cut plane is equal to cross product of two vectors which are lying in it
+      var nPtsInRing = ptsCount * VEC_SIZE$1; // Normal to the cut plane is equal to cross product of two vectors which are lying in it
 
       tmpShape[0].fromArray(positions, chunkStartIdx);
-      tmpShape[1].fromArray(positions, chunkStartIdx + VEC_SIZE$3);
-      tmpShape[2].fromArray(positions, chunkStartIdx + 2 * VEC_SIZE$3);
+      tmpShape[1].fromArray(positions, chunkStartIdx + VEC_SIZE$1);
+      tmpShape[2].fromArray(positions, chunkStartIdx + 2 * VEC_SIZE$1);
       tmpPrev.subVectors(tmpShape[1], tmpShape[0]).normalize();
       tmpNext.subVectors(tmpShape[1], tmpShape[2]).normalize();
       normalOnCut.crossVectors(tmpPrev, tmpNext).normalize();
       var vtxIdx = chunkStartIdx; // First and second rings normals' values are equal to value of normal to the cutting plane
 
-      for (var j = 0; j < ptsCount * 2; ++j, vtxIdx += VEC_SIZE$3) {
+      for (var j = 0; j < ptsCount * 2; ++j, vtxIdx += VEC_SIZE$1) {
         normalOnCut.toArray(normals, vtxIdx);
       }
 
       if (ringsCount > 2) {
         // Third ring points are coincident to first ring points, but have different normals. It makes sharp angle near cut
-        for (var _j2 = 0; _j2 < ptsCount; ++_j2, vtxIdx += VEC_SIZE$3) {
+        for (var _j2 = 0; _j2 < ptsCount; ++_j2, vtxIdx += VEC_SIZE$1) {
           tmpRes.fromArray(positions, vtxIdx - nPtsInRing).toArray(positions, vtxIdx);
         }
       }
@@ -13083,21 +13326,24 @@ var ExtrudedObjectsGeometry = /*#__PURE__*/function (_ChunkedObjectsGeomet) {
   return ExtrudedObjectsGeometry;
 }(ChunkedObjectsGeometry);
 
-var MAX_IDC_16BIT$1 = 65535;
+function _createSuper$1F(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1F(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1F() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var MAX_IDC_16BIT = 65535;
 var VERTEX_PER_SEGMENT = 4;
 var POS_SIZE = 4;
 var DIR_SIZE = 3;
 var COL_SIZE = 3;
-var tmpColor$3 = new Color();
-var direction = new Vector3();
+var tmpColor$1 = new THREE.Color();
+var direction = new THREE.Vector3();
 
-function setArrayXYZ$2(arr, idx, x, y, z) {
+function setArrayXYZ(arr, idx, x, y, z) {
   arr[idx] = x;
   arr[idx + 1] = y;
   arr[idx + 2] = z;
 }
 
-function setArrayXYZW$2(arr, idx, x, y, z, w) {
+function setArrayXYZW(arr, idx, x, y, z, w) {
   arr[idx] = x;
   arr[idx + 1] = y;
   arr[idx + 2] = z;
@@ -13120,21 +13366,23 @@ function getSubset(arr, startSegmentIdx, segmentsCount, elemSize) {
 
 
 var ThickLinesGeometry = /*#__PURE__*/function (_THREE$BufferGeometry) {
-  inherits(ThickLinesGeometry, _THREE$BufferGeometry);
+  _inherits(ThickLinesGeometry, _THREE$BufferGeometry);
+
+  var _super = _createSuper$1F(ThickLinesGeometry);
 
   function ThickLinesGeometry(segmentsCount) {
     var _this;
 
-    classCallCheck(this, ThickLinesGeometry);
+    _classCallCheck(this, ThickLinesGeometry);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(ThickLinesGeometry).call(this));
+    _this = _super.call(this);
 
     _this._initVertices(segmentsCount);
 
     return _this;
   }
 
-  createClass(ThickLinesGeometry, [{
+  _createClass(ThickLinesGeometry, [{
     key: "startUpdate",
     value: function startUpdate() {
       return true;
@@ -13150,15 +13398,15 @@ var ThickLinesGeometry = /*#__PURE__*/function (_THREE$BufferGeometry) {
   }, {
     key: "setColor",
     value: function setColor(segmentIdx, colorVal) {
-      tmpColor$3.set(colorVal);
+      tmpColor$1.set(colorVal);
       var idx = segmentIdx * VERTEX_PER_SEGMENT * COL_SIZE;
-      setArrayXYZ$2(this._colors, idx, tmpColor$3.r, tmpColor$3.g, tmpColor$3.b);
+      setArrayXYZ(this._colors, idx, tmpColor$1.r, tmpColor$1.g, tmpColor$1.b);
       idx += COL_SIZE;
-      setArrayXYZ$2(this._colors, idx, tmpColor$3.r, tmpColor$3.g, tmpColor$3.b);
+      setArrayXYZ(this._colors, idx, tmpColor$1.r, tmpColor$1.g, tmpColor$1.b);
       idx += COL_SIZE;
-      setArrayXYZ$2(this._colors, idx, tmpColor$3.r, tmpColor$3.g, tmpColor$3.b);
+      setArrayXYZ(this._colors, idx, tmpColor$1.r, tmpColor$1.g, tmpColor$1.b);
       idx += COL_SIZE;
-      setArrayXYZ$2(this._colors, idx, tmpColor$3.r, tmpColor$3.g, tmpColor$3.b);
+      setArrayXYZ(this._colors, idx, tmpColor$1.r, tmpColor$1.g, tmpColor$1.b);
     }
   }, {
     key: "setSegment",
@@ -13169,20 +13417,20 @@ var ThickLinesGeometry = /*#__PURE__*/function (_THREE$BufferGeometry) {
       var directions = this._directions;
       var idx = segmentIdx * VERTEX_PER_SEGMENT * POS_SIZE;
       var dirIdx = segmentIdx * VERTEX_PER_SEGMENT * DIR_SIZE;
-      setArrayXYZW$2(positions, idx, pos1.x, pos1.y, pos1.z, 0.5);
-      setArrayXYZ$2(directions, dirIdx, direction.x, direction.y, direction.z);
+      setArrayXYZW(positions, idx, pos1.x, pos1.y, pos1.z, 0.5);
+      setArrayXYZ(directions, dirIdx, direction.x, direction.y, direction.z);
       idx += POS_SIZE;
       dirIdx += DIR_SIZE;
-      setArrayXYZW$2(positions, idx, pos1.x, pos1.y, pos1.z, -0.5);
-      setArrayXYZ$2(directions, dirIdx, direction.x, direction.y, direction.z);
+      setArrayXYZW(positions, idx, pos1.x, pos1.y, pos1.z, -0.5);
+      setArrayXYZ(directions, dirIdx, direction.x, direction.y, direction.z);
       idx += POS_SIZE;
       dirIdx += DIR_SIZE;
-      setArrayXYZW$2(positions, idx, pos2.x, pos2.y, pos2.z, 0.5);
-      setArrayXYZ$2(directions, dirIdx, direction.x, direction.y, direction.z);
+      setArrayXYZW(positions, idx, pos2.x, pos2.y, pos2.z, 0.5);
+      setArrayXYZ(directions, dirIdx, direction.x, direction.y, direction.z);
       idx += POS_SIZE;
       dirIdx += DIR_SIZE;
-      setArrayXYZW$2(positions, idx, pos2.x, pos2.y, pos2.z, -0.5);
-      setArrayXYZ$2(directions, dirIdx, direction.x, direction.y, direction.z);
+      setArrayXYZW(positions, idx, pos2.x, pos2.y, pos2.z, -0.5);
+      setArrayXYZ(directions, dirIdx, direction.x, direction.y, direction.z);
     }
   }, {
     key: "setOpacity",
@@ -13247,7 +13495,7 @@ var ThickLinesGeometry = /*#__PURE__*/function (_THREE$BufferGeometry) {
     value: function _initVertices(segmentsCount) {
       this._buffersSize = segmentsCount * VERTEX_PER_SEGMENT;
       var pointsCount = this._buffersSize;
-      var use32bitIndex = pointsCount > MAX_IDC_16BIT$1;
+      var use32bitIndex = pointsCount > MAX_IDC_16BIT;
       this._index = utils.allocateTyped(use32bitIndex ? Uint32Array : Uint16Array, segmentsCount * 6);
       this._positions = utils.allocateTyped(Float32Array, pointsCount * POS_SIZE);
       this._colors = utils.allocateTyped(Float32Array, pointsCount * COL_SIZE);
@@ -13269,17 +13517,20 @@ var ThickLinesGeometry = /*#__PURE__*/function (_THREE$BufferGeometry) {
         index[indexOffset + 5] = pointOffset + 3;
       }
 
-      this.setIndex(new BufferAttribute(this._index, 1));
-      this.setAttribute('position', new BufferAttribute(this._positions, POS_SIZE));
-      this.setAttribute('color', new BufferAttribute(this._colors, COL_SIZE));
-      this.setAttribute('alphaColor', new BufferAttribute(alpha, 1));
-      this.setAttribute('direction', new BufferAttribute(this._directions, DIR_SIZE));
+      this.setIndex(new THREE.BufferAttribute(this._index, 1));
+      this.setAttribute('position', new THREE.BufferAttribute(this._positions, POS_SIZE));
+      this.setAttribute('color', new THREE.BufferAttribute(this._colors, COL_SIZE));
+      this.setAttribute('alphaColor', new THREE.BufferAttribute(alpha, 1));
+      this.setAttribute('direction', new THREE.BufferAttribute(this._directions, DIR_SIZE));
     }
   }]);
 
   return ThickLinesGeometry;
-}(BufferGeometry);
+}(THREE.BufferGeometry);
 
+function _createSuper$1E(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1E(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1E() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * This class represents geometry which consists lines. This can build bounding volumes
  * @constructor
@@ -13288,15 +13539,17 @@ var ThickLinesGeometry = /*#__PURE__*/function (_THREE$BufferGeometry) {
  */
 
 var LinesGeometry = /*#__PURE__*/function (_BaseLinesGeometry) {
-  inherits(LinesGeometry, _BaseLinesGeometry);
+  _inherits(LinesGeometry, _BaseLinesGeometry);
+
+  var _super = _createSuper$1E(LinesGeometry);
 
   function LinesGeometry() {
-    classCallCheck(this, LinesGeometry);
+    _classCallCheck(this, LinesGeometry);
 
-    return possibleConstructorReturn(this, getPrototypeOf(LinesGeometry).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(LinesGeometry, [{
+  _createClass(LinesGeometry, [{
     key: "startUpdate",
     value: function startUpdate() {
       return true;
@@ -13307,16 +13560,16 @@ var LinesGeometry = /*#__PURE__*/function (_BaseLinesGeometry) {
       var boundingBox = this.boundingBox; // Build bounding sphere
 
       var radiusSquared = 0.0;
-      var center = new Vector3();
+      var center = new THREE.Vector3();
 
       if (boundingBox) {
         boundingBox.getCenter(center);
       }
 
       var positions = this._positions;
-      var sphere = this.boundingSphere || new Sphere();
+      var sphere = this.boundingSphere || new THREE.Sphere();
       var size = this._positions.length;
-      var pos = new Vector3();
+      var pos = new THREE.Vector3();
       var posSize = this.getPositionSize();
 
       for (var i = 0; i < size; i += posSize) {
@@ -13335,9 +13588,9 @@ var LinesGeometry = /*#__PURE__*/function (_BaseLinesGeometry) {
     key: "computeBoundingBox",
     value: function computeBoundingBox() {
       var positions = this._positions;
-      var box = new Box3();
+      var box = new THREE.Box3();
       var size = this._positions.length;
-      var tmpVec = new Vector3();
+      var tmpVec = new THREE.Vector3();
       var posSize = this.getPositionSize();
 
       for (var i = 0; i < size; i += posSize) {
@@ -13358,41 +13611,46 @@ var LinesGeometry = /*#__PURE__*/function (_BaseLinesGeometry) {
   return LinesGeometry;
 }(ThickLinesGeometry);
 
-var VEC_SIZE$4 = 3;
-var tmpVector$1 = new Vector3();
-var normMtx$1 = new Matrix3();
+function _createSuper$1D(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1D(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1D() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var VEC_SIZE = 3;
+var tmpVector$1 = new THREE.Vector3();
+var normMtx = new THREE.Matrix3();
 
 var CylinderCollisionGeo = /*#__PURE__*/function (_ChunkedObjectsGeomet) {
-  inherits(CylinderCollisionGeo, _ChunkedObjectsGeomet);
+  _inherits(CylinderCollisionGeo, _ChunkedObjectsGeomet);
+
+  var _super = _createSuper$1D(CylinderCollisionGeo);
 
   function CylinderCollisionGeo(instanceCount, polyComplexity) {
     var _this;
 
-    classCallCheck(this, CylinderCollisionGeo);
+    _classCallCheck(this, CylinderCollisionGeo);
 
-    var cylGeometry = new CylinderBufferGeometry$1(1, 1, 1.0, Math.max(3, polyComplexity), 2, true);
-    _this = possibleConstructorReturn(this, getPrototypeOf(CylinderCollisionGeo).call(this, cylGeometry, instanceCount));
+    var cylGeometry = new THREE.CylinderBufferGeometry(1, 1, 1.0, Math.max(3, polyComplexity), 2, true);
+    _this = _super.call(this, cylGeometry, instanceCount);
     var chunkSize = _this._chunkSize;
     _this._chunkPos = _this._chunkGeo.attributes.position.array;
     _this._chunkNorms = _this._chunkGeo.attributes.normal.array;
-    _this._tmpVector = utils.allocateTyped(Float32Array, chunkSize * VEC_SIZE$4);
+    _this._tmpVector = utils.allocateTyped(Float32Array, chunkSize * VEC_SIZE);
     return _this;
   }
 
-  createClass(CylinderCollisionGeo, [{
+  _createClass(CylinderCollisionGeo, [{
     key: "setItem",
     value: function setItem(itemIdx, botPos, topPos, itemRad) {
       var chunkSize = this._chunkSize;
-      var itemOffset = chunkSize * itemIdx * VEC_SIZE$4;
+      var itemOffset = chunkSize * itemIdx * VEC_SIZE;
       var tmpArray = this._tmpVector;
       var geoPos = this._chunkPos;
       var geoNorm = this._chunkNorms;
       var mtx1 = gfxutils.calcCylinderMatrix(botPos, topPos, itemRad);
-      normMtx$1.getNormalMatrix(mtx1);
+      normMtx.getNormalMatrix(mtx1);
       var idx;
 
       for (var i = 0; i < chunkSize; ++i) {
-        idx = i * VEC_SIZE$4;
+        idx = i * VEC_SIZE;
         tmpVector$1.fromArray(geoPos, idx);
         tmpVector$1.applyMatrix4(mtx1);
         tmpVector$1.toArray(tmpArray, idx);
@@ -13401,9 +13659,9 @@ var CylinderCollisionGeo = /*#__PURE__*/function (_ChunkedObjectsGeomet) {
       this._positions.set(tmpArray, itemOffset);
 
       for (var _i = 0; _i < chunkSize; ++_i) {
-        idx = _i * VEC_SIZE$4;
+        idx = _i * VEC_SIZE;
         tmpVector$1.fromArray(geoNorm, idx);
-        tmpVector$1.applyMatrix3(normMtx$1);
+        tmpVector$1.applyMatrix3(normMtx);
         tmpVector$1.toArray(tmpArray, idx);
       }
 
@@ -13414,7 +13672,10 @@ var CylinderCollisionGeo = /*#__PURE__*/function (_ChunkedObjectsGeomet) {
   return CylinderCollisionGeo;
 }(ChunkedObjectsGeometry);
 
-var COLLISION_RAD = 0.1;
+function _createSuper$1C(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1C(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1C() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var COLLISION_RAD$1 = 0.1;
 /**
  * This class represents geometry which consists of separate chunks.
  * Each chunk has same index and similar geometry with equal points and faces count.
@@ -13429,14 +13690,16 @@ var COLLISION_RAD = 0.1;
  */
 
 var ChunkedLinesGeometry = /*#__PURE__*/function (_LinesGeometry) {
-  inherits(ChunkedLinesGeometry, _LinesGeometry);
+  _inherits(ChunkedLinesGeometry, _LinesGeometry);
+
+  var _super = _createSuper$1C(ChunkedLinesGeometry);
 
   function ChunkedLinesGeometry(chunksCount, segmentsCount, enableCollision) {
     var _this;
 
-    classCallCheck(this, ChunkedLinesGeometry);
+    _classCallCheck(this, ChunkedLinesGeometry);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(ChunkedLinesGeometry).call(this, chunksCount * segmentsCount));
+    _this = _super.call(this, chunksCount * segmentsCount);
 
     _this._init(segmentsCount);
 
@@ -13444,7 +13707,7 @@ var ChunkedLinesGeometry = /*#__PURE__*/function (_LinesGeometry) {
     return _this;
   }
 
-  createClass(ChunkedLinesGeometry, [{
+  _createClass(ChunkedLinesGeometry, [{
     key: "startUpdate",
     value: function startUpdate() {
       return true;
@@ -13460,7 +13723,7 @@ var ChunkedLinesGeometry = /*#__PURE__*/function (_LinesGeometry) {
         return;
       }
 
-      get(getPrototypeOf(ChunkedLinesGeometry.prototype), "computeBoundingSphere", this).call(this);
+      _get(_getPrototypeOf(ChunkedLinesGeometry.prototype), "computeBoundingSphere", this).call(this);
     }
   }, {
     key: "computeBoundingBox",
@@ -13473,7 +13736,7 @@ var ChunkedLinesGeometry = /*#__PURE__*/function (_LinesGeometry) {
         return;
       }
 
-      get(getPrototypeOf(ChunkedLinesGeometry.prototype), "computeBoundingBox", this).call(this);
+      _get(_getPrototypeOf(ChunkedLinesGeometry.prototype), "computeBoundingBox", this).call(this);
     }
   }, {
     key: "raycast",
@@ -13505,7 +13768,7 @@ var ChunkedLinesGeometry = /*#__PURE__*/function (_LinesGeometry) {
       var chunkSize = this._chunkSize;
 
       for (var i = chunkIdx * chunkSize, end = i + chunkSize; i < end; ++i) {
-        get(getPrototypeOf(ChunkedLinesGeometry.prototype), "setColor", this).call(this, i, colorVal);
+        _get(_getPrototypeOf(ChunkedLinesGeometry.prototype), "setColor", this).call(this, i, colorVal);
       }
     }
   }, {
@@ -13514,10 +13777,10 @@ var ChunkedLinesGeometry = /*#__PURE__*/function (_LinesGeometry) {
       var chunkSize = this._chunkSize;
       var idx = chunkIdx * chunkSize + segIdx;
 
-      get(getPrototypeOf(ChunkedLinesGeometry.prototype), "setSegment", this).call(this, idx, pos1, pos2);
+      _get(_getPrototypeOf(ChunkedLinesGeometry.prototype), "setSegment", this).call(this, idx, pos1, pos2);
 
       if (this._collisionGeo) {
-        this._collisionGeo.setItem(chunkIdx * chunkSize + segIdx, pos1, pos2, COLLISION_RAD);
+        this._collisionGeo.setItem(chunkIdx * chunkSize + segIdx, pos1, pos2, COLLISION_RAD$1);
       }
     }
   }, {
@@ -13534,7 +13797,7 @@ var ChunkedLinesGeometry = /*#__PURE__*/function (_LinesGeometry) {
       for (var i = 0, n = chunkIndices.length; i < n; ++i) {
         var left = chunkIndices[i] * chunkSize;
 
-        get(getPrototypeOf(ChunkedLinesGeometry.prototype), "setOpacity", this).call(this, left, left + chunkSize - 1, value);
+        _get(_getPrototypeOf(ChunkedLinesGeometry.prototype), "setOpacity", this).call(this, left, left + chunkSize - 1, value);
       }
     }
   }, {
@@ -13565,18 +13828,23 @@ var ChunkedLinesGeometry = /*#__PURE__*/function (_LinesGeometry) {
   return ChunkedLinesGeometry;
 }(LinesGeometry);
 
-var COLLISION_RAD$1 = 0.3;
-var tmpVector$2 = new Vector3();
+function _createSuper$1B(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1B(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1B() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var COLLISION_RAD = 0.3;
+var tmpVector = new THREE.Vector3();
 
 var TwoColorLinesGeometry = /*#__PURE__*/function (_LinesGeometry) {
-  inherits(TwoColorLinesGeometry, _LinesGeometry);
+  _inherits(TwoColorLinesGeometry, _LinesGeometry);
+
+  var _super = _createSuper$1B(TwoColorLinesGeometry);
 
   function TwoColorLinesGeometry(segmentsCount) {
     var _this;
 
-    classCallCheck(this, TwoColorLinesGeometry);
+    _classCallCheck(this, TwoColorLinesGeometry);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(TwoColorLinesGeometry).call(this, segmentsCount * 2));
+    _this = _super.call(this, segmentsCount * 2);
 
     _this._init(segmentsCount);
 
@@ -13584,27 +13852,27 @@ var TwoColorLinesGeometry = /*#__PURE__*/function (_LinesGeometry) {
     return _this;
   }
 
-  createClass(TwoColorLinesGeometry, [{
+  _createClass(TwoColorLinesGeometry, [{
     key: "setItem",
     value: function setItem(itemIdx, botPos, topPos) {
-      this._collisionGeo.setItem(itemIdx, botPos, topPos, COLLISION_RAD$1);
+      this._collisionGeo.setItem(itemIdx, botPos, topPos, COLLISION_RAD);
 
       var offset = 2 * itemIdx; // there are two points per segment
 
-      tmpVector$2.lerpVectors(botPos, topPos, 0.5);
+      tmpVector.lerpVectors(botPos, topPos, 0.5);
 
-      get(getPrototypeOf(TwoColorLinesGeometry.prototype), "setSegment", this).call(this, offset, botPos, tmpVector$2);
+      _get(_getPrototypeOf(TwoColorLinesGeometry.prototype), "setSegment", this).call(this, offset, botPos, tmpVector);
 
-      get(getPrototypeOf(TwoColorLinesGeometry.prototype), "setSegment", this).call(this, offset + 1, tmpVector$2, topPos);
+      _get(_getPrototypeOf(TwoColorLinesGeometry.prototype), "setSegment", this).call(this, offset + 1, tmpVector, topPos);
     }
   }, {
     key: "setColor",
     value: function setColor(itemIdx, colorVal1, colorVal2) {
       var offset = 2 * itemIdx; // there are two points per segment
 
-      get(getPrototypeOf(TwoColorLinesGeometry.prototype), "setColor", this).call(this, offset, colorVal1);
+      _get(_getPrototypeOf(TwoColorLinesGeometry.prototype), "setColor", this).call(this, offset, colorVal1);
 
-      get(getPrototypeOf(TwoColorLinesGeometry.prototype), "setColor", this).call(this, offset + 1, colorVal2);
+      _get(_getPrototypeOf(TwoColorLinesGeometry.prototype), "setColor", this).call(this, offset + 1, colorVal2);
     }
   }, {
     key: "raycast",
@@ -13639,21 +13907,26 @@ var TwoColorLinesGeometry = /*#__PURE__*/function (_LinesGeometry) {
   return TwoColorLinesGeometry;
 }(LinesGeometry); // (???)parent = LinesGeometry.prototype;
 
-var vectors = [new Vector3(1, 0, 0), new Vector3(-1, 0, 0), new Vector3(0, 1, 0), new Vector3(0, -1, 0), new Vector3(0, 0, 1), new Vector3(0, 0, -1)];
+function _createSuper$1A(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1A(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1A() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var vectors = [new THREE.Vector3(1, 0, 0), new THREE.Vector3(-1, 0, 0), new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, -1, 0), new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0, -1)];
 var vecCount = vectors.length;
-var tempPos1 = new Vector3();
-var tempPos2 = new Vector3();
+var tempPos1 = new THREE.Vector3();
+var tempPos2 = new THREE.Vector3();
 
 var CrossGeometry = /*#__PURE__*/function (_SphereCollisionGeo) {
-  inherits(CrossGeometry, _SphereCollisionGeo);
+  _inherits(CrossGeometry, _SphereCollisionGeo);
+
+  var _super = _createSuper$1A(CrossGeometry);
 
   function CrossGeometry(chunksCount) {
-    classCallCheck(this, CrossGeometry);
+    _classCallCheck(this, CrossGeometry);
 
-    return possibleConstructorReturn(this, getPrototypeOf(CrossGeometry).call(this, chunksCount, chunksCount, vecCount / 2 | 0, false));
+    return _super.call(this, chunksCount, chunksCount, vecCount / 2 | 0, false);
   }
 
-  createClass(CrossGeometry, [{
+  _createClass(CrossGeometry, [{
     key: "setItem",
     value: function setItem(itemIdx, itemPos, itemRad) {
       this.setSphere(itemIdx, itemPos, itemRad);
@@ -13675,9 +13948,12 @@ var CrossGeometry = /*#__PURE__*/function (_SphereCollisionGeo) {
   return CrossGeometry;
 }(SphereCollisionGeo(ChunkedLinesGeometry));
 
+function _createSuper$1z(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1z(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1z() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 var POS_RAD_SIZE = 4;
-var COLOR_SIZE$2 = 3;
-var tmpColor$4 = new Color();
+var COLOR_SIZE$1 = 3;
+var tmpColor = new THREE.Color();
 /**
  * This is a base class for isosurface algorithms.
  * @param spheresCount - number of atoms/spheres
@@ -13686,22 +13962,24 @@ var tmpColor$4 = new Color();
  */
 
 var IsoSurfaceGeometry = /*#__PURE__*/function (_RaycastableBufferGeo) {
-  inherits(IsoSurfaceGeometry, _RaycastableBufferGeo);
+  _inherits(IsoSurfaceGeometry, _RaycastableBufferGeo);
+
+  var _super = _createSuper$1z(IsoSurfaceGeometry);
 
   function IsoSurfaceGeometry(spheresCount, opts) {
     var _this;
 
-    classCallCheck(this, IsoSurfaceGeometry);
+    _classCallCheck(this, IsoSurfaceGeometry);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(IsoSurfaceGeometry).call(this));
+    _this = _super.call(this);
     _this._opts = opts;
     _this.zClip = _this._opts.zClip;
     _this._posRad = utils.allocateTyped(Float32Array, spheresCount * POS_RAD_SIZE);
-    _this._colors = utils.allocateTyped(Float32Array, spheresCount * COLOR_SIZE$2);
+    _this._colors = utils.allocateTyped(Float32Array, spheresCount * COLOR_SIZE$1);
     return _this;
   }
 
-  createClass(IsoSurfaceGeometry, [{
+  _createClass(IsoSurfaceGeometry, [{
     key: "setItem",
     value: function setItem(chunkIdx, pos, radius) {
       var posRad = this._posRad;
@@ -13714,12 +13992,12 @@ var IsoSurfaceGeometry = /*#__PURE__*/function (_RaycastableBufferGeo) {
   }, {
     key: "setColor",
     value: function setColor(chunkIdx, colorVal) {
-      tmpColor$4.set(colorVal);
+      tmpColor.set(colorVal);
       var colors = this._colors;
-      var idx = COLOR_SIZE$2 * chunkIdx;
-      colors[idx++] = tmpColor$4.r;
-      colors[idx++] = tmpColor$4.g;
-      colors[idx] = tmpColor$4.b;
+      var idx = COLOR_SIZE$1 * chunkIdx;
+      colors[idx++] = tmpColor.r;
+      colors[idx++] = tmpColor.g;
+      colors[idx] = tmpColor.b;
     }
   }, {
     key: "finalize",
@@ -13759,14 +14037,14 @@ var IsoSurfaceGeometry = /*#__PURE__*/function (_RaycastableBufferGeo) {
 
 var IsoSurfaceMarchCube = /*#__PURE__*/function () {
   function IsoSurfaceMarchCube() {
-    classCallCheck(this, IsoSurfaceMarchCube);
+    _classCallCheck(this, IsoSurfaceMarchCube);
 
     this.pointsValuesLinear = null;
     this.hasIntersection = null;
     this.bitsInside = null;
   }
 
-  createClass(IsoSurfaceMarchCube, [{
+  _createClass(IsoSurfaceMarchCube, [{
     key: "create",
     value: function create(numCellsPerSide) {
       var vx7000000 = 0x7000000;
@@ -13806,7 +14084,7 @@ function _voxelGradientFast(v, point, grad) {
 
 
 var GridCell = function GridCell() {
-  classCallCheck(this, GridCell);
+  _classCallCheck(this, GridCell);
 
   this._arrSize = 8;
   this.p = new Array(this._arrSize);
@@ -13814,8 +14092,8 @@ var GridCell = function GridCell() {
   this.val = new Array(this._arrSize);
 
   for (var i = 0; i < this._arrSize; ++i) {
-    this.p[i] = new Vector3();
-    this.g[i] = new Vector3();
+    this.p[i] = new THREE.Vector3();
+    this.g[i] = new THREE.Vector3();
   }
 
   this.cubeIndex = 0;
@@ -13823,19 +14101,19 @@ var GridCell = function GridCell() {
 
 
 var Triangle = function Triangle() {
-  classCallCheck(this, Triangle);
+  _classCallCheck(this, Triangle);
 
   this.a = {
-    p: new Vector3(),
-    n: new Vector3()
+    p: new THREE.Vector3(),
+    n: new THREE.Vector3()
   };
   this.b = {
-    p: new Vector3(),
-    n: new Vector3()
+    p: new THREE.Vector3(),
+    n: new THREE.Vector3()
   };
   this.c = {
-    p: new Vector3(),
-    n: new Vector3()
+    p: new THREE.Vector3(),
+    n: new THREE.Vector3()
   };
 };
 
@@ -13843,7 +14121,7 @@ function createArray(arrSize) {
   var arr = new Array(arrSize);
 
   for (var i = 0; i < arrSize; ++i) {
-    arr[i] = new Vector3();
+    arr[i] = new THREE.Vector3();
   }
 
   return arr;
@@ -13851,7 +14129,7 @@ function createArray(arrSize) {
 
 var IsoSurface = /*#__PURE__*/function () {
   function IsoSurface() {
-    classCallCheck(this, IsoSurface);
+    _classCallCheck(this, IsoSurface);
 
     this._numTriangles = 0;
     this._numVertices = 0;
@@ -13860,15 +14138,15 @@ var IsoSurface = /*#__PURE__*/function () {
     this._colors = null;
     this._indices = [];
     this._volumetricData = null;
-    this._xAxis = new Vector3();
-    this._yAxis = new Vector3();
-    this._zAxis = new Vector3();
-    this._xDir = new Vector3();
-    this._yDir = new Vector3();
-    this._zDir = new Vector3();
+    this._xAxis = new THREE.Vector3();
+    this._yAxis = new THREE.Vector3();
+    this._zAxis = new THREE.Vector3();
+    this._xDir = new THREE.Vector3();
+    this._yDir = new THREE.Vector3();
+    this._zDir = new THREE.Vector3();
   }
 
-  createClass(IsoSurface, [{
+  _createClass(IsoSurface, [{
     key: "_prepareAxesAndDirs",
     value: function _prepareAxesAndDirs() {
       var volData = this._volumetricData;
@@ -13887,7 +14165,7 @@ var IsoSurface = /*#__PURE__*/function () {
       yDir.set(0, 1, 0);
       zDir.set(0, 0, 1); // flip normals if coordinate system is in the wrong handedness
 
-      var tmp = new Vector3();
+      var tmp = new THREE.Vector3();
       tmp.crossVectors(xDir, yDir);
 
       if (tmp.dot(zDir) < 0) {
@@ -13979,14 +14257,14 @@ var IsoSurface = /*#__PURE__*/function () {
       var gc = new GridCell();
       var gcVal = gc.val;
       var gcValSize = gc.val.length;
-      var additions = [new Vector3(0, 0, 0), // 0
-      new Vector3(step, 0, 0), // 1
-      new Vector3(step, step, 0), // 2
-      new Vector3(0, step, 0), // 3
-      new Vector3(0, 0, step), // 4
-      new Vector3(step, 0, step), // 5
-      new Vector3(step, step, step), // 6
-      new Vector3(0, step, step) // 7
+      var additions = [new THREE.Vector3(0, 0, 0), // 0
+      new THREE.Vector3(step, 0, 0), // 1
+      new THREE.Vector3(step, step, 0), // 2
+      new THREE.Vector3(0, step, 0), // 3
+      new THREE.Vector3(0, 0, step), // 4
+      new THREE.Vector3(step, 0, step), // 5
+      new THREE.Vector3(step, step, step), // 6
+      new THREE.Vector3(0, step, step) // 7
       ];
       var tmpTriCount = 5;
       var triangles = new Array(tmpTriCount);
@@ -14003,7 +14281,7 @@ var IsoSurface = /*#__PURE__*/function () {
       if (appendSimple) {
         // Special case for axis-aligned grid with positive unit vector normals
         appendVertex = function () {
-          var axis = new Vector3(self._xAxis.x, self._yAxis.y, self._zAxis.z);
+          var axis = new THREE.Vector3(self._xAxis.x, self._yAxis.y, self._zAxis.z);
           return function (triVertex) {
             var vertex = triVertex.p.clone();
             vertex.multiply(axis);
@@ -14013,9 +14291,9 @@ var IsoSurface = /*#__PURE__*/function () {
         }();
       } else {
         appendVertex = function () {
-          var posMtx = new Matrix3();
+          var posMtx = new THREE.Matrix3();
           posMtx.set(self._xAxis.x, self._yAxis.x, self._zAxis.x, self._xAxis.y, self._yAxis.y, self._zAxis.y, self._xAxis.z, self._yAxis.z, self._zAxis.z);
-          var normMtx = new Matrix3();
+          var normMtx = new THREE.Matrix3();
           normMtx.set(self._xDir.x, self._yDir.x, self._zDir.x, self._xDir.y, self._yDir.y, self._zDir.y, self._xDir.z, self._yDir.z, self._zDir.z);
           return function (triVertex) {
             positions.push(triVertex.p.clone().applyMatrix3(posMtx).add(self._origin));
@@ -14362,11 +14640,11 @@ var IsoSurface = /*#__PURE__*/function () {
   }, {
     key: "toMesh",
     value: function toMesh() {
-      var geo = new BufferGeometry();
-      geo.setIndex(new BufferAttribute(this._indices, 1));
-      geo.setAttribute('position', new BufferAttribute(this._position, 3));
-      geo.setAttribute('normal', new BufferAttribute(this._normals, 3));
-      geo.setAttribute('color', new BufferAttribute(this._colors, 3));
+      var geo = new THREE.BufferGeometry();
+      geo.setIndex(new THREE.BufferAttribute(this._indices, 1));
+      geo.setAttribute('position', new THREE.BufferAttribute(this._position, 3));
+      geo.setAttribute('normal', new THREE.BufferAttribute(this._normals, 3));
+      geo.setAttribute('color', new THREE.BufferAttribute(this._colors, 3));
       geo.computeBoundingSphere();
       return geo;
     }
@@ -14375,18 +14653,21 @@ var IsoSurface = /*#__PURE__*/function () {
   return IsoSurface;
 }();
 
-defineProperty(IsoSurface, "_triTable", IsoSurfaceMarchCube.prototype.striIndicesMarchCube);
+_defineProperty(IsoSurface, "_triTable", IsoSurfaceMarchCube.prototype.striIndicesMarchCube);
 
-defineProperty(IsoSurface, "_arrSize", 12);
+_defineProperty(IsoSurface, "_arrSize", 12);
 
-defineProperty(IsoSurface, "_firstIndices", [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3]);
+_defineProperty(IsoSurface, "_firstIndices", [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3]);
 
-defineProperty(IsoSurface, "_secondIndices", [1, 2, 3, 0, 5, 6, 7, 4, 4, 5, 6, 7]);
+_defineProperty(IsoSurface, "_secondIndices", [1, 2, 3, 0, 5, 6, 7, 4, 4, 5, 6, 7]);
 
-defineProperty(IsoSurface, "_vertexList", createArray(IsoSurface._arrSize));
+_defineProperty(IsoSurface, "_vertexList", createArray(IsoSurface._arrSize));
 
-defineProperty(IsoSurface, "_normalList", createArray(IsoSurface._arrSize));
+_defineProperty(IsoSurface, "_normalList", createArray(IsoSurface._arrSize));
 
+function _createSuper$1y(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1y(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1y() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * This is a base class for volumetric maps based isosurface algorithms.
  * @param spheresCount - number of atoms/spheres
@@ -14395,23 +14676,25 @@ defineProperty(IsoSurface, "_normalList", createArray(IsoSurface._arrSize));
  */
 
 var VolumeSurfaceGeometry = /*#__PURE__*/function (_IsoSurfaceGeometry) {
-  inherits(VolumeSurfaceGeometry, _IsoSurfaceGeometry);
+  _inherits(VolumeSurfaceGeometry, _IsoSurfaceGeometry);
+
+  var _super = _createSuper$1y(VolumeSurfaceGeometry);
 
   function VolumeSurfaceGeometry() {
-    classCallCheck(this, VolumeSurfaceGeometry);
+    _classCallCheck(this, VolumeSurfaceGeometry);
 
-    return possibleConstructorReturn(this, getPrototypeOf(VolumeSurfaceGeometry).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(VolumeSurfaceGeometry, [{
+  _createClass(VolumeSurfaceGeometry, [{
     key: "_build",
     value: function _build() {
       var params = this._opts;
       this.numVoxels = [128, 128, 128];
-      this.xAxis = new Vector3(1.0, 0.0, 0.0);
-      this.yAxis = new Vector3(0.0, 1.0, 0.0);
-      this.zAxis = new Vector3(0.0, 0.0, 1.0);
-      this.origin = new Vector3(0.0, 0.0, 0.0);
+      this.xAxis = new THREE.Vector3(1.0, 0.0, 0.0);
+      this.yAxis = new THREE.Vector3(0.0, 1.0, 0.0);
+      this.zAxis = new THREE.Vector3(0.0, 0.0, 1.0);
+      this.origin = new THREE.Vector3(0.0, 0.0, 0.0);
       this._visibilitySelector = params.visibilitySelector;
 
       this._calcSurface(params);
@@ -14472,7 +14755,7 @@ var VolumeSurfaceGeometry = /*#__PURE__*/function (_IsoSurfaceGeometry) {
       this.yAxis.y = (numVoxels[1] - 1) * params.gridSpacing;
       this.zAxis.z = (numVoxels[2] - 1) * params.gridSpacing;
 
-      var _minCoordRad = slicedToArray(minCoordRad, 3);
+      var _minCoordRad = _slicedToArray(minCoordRad, 3);
 
       this.origin.x = _minCoordRad[0];
       this.origin.y = _minCoordRad[1];
@@ -14491,13 +14774,13 @@ var VolumeSurfaceGeometry = /*#__PURE__*/function (_IsoSurfaceGeometry) {
 
       if (isoSurf._numTriangles > 0) {
         isoSurf.setColorVolTex(surface.volTexMap, surface.atomMap, surface.atomWeightMap, this._visibilitySelector);
-        this.setIndex(new BufferAttribute(isoSurf._indices, 1));
-        this.setAttribute('position', new BufferAttribute(isoSurf._position, 3));
-        this.setAttribute('normal', new BufferAttribute(isoSurf._normals, 3));
-        this.setAttribute('color', new BufferAttribute(isoSurf._colors, 3));
+        this.setIndex(new THREE.BufferAttribute(isoSurf._indices, 1));
+        this.setAttribute('position', new THREE.BufferAttribute(isoSurf._position, 3));
+        this.setAttribute('normal', new THREE.BufferAttribute(isoSurf._normals, 3));
+        this.setAttribute('color', new THREE.BufferAttribute(isoSurf._colors, 3));
       } else {
         // geometry should have at least empty position attributes to be processed in wireframe mode by three.js
-        this.setAttribute('position', new BufferAttribute(utils.allocateTyped(Float32Array, 0), 3));
+        this.setAttribute('position', new THREE.BufferAttribute(utils.allocateTyped(Float32Array, 0), 3));
       }
     }
   }, {
@@ -14515,7 +14798,7 @@ var VolumeSurfaceGeometry = /*#__PURE__*/function (_IsoSurfaceGeometry) {
 
       var boundaries = this._findNumVoxels(packedArrays.posRad, params);
 
-      var box = new Box3(this.origin, new Vector3(this.xAxis.x, this.yAxis.y, this.zAxis.z).add(this.origin));
+      var box = new THREE.Box3(this.origin, new THREE.Vector3(this.xAxis.x, this.yAxis.y, this.zAxis.z).add(this.origin));
 
       var surface = this._computeSurface(packedArrays, box, boundaries, params);
 
@@ -14526,6 +14809,9 @@ var VolumeSurfaceGeometry = /*#__PURE__*/function (_IsoSurfaceGeometry) {
   return VolumeSurfaceGeometry;
 }(IsoSurfaceGeometry);
 
+function _createSuper$1x(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1x(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1x() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 var Volume$1 = chem.Volume;
 /**
  * This class implements 'quick' isosurface geometry generation algorithm.
@@ -14535,15 +14821,17 @@ var Volume$1 = chem.Volume;
  */
 
 var QuickSurfGeometry = /*#__PURE__*/function (_VolumeSurfaceGeometr) {
-  inherits(QuickSurfGeometry, _VolumeSurfaceGeometr);
+  _inherits(QuickSurfGeometry, _VolumeSurfaceGeometr);
+
+  var _super = _createSuper$1x(QuickSurfGeometry);
 
   function QuickSurfGeometry() {
-    classCallCheck(this, QuickSurfGeometry);
+    _classCallCheck(this, QuickSurfGeometry);
 
-    return possibleConstructorReturn(this, getPrototypeOf(QuickSurfGeometry).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(QuickSurfGeometry, [{
+  _createClass(QuickSurfGeometry, [{
     key: "_computeSurface",
     value: function _computeSurface(packedArrays, box, boundaries, params) {
       // beware of shifting this multiple times!
@@ -14858,9 +15146,9 @@ function ContactSurface(packedArrays, boundaries, params, _indexList) {
 
   var neighbours; // Vectors for Torus Projection
 
-  var mid = new Vector3(0.0, 0.0, 0.0);
-  var n1 = new Vector3(0.0, 0.0, 0.0);
-  var n2 = new Vector3(0.0, 0.0, 0.0);
+  var mid = new THREE.Vector3(0.0, 0.0, 0.0);
+  var n1 = new THREE.Vector3(0.0, 0.0, 0.0);
+  var n2 = new THREE.Vector3(0.0, 0.0, 0.0);
   var ngTorus;
 
   function uniformArray(TypeName, n, a) {
@@ -15248,7 +15536,10 @@ function ContactSurface(packedArrays, boundaries, params, _indexList) {
   };
 }
 
-var Volume$2 = chem.Volume;
+function _createSuper$1w(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1w(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1w() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var Volume = chem.Volume;
 /**
  * This class implements 'contact' isosurface geometry generation algorithm.
  * @param spheresCount - number of atoms/spheres
@@ -15257,24 +15548,26 @@ var Volume$2 = chem.Volume;
  */
 
 var ContactSurfaceGeometry = /*#__PURE__*/function (_VolumeSurfaceGeometr) {
-  inherits(ContactSurfaceGeometry, _VolumeSurfaceGeometr);
+  _inherits(ContactSurfaceGeometry, _VolumeSurfaceGeometr);
+
+  var _super = _createSuper$1w(ContactSurfaceGeometry);
 
   function ContactSurfaceGeometry() {
-    classCallCheck(this, ContactSurfaceGeometry);
+    _classCallCheck(this, ContactSurfaceGeometry);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ContactSurfaceGeometry).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(ContactSurfaceGeometry, [{
+  _createClass(ContactSurfaceGeometry, [{
     key: "_computeSurface",
     value: function _computeSurface(packedArrays, box, boundaries, params) {
       var contactSurface = new ContactSurface(packedArrays, boundaries, params);
       contactSurface.build();
       var surface = {
-        volMap: new Volume$2(Float32Array, this.numVoxels, box, 1, contactSurface.volMap),
-        volTexMap: new Volume$2(Float32Array, this.numVoxels, box, 3, contactSurface.volTexMap),
+        volMap: new Volume(Float32Array, this.numVoxels, box, 1, contactSurface.volMap),
+        volTexMap: new Volume(Float32Array, this.numVoxels, box, 3, contactSurface.volTexMap),
         atomMap: contactSurface.atomMap,
-        atomWeightMap: new Volume$2(Float32Array, this.numVoxels, box, 1, contactSurface.weightsMap)
+        atomWeightMap: new Volume(Float32Array, this.numVoxels, box, 1, contactSurface.weightsMap)
       };
       return surface;
     }
@@ -15291,9 +15584,9 @@ var ContactSurfaceGeometry = /*#__PURE__*/function (_VolumeSurfaceGeometr) {
  */
 
 var IsoSurfaceAtomColored = function IsoSurfaceAtomColored(vCenter, radiusAt) {
-  classCallCheck(this, IsoSurfaceAtomColored);
+  _classCallCheck(this, IsoSurfaceAtomColored);
 
-  this.coord = new Vector3();
+  this.coord = new THREE.Vector3();
   this.coord.copy(vCenter);
   this.radius = radiusAt;
   this.colorX = 0.99999;
@@ -15318,12 +15611,12 @@ var IsoSurfaceAtomColored = function IsoSurfaceAtomColored(vCenter, radiusAt) {
 
 var IsosurfaceBuildNormals = /*#__PURE__*/function () {
   function IsosurfaceBuildNormals(numAtoms, atoms, vBoxMin, vBoxMax, probeRadius) {
-    classCallCheck(this, IsosurfaceBuildNormals);
+    _classCallCheck(this, IsosurfaceBuildNormals);
 
     this._numAtoms = numAtoms;
     this._atoms = atoms;
-    this._vBoxMin = new Vector3();
-    this._vBoxMax = new Vector3();
+    this._vBoxMin = new THREE.Vector3();
+    this._vBoxMax = new THREE.Vector3();
 
     this._vBoxMin.copy(vBoxMin);
 
@@ -15334,7 +15627,7 @@ var IsosurfaceBuildNormals = /*#__PURE__*/function () {
     this._voxelList = null;
   }
 
-  createClass(IsosurfaceBuildNormals, [{
+  _createClass(IsosurfaceBuildNormals, [{
     key: "createVoxels",
     value: function createVoxels() {
       var numAtomsRefs;
@@ -15688,7 +15981,7 @@ var IsosurfaceBuildNormals = /*#__PURE__*/function () {
 
 var IsoSurfaceGeo = /*#__PURE__*/function () {
   function IsoSurfaceGeo(maxNumVertices, maxNumTriangles, needVertexColors) {
-    classCallCheck(this, IsoSurfaceGeo);
+    _classCallCheck(this, IsoSurfaceGeo);
 
     this._maxNumVertices = maxNumVertices;
     this._maxNumTriangles = maxNumTriangles;
@@ -15706,8 +15999,8 @@ var IsoSurfaceGeo = /*#__PURE__*/function () {
     var i;
 
     for (i = 0; i < maxNumVertices; i++) {
-      this._vertices[i] = new Vector3();
-      this._normals[i] = new Vector3();
+      this._vertices[i] = new THREE.Vector3();
+      this._normals[i] = new THREE.Vector3();
     }
 
     for (i = 0; i < maxNumTriangles * (1 + 2); i++) {
@@ -15716,12 +16009,12 @@ var IsoSurfaceGeo = /*#__PURE__*/function () {
 
     if (needVertexColors) {
       for (i = 0; i < maxNumVertices; i++) {
-        this._colors[i] = new Vector3();
+        this._colors[i] = new THREE.Vector3();
       }
     }
   }
 
-  createClass(IsoSurfaceGeo, [{
+  _createClass(IsoSurfaceGeo, [{
     key: "destroy",
     value: function destroy() {
       this._vertices = null;
@@ -15733,9 +16026,12 @@ var IsoSurfaceGeo = /*#__PURE__*/function () {
   return IsoSurfaceGeo;
 }();
 
-var COLOR_SIZE$3 = 3;
+function _createSuper$1v(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1v(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1v() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var COLOR_SIZE = 3;
 var HASH_SIZE = 32768;
-var Element$1 = chem.Element;
+var Element$9 = chem.Element;
 /**
  * This class implements 'quick' isosurface geometry generation algorithm.
  * @param spheresCount - number of atoms/spheres
@@ -15744,15 +16040,17 @@ var Element$1 = chem.Element;
  */
 
 var SSIsosurfaceGeometry = /*#__PURE__*/function (_IsoSurfaceGeometry) {
-  inherits(SSIsosurfaceGeometry, _IsoSurfaceGeometry);
+  _inherits(SSIsosurfaceGeometry, _IsoSurfaceGeometry);
+
+  var _super = _createSuper$1v(SSIsosurfaceGeometry);
 
   function SSIsosurfaceGeometry() {
-    classCallCheck(this, SSIsosurfaceGeometry);
+    _classCallCheck(this, SSIsosurfaceGeometry);
 
-    return possibleConstructorReturn(this, getPrototypeOf(SSIsosurfaceGeometry).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(SSIsosurfaceGeometry, [{
+  _createClass(SSIsosurfaceGeometry, [{
     key: "_build",
     value: function _build() {
       // convert geoOut into arrays of positions, indices, normals
@@ -15800,10 +16098,10 @@ var SSIsosurfaceGeometry = /*#__PURE__*/function (_IsoSurfaceGeometry) {
         indices[_i2] = geoOut._indices[_i2];
       }
 
-      this.setIndex(new BufferAttribute(indices, 1));
-      this.setAttribute('position', new BufferAttribute(positions, 3));
-      this.setAttribute('normal', new BufferAttribute(normals, 3));
-      this.setAttribute('color', new BufferAttribute(colors, 3));
+      this.setIndex(new THREE.BufferAttribute(indices, 1));
+      this.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      this.setAttribute('normal', new THREE.BufferAttribute(normals, 3));
+      this.setAttribute('color', new THREE.BufferAttribute(colors, 3));
       this.computeBoundingBox();
       this.computeBoundingSphere();
       geoOut.destroy();
@@ -15820,7 +16118,7 @@ var SSIsosurfaceGeometry = /*#__PURE__*/function (_IsoSurfaceGeometry) {
         atomsColored[i] = new IsoSurfaceAtomColored(vCenter, radius);
         var nm = atoms[i].element.number;
         atomsColored[i].atomType = this.getType(nm);
-        var cIdx = COLOR_SIZE$3 * i;
+        var cIdx = COLOR_SIZE * i;
         atomsColored[i].colorX = colors[cIdx++];
         atomsColored[i].colorY = colors[cIdx++];
         atomsColored[i].colorZ = colors[cIdx];
@@ -16028,7 +16326,7 @@ var SSIsosurfaceGeometry = /*#__PURE__*/function (_IsoSurfaceGeometry) {
       var vaEdges = new Array(arrSize);
 
       for (var i = 0; i < arrSize; i++) {
-        vaEdges[i] = new Vector3();
+        vaEdges[i] = new THREE.Vector3();
       }
 
       var sign = [];
@@ -16037,7 +16335,7 @@ var SSIsosurfaceGeometry = /*#__PURE__*/function (_IsoSurfaceGeometry) {
         sign[_i3] = 1.0;
       }
 
-      var vCorner = new Vector3();
+      var vCorner = new THREE.Vector3();
       var indCell = 0;
       var indY = 0;
 
@@ -16196,7 +16494,7 @@ var SSIsosurfaceGeometry = /*#__PURE__*/function (_IsoSurfaceGeometry) {
       var atomT = [0, 0, 1, 1, 2, 6, 3, 6, 4, 6, 5, 6, 6, 0, 7, 3, 8, 2, 9, 6, 10, 6, 11, 6, 12, 6, 13, 6, 14, 6, 15, 4, 16, 5, 17, 6, 18, 6, 19, 6, 20, 6, 21, 6, 22, 6, 23, 6, 24, 6, 25, 6, 26, 6, 27, 6, 28, 6, 29, 6, 30, 6, 31, 6, 32, 6, 33, 6, 34, 6, 35, 6, 36, 6, 37, 6, 38, 6, 39, 6, 40, 6, 41, 6, 42, 6, 43, 6, 44, 6, 45, 6, 46, 6, 47, 6, 48, 6, 49, 6, 50, 6, 51, 6, 52, 6, 53, 6, 54, 6, 55, 6, 56, 6, 57, 6, 58, 6, 59, 6, 60, 6, 61, 6, 62, 6, 63, 6, 64, 6, 65, 6, 66, 6, 67, 6, 68, 6, 69, 6, 70, 6, 71, 6, 72, 6, 73, 6, 74, 6, 75, 6, 76, 6, 77, 6, 78, 6, 79, 6, 80, 6, 81, 6, 82, 6, 83, 6, 84, 6, 85, 6, 86, 6, 87, 6, 88, 6, 89, 6, 90, 6, 91, 6, 92, 6, 93, 6, 94, 6, 95, 6, 96, 6, 97, 6, 98, 6, 99, 6, 100, 6, 101, 6, 102, 6, 103, 6, 104, 6, 105, 6, 106, 6, 107, 6, 108, 6, 109, 6];
       /* eslint-enable no-magic-numbers */
 
-      if (letter < 1 || letter > atomT.length / 2 || Object.keys(Element$1.ByAtomicNumber).length * 2 !== atomT.length) {
+      if (letter < 1 || letter > atomT.length / 2 || Object.keys(Element$9.ByAtomicNumber).length * 2 !== atomT.length) {
         throw new Error('atomT.length  should be equal Element.ByAtomicNumber.length * 2');
       }
 
@@ -16219,8 +16517,8 @@ var SSIsosurfaceGeometry = /*#__PURE__*/function (_IsoSurfaceGeometry) {
     value: function calculateGridCorners(corners, side, vBoxMin, vBoxMax, atoms, probeRad) {
       var side2 = side * side;
       var side3 = side2 * side;
-      var vCorner = new Vector3();
-      var vDif = new Vector3();
+      var vCorner = new THREE.Vector3();
+      var vDif = new THREE.Vector3();
       /* eslint-disable no-magic-numbers */
 
       var aLot = +1.0e12;
@@ -16359,7 +16657,7 @@ var SSIsosurfaceGeometry = /*#__PURE__*/function (_IsoSurfaceGeometry) {
       var n2453543 = 2453543;
       var r106 = 1.0e-6;
       var hashResolution = this.marCubeResoultion << 2;
-      var v = new Vector3();
+      var v = new THREE.Vector3();
       var ix = Math.floor(hashResolution * (vAdd.x - this.vBoxMin.x) / (this.vBoxMax.x + oneHynberes - this.vBoxMin.x));
       var iy = Math.floor(hashResolution * (vAdd.y - this.vBoxMin.y) / (this.vBoxMax.y + oneHynberes - this.vBoxMin.y));
       var iz = Math.floor(hashResolution * (vAdd.z - this.vBoxMin.z) / (this.vBoxMax.z + oneHynberes - this.vBoxMin.z));
@@ -16541,8 +16839,8 @@ var SSIsosurfaceGeometry = /*#__PURE__*/function (_IsoSurfaceGeometry) {
       var atomsColored = new Array(this.atoms.length);
       this.convertToAtomsColored(packedArrays, atomsColored); // find bbox for spheres scene
 
-      var vBoxMin = this.vBoxMin = new Vector3();
-      var vBoxMax = this.vBoxMax = new Vector3();
+      var vBoxMin = this.vBoxMin = new THREE.Vector3();
+      var vBoxMax = this.vBoxMax = new THREE.Vector3();
       this.getBoundingBox(atomsColored, vBoxMin, vBoxMax);
       var marCubeResoultion = this.marCubeResoultion = this.meshResolution * (2 + 2); // build grid corners for Marching cube algorithm
 
@@ -16561,7 +16859,7 @@ var SSIsosurfaceGeometry = /*#__PURE__*/function (_IsoSurfaceGeometry) {
       } // copy corners to cells
 
 
-      var vCellStep = new Vector3();
+      var vCellStep = new THREE.Vector3();
       vCellStep.x = (vBoxMax.x - vBoxMin.x) / numCells;
       vCellStep.y = (vBoxMax.y - vBoxMin.y) / numCells;
       vCellStep.z = (vBoxMax.z - vBoxMin.z) / numCells;
@@ -16639,6 +16937,10 @@ var SSIsosurfaceGeometry = /*#__PURE__*/function (_IsoSurfaceGeometry) {
   return SSIsosurfaceGeometry;
 }(IsoSurfaceGeometry); // All code below must be erased from every device and each developer's memory
 
+function _createSuper$1u(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1u(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1u() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 function createLabel(fieldTxt, className) {
   var text = document.createElement('div');
   text.className = className;
@@ -16664,19 +16966,21 @@ function createLabel(fieldTxt, className) {
     text.appendChild(fieldTxt);
   }
 
-  text.worldPos = new Vector3();
+  text.worldPos = new THREE.Vector3();
   return text;
 }
 
 var LabelsGeometry = /*#__PURE__*/function (_EventDispatcher) {
-  inherits(LabelsGeometry, _EventDispatcher);
+  _inherits(LabelsGeometry, _EventDispatcher);
+
+  var _super = _createSuper$1u(LabelsGeometry);
 
   function LabelsGeometry(instanceCount, opts) {
     var _this;
 
-    classCallCheck(this, LabelsGeometry);
+    _classCallCheck(this, LabelsGeometry);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(LabelsGeometry).call(this));
+    _this = _super.call(this);
     _this._opts = opts;
     _this.items = [];
     _this.needsUpdate = false;
@@ -16703,7 +17007,7 @@ var LabelsGeometry = /*#__PURE__*/function (_EventDispatcher) {
         break;
     }
 
-    var deltaPos = new Vector3(opts.dx || 0, opts.dy || 0, opts.dz || 0);
+    var deltaPos = new THREE.Vector3(opts.dx || 0, opts.dy || 0, opts.dz || 0);
     _this.userData = {
       translation: "translate(".concat(xTranslation, "%, ").concat(yTranslation, "%)"),
       offset: deltaPos
@@ -16711,7 +17015,7 @@ var LabelsGeometry = /*#__PURE__*/function (_EventDispatcher) {
     return _this;
   }
 
-  createClass(LabelsGeometry, [{
+  _createClass(LabelsGeometry, [{
     key: "setItem",
     value: function setItem(itemIdx, itemPos, fieldTxt) {
       var opts = this._opts;
@@ -16780,27 +17084,30 @@ var geometries = {
   LabelsGeometry: LabelsGeometry
 };
 
+function _createSuper$1t(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1t(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1t() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 function UberObject (SuperClass) {
   var NewObjectType = /*#__PURE__*/function (_SuperClass) {
-    inherits(NewObjectType, _SuperClass);
+    _inherits(NewObjectType, _SuperClass);
+
+    var _super = _createSuper$1t(NewObjectType);
 
     function NewObjectType() {
-      var _getPrototypeOf2;
-
       var _this;
 
-      classCallCheck(this, NewObjectType);
+      _classCallCheck(this, NewObjectType);
 
       for (var _len = arguments.length, rest = new Array(_len), _key = 0; _key < _len; _key++) {
         rest[_key] = arguments[_key];
       }
 
-      _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(NewObjectType)).call.apply(_getPrototypeOf2, [this].concat(rest)));
+      _this = _super.call.apply(_super, [this].concat(rest));
       _this.onBeforeRender = NewObjectType.prototype.onBeforeRender;
       return _this;
     }
 
-    createClass(NewObjectType, [{
+    _createClass(NewObjectType, [{
       key: "onBeforeRender",
       value: function onBeforeRender(renderer, scene, camera, geometry, material, group) {
         this._onBeforeRender(renderer, scene, camera, geometry, material, group);
@@ -16831,21 +17138,26 @@ function UberObject (SuperClass) {
   return NewObjectType;
 }
 
-var Mesh = UberObject(Mesh$5);
+function _createSuper$1s(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1s(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1s() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var Mesh$4 = UberObject(THREE.Mesh);
 
 var ZSpriteMesh = /*#__PURE__*/function (_Mesh) {
-  inherits(ZSpriteMesh, _Mesh);
+  _inherits(ZSpriteMesh, _Mesh);
+
+  var _super = _createSuper$1s(ZSpriteMesh);
 
   function ZSpriteMesh() {
-    classCallCheck(this, ZSpriteMesh);
+    _classCallCheck(this, ZSpriteMesh);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ZSpriteMesh).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(ZSpriteMesh, [{
+  _createClass(ZSpriteMesh, [{
     key: "_onBeforeRender",
     value: function _onBeforeRender(renderer, scene, camera, _geometry, _material, _group) {
-      Mesh.prototype._onBeforeRender.call(this, renderer, scene, camera);
+      Mesh$4.prototype._onBeforeRender.call(this, renderer, scene, camera);
 
       var material = this.material;
 
@@ -16865,28 +17177,33 @@ var ZSpriteMesh = /*#__PURE__*/function (_Mesh) {
   }]);
 
   return ZSpriteMesh;
-}(Mesh);
+}(Mesh$4);
 
-var Mesh$1 = UberObject(Mesh$5);
+function _createSuper$1r(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1r(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1r() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var Mesh$3 = UberObject(THREE.Mesh);
 
 var ZClippedMesh = /*#__PURE__*/function (_Mesh) {
-  inherits(ZClippedMesh, _Mesh);
+  _inherits(ZClippedMesh, _Mesh);
+
+  var _super = _createSuper$1r(ZClippedMesh);
 
   function ZClippedMesh(geometry, material) {
     var _this;
 
-    classCallCheck(this, ZClippedMesh);
+    _classCallCheck(this, ZClippedMesh);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(ZClippedMesh).call(this, geometry, material));
+    _this = _super.call(this, geometry, material);
     _this.castShadow = true;
     _this.receiveShadow = true;
     return _this;
   }
 
-  createClass(ZClippedMesh, [{
+  _createClass(ZClippedMesh, [{
     key: "_onBeforeRender",
     value: function _onBeforeRender(renderer, scene, camera) {
-      Mesh$1.prototype._onBeforeRender.call(this, renderer, scene, camera);
+      Mesh$3.prototype._onBeforeRender.call(this, renderer, scene, camera);
 
       var geo = this.geometry;
       var material = this.material;
@@ -16908,26 +17225,32 @@ var ZClippedMesh = /*#__PURE__*/function (_Mesh) {
   }]);
 
   return ZClippedMesh;
-}(Mesh$1);
+}(Mesh$3);
 
-defineProperty(ZClippedMesh, "_mvLength", new Vector3());
+_defineProperty(ZClippedMesh, "_mvLength", new THREE.Vector3());
 
-defineProperty(ZClippedMesh, "_center", new Vector3());
+_defineProperty(ZClippedMesh, "_center", new THREE.Vector3());
 
-defineProperty(ZClippedMesh, "_modelView", new Matrix4());
+_defineProperty(ZClippedMesh, "_modelView", new THREE.Matrix4());
+
+function _createSuper$1q(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1q(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1q() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 var TextMesh = /*#__PURE__*/function (_THREE$Group) {
-  inherits(TextMesh, _THREE$Group);
+  _inherits(TextMesh, _THREE$Group);
+
+  var _super = _createSuper$1q(TextMesh);
 
   function TextMesh(geometry, _material) {
     var _this;
 
-    classCallCheck(this, TextMesh);
+    _classCallCheck(this, TextMesh);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(TextMesh).call(this));
+    _this = _super.call(this);
     _this.geometry = geometry;
 
-    var self = assertThisInitialized(_this);
+    var self = _assertThisInitialized(_this);
 
     self.initialized = false;
 
@@ -16938,7 +17261,7 @@ var TextMesh = /*#__PURE__*/function (_THREE$Group) {
     return _this;
   }
 
-  createClass(TextMesh, [{
+  _createClass(TextMesh, [{
     key: "init",
     value: function init() {
       var children = this.children;
@@ -16995,9 +17318,9 @@ var TextMesh = /*#__PURE__*/function (_THREE$Group) {
   }]);
 
   return TextMesh;
-}(Group);
+}(THREE.Group);
 
-var Mesh$2 = UberObject(Mesh$5);
+var Mesh$2 = UberObject(THREE.Mesh);
 
 function SimpleMesh(geometry, material) {
   Mesh$2.call(this, geometry, material);
@@ -17008,20 +17331,25 @@ function SimpleMesh(geometry, material) {
 SimpleMesh.prototype = Object.create(Mesh$2.prototype);
 SimpleMesh.prototype.constructor = SimpleMesh;
 
-var Mesh$3 = UberObject(Mesh$5);
+function _createSuper$1p(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1p(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-var _viewport = new Vector2();
+function _isNativeReflectConstruct$1p() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var Mesh$1 = UberObject(THREE.Mesh);
+
+var _viewport = new THREE.Vector2();
 
 var ThickLineMesh = /*#__PURE__*/function (_Mesh) {
-  inherits(ThickLineMesh, _Mesh);
+  _inherits(ThickLineMesh, _Mesh);
+
+  var _super = _createSuper$1p(ThickLineMesh);
 
   function ThickLineMesh() {
-    classCallCheck(this, ThickLineMesh);
+    _classCallCheck(this, ThickLineMesh);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ThickLineMesh).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(ThickLineMesh, [{
+  _createClass(ThickLineMesh, [{
     key: "_onBeforeRender",
     value: function _onBeforeRender(renderer, scene, camera, _geometry, _material, _group) {
       var material = this.material;
@@ -17037,39 +17365,42 @@ var ThickLineMesh = /*#__PURE__*/function (_Mesh) {
   }]);
 
   return ThickLineMesh;
-}(Mesh$3);
+}(Mesh$1);
 
-var Mesh$4 = UberObject(Mesh$5);
+function _createSuper$1o(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1o(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1o() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var Mesh = UberObject(THREE.Mesh);
 
 var InstancedMesh = /*#__PURE__*/function (_Mesh) {
-  inherits(InstancedMesh, _Mesh);
+  _inherits(InstancedMesh, _Mesh);
+
+  var _super = _createSuper$1o(InstancedMesh);
 
   function InstancedMesh() {
-    var _getPrototypeOf2;
-
     var _this;
 
-    classCallCheck(this, InstancedMesh);
+    _classCallCheck(this, InstancedMesh);
 
     for (var _len = arguments.length, rest = new Array(_len), _key = 0; _key < _len; _key++) {
       rest[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(InstancedMesh)).call.apply(_getPrototypeOf2, [this].concat(rest)));
+    _this = _super.call.apply(_super, [this].concat(rest));
     _this.castShadow = true;
     _this.receiveShadow = true;
     return _this;
   }
 
   return InstancedMesh;
-}(Mesh$4);
+}(Mesh);
 
 var meshes = {
   ZClipped: ZClippedMesh,
   ZSprite: ZSpriteMesh,
   Text: TextMesh,
-  Line: UberObject(Line),
-  LineSegments: UberObject(LineSegments),
+  Line: UberObject(THREE.Line),
+  LineSegments: UberObject(THREE.LineSegments),
   Mesh: SimpleMesh,
   ThickLineMesh: ThickLineMesh,
   Instanced: InstancedMesh
@@ -17147,10 +17478,10 @@ function _createIsoSurfaceGeoTriplet(geoClass, caps, settings, renderParams) {
 
 var MeshCreator = /*#__PURE__*/function () {
   function MeshCreator() {
-    classCallCheck(this, MeshCreator);
+    _classCallCheck(this, MeshCreator);
   }
 
-  createClass(MeshCreator, null, [{
+  _createClass(MeshCreator, null, [{
     key: "createSpheres",
     value: function createSpheres(caps, settings) {
       var useZSprites = settings.now.zSprites;
@@ -17226,21 +17557,27 @@ var MeshCreator = /*#__PURE__*/function () {
   return MeshCreator;
 }();
 
+function _createSuper$1n(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1n(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1n() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var TransformGroup = /*#__PURE__*/function (_THREE$Object3D) {
-  inherits(TransformGroup, _THREE$Object3D);
+  _inherits(TransformGroup, _THREE$Object3D);
+
+  var _super = _createSuper$1n(TransformGroup);
 
   function TransformGroup(geometry, geoParams, material, transforms) {
     var _this;
 
-    classCallCheck(this, TransformGroup);
+    _classCallCheck(this, TransformGroup);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(TransformGroup).call(this));
+    _this = _super.call(this);
     _this._geometry = geometry;
     _this._geoParams = geoParams;
     var mat = material.createInstance();
     geoParams.initMaterial(mat);
     _this._material = mat;
-    _this._transforms = transforms.length > 0 ? transforms : [new Matrix4()];
+    _this._transforms = transforms.length > 0 ? transforms : [new THREE.Matrix4()];
 
     var meshes = _this._createMeshes(geometry);
 
@@ -17251,7 +17588,7 @@ var TransformGroup = /*#__PURE__*/function (_THREE$Object3D) {
     return _this;
   }
 
-  createClass(TransformGroup, [{
+  _createClass(TransformGroup, [{
     key: "raycast",
     value: function raycast(raycaster, intersects) {
       var ray = TransformGroup._ray;
@@ -17298,10 +17635,10 @@ var TransformGroup = /*#__PURE__*/function (_THREE$Object3D) {
       var subIdx = 0;
 
       for (var i = 0, n = geos.length; i < n; ++i) {
-        var _meshes = this._createMeshes(geos[i]);
+        var meshes = this._createMeshes(geos[i]);
 
-        for (var j = 0, meshCnt = _meshes.length; j < meshCnt; ++j) {
-          subset[subIdx++] = _meshes[j];
+        for (var j = 0, meshCnt = meshes.length; j < meshCnt; ++j) {
+          subset[subIdx++] = meshes[j];
         }
       }
 
@@ -17326,26 +17663,32 @@ var TransformGroup = /*#__PURE__*/function (_THREE$Object3D) {
   }]);
 
   return TransformGroup;
-}(Object3D);
+}(THREE.Object3D);
 
-defineProperty(TransformGroup, "_inverseMatrix", new Matrix4());
+_defineProperty(TransformGroup, "_inverseMatrix", new THREE.Matrix4());
 
-defineProperty(TransformGroup, "_ray", new Ray());
+_defineProperty(TransformGroup, "_ray", new THREE.Ray());
+
+function _createSuper$1m(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1m(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1m() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function wrapper(Name, args) {
   var params = [Name].concat(args);
-  return Name.bind.apply(Name, toConsumableArray(params));
+  return Name.bind.apply(Name, _toConsumableArray(params));
 }
 
 var ChemGroup = /*#__PURE__*/function (_RCGroup) {
-  inherits(ChemGroup, _RCGroup);
+  _inherits(ChemGroup, _RCGroup);
+
+  var _super = _createSuper$1m(ChemGroup);
 
   function ChemGroup(geoParams, selection, colorer, mode, transforms, polyComplexity, material) {
     var _this;
 
-    classCallCheck(this, ChemGroup);
+    _classCallCheck(this, ChemGroup);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(ChemGroup).call(this));
+    _this = _super.call(this);
 
     if (_this.constructor === ChemGroup) {
       throw new Error('Can not instantiate abstract class!');
@@ -17366,7 +17709,7 @@ var ChemGroup = /*#__PURE__*/function (_RCGroup) {
     return _this;
   }
 
-  createClass(ChemGroup, [{
+  _createClass(ChemGroup, [{
     key: "_makeGeoArgs",
     value: function _makeGeoArgs() {
       throw new Error('ChemGroup subclass must override _makeGeoArgs() method');
@@ -17422,16 +17765,22 @@ var ChemGroup = /*#__PURE__*/function (_RCGroup) {
   return ChemGroup;
 }(RCGroup);
 
+function _createSuper$1l(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1l(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1l() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var AtomsGroup = /*#__PURE__*/function (_ChemGroup) {
-  inherits(AtomsGroup, _ChemGroup);
+  _inherits(AtomsGroup, _ChemGroup);
+
+  var _super = _createSuper$1l(AtomsGroup);
 
   function AtomsGroup() {
-    classCallCheck(this, AtomsGroup);
+    _classCallCheck(this, AtomsGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(AtomsGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(AtomsGroup, [{
+  _createClass(AtomsGroup, [{
     key: "raycast",
     value: function raycast(raycaster, intersects) {
       var atoms = this._selection.atoms;
@@ -17476,16 +17825,22 @@ var AtomsGroup = /*#__PURE__*/function (_ChemGroup) {
   return AtomsGroup;
 }(ChemGroup);
 
+function _createSuper$1k(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1k(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1k() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var AtomsSphereGroup = /*#__PURE__*/function (_AtomsGroup) {
-  inherits(AtomsSphereGroup, _AtomsGroup);
+  _inherits(AtomsSphereGroup, _AtomsGroup);
+
+  var _super = _createSuper$1k(AtomsSphereGroup);
 
   function AtomsSphereGroup() {
-    classCallCheck(this, AtomsSphereGroup);
+    _classCallCheck(this, AtomsSphereGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(AtomsSphereGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(AtomsSphereGroup, [{
+  _createClass(AtomsSphereGroup, [{
     key: "_makeGeoArgs",
     value: function _makeGeoArgs() {
       return [this._selection.chunks.length, this._polyComplexity];
@@ -17537,16 +17892,22 @@ var AtomsSphereGroup = /*#__PURE__*/function (_AtomsGroup) {
   return AtomsSphereGroup;
 }(AtomsGroup);
 
+function _createSuper$1j(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1j(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1j() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var AtomsSurfaceGroup = /*#__PURE__*/function (_AtomsSphereGroup) {
-  inherits(AtomsSurfaceGroup, _AtomsSphereGroup);
+  _inherits(AtomsSurfaceGroup, _AtomsSphereGroup);
+
+  var _super = _createSuper$1j(AtomsSurfaceGroup);
 
   function AtomsSurfaceGroup() {
-    classCallCheck(this, AtomsSurfaceGroup);
+    _classCallCheck(this, AtomsSurfaceGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(AtomsSurfaceGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(AtomsSurfaceGroup, [{
+  _createClass(AtomsSurfaceGroup, [{
     key: "_makeGeoArgs",
     value: function _makeGeoArgs() {
       var selectedAtoms = [];
@@ -17569,16 +17930,22 @@ var AtomsSurfaceGroup = /*#__PURE__*/function (_AtomsSphereGroup) {
   return AtomsSurfaceGroup;
 }(AtomsSphereGroup);
 
+function _createSuper$1i(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1i(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1i() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var AtomsSASSESGroupStub = /*#__PURE__*/function (_AtomsSphereGroup) {
-  inherits(AtomsSASSESGroupStub, _AtomsSphereGroup);
+  _inherits(AtomsSASSESGroupStub, _AtomsSphereGroup);
+
+  var _super = _createSuper$1i(AtomsSASSESGroupStub);
 
   function AtomsSASSESGroupStub() {
-    classCallCheck(this, AtomsSASSESGroupStub);
+    _classCallCheck(this, AtomsSASSESGroupStub);
 
-    return possibleConstructorReturn(this, getPrototypeOf(AtomsSASSESGroupStub).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(AtomsSASSESGroupStub, [{
+  _createClass(AtomsSASSESGroupStub, [{
     key: "_makeGeoArgs",
     value: function _makeGeoArgs() {
       var selectedAtoms = [];
@@ -17602,6 +17969,10 @@ var AtomsSASSESGroupStub = /*#__PURE__*/function (_AtomsSphereGroup) {
 
   return AtomsSASSESGroupStub;
 }(AtomsSphereGroup);
+
+function _createSuper$1h(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1h(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1h() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function adjustColor(color) {
   var r = color >> 16 & 255;
@@ -17703,15 +18074,17 @@ var parseTemplate = function parseTemplate(atom, str) {
 };
 
 var AtomsTextGroup = /*#__PURE__*/function (_AtomsGroup) {
-  inherits(AtomsTextGroup, _AtomsGroup);
+  _inherits(AtomsTextGroup, _AtomsGroup);
+
+  var _super = _createSuper$1h(AtomsTextGroup);
 
   function AtomsTextGroup() {
-    classCallCheck(this, AtomsTextGroup);
+    _classCallCheck(this, AtomsTextGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(AtomsTextGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(AtomsTextGroup, [{
+  _createClass(AtomsTextGroup, [{
     key: "_makeGeoArgs",
     value: function _makeGeoArgs() {
       var opts = this._mode.getLabelOpts();
@@ -17785,26 +18158,32 @@ var AtomsTextGroup = /*#__PURE__*/function (_AtomsGroup) {
   return AtomsTextGroup;
 }(AtomsGroup);
 
+function _createSuper$1g(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1g(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1g() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 function _slerp(omega, v1, v2, t) {
   var oSin = Math.sin(omega);
   return v1.clone().multiplyScalar(Math.sin((1 - t) * omega) / oSin).addScaledVector(v2, Math.sin(t * omega) / oSin);
 }
 
 var AromaticGroup = /*#__PURE__*/function (_AtomsGroup) {
-  inherits(AromaticGroup, _AtomsGroup);
+  _inherits(AromaticGroup, _AtomsGroup);
+
+  var _super = _createSuper$1g(AromaticGroup);
 
   function AromaticGroup() {
-    classCallCheck(this, AromaticGroup);
+    _classCallCheck(this, AromaticGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(AromaticGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(AromaticGroup, [{
+  _createClass(AromaticGroup, [{
     key: "_buildInner",
     value: function _buildInner(radOffset, addChunk) {
       var chunksToIdx = this._selection.chunks;
-      var prevVector = new Vector3();
-      var currVector = new Vector3();
+      var prevVector = new THREE.Vector3();
+      var currVector = new THREE.Vector3();
       var segmentsHeight = this._segmentsHeight;
       var leprStep = 1.0 / segmentsHeight;
       var colorer = this._colorer;
@@ -17861,12 +18240,16 @@ var AromaticGroup = /*#__PURE__*/function (_AtomsGroup) {
   return AromaticGroup;
 }(AtomsGroup);
 
-function _createShape(rad, parts) {
+function _createSuper$1f(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1f(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1f() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _createShape$1(rad, parts) {
   var pts = [];
 
   for (var i = 0; i < parts; ++i) {
     var a = -2 * i / parts * Math.PI;
-    pts.push(new Vector3(Math.cos(a) * rad, Math.sin(a) * rad, 0));
+    pts.push(new THREE.Vector3(Math.cos(a) * rad, Math.sin(a) * rad, 0));
   }
 
   return pts;
@@ -17875,24 +18258,26 @@ function _createShape(rad, parts) {
 var calcChunkMatrix = gfxutils.calcChunkMatrix;
 
 var AromaticTorusGroup = /*#__PURE__*/function (_AromaticGroup) {
-  inherits(AromaticTorusGroup, _AromaticGroup);
+  _inherits(AromaticTorusGroup, _AromaticGroup);
+
+  var _super = _createSuper$1f(AromaticTorusGroup);
 
   function AromaticTorusGroup() {
-    classCallCheck(this, AromaticTorusGroup);
+    _classCallCheck(this, AromaticTorusGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(AromaticTorusGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(AromaticTorusGroup, [{
+  _createClass(AromaticTorusGroup, [{
     key: "_build",
     value: function _build() {
       var segmentsHeight = this._segmentsHeight;
 
       var torusRad = this._mode.getAromRadius();
 
-      var radiusV = new Vector2(torusRad, torusRad);
+      var radiusV = new THREE.Vector2(torusRad, torusRad);
       var radOffset = this._mode.calcStickRadius() + 2 * torusRad;
-      var lookAtVector = new Vector3();
+      var lookAtVector = new THREE.Vector3();
       var mtc = [];
       var geo = this._geo;
 
@@ -17914,23 +18299,29 @@ var AromaticTorusGroup = /*#__PURE__*/function (_AromaticGroup) {
     key: "_makeGeoArgs",
     value: function _makeGeoArgs() {
       this._segmentsHeight = this._polyComplexity;
-      return [_createShape(1.0, this._polyComplexity), this._segmentsHeight + 1, this._selection.chunks.length];
+      return [_createShape$1(1.0, this._polyComplexity), this._segmentsHeight + 1, this._selection.chunks.length];
     }
   }]);
 
   return AromaticTorusGroup;
 }(AromaticGroup);
 
+function _createSuper$1e(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1e(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1e() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var AromaticLinesGroup = /*#__PURE__*/function (_AromaticGroup) {
-  inherits(AromaticLinesGroup, _AromaticGroup);
+  _inherits(AromaticLinesGroup, _AromaticGroup);
+
+  var _super = _createSuper$1e(AromaticLinesGroup);
 
   function AromaticLinesGroup() {
-    classCallCheck(this, AromaticLinesGroup);
+    _classCallCheck(this, AromaticLinesGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(AromaticLinesGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(AromaticLinesGroup, [{
+  _createClass(AromaticLinesGroup, [{
     key: "_build",
     value: function _build() {
       var _this = this;
@@ -17964,16 +18355,22 @@ var AromaticLinesGroup = /*#__PURE__*/function (_AromaticGroup) {
   return AromaticLinesGroup;
 }(AromaticGroup);
 
+function _createSuper$1d(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1d(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1d() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var ResiduesGroup = /*#__PURE__*/function (_ChemGroup) {
-  inherits(ResiduesGroup, _ChemGroup);
+  _inherits(ResiduesGroup, _ChemGroup);
+
+  var _super = _createSuper$1d(ResiduesGroup);
 
   function ResiduesGroup() {
-    classCallCheck(this, ResiduesGroup);
+    _classCallCheck(this, ResiduesGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ResiduesGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(ResiduesGroup, [{
+  _createClass(ResiduesGroup, [{
     key: "raycast",
     value: function raycast(raycaster, intersects) {
       var residues = this._selection.residues;
@@ -18018,16 +18415,22 @@ var ResiduesGroup = /*#__PURE__*/function (_ChemGroup) {
   return ResiduesGroup;
 }(ChemGroup);
 
+function _createSuper$1c(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1c(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1c() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var NucleicItemGroup = /*#__PURE__*/function (_ResiduesGroup) {
-  inherits(NucleicItemGroup, _ResiduesGroup);
+  _inherits(NucleicItemGroup, _ResiduesGroup);
+
+  var _super = _createSuper$1c(NucleicItemGroup);
 
   function NucleicItemGroup() {
-    classCallCheck(this, NucleicItemGroup);
+    _classCallCheck(this, NucleicItemGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(NucleicItemGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(NucleicItemGroup, [{
+  _createClass(NucleicItemGroup, [{
     key: "raycast",
     value: function raycast(raycaster, intersects) {
       var residues = this._selection.residues;
@@ -18121,16 +18524,22 @@ var NucleicItemGroup = /*#__PURE__*/function (_ResiduesGroup) {
   return NucleicItemGroup;
 }(ResiduesGroup);
 
+function _createSuper$1b(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1b(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1b() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var NucleicCylindersGroup = /*#__PURE__*/function (_NucleicItemGroup) {
-  inherits(NucleicCylindersGroup, _NucleicItemGroup);
+  _inherits(NucleicCylindersGroup, _NucleicItemGroup);
+
+  var _super = _createSuper$1b(NucleicCylindersGroup);
 
   function NucleicCylindersGroup() {
-    classCallCheck(this, NucleicCylindersGroup);
+    _classCallCheck(this, NucleicCylindersGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(NucleicCylindersGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(NucleicCylindersGroup, [{
+  _createClass(NucleicCylindersGroup, [{
     key: "_makeGeoArgs",
     value: function _makeGeoArgs() {
       return [this._selection.chunks.length, this._polyComplexity];
@@ -18147,16 +18556,22 @@ var NucleicCylindersGroup = /*#__PURE__*/function (_NucleicItemGroup) {
   return NucleicCylindersGroup;
 }(NucleicItemGroup);
 
+function _createSuper$1a(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1a(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1a() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var NucleicSpheresGroup = /*#__PURE__*/function (_NucleicItemGroup) {
-  inherits(NucleicSpheresGroup, _NucleicItemGroup);
+  _inherits(NucleicSpheresGroup, _NucleicItemGroup);
+
+  var _super = _createSuper$1a(NucleicSpheresGroup);
 
   function NucleicSpheresGroup() {
-    classCallCheck(this, NucleicSpheresGroup);
+    _classCallCheck(this, NucleicSpheresGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(NucleicSpheresGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(NucleicSpheresGroup, [{
+  _createClass(NucleicSpheresGroup, [{
     key: "_makeGeoArgs",
     value: function _makeGeoArgs() {
       return [this._selection.chunks.length * 2, this._polyComplexity];
@@ -18585,13 +19000,13 @@ Licensed under MIT license (see "Smooth.js MIT license.txt")
 
   Smooth.deepValidation = true;
 
-  ( exports !== null ? exports : window).Smooth = Smooth;
+  (exports !== null ? exports : window).Smooth = Smooth;
 
 }).call(commonjsGlobal);
 });
 var Smooth_1 = Smooth.Smooth;
 
-var ResidueType$1 = chem.ResidueType;
+var ResidueType = chem.ResidueType;
 var calcMatrix = gfxutils.calcChunkMatrix;
 
 function _buildStructureInterpolator(points, tension) {
@@ -18613,7 +19028,7 @@ function _buildStructureInterpolator(points, tension) {
 
     var newt = transformT(t);
     var ans = path(newt);
-    return new Vector3(ans[0], ans[1], ans[2]);
+    return new THREE.Vector3(ans[0], ans[1], ans[2]);
   };
 }
 
@@ -18631,7 +19046,7 @@ function _addPoints(centerPoints, topPoints, idx, residue) {
 }
 
 function _addPointsForLoneResidue(centerPoints, topPoints, idx, residue) {
-  var nucleic = (residue._type.flags & ResidueType$1.Flags.NUCLEIC) !== 0;
+  var nucleic = (residue._type.flags & ResidueType.Flags.NUCLEIC) !== 0;
   var nameFrom = nucleic ? 'C5\'' : 'N';
   var nameTo = nucleic ? 'C3\'' : 'C';
   var posFrom;
@@ -18752,7 +19167,7 @@ function _calcPoints(residues, firstIdx, lastIdx, boundaries) {
 
 var CartoonHelper = /*#__PURE__*/function () {
   function CartoonHelper(residues, startIdx, endIdx, segmentsCount, tension, boundaries) {
-    classCallCheck(this, CartoonHelper);
+    _classCallCheck(this, CartoonHelper);
 
     var pointsArrays = _calcPoints(residues, startIdx, endIdx, boundaries);
 
@@ -18763,12 +19178,12 @@ var CartoonHelper = /*#__PURE__*/function () {
     this._segmentsCount = segmentsCount;
   }
 
-  createClass(CartoonHelper, [{
+  _createClass(CartoonHelper, [{
     key: "prepareMatrices",
     value: function prepareMatrices(idx, firstRad, secondRad) {
       var mtcCount = this._segmentsCount;
       var outMtc = new Array(mtcCount);
-      var currRad = new Vector2(0, 0);
+      var currRad = new THREE.Vector2(0, 0);
       var topInterp = this._topInterp;
       var cenInterp = this._centerInterp;
       var currentValue = this._shift + this._valueStep * (mtcCount - 1) * idx;
@@ -18790,13 +19205,17 @@ var CartoonHelper = /*#__PURE__*/function () {
   return CartoonHelper;
 }();
 
-function _createShape$1(rad, parts) {
+function _createSuper$19(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$19(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$19() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _createShape(rad, parts) {
   var pts = [];
 
   for (var i = 0; i < parts; ++i) {
     // starts from pi/2 because it's important that points are lied on the angles of arrows (visual issues if not)
     var a = Math.PI / 2.0 - 2 * Math.PI * i / parts;
-    pts.push(new Vector3(Math.cos(a) * rad, Math.sin(a) * rad, 0));
+    pts.push(new THREE.Vector3(Math.cos(a) * rad, Math.sin(a) * rad, 0));
   }
 
   return pts;
@@ -18835,21 +19254,23 @@ function _loopThrough(subDiv, residues, segmentsHeight, tension, mode, callback)
 }
 
 var ResiduesSubseqGroup = /*#__PURE__*/function (_ResiduesGroup) {
-  inherits(ResiduesSubseqGroup, _ResiduesGroup);
+  _inherits(ResiduesSubseqGroup, _ResiduesGroup);
+
+  var _super = _createSuper$19(ResiduesSubseqGroup);
 
   function ResiduesSubseqGroup() {
-    classCallCheck(this, ResiduesSubseqGroup);
+    _classCallCheck(this, ResiduesSubseqGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ResiduesSubseqGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(ResiduesSubseqGroup, [{
+  _createClass(ResiduesSubseqGroup, [{
     key: "_makeGeoArgs",
     value: function _makeGeoArgs() {
       var cmpMultiplier = this._mode.getHeightSegmentsRatio();
 
       this._segmentsHeight = this._polyComplexity * cmpMultiplier | 0;
-      return [_createShape$1(1.0, this._polyComplexity), this._segmentsHeight + 1, this._selection.chunks.length * 2];
+      return [_createShape(1.0, this._polyComplexity), this._segmentsHeight + 1, this._selection.chunks.length * 2];
     }
   }, {
     key: "_build",
@@ -18907,16 +19328,22 @@ var ResiduesSubseqGroup = /*#__PURE__*/function (_ResiduesGroup) {
   return ResiduesSubseqGroup;
 }(ResiduesGroup);
 
+function _createSuper$18(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$18(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$18() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var ResiduesTraceGroup = /*#__PURE__*/function (_ChemGroup) {
-  inherits(ResiduesTraceGroup, _ChemGroup);
+  _inherits(ResiduesTraceGroup, _ChemGroup);
+
+  var _super = _createSuper$18(ResiduesTraceGroup);
 
   function ResiduesTraceGroup() {
-    classCallCheck(this, ResiduesTraceGroup);
+    _classCallCheck(this, ResiduesTraceGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ResiduesTraceGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(ResiduesTraceGroup, [{
+  _createClass(ResiduesTraceGroup, [{
     key: "_makeGeoArgs",
     value: function _makeGeoArgs() {
       var subDiv = this._selection.subdivs;
@@ -19061,20 +19488,26 @@ var ResiduesTraceGroup = /*#__PURE__*/function (_ChemGroup) {
   return ResiduesTraceGroup;
 }(ChemGroup);
 
+function _createSuper$17(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$17(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$17() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 function getCylinderCount(bondOrder) {
   return bondOrder < 2 ? 1 : bondOrder;
 }
 
 var BondsGroup = /*#__PURE__*/function (_ChemGroup) {
-  inherits(BondsGroup, _ChemGroup);
+  _inherits(BondsGroup, _ChemGroup);
+
+  var _super = _createSuper$17(BondsGroup);
 
   function BondsGroup() {
-    classCallCheck(this, BondsGroup);
+    _classCallCheck(this, BondsGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(BondsGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(BondsGroup, [{
+  _createClass(BondsGroup, [{
     key: "_makeGeoArgs",
     value: function _makeGeoArgs() {
       var drawMultiple = this._mode.drawMultiorderBonds();
@@ -19096,7 +19529,7 @@ var BondsGroup = /*#__PURE__*/function (_ChemGroup) {
     value: function getBondOrder(bond, drawMultiple, showAromatic) {
       var bondOrder = 1;
 
-      if (drawMultiple && (!showAromatic || bond._type !== Bond.BondType.AROMATIC)) {
+      if (drawMultiple && (!showAromatic || bond._type !== Bond$5.BondType.AROMATIC)) {
         bondOrder = getCylinderCount(bond._order);
       }
 
@@ -19153,16 +19586,22 @@ var BondsGroup = /*#__PURE__*/function (_ChemGroup) {
   return BondsGroup;
 }(ChemGroup);
 
+function _createSuper$16(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$16(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$16() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var BondsCylinderGroup = /*#__PURE__*/function (_BondsGroup) {
-  inherits(BondsCylinderGroup, _BondsGroup);
+  _inherits(BondsCylinderGroup, _BondsGroup);
+
+  var _super = _createSuper$16(BondsCylinderGroup);
 
   function BondsCylinderGroup() {
-    classCallCheck(this, BondsCylinderGroup);
+    _classCallCheck(this, BondsCylinderGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(BondsCylinderGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(BondsCylinderGroup, [{
+  _createClass(BondsCylinderGroup, [{
     key: "_build",
     value: function _build() {
       var bondsIdc = this._selection.chunks;
@@ -19177,8 +19616,8 @@ var BondsCylinderGroup = /*#__PURE__*/function (_BondsGroup) {
       var stickRad = mode.calcStickRadius();
       var emptyOffset = mode.calcSpaceFraction();
       var normDir;
-      var leftPos = new Vector3();
-      var rightPos = new Vector3();
+      var leftPos = new THREE.Vector3();
+      var rightPos = new THREE.Vector3();
       var currBondIdx = 0;
       var chunksToIdx = [];
 
@@ -19222,8 +19661,8 @@ var BondsCylinderGroup = /*#__PURE__*/function (_BondsGroup) {
       var stickRad = mode.calcStickRadius();
       var emptyOffset = mode.calcSpaceFraction();
       var normDir;
-      var leftPos = new Vector3();
-      var rightPos = new Vector3();
+      var leftPos = new THREE.Vector3();
+      var rightPos = new THREE.Vector3();
       var currBondIdx = 0;
       var updateColor = frameData.needsColorUpdate(colorer);
 
@@ -19262,18 +19701,23 @@ var BondsCylinderGroup = /*#__PURE__*/function (_BondsGroup) {
   return BondsCylinderGroup;
 }(BondsGroup);
 
+function _createSuper$15(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$15(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$15() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 var STEP_SIZE = 0.15;
 
 var BondsLinesGroup = /*#__PURE__*/function (_BondsGroup) {
-  inherits(BondsLinesGroup, _BondsGroup);
+  _inherits(BondsLinesGroup, _BondsGroup);
+
+  var _super = _createSuper$15(BondsLinesGroup);
 
   function BondsLinesGroup() {
-    classCallCheck(this, BondsLinesGroup);
+    _classCallCheck(this, BondsLinesGroup);
 
-    return possibleConstructorReturn(this, getPrototypeOf(BondsLinesGroup).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(BondsLinesGroup, [{
+  _createClass(BondsLinesGroup, [{
     key: "_build",
     value: function _build() {
       var bondsIdc = this._selection.chunks;
@@ -19285,9 +19729,9 @@ var BondsLinesGroup = /*#__PURE__*/function (_BondsGroup) {
       var geo = this._geo;
       var drawMultiple = mode.drawMultiorderBonds();
       var showAromatic = mode.showAromaticLoops();
-      var bondDir = new Vector3();
-      var leftPos = new Vector3();
-      var rightPos = new Vector3();
+      var bondDir = new THREE.Vector3();
+      var leftPos = new THREE.Vector3();
+      var rightPos = new THREE.Vector3();
       var currBondIdx = 0;
       var chunksToIdx = [];
 
@@ -19343,9 +19787,9 @@ var BondsLinesGroup = /*#__PURE__*/function (_BondsGroup) {
       var geo = this._geo;
       var drawMultiple = mode.drawMultiorderBonds();
       var showAromatic = mode.showAromaticLoops();
-      var bondDir = new Vector3();
-      var leftPos = new Vector3();
-      var rightPos = new Vector3();
+      var bondDir = new THREE.Vector3();
+      var leftPos = new THREE.Vector3();
+      var rightPos = new THREE.Vector3();
       var currBondIdx = 0;
       var updateColor = frameData.needsColorUpdate(colorer);
 
@@ -19412,17 +19856,23 @@ var groups = {
   BondsLinesGroup: BondsLinesGroup
 };
 
+function _createSuper$14(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$14(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$14() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var AtomsProcessor = /*#__PURE__*/function (_RCGroup) {
-  inherits(AtomsProcessor, _RCGroup);
+  _inherits(AtomsProcessor, _RCGroup);
+
+  var _super = _createSuper$14(AtomsProcessor);
 
   function AtomsProcessor(AtomsGroup, geoParams, complex, colorer, mode, polyComplexity, mask, material) {
     var _this;
 
-    classCallCheck(this, AtomsProcessor);
+    _classCallCheck(this, AtomsProcessor);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(AtomsProcessor).call(this));
+    _this = _super.call(this);
 
-    var self = assertThisInitialized(_this);
+    var self = _assertThisInitialized(_this);
 
     _this._complex = complex;
     _this._mode = mode;
@@ -19454,7 +19904,7 @@ var AtomsProcessor = /*#__PURE__*/function (_RCGroup) {
     return _this;
   }
 
-  createClass(AtomsProcessor, [{
+  _createClass(AtomsProcessor, [{
     key: "_checkAtom",
     value: function _checkAtom(atom, mask) {
       return atom.mask & mask;
@@ -19485,16 +19935,22 @@ var AtomsProcessor = /*#__PURE__*/function (_RCGroup) {
   return AtomsProcessor;
 }(RCGroup);
 
+function _createSuper$13(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$13(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$13() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var OrphanAtomsProcessor = /*#__PURE__*/function (_AtomsProcessor) {
-  inherits(OrphanAtomsProcessor, _AtomsProcessor);
+  _inherits(OrphanAtomsProcessor, _AtomsProcessor);
+
+  var _super = _createSuper$13(OrphanAtomsProcessor);
 
   function OrphanAtomsProcessor() {
-    classCallCheck(this, OrphanAtomsProcessor);
+    _classCallCheck(this, OrphanAtomsProcessor);
 
-    return possibleConstructorReturn(this, getPrototypeOf(OrphanAtomsProcessor).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(OrphanAtomsProcessor, [{
+  _createClass(OrphanAtomsProcessor, [{
     key: "_checkAtom",
     value: function _checkAtom(atom, mask) {
       if (!(atom.mask & mask)) {
@@ -19516,17 +19972,23 @@ var OrphanAtomsProcessor = /*#__PURE__*/function (_AtomsProcessor) {
   return OrphanAtomsProcessor;
 }(AtomsProcessor);
 
+function _createSuper$12(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$12(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$12() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var ResiduesProcessor = /*#__PURE__*/function (_RCGroup) {
-  inherits(ResiduesProcessor, _RCGroup);
+  _inherits(ResiduesProcessor, _RCGroup);
+
+  var _super = _createSuper$12(ResiduesProcessor);
 
   function ResiduesProcessor(ResidueGroup, geoParams, complex, colorer, mode, polyComplexity, mask, material) {
     var _this;
 
-    classCallCheck(this, ResiduesProcessor);
+    _classCallCheck(this, ResiduesProcessor);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(ResiduesProcessor).call(this));
+    _this = _super.call(this);
 
-    var self = assertThisInitialized(_this);
+    var self = _assertThisInitialized(_this);
 
     _this._complex = complex;
     var residues = complex.getResidues();
@@ -19555,7 +20017,7 @@ var ResiduesProcessor = /*#__PURE__*/function (_RCGroup) {
     return _this;
   }
 
-  createClass(ResiduesProcessor, [{
+  _createClass(ResiduesProcessor, [{
     key: "checkResidue",
     value: function checkResidue(residue, mask) {
       return residue._mask & mask;
@@ -19586,16 +20048,22 @@ var ResiduesProcessor = /*#__PURE__*/function (_RCGroup) {
   return ResiduesProcessor;
 }(RCGroup);
 
+function _createSuper$11(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$11(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$11() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var NucleicProcessor = /*#__PURE__*/function (_ResidueProcessor) {
-  inherits(NucleicProcessor, _ResidueProcessor);
+  _inherits(NucleicProcessor, _ResidueProcessor);
+
+  var _super = _createSuper$11(NucleicProcessor);
 
   function NucleicProcessor() {
-    classCallCheck(this, NucleicProcessor);
+    _classCallCheck(this, NucleicProcessor);
 
-    return possibleConstructorReturn(this, getPrototypeOf(NucleicProcessor).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(NucleicProcessor, [{
+  _createClass(NucleicProcessor, [{
     key: "_checkResidue",
     value: function _checkResidue(residue, mask) {
       return mask & residue._mask && residue._cylinders !== null;
@@ -19605,17 +20073,23 @@ var NucleicProcessor = /*#__PURE__*/function (_ResidueProcessor) {
   return NucleicProcessor;
 }(ResiduesProcessor);
 
+function _createSuper$10(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$10(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$10() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var SubseqsProcessor = /*#__PURE__*/function (_RCGroup) {
-  inherits(SubseqsProcessor, _RCGroup);
+  _inherits(SubseqsProcessor, _RCGroup);
+
+  var _super = _createSuper$10(SubseqsProcessor);
 
   function SubseqsProcessor(ResidueGroup, geoParams, complex, colorer, mode, polyComplexity, mask, material) {
     var _this;
 
-    classCallCheck(this, SubseqsProcessor);
+    _classCallCheck(this, SubseqsProcessor);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(SubseqsProcessor).call(this));
+    _this = _super.call(this);
 
-    var self = assertThisInitialized(_this);
+    var self = _assertThisInitialized(_this);
 
     _this._complex = complex;
     var residues = complex.getResidues();
@@ -19651,7 +20125,7 @@ var SubseqsProcessor = /*#__PURE__*/function (_RCGroup) {
     return _this;
   }
 
-  createClass(SubseqsProcessor, [{
+  _createClass(SubseqsProcessor, [{
     key: "getSubset",
     value: function getSubset(mask, innerOnly) {
       var totalSubset = [];
@@ -19677,17 +20151,23 @@ var SubseqsProcessor = /*#__PURE__*/function (_RCGroup) {
   return SubseqsProcessor;
 }(RCGroup);
 
+function _createSuper$$(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$$(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$$() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var BondsProcessor = /*#__PURE__*/function (_RCGroup) {
-  inherits(BondsProcessor, _RCGroup);
+  _inherits(BondsProcessor, _RCGroup);
+
+  var _super = _createSuper$$(BondsProcessor);
 
   function BondsProcessor(BondsGroup, geoParams, complex, colorer, mode, polyComplexity, mask, material) {
     var _this;
 
-    classCallCheck(this, BondsProcessor);
+    _classCallCheck(this, BondsProcessor);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(BondsProcessor).call(this));
+    _this = _super.call(this);
 
-    var self = assertThisInitialized(_this);
+    var self = _assertThisInitialized(_this);
 
     _this._complex = complex;
     var bonds = complex.getBonds();
@@ -19721,7 +20201,7 @@ var BondsProcessor = /*#__PURE__*/function (_RCGroup) {
     return _this;
   }
 
-  createClass(BondsProcessor, [{
+  _createClass(BondsProcessor, [{
     key: "getSubset",
     value: function getSubset(mask, innerOnly) {
       var totalSubset = [];
@@ -19747,24 +20227,30 @@ var BondsProcessor = /*#__PURE__*/function (_RCGroup) {
   return BondsProcessor;
 }(RCGroup);
 
+function _createSuper$_(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$_(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$_() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var AromaticProcessor = /*#__PURE__*/function (_RCGroup) {
-  inherits(AromaticProcessor, _RCGroup);
+  _inherits(AromaticProcessor, _RCGroup);
+
+  var _super = _createSuper$_(AromaticProcessor);
 
   function AromaticProcessor(AromaticGroup, geoParams, complex, colorer, mode, polyComplexity, mask, material) {
     var _this;
 
-    classCallCheck(this, AromaticProcessor);
+    _classCallCheck(this, AromaticProcessor);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(AromaticProcessor).call(this));
+    _this = _super.call(this);
 
-    var self = assertThisInitialized(_this);
+    var self = _assertThisInitialized(_this);
 
     _this._complex = complex;
     var atoms = complex.getAtoms();
     var transforms = complex.getTransforms();
 
     if (!mode.showAromaticLoops()) {
-      return possibleConstructorReturn(_this);
+      return _possibleConstructorReturn(_this);
     }
 
     complex.forEachComponent(function (component) {
@@ -19799,7 +20285,7 @@ var AromaticProcessor = /*#__PURE__*/function (_RCGroup) {
     return _this;
   }
 
-  createClass(AromaticProcessor, [{
+  _createClass(AromaticProcessor, [{
     key: "getSubset",
     value: function getSubset(mask, innerOnly) {
       var totalSubset = [];
@@ -19843,10 +20329,10 @@ function _bakeGroup(triplet, Processor, Group) {
 
 var GroupsFactory = /*#__PURE__*/function () {
   function GroupsFactory() {
-    classCallCheck(this, GroupsFactory);
+    _classCallCheck(this, GroupsFactory);
   }
 
-  createClass(GroupsFactory, null, [{
+  _createClass(GroupsFactory, null, [{
     key: "AtomsSpheres",
     value: function AtomsSpheres(caps, settings) {
       var gfxTriplet = MeshCreator.createSpheres(caps, settings);
@@ -19952,7 +20438,7 @@ var GroupsFactory = /*#__PURE__*/function () {
 
 var Mode = /*#__PURE__*/function () {
   function Mode(opts) {
-    classCallCheck(this, Mode);
+    _classCallCheck(this, Mode);
 
     if (this.constructor === Mode) {
       throw new Error('Can not instantiate abstract class!');
@@ -19973,7 +20459,7 @@ var Mode = /*#__PURE__*/function () {
    */
 
 
-  createClass(Mode, [{
+  _createClass(Mode, [{
     key: "identify",
     value: function identify() {
       var diff = utils.objectsDiff(this.opts, this.settings.now.modes[this.id]);
@@ -20001,7 +20487,7 @@ var Mode = /*#__PURE__*/function () {
           renderParams = currGroup[1].call(this);
           var _currGroup = currGroup;
 
-          var _currGroup2 = slicedToArray(_currGroup, 1);
+          var _currGroup2 = _slicedToArray(_currGroup, 1);
 
           currGroup = _currGroup2[0];
         }
@@ -20035,33 +20521,39 @@ Mode.prototype.id = '__';
 
 Mode.prototype.depGroups = [];
 
-function getRenderParams() {
+function _createSuper$Z(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$Z(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$Z() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function getRenderParams$1() {
   return {
     lineWidth: this.opts.lineWidth
   };
 }
 
 var LinesMode = /*#__PURE__*/function (_Mode) {
-  inherits(LinesMode, _Mode);
+  _inherits(LinesMode, _Mode);
+
+  var _super = _createSuper$Z(LinesMode);
 
   function LinesMode(opts) {
     var _this;
 
-    classCallCheck(this, LinesMode);
+    _classCallCheck(this, LinesMode);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(LinesMode).call(this, opts));
+    _this = _super.call(this, opts);
     _this.depGroups = _this.depGroups.slice(0); // clone depGroups to prevent prototype edits
 
     var groups = _this.depGroups;
 
     for (var i = 0, n = groups.length; i < n; ++i) {
-      groups[i] = [groups[i], getRenderParams];
+      groups[i] = [groups[i], getRenderParams$1];
     }
 
     return _this;
   }
 
-  createClass(LinesMode, [{
+  _createClass(LinesMode, [{
     key: "drawMultiorderBonds",
     value: function drawMultiorderBonds() {
       return this.opts.multibond;
@@ -20091,23 +20583,29 @@ var LinesMode = /*#__PURE__*/function (_Mode) {
   return LinesMode;
 }(Mode);
 
-defineProperty(LinesMode, "id", 'LN');
+_defineProperty(LinesMode, "id", 'LN');
 
 LinesMode.prototype.id = 'LN';
 LinesMode.prototype.name = 'Lines';
 LinesMode.prototype.shortName = 'Lines';
 LinesMode.prototype.depGroups = ['ALoopsLines', 'BondsLines', 'OrphanedAtomsCrosses'];
 
+function _createSuper$Y(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$Y(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$Y() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var LicoriceMode = /*#__PURE__*/function (_Mode) {
-  inherits(LicoriceMode, _Mode);
+  _inherits(LicoriceMode, _Mode);
+
+  var _super = _createSuper$Y(LicoriceMode);
 
   function LicoriceMode() {
-    classCallCheck(this, LicoriceMode);
+    _classCallCheck(this, LicoriceMode);
 
-    return possibleConstructorReturn(this, getPrototypeOf(LicoriceMode).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(LicoriceMode, [{
+  _createClass(LicoriceMode, [{
     key: "calcAtomRadius",
     value: function calcAtomRadius(_atom) {
       return this.opts.bond;
@@ -20142,23 +20640,29 @@ var LicoriceMode = /*#__PURE__*/function (_Mode) {
   return LicoriceMode;
 }(Mode);
 
-defineProperty(LicoriceMode, "id", 'LC');
+_defineProperty(LicoriceMode, "id", 'LC');
 
 LicoriceMode.prototype.id = 'LC';
 LicoriceMode.prototype.name = 'Licorice';
 LicoriceMode.prototype.shortName = 'Licorice';
 LicoriceMode.prototype.depGroups = ['AtomsSpheres', 'BondsCylinders', 'ALoopsTorus'];
 
+function _createSuper$X(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$X(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$X() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var BallsAndSticksMode = /*#__PURE__*/function (_Mode) {
-  inherits(BallsAndSticksMode, _Mode);
+  _inherits(BallsAndSticksMode, _Mode);
+
+  var _super = _createSuper$X(BallsAndSticksMode);
 
   function BallsAndSticksMode() {
-    classCallCheck(this, BallsAndSticksMode);
+    _classCallCheck(this, BallsAndSticksMode);
 
-    return possibleConstructorReturn(this, getPrototypeOf(BallsAndSticksMode).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(BallsAndSticksMode, [{
+  _createClass(BallsAndSticksMode, [{
     key: "calcAtomRadius",
     value: function calcAtomRadius(atom) {
       return atom.element.radius * this.opts.atom;
@@ -20193,23 +20697,29 @@ var BallsAndSticksMode = /*#__PURE__*/function (_Mode) {
   return BallsAndSticksMode;
 }(Mode);
 
-defineProperty(BallsAndSticksMode, "id", 'BS');
+_defineProperty(BallsAndSticksMode, "id", 'BS');
 
 BallsAndSticksMode.prototype.id = 'BS';
 BallsAndSticksMode.prototype.name = 'Balls and Sticks';
 BallsAndSticksMode.prototype.shortName = 'Balls';
 BallsAndSticksMode.prototype.depGroups = ['AtomsSpheres', 'BondsCylinders', 'ALoopsTorus'];
 
+function _createSuper$W(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$W(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$W() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var VanDerWaalsMode = /*#__PURE__*/function (_Mode) {
-  inherits(VanDerWaalsMode, _Mode);
+  _inherits(VanDerWaalsMode, _Mode);
+
+  var _super = _createSuper$W(VanDerWaalsMode);
 
   function VanDerWaalsMode() {
-    classCallCheck(this, VanDerWaalsMode);
+    _classCallCheck(this, VanDerWaalsMode);
 
-    return possibleConstructorReturn(this, getPrototypeOf(VanDerWaalsMode).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(VanDerWaalsMode, [{
+  _createClass(VanDerWaalsMode, [{
     key: "calcAtomRadius",
     value: function calcAtomRadius(atom) {
       return atom.element.radius;
@@ -20219,23 +20729,29 @@ var VanDerWaalsMode = /*#__PURE__*/function (_Mode) {
   return VanDerWaalsMode;
 }(Mode);
 
-defineProperty(VanDerWaalsMode, "id", 'VW');
+_defineProperty(VanDerWaalsMode, "id", 'VW');
 
 VanDerWaalsMode.prototype.id = 'VW';
 VanDerWaalsMode.prototype.name = 'Van der Waals';
 VanDerWaalsMode.prototype.shortName = 'VDW';
 VanDerWaalsMode.prototype.depGroups = ['AtomsSpheres'];
 
+function _createSuper$V(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$V(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$V() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var TraceMode = /*#__PURE__*/function (_Mode) {
-  inherits(TraceMode, _Mode);
+  _inherits(TraceMode, _Mode);
+
+  var _super = _createSuper$V(TraceMode);
 
   function TraceMode() {
-    classCallCheck(this, TraceMode);
+    _classCallCheck(this, TraceMode);
 
-    return possibleConstructorReturn(this, getPrototypeOf(TraceMode).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(TraceMode, [{
+  _createClass(TraceMode, [{
     key: "calcStickRadius",
     value: function calcStickRadius() {
       return this.opts.radius;
@@ -20245,23 +20761,29 @@ var TraceMode = /*#__PURE__*/function (_Mode) {
   return TraceMode;
 }(Mode);
 
-defineProperty(TraceMode, "id", 'TR');
+_defineProperty(TraceMode, "id", 'TR');
 
 TraceMode.prototype.id = 'TR';
 TraceMode.prototype.name = 'Trace';
 TraceMode.prototype.shortName = 'Trace';
 TraceMode.prototype.depGroups = ['TraceChains'];
 
+function _createSuper$U(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$U(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$U() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var TubeMode = /*#__PURE__*/function (_Mode) {
-  inherits(TubeMode, _Mode);
+  _inherits(TubeMode, _Mode);
+
+  var _super = _createSuper$U(TubeMode);
 
   function TubeMode() {
-    classCallCheck(this, TubeMode);
+    _classCallCheck(this, TubeMode);
 
-    return possibleConstructorReturn(this, getPrototypeOf(TubeMode).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(TubeMode, [{
+  _createClass(TubeMode, [{
     key: "getResidueRadius",
     value: function getResidueRadius(_residue) {
       return this.TUBE_RADIUS;
@@ -20280,7 +20802,7 @@ var TubeMode = /*#__PURE__*/function (_Mode) {
     key: "buildGeometry",
     value: function buildGeometry(complex, colorer, mask, material) {
       var rad = this.opts.radius;
-      this.TUBE_RADIUS = new Vector2(rad, rad);
+      this.TUBE_RADIUS = new THREE.Vector2(rad, rad);
       return Mode.prototype.buildGeometry.call(this, complex, colorer, mask, material);
     }
   }]);
@@ -20288,28 +20810,34 @@ var TubeMode = /*#__PURE__*/function (_Mode) {
   return TubeMode;
 }(Mode);
 
-defineProperty(TubeMode, "id", 'TU');
+_defineProperty(TubeMode, "id", 'TU');
 
 TubeMode.prototype.id = 'TU';
 TubeMode.prototype.name = 'Tube';
 TubeMode.prototype.shortName = 'Tube';
 TubeMode.prototype.depGroups = ['CartoonChains'];
 
+function _createSuper$T(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$T(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$T() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var CartoonMode = /*#__PURE__*/function (_Mode) {
-  inherits(CartoonMode, _Mode);
+  _inherits(CartoonMode, _Mode);
+
+  var _super = _createSuper$T(CartoonMode);
 
   function CartoonMode(opts) {
     var _this;
 
-    classCallCheck(this, CartoonMode);
+    _classCallCheck(this, CartoonMode);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(CartoonMode).call(this, opts)); // cache for secondary structure options
+    _this = _super.call(this, opts); // cache for secondary structure options
 
     _this.secCache = {};
     return _this;
   }
 
-  createClass(CartoonMode, [{
+  _createClass(CartoonMode, [{
     key: "getResidueStartRadius",
     value: function getResidueStartRadius(residue) {
       var second = residue.getSecondary();
@@ -20388,16 +20916,16 @@ var CartoonMode = /*#__PURE__*/function (_Mode) {
     value: function buildGeometry(complex, colorer, mask, material) {
       var tubeRad = this.opts.radius;
       var secHeight = this.opts.depth;
-      this.TUBE_RADIUS = new Vector2(tubeRad, tubeRad);
-      this.ARROW_END = new Vector2(secHeight, tubeRad);
+      this.TUBE_RADIUS = new THREE.Vector2(tubeRad, tubeRad);
+      this.ARROW_END = new THREE.Vector2(secHeight, tubeRad);
       var secCache = {};
       var secData = this.opts.ss;
       /* eslint-disable guard-for-in */
 
       for (var prop in secData) {
         secCache[prop] = {
-          center: new Vector2(secHeight, secData[prop].width),
-          start: new Vector2(secHeight, secData[prop].arrow)
+          center: new THREE.Vector2(secHeight, secData[prop].width),
+          start: new THREE.Vector2(secHeight, secData[prop].arrow)
         };
       }
 
@@ -20411,16 +20939,19 @@ var CartoonMode = /*#__PURE__*/function (_Mode) {
   return CartoonMode;
 }(Mode);
 
-defineProperty(CartoonMode, "id", 'CA');
+_defineProperty(CartoonMode, "id", 'CA');
 
 CartoonMode.prototype.id = 'CA';
 CartoonMode.prototype.name = 'Cartoon';
 CartoonMode.prototype.shortName = 'Cartoon';
 CartoonMode.prototype.depGroups = ['CartoonChains', 'NucleicSpheres', 'NucleicCylinders'];
 
-var selectors$1 = chem.selectors;
+function _createSuper$S(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$S(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function getRenderParams$1() {
+function _isNativeReflectConstruct$S() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var selectors$4 = chem.selectors;
+
+function getRenderParams() {
   return {
     wireframe: this.opts.wireframe,
     zClip: this.opts.zClip
@@ -20428,27 +20959,29 @@ function getRenderParams$1() {
 }
 
 var SurfaceMode = /*#__PURE__*/function (_Mode) {
-  inherits(SurfaceMode, _Mode);
+  _inherits(SurfaceMode, _Mode);
+
+  var _super = _createSuper$S(SurfaceMode);
 
   function SurfaceMode(opts) {
     var _this;
 
-    classCallCheck(this, SurfaceMode);
+    _classCallCheck(this, SurfaceMode);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(SurfaceMode).call(this, opts));
+    _this = _super.call(this, opts);
     _this.depGroups = _this.depGroups.slice(0); // clone depGroups to prevent prototype edits
 
     var surfaces = _this.surfaceNames;
     var groups = _this.depGroups;
 
     for (var i = 0, n = surfaces.length; i < n; ++i) {
-      groups[groups.length] = [surfaces[i], getRenderParams$1];
+      groups[groups.length] = [surfaces[i], getRenderParams];
     }
 
     return _this;
   }
 
-  createClass(SurfaceMode, [{
+  _createClass(SurfaceMode, [{
     key: "calcAtomRadius",
     value: function calcAtomRadius(atom) {
       return atom.element.radius;
@@ -20459,7 +20992,7 @@ var SurfaceMode = /*#__PURE__*/function (_Mode) {
       var visibilitySelector = null;
 
       if (this.opts.subset !== '') {
-        var res = selectors$1.parse(this.opts.subset);
+        var res = selectors$4.parse(this.opts.subset);
 
         if (!res.error) {
           visibilitySelector = res.selector;
@@ -20476,16 +21009,22 @@ var SurfaceMode = /*#__PURE__*/function (_Mode) {
 SurfaceMode.prototype.isSurface = true;
 SurfaceMode.prototype.surfaceNames = [];
 
+function _createSuper$R(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$R(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$R() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var QuickSurfaceMode = /*#__PURE__*/function (_SurfaceMode) {
-  inherits(QuickSurfaceMode, _SurfaceMode);
+  _inherits(QuickSurfaceMode, _SurfaceMode);
+
+  var _super = _createSuper$R(QuickSurfaceMode);
 
   function QuickSurfaceMode() {
-    classCallCheck(this, QuickSurfaceMode);
+    _classCallCheck(this, QuickSurfaceMode);
 
-    return possibleConstructorReturn(this, getPrototypeOf(QuickSurfaceMode).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(QuickSurfaceMode, [{
+  _createClass(QuickSurfaceMode, [{
     key: "getSurfaceOpts",
     value: function getSurfaceOpts() {
       return {
@@ -20503,27 +21042,33 @@ var QuickSurfaceMode = /*#__PURE__*/function (_SurfaceMode) {
   return QuickSurfaceMode;
 }(SurfaceMode);
 
-defineProperty(QuickSurfaceMode, "id", 'QS');
+_defineProperty(QuickSurfaceMode, "id", 'QS');
 
 QuickSurfaceMode.prototype.id = 'QS';
 QuickSurfaceMode.prototype.name = 'Quick Surface';
 QuickSurfaceMode.prototype.shortName = 'Quick Surf';
 QuickSurfaceMode.prototype.surfaceNames = ['QuickSurfGeo'];
 
+function _createSuper$Q(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$Q(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$Q() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var IsoSurfaceMode = /*#__PURE__*/function (_SurfaceMode) {
-  inherits(IsoSurfaceMode, _SurfaceMode);
+  _inherits(IsoSurfaceMode, _SurfaceMode);
+
+  var _super = _createSuper$Q(IsoSurfaceMode);
 
   function IsoSurfaceMode(excludeProbe, opts) {
     var _this;
 
-    classCallCheck(this, IsoSurfaceMode);
+    _classCallCheck(this, IsoSurfaceMode);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(IsoSurfaceMode).call(this, opts));
+    _this = _super.call(this, opts);
     _this._excludeProbe = excludeProbe;
     return _this;
   }
 
-  createClass(IsoSurfaceMode, [{
+  _createClass(IsoSurfaceMode, [{
     key: "calcAtomRadius",
     value: function calcAtomRadius(atom) {
       return atom.element.radius;
@@ -20552,52 +21097,70 @@ IsoSurfaceMode.prototype.surfaceNames = ['SASSESSurfaceGeo'];
 IsoSurfaceMode.prototype._radScale = 1;
 IsoSurfaceMode.prototype._excludeProbe = false;
 
+function _createSuper$P(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$P(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$P() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var IsoSurfaceSASMode = /*#__PURE__*/function (_IsoSurfaceMode) {
-  inherits(IsoSurfaceSASMode, _IsoSurfaceMode);
+  _inherits(IsoSurfaceSASMode, _IsoSurfaceMode);
+
+  var _super = _createSuper$P(IsoSurfaceSASMode);
 
   function IsoSurfaceSASMode(opts) {
-    classCallCheck(this, IsoSurfaceSASMode);
+    _classCallCheck(this, IsoSurfaceSASMode);
 
-    return possibleConstructorReturn(this, getPrototypeOf(IsoSurfaceSASMode).call(this, false, opts));
+    return _super.call(this, false, opts);
   }
 
   return IsoSurfaceSASMode;
 }(IsoSurfaceMode);
 
-defineProperty(IsoSurfaceSASMode, "id", 'SA');
+_defineProperty(IsoSurfaceSASMode, "id", 'SA');
 
 IsoSurfaceSASMode.prototype.id = 'SA';
 IsoSurfaceSASMode.prototype.name = 'Solvent Accessible Surface';
 IsoSurfaceSASMode.prototype.shortName = 'SAS';
 
+function _createSuper$O(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$O(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$O() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var IsoSurfaceSESMode = /*#__PURE__*/function (_IsoSurfaceMode) {
-  inherits(IsoSurfaceSESMode, _IsoSurfaceMode);
+  _inherits(IsoSurfaceSESMode, _IsoSurfaceMode);
+
+  var _super = _createSuper$O(IsoSurfaceSESMode);
 
   function IsoSurfaceSESMode(opts) {
-    classCallCheck(this, IsoSurfaceSESMode);
+    _classCallCheck(this, IsoSurfaceSESMode);
 
-    return possibleConstructorReturn(this, getPrototypeOf(IsoSurfaceSESMode).call(this, true, opts));
+    return _super.call(this, true, opts);
   }
 
   return IsoSurfaceSESMode;
 }(IsoSurfaceMode);
 
-defineProperty(IsoSurfaceSESMode, "id", 'SE');
+_defineProperty(IsoSurfaceSESMode, "id", 'SE');
 
 IsoSurfaceSESMode.prototype.id = 'SE';
 IsoSurfaceSESMode.prototype.name = 'Solvent Excluded Surface';
 IsoSurfaceSESMode.prototype.shortName = 'SES';
 
+function _createSuper$N(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$N(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$N() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var ContactSurfaceMode = /*#__PURE__*/function (_SurfaceMode) {
-  inherits(ContactSurfaceMode, _SurfaceMode);
+  _inherits(ContactSurfaceMode, _SurfaceMode);
+
+  var _super = _createSuper$N(ContactSurfaceMode);
 
   function ContactSurfaceMode() {
-    classCallCheck(this, ContactSurfaceMode);
+    _classCallCheck(this, ContactSurfaceMode);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ContactSurfaceMode).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(ContactSurfaceMode, [{
+  _createClass(ContactSurfaceMode, [{
     key: "getSurfaceOpts",
     value: function getSurfaceOpts() {
       return {
@@ -20616,7 +21179,7 @@ var ContactSurfaceMode = /*#__PURE__*/function (_SurfaceMode) {
   return ContactSurfaceMode;
 }(SurfaceMode);
 
-defineProperty(ContactSurfaceMode, "id", 'CS');
+_defineProperty(ContactSurfaceMode, "id", 'CS');
 
 ContactSurfaceMode.prototype.id = 'CS';
 ContactSurfaceMode.prototype.name = 'Contact Surface';
@@ -20624,16 +21187,22 @@ ContactSurfaceMode.prototype.shortName = 'Contact Surf';
 ContactSurfaceMode.prototype.isSurface = true;
 ContactSurfaceMode.prototype.surfaceNames = ['ContactSurfaceGeo'];
 
+function _createSuper$M(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$M(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$M() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var TextMode = /*#__PURE__*/function (_Mode) {
-  inherits(TextMode, _Mode);
+  _inherits(TextMode, _Mode);
+
+  var _super = _createSuper$M(TextMode);
 
   function TextMode() {
-    classCallCheck(this, TextMode);
+    _classCallCheck(this, TextMode);
 
-    return possibleConstructorReturn(this, getPrototypeOf(TextMode).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(TextMode, [{
+  _createClass(TextMode, [{
     key: "getTemplateOptions",
     value: function getTemplateOptions() {
       return this.opts.template;
@@ -20652,14 +21221,14 @@ var TextMode = /*#__PURE__*/function (_Mode) {
   return TextMode;
 }(Mode);
 
-defineProperty(TextMode, "id", 'TX');
+_defineProperty(TextMode, "id", 'TX');
 
 TextMode.prototype.id = 'TX';
 TextMode.prototype.name = 'Text mode';
 TextMode.prototype.shortName = 'Text';
 TextMode.prototype.depGroups = ['TextLabelsGeo'];
 
-var modes = new EntityList([LinesMode, LicoriceMode, BallsAndSticksMode, VanDerWaalsMode, TraceMode, TubeMode, CartoonMode, QuickSurfaceMode, IsoSurfaceSASMode, IsoSurfaceSESMode, ContactSurfaceMode, TextMode]);
+var modes$1 = new EntityList([LinesMode, LicoriceMode, BallsAndSticksMode, VanDerWaalsMode, TraceMode, TubeMode, CartoonMode, QuickSurfaceMode, IsoSurfaceSASMode, IsoSurfaceSESMode, ContactSurfaceMode, TextMode]);
 
 function clamp(x, a, b) {
   return x <= b ? x < 0 ? 0 : x : b;
@@ -20681,13 +21250,13 @@ function lerpColor(c1, c2, alpha) {
 
 var Palette = /*#__PURE__*/function () {
   function Palette(name, id) {
-    classCallCheck(this, Palette);
+    _classCallCheck(this, Palette);
 
     this.name = name || 'Custom';
     this.id = id || 'CP';
   }
 
-  createClass(Palette, [{
+  _createClass(Palette, [{
     key: "getElementColor",
     value: function getElementColor(name) {
       var asIs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
@@ -20811,16 +21380,16 @@ var _Palette$prototype = Palette.prototype,
     namedColors = _Palette$prototype.namedColors;
 
 for (var i = 0, length = namedColorsArray.length; i < length; ++i) {
-  var _namedColorsArray$i = slicedToArray(namedColorsArray[i], 2),
+  var _namedColorsArray$i = _slicedToArray(namedColorsArray[i], 2),
       name = _namedColorsArray$i[0],
       value = _namedColorsArray$i[1];
 
   namedColors[name] = value;
 }
 
-var palette = new Palette('CPK', 'CP'); // DO NOT EDIT MANUALLY! Autogenerated from atom_types.csv by atom_types.py.
+var palette$2 = new Palette('CPK', 'CP'); // DO NOT EDIT MANUALLY! Autogenerated from atom_types.csv by atom_types.py.
 
-palette.elementColors = {
+palette$2.elementColors = {
   /* eslint-disable no-magic-numbers */
   H: 0xFFFFFF,
   C: 0x202020,
@@ -20840,7 +21409,7 @@ palette.elementColors = {
 
 };
 
-var _palette$secondaryCol;
+var _palette$secondaryCol$1;
 var palette$1 = new Palette('Jmol', 'JM');
 palette$1.colors = [
 /* eslint-disable no-magic-numbers */
@@ -21057,12 +21626,12 @@ palette$1.chainColors = [// ' '->0 'A'->1, 'B'->2
 0xFFB8860B, // darkgoldenrod
 0xFFB22222 // firebrick
 ];
-var StructuralElementType$3 = StructuralElement.Type;
-palette$1.secondaryColors = (_palette$secondaryCol = {}, defineProperty(_palette$secondaryCol, StructuralElementType$3.HELIX_ALPHA, 0xFF0080), defineProperty(_palette$secondaryCol, StructuralElementType$3.HELIX_PI, 0x600080), defineProperty(_palette$secondaryCol, StructuralElementType$3.HELIX_310, 0xA00080), defineProperty(_palette$secondaryCol, StructuralElementType$3.STRAND, 0xFFC800), defineProperty(_palette$secondaryCol, StructuralElementType$3.TURN, 0x6080FF), defineProperty(_palette$secondaryCol, "dna", 0xAE00FE), defineProperty(_palette$secondaryCol, "rna", 0xFD0162), _palette$secondaryCol);
+var StructuralElementType$2 = StructuralElement.Type;
+palette$1.secondaryColors = (_palette$secondaryCol$1 = {}, _defineProperty(_palette$secondaryCol$1, StructuralElementType$2.HELIX_ALPHA, 0xFF0080), _defineProperty(_palette$secondaryCol$1, StructuralElementType$2.HELIX_PI, 0x600080), _defineProperty(_palette$secondaryCol$1, StructuralElementType$2.HELIX_310, 0xA00080), _defineProperty(_palette$secondaryCol$1, StructuralElementType$2.STRAND, 0xFFC800), _defineProperty(_palette$secondaryCol$1, StructuralElementType$2.TURN, 0x6080FF), _defineProperty(_palette$secondaryCol$1, "dna", 0xAE00FE), _defineProperty(_palette$secondaryCol$1, "rna", 0xFD0162), _palette$secondaryCol$1);
 
-var _palette$secondaryCol$1;
-var palette$2 = new Palette('VMD', 'VM');
-palette$2.colors = [
+var _palette$secondaryCol;
+var palette = new Palette('VMD', 'VM');
+palette.colors = [
 /* eslint-disable no-magic-numbers */
 0x0000FF, // blue
 0xFF0000, // red
@@ -21083,9 +21652,9 @@ palette$2.colors = [
 
 /* eslint-enable no-magic-numbers */
 ];
-palette$2.defaultElementColor = 0x804D00; // DO NOT EDIT MANUALLY! Autogenerated from atom_types.csv by atom_types.py.
+palette.defaultElementColor = 0x804D00; // DO NOT EDIT MANUALLY! Autogenerated from atom_types.csv by atom_types.py.
 
-palette$2.elementColors = {
+palette.elementColors = {
   /* eslint-disable no-magic-numbers */
   H: 0xFFFFFF,
   C: 0x40BFBF,
@@ -21096,9 +21665,9 @@ palette$2.elementColors = {
   /* eslint-enable no-magic-numbers */
 
 };
-palette$2.defaultResidueColor = 0x40C0C0; // DO NOT EDIT MANUALLY! Autogenerated from residue_types.csv by residue_types.py.
+palette.defaultResidueColor = 0x40C0C0; // DO NOT EDIT MANUALLY! Autogenerated from residue_types.csv by residue_types.py.
 
-palette$2.residueColors = {
+palette.residueColors = {
   /* eslint-disable no-magic-numbers */
   ALA: 0x0000FF,
   ARG: 0xFFFFFF,
@@ -21141,11 +21710,11 @@ palette$2.residueColors = {
   /* eslint-enable no-magic-numbers */
 
 };
-palette$2.chainColors = [0xFFFFFF].concat(palette$2.colors);
-var StructuralElementType$4 = StructuralElement.Type;
-palette$2.secondaryColors = (_palette$secondaryCol$1 = {}, defineProperty(_palette$secondaryCol$1, StructuralElementType$4.HELIX_ALPHA, 0xA600A6), defineProperty(_palette$secondaryCol$1, StructuralElementType$4.HELIX_310, 0x0000FF), defineProperty(_palette$secondaryCol$1, StructuralElementType$4.HELIX_PI, 0xFF0000), defineProperty(_palette$secondaryCol$1, StructuralElementType$4.STRAND, 0xFFFF00), defineProperty(_palette$secondaryCol$1, StructuralElementType$4.BRIDGE, 0x808033), defineProperty(_palette$secondaryCol$1, StructuralElementType$4.TURN, 0x40C0C0), _palette$secondaryCol$1);
+palette.chainColors = [0xFFFFFF].concat(palette.colors);
+var StructuralElementType$1 = StructuralElement.Type;
+palette.secondaryColors = (_palette$secondaryCol = {}, _defineProperty(_palette$secondaryCol, StructuralElementType$1.HELIX_ALPHA, 0xA600A6), _defineProperty(_palette$secondaryCol, StructuralElementType$1.HELIX_310, 0x0000FF), _defineProperty(_palette$secondaryCol, StructuralElementType$1.HELIX_PI, 0xFF0000), _defineProperty(_palette$secondaryCol, StructuralElementType$1.STRAND, 0xFFFF00), _defineProperty(_palette$secondaryCol, StructuralElementType$1.BRIDGE, 0x808033), _defineProperty(_palette$secondaryCol, StructuralElementType$1.TURN, 0x40C0C0), _palette$secondaryCol);
 
-var palettes = new EntityList([palette, palette$1, palette$2]);
+var palettes$1 = new EntityList([palette$2, palette$1, palette]);
 
 /**
  * Create new colorer.
@@ -21164,7 +21733,7 @@ var palettes = new EntityList([palette, palette$1, palette$2]);
 
 var Colorer = /*#__PURE__*/function () {
   function Colorer(opts) {
-    classCallCheck(this, Colorer);
+    _classCallCheck(this, Colorer);
 
     if (this.constructor === Colorer) {
       throw new Error('Can not instantiate abstract class!');
@@ -21175,13 +21744,13 @@ var Colorer = /*#__PURE__*/function () {
      */
 
 
-    this.opts = _.merge(utils.deriveDeep(settings.now.colorers[this.id], true), opts);
+    this.opts = _.merge(utils.deriveDeep(settings$1.now.colorers[this.id], true), opts);
     /**
      * Palette in use.
      * @type {Palette}
      */
 
-    this.palette = palettes.first;
+    this.palette = palettes$1.first;
   }
   /**
    * Get Colorer identification, probably with options.
@@ -21191,10 +21760,10 @@ var Colorer = /*#__PURE__*/function () {
    */
 
 
-  createClass(Colorer, [{
+  _createClass(Colorer, [{
     key: "identify",
     value: function identify() {
-      var diff = utils.objectsDiff(this.opts, settings.now.colorers[this.id]);
+      var diff = utils.objectsDiff(this.opts, settings$1.now.colorers[this.id]);
 
       if (!_.isEmpty(diff)) {
         return [this.id, diff];
@@ -21214,6 +21783,9 @@ var Colorer = /*#__PURE__*/function () {
 
 Colorer.prototype.id = '__';
 
+function _createSuper$L(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$L(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$L() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * Create new colorer.
  *
@@ -21228,15 +21800,17 @@ Colorer.prototype.id = '__';
  */
 
 var ElementColorer = /*#__PURE__*/function (_Colorer) {
-  inherits(ElementColorer, _Colorer);
+  _inherits(ElementColorer, _Colorer);
+
+  var _super = _createSuper$L(ElementColorer);
 
   function ElementColorer() {
-    classCallCheck(this, ElementColorer);
+    _classCallCheck(this, ElementColorer);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ElementColorer).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(ElementColorer, [{
+  _createClass(ElementColorer, [{
     key: "getAtomColor",
     value: function getAtomColor(atom, _complex) {
       var type = atom.element.name;
@@ -21257,12 +21831,15 @@ var ElementColorer = /*#__PURE__*/function (_Colorer) {
   return ElementColorer;
 }(Colorer);
 
-defineProperty(ElementColorer, "id", 'EL');
+_defineProperty(ElementColorer, "id", 'EL');
 
 ElementColorer.prototype.id = 'EL';
 ElementColorer.prototype.name = 'Element';
 ElementColorer.prototype.shortName = 'Element';
 
+function _createSuper$K(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$K(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$K() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * Coloring algorithm based on residue type.
  *
@@ -21273,15 +21850,17 @@ ElementColorer.prototype.shortName = 'Element';
  */
 
 var ResidueTypeColorer = /*#__PURE__*/function (_Colorer) {
-  inherits(ResidueTypeColorer, _Colorer);
+  _inherits(ResidueTypeColorer, _Colorer);
+
+  var _super = _createSuper$K(ResidueTypeColorer);
 
   function ResidueTypeColorer() {
-    classCallCheck(this, ResidueTypeColorer);
+    _classCallCheck(this, ResidueTypeColorer);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ResidueTypeColorer).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(ResidueTypeColorer, [{
+  _createClass(ResidueTypeColorer, [{
     key: "getAtomColor",
     value: function getAtomColor(atom, complex) {
       return this.getResidueColor(atom.residue, complex);
@@ -21296,22 +21875,28 @@ var ResidueTypeColorer = /*#__PURE__*/function (_Colorer) {
   return ResidueTypeColorer;
 }(Colorer);
 
-defineProperty(ResidueTypeColorer, "id", 'RT');
+_defineProperty(ResidueTypeColorer, "id", 'RT');
 
 ResidueTypeColorer.prototype.id = 'RT';
 ResidueTypeColorer.prototype.name = 'Residue Type';
 ResidueTypeColorer.prototype.shortName = 'Residue';
 
+function _createSuper$J(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$J(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$J() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var SequenceColorer = /*#__PURE__*/function (_Colorer) {
-  inherits(SequenceColorer, _Colorer);
+  _inherits(SequenceColorer, _Colorer);
+
+  var _super = _createSuper$J(SequenceColorer);
 
   function SequenceColorer() {
-    classCallCheck(this, SequenceColorer);
+    _classCallCheck(this, SequenceColorer);
 
-    return possibleConstructorReturn(this, getPrototypeOf(SequenceColorer).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(SequenceColorer, [{
+  _createClass(SequenceColorer, [{
     key: "getAtomColor",
     value: function getAtomColor(atom, complex) {
       return this.getResidueColor(atom.residue, complex);
@@ -21334,22 +21919,28 @@ var SequenceColorer = /*#__PURE__*/function (_Colorer) {
   return SequenceColorer;
 }(Colorer);
 
-defineProperty(SequenceColorer, "id", 'SQ');
+_defineProperty(SequenceColorer, "id", 'SQ');
 
 SequenceColorer.prototype.id = 'SQ';
 SequenceColorer.prototype.name = 'Sequence';
 SequenceColorer.prototype.shortName = 'Sequence';
 
+function _createSuper$I(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$I(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$I() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var ChainColorer = /*#__PURE__*/function (_Colorer) {
-  inherits(ChainColorer, _Colorer);
+  _inherits(ChainColorer, _Colorer);
+
+  var _super = _createSuper$I(ChainColorer);
 
   function ChainColorer() {
-    classCallCheck(this, ChainColorer);
+    _classCallCheck(this, ChainColorer);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ChainColorer).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(ChainColorer, [{
+  _createClass(ChainColorer, [{
     key: "getAtomColor",
     value: function getAtomColor(atom, complex) {
       return this.getResidueColor(atom.residue, complex);
@@ -21364,22 +21955,28 @@ var ChainColorer = /*#__PURE__*/function (_Colorer) {
   return ChainColorer;
 }(Colorer);
 
-defineProperty(ChainColorer, "id", 'CH');
+_defineProperty(ChainColorer, "id", 'CH');
 
 ChainColorer.prototype.id = 'CH';
 ChainColorer.prototype.name = 'Chain';
 ChainColorer.prototype.shortName = 'Chain';
 
+function _createSuper$H(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$H(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$H() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var SecondaryStructureColorer = /*#__PURE__*/function (_Colorer) {
-  inherits(SecondaryStructureColorer, _Colorer);
+  _inherits(SecondaryStructureColorer, _Colorer);
+
+  var _super = _createSuper$H(SecondaryStructureColorer);
 
   function SecondaryStructureColorer() {
-    classCallCheck(this, SecondaryStructureColorer);
+    _classCallCheck(this, SecondaryStructureColorer);
 
-    return possibleConstructorReturn(this, getPrototypeOf(SecondaryStructureColorer).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(SecondaryStructureColorer, [{
+  _createClass(SecondaryStructureColorer, [{
     key: "getAtomColor",
     value: function getAtomColor(atom, complex) {
       return this.getResidueColor(atom.residue, complex);
@@ -21387,11 +21984,11 @@ var SecondaryStructureColorer = /*#__PURE__*/function (_Colorer) {
   }, {
     key: "getResidueColor",
     value: function getResidueColor(residue, _complex) {
-      if (residue._type.flags & ResidueType.Flags.DNA) {
+      if (residue._type.flags & ResidueType$1.Flags.DNA) {
         return this.palette.getSecondaryColor('dna');
       }
 
-      if (residue._type.flags & ResidueType.Flags.RNA) {
+      if (residue._type.flags & ResidueType$1.Flags.RNA) {
         return this.palette.getSecondaryColor('rna');
       }
 
@@ -21414,22 +22011,28 @@ var SecondaryStructureColorer = /*#__PURE__*/function (_Colorer) {
   return SecondaryStructureColorer;
 }(Colorer);
 
-defineProperty(SecondaryStructureColorer, "id", 'SS');
+_defineProperty(SecondaryStructureColorer, "id", 'SS');
 
 SecondaryStructureColorer.prototype.id = 'SS';
 SecondaryStructureColorer.prototype.name = 'Secondary Structure';
 SecondaryStructureColorer.prototype.shortName = 'Structure';
 
+function _createSuper$G(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$G(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$G() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var UniformColorer = /*#__PURE__*/function (_Colorer) {
-  inherits(UniformColorer, _Colorer);
+  _inherits(UniformColorer, _Colorer);
+
+  var _super = _createSuper$G(UniformColorer);
 
   function UniformColorer() {
-    classCallCheck(this, UniformColorer);
+    _classCallCheck(this, UniformColorer);
 
-    return possibleConstructorReturn(this, getPrototypeOf(UniformColorer).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(UniformColorer, [{
+  _createClass(UniformColorer, [{
     key: "getAtomColor",
     value: function getAtomColor(_atom, _complex) {
       return this.opts.color;
@@ -21444,12 +22047,15 @@ var UniformColorer = /*#__PURE__*/function (_Colorer) {
   return UniformColorer;
 }(Colorer);
 
-defineProperty(UniformColorer, "id", 'UN');
+_defineProperty(UniformColorer, "id", 'UN');
 
 UniformColorer.prototype.id = 'UN';
 UniformColorer.prototype.name = 'Uniform';
 UniformColorer.prototype.shortName = 'Uniform';
 
+function _createSuper$F(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$F(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$F() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * Create new colorer.
  *
@@ -21462,20 +22068,22 @@ UniformColorer.prototype.shortName = 'Uniform';
  */
 
 var ConditionalColorer = /*#__PURE__*/function (_Colorer) {
-  inherits(ConditionalColorer, _Colorer);
+  _inherits(ConditionalColorer, _Colorer);
+
+  var _super = _createSuper$F(ConditionalColorer);
 
   function ConditionalColorer(opts) {
     var _this;
 
-    classCallCheck(this, ConditionalColorer);
+    _classCallCheck(this, ConditionalColorer);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(ConditionalColorer).call(this, opts));
-    var parsed = selectors.parse(_this.opts.subset);
-    _this._subsetCached = parsed.error ? selectors.none() : parsed.selector;
+    _this = _super.call(this, opts);
+    var parsed = selectors$5.parse(_this.opts.subset);
+    _this._subsetCached = parsed.error ? selectors$5.none() : parsed.selector;
     return _this;
   }
 
-  createClass(ConditionalColorer, [{
+  _createClass(ConditionalColorer, [{
     key: "getAtomColor",
     value: function getAtomColor(atom, _complex) {
       return this._subsetCached.includesAtom(atom) ? this.opts.color : this.opts.baseColor;
@@ -21498,22 +22106,28 @@ var ConditionalColorer = /*#__PURE__*/function (_Colorer) {
   return ConditionalColorer;
 }(Colorer);
 
-defineProperty(ConditionalColorer, "id", 'CO');
+_defineProperty(ConditionalColorer, "id", 'CO');
 
 ConditionalColorer.prototype.id = 'CO';
 ConditionalColorer.prototype.name = 'Conditional';
 ConditionalColorer.prototype.shortName = 'Conditional';
 
+function _createSuper$E(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$E(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$E() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var ConformationColorer = /*#__PURE__*/function (_Colorer) {
-  inherits(ConformationColorer, _Colorer);
+  _inherits(ConformationColorer, _Colorer);
+
+  var _super = _createSuper$E(ConformationColorer);
 
   function ConformationColorer() {
-    classCallCheck(this, ConformationColorer);
+    _classCallCheck(this, ConformationColorer);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ConformationColorer).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(ConformationColorer, [{
+  _createClass(ConformationColorer, [{
     key: "getAtomColor",
     value: function getAtomColor(atom, _complex) {
       return this.palette.getChainColor(String.fromCharCode(atom.location));
@@ -21528,12 +22142,15 @@ var ConformationColorer = /*#__PURE__*/function (_Colorer) {
   return ConformationColorer;
 }(Colorer);
 
-defineProperty(ConformationColorer, "id", 'CF');
+_defineProperty(ConformationColorer, "id", 'CF');
 
 ConformationColorer.prototype.id = 'CF';
 ConformationColorer.prototype.name = 'Conformation';
 ConformationColorer.prototype.shortName = 'Conformation';
 
+function _createSuper$D(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$D(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$D() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * Create new colorer.
  *
@@ -21548,15 +22165,17 @@ ConformationColorer.prototype.shortName = 'Conformation';
  */
 
 var TemperatureColorer = /*#__PURE__*/function (_Colorer) {
-  inherits(TemperatureColorer, _Colorer);
+  _inherits(TemperatureColorer, _Colorer);
+
+  var _super = _createSuper$D(TemperatureColorer);
 
   function TemperatureColorer() {
-    classCallCheck(this, TemperatureColorer);
+    _classCallCheck(this, TemperatureColorer);
 
-    return possibleConstructorReturn(this, getPrototypeOf(TemperatureColorer).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(TemperatureColorer, [{
+  _createClass(TemperatureColorer, [{
     key: "getAtomColor",
     value: function getAtomColor(atom, _complex) {
       var opts = this.opts;
@@ -21602,13 +22221,16 @@ var TemperatureColorer = /*#__PURE__*/function (_Colorer) {
   return TemperatureColorer;
 }(Colorer);
 
-defineProperty(TemperatureColorer, "id", 'TM');
+_defineProperty(TemperatureColorer, "id", 'TM');
 
 TemperatureColorer.prototype.id = 'TM'; // [T]e[M]perature
 
 TemperatureColorer.prototype.name = 'Temperature';
 TemperatureColorer.prototype.shortName = 'Temperature';
 
+function _createSuper$C(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$C(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$C() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * Create new colorer.
  *
@@ -21623,15 +22245,17 @@ TemperatureColorer.prototype.shortName = 'Temperature';
  */
 
 var OccupancyColorer = /*#__PURE__*/function (_Colorer) {
-  inherits(OccupancyColorer, _Colorer);
+  _inherits(OccupancyColorer, _Colorer);
+
+  var _super = _createSuper$C(OccupancyColorer);
 
   function OccupancyColorer() {
-    classCallCheck(this, OccupancyColorer);
+    _classCallCheck(this, OccupancyColorer);
 
-    return possibleConstructorReturn(this, getPrototypeOf(OccupancyColorer).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(OccupancyColorer, [{
+  _createClass(OccupancyColorer, [{
     key: "getAtomColor",
     value: function getAtomColor(atom, _complex) {
       var opts = this.opts;
@@ -21664,23 +22288,29 @@ var OccupancyColorer = /*#__PURE__*/function (_Colorer) {
   return OccupancyColorer;
 }(Colorer);
 
-defineProperty(OccupancyColorer, "id", 'OC');
+_defineProperty(OccupancyColorer, "id", 'OC');
 
 OccupancyColorer.prototype.id = 'OC'; // [OC]cupancy
 
 OccupancyColorer.prototype.name = 'Occupancy';
 OccupancyColorer.prototype.shortName = 'Occupancy';
 
+function _createSuper$B(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$B(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$B() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var HydrophobicityColorer = /*#__PURE__*/function (_Colorer) {
-  inherits(HydrophobicityColorer, _Colorer);
+  _inherits(HydrophobicityColorer, _Colorer);
+
+  var _super = _createSuper$B(HydrophobicityColorer);
 
   function HydrophobicityColorer() {
-    classCallCheck(this, HydrophobicityColorer);
+    _classCallCheck(this, HydrophobicityColorer);
 
-    return possibleConstructorReturn(this, getPrototypeOf(HydrophobicityColorer).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(HydrophobicityColorer, [{
+  _createClass(HydrophobicityColorer, [{
     key: "getAtomColor",
     value: function getAtomColor(atom, complex) {
       return this.getResidueColor(atom.residue, complex);
@@ -21704,22 +22334,28 @@ var HydrophobicityColorer = /*#__PURE__*/function (_Colorer) {
   return HydrophobicityColorer;
 }(Colorer);
 
-defineProperty(HydrophobicityColorer, "id", 'HY');
+_defineProperty(HydrophobicityColorer, "id", 'HY');
 
 HydrophobicityColorer.prototype.id = 'HY';
 HydrophobicityColorer.prototype.name = 'Hydrophobicity';
 HydrophobicityColorer.prototype.shortName = 'Hydrophobicity';
 
+function _createSuper$A(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$A(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$A() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var MoleculeColorer = /*#__PURE__*/function (_Colorer) {
-  inherits(MoleculeColorer, _Colorer);
+  _inherits(MoleculeColorer, _Colorer);
+
+  var _super = _createSuper$A(MoleculeColorer);
 
   function MoleculeColorer() {
-    classCallCheck(this, MoleculeColorer);
+    _classCallCheck(this, MoleculeColorer);
 
-    return possibleConstructorReturn(this, getPrototypeOf(MoleculeColorer).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(MoleculeColorer, [{
+  _createClass(MoleculeColorer, [{
     key: "getAtomColor",
     value: function getAtomColor(atom, complex) {
       return this.getResidueColor(atom.residue, complex);
@@ -21742,11 +22378,15 @@ var MoleculeColorer = /*#__PURE__*/function (_Colorer) {
   return MoleculeColorer;
 }(Colorer);
 
-defineProperty(MoleculeColorer, "id", 'MO');
+_defineProperty(MoleculeColorer, "id", 'MO');
 
 MoleculeColorer.prototype.id = 'MO';
 MoleculeColorer.prototype.name = 'Molecule';
 MoleculeColorer.prototype.shortName = 'Molecule';
+
+function _createSuper$z(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$z(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$z() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function scaleColor(c, factor) {
   var r1 = c >> 16 & 0xff;
@@ -21770,20 +22410,22 @@ function scaleColor(c, factor) {
 
 
 var CarbonColorer = /*#__PURE__*/function (_Colorer) {
-  inherits(CarbonColorer, _Colorer);
+  _inherits(CarbonColorer, _Colorer);
+
+  var _super = _createSuper$z(CarbonColorer);
 
   function CarbonColorer() {
-    classCallCheck(this, CarbonColorer);
+    _classCallCheck(this, CarbonColorer);
 
-    return possibleConstructorReturn(this, getPrototypeOf(CarbonColorer).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(CarbonColorer, [{
+  _createClass(CarbonColorer, [{
     key: "getAtomColor",
     value: function getAtomColor(atom, _complex) {
       var colorCarbon = this.opts.color;
       var colorNotCarbon = scaleColor(colorCarbon, this.opts.factor);
-      return atom.flags & Atom.Flags.CARBON ? colorCarbon : colorNotCarbon;
+      return atom.flags & Atom$2.Flags.CARBON ? colorCarbon : colorNotCarbon;
     }
   }, {
     key: "getResidueColor",
@@ -21795,16 +22437,16 @@ var CarbonColorer = /*#__PURE__*/function (_Colorer) {
   return CarbonColorer;
 }(Colorer);
 
-defineProperty(CarbonColorer, "id", 'CB');
+_defineProperty(CarbonColorer, "id", 'CB');
 
 CarbonColorer.prototype.id = 'CB';
 CarbonColorer.prototype.name = 'Carbon';
 CarbonColorer.prototype.shortName = 'Carbon';
 
-var colorers = new EntityList([ElementColorer, ResidueTypeColorer, SequenceColorer, ChainColorer, SecondaryStructureColorer, UniformColorer, ConditionalColorer, ConformationColorer, TemperatureColorer, OccupancyColorer, HydrophobicityColorer, MoleculeColorer, CarbonColorer]);
+var colorers$1 = new EntityList([ElementColorer, ResidueTypeColorer, SequenceColorer, ChainColorer, SecondaryStructureColorer, UniformColorer, ConditionalColorer, ConformationColorer, TemperatureColorer, OccupancyColorer, HydrophobicityColorer, MoleculeColorer, CarbonColorer]);
 
 function neutralColor(intensity) {
-  return new Color(intensity, intensity, intensity);
+  return new THREE.Color(intensity, intensity, intensity);
 }
 
 var materialList = [{
@@ -21935,8 +22577,8 @@ var materialList = [{
     specular: neutralColor(0.0),
     shininess: 1,
     opacity: 1.0,
-    toonBorder: new Vector3(0.35, 0.7, 1.0),
-    toonRange: new Vector2(0.2, 0.75)
+    toonBorder: new THREE.Vector3(0.35, 0.7, 1.0),
+    toonRange: new THREE.Vector2(0.2, 0.75)
   },
   values: {
     lights: true,
@@ -21962,19 +22604,19 @@ var materialList = [{
     transparent: false
   }
 }];
-var materials = new EntityList(materialList);
+var materials$1 = new EntityList(materialList);
 
-var selectors$2 = chem.selectors;
+var selectors$3 = chem.selectors;
 
 var Representation = /*#__PURE__*/function () {
   function Representation(index, mode, colorer, selector) {
-    classCallCheck(this, Representation);
+    _classCallCheck(this, Representation);
 
     var startMaterialValues = {
-      clipPlane: settings.now.draft.clipPlane,
-      fogTransparent: settings.now.bg.transparent,
-      shadowmap: settings.now.shadow.on,
-      shadowmapType: settings.now.shadow.type
+      clipPlane: settings$1.now.draft.clipPlane,
+      fogTransparent: settings$1.now.bg.transparent,
+      shadowmap: settings$1.now.shadow.on,
+      shadowmapType: settings$1.now.shadow.type
     };
     this.index = index;
     this.mode = mode;
@@ -21985,16 +22627,16 @@ var Representation = /*#__PURE__*/function () {
     this.material = new UberMaterial();
     this.material.setValues(startMaterialValues);
     this.material.setUberOptions({
-      fogAlpha: settings.now.fogAlpha
+      fogAlpha: settings$1.now.fogAlpha
     });
-    this.materialPreset = materials.first;
+    this.materialPreset = materials$1.first;
     this.needsRebuild = true;
     this.visible = true; // apply mode params & preset
 
     this.setMode(mode);
   }
 
-  createClass(Representation, [{
+  _createClass(Representation, [{
     key: "markAtoms",
     value: function markAtoms(complex) {
       this.count = complex.markAtoms(this.selector, 1 << this.index);
@@ -22031,15 +22673,15 @@ var Representation = /*#__PURE__*/function () {
       this.reset();
       this.needsRebuild = false;
 
-      if (settings.now.ao) {
+      if (settings$1.now.ao) {
         this.material.setValues({
-          normalsToGBuffer: settings.now.ao
+          normalsToGBuffer: settings$1.now.ao
         });
       }
 
       this.geo = this.mode.buildGeometry(complex, this.colorer, 1 << this.index, this.material);
 
-      if (this.material.uberOptions.opacity < 0.99 && settings.now.transparency === 'prepass') {
+      if (this.material.uberOptions.opacity < 0.99 && settings$1.now.transparency === 'prepass') {
         gfxutils.processTransparentMaterial(this.geo, this.material);
       }
 
@@ -22047,7 +22689,7 @@ var Representation = /*#__PURE__*/function () {
       gfxutils.processObjRenderOrder(this.geo, this.materialPreset.id);
       gfxutils.processColFromPosMaterial(this.geo, this.material);
 
-      if (settings.now.shadow.on) {
+      if (settings$1.now.shadow.on) {
         gfxutils.createShadowmapMaterial(this.geo, this.material);
       }
 
@@ -22062,7 +22704,7 @@ var Representation = /*#__PURE__*/function () {
         var meshes = this.geo.getSubset(mask);
 
         if (meshes && meshes.length > 0) {
-          sg = new Group();
+          sg = new THREE.Group();
           sg.matrixAutoUpdate = false;
           sg.matrix = this.geo.matrix;
 
@@ -22123,7 +22765,7 @@ var Representation = /*#__PURE__*/function () {
       var diff = {}; // modify selector
 
       if (repSettings.selector) {
-        var newSelectorObject = selectors$2.parse(repSettings.selector).selector;
+        var newSelectorObject = selectors$3.parse(repSettings.selector).selector;
         var newSelector = String(newSelectorObject);
 
         if (this.selectorString !== newSelector) {
@@ -22160,7 +22802,7 @@ var Representation = /*#__PURE__*/function () {
 
         if (!_.isEqual(this.materialPreset.id, newMaterial)) {
           diff.material = newMaterial;
-          this.setMaterialPreset(materials.get(repSettings.material));
+          this.setMaterialPreset(materials$1.get(repSettings.material));
         }
       }
 
@@ -22183,6 +22825,10 @@ var Representation = /*#__PURE__*/function () {
 
   return Representation;
 }();
+
+function _createSuper$y(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$y(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$y() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _traverseComponentGroups(root, component, callback) {
   var children = root.children;
@@ -22207,20 +22853,22 @@ function _traverseComponentGroups(root, component, callback) {
 function ComplexEditor() {}
 
 var ComplexComponentEditor = /*#__PURE__*/function (_ComplexEditor) {
-  inherits(ComplexComponentEditor, _ComplexEditor);
+  _inherits(ComplexComponentEditor, _ComplexEditor);
+
+  var _super = _createSuper$y(ComplexComponentEditor);
 
   function ComplexComponentEditor(complexVisual) {
     var _this;
 
-    classCallCheck(this, ComplexComponentEditor);
+    _classCallCheck(this, ComplexComponentEditor);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(ComplexComponentEditor).call(this));
+    _this = _super.call(this);
     _this._complexVisual = complexVisual;
     _this._inProgress = false;
     return _this;
   }
 
-  createClass(ComplexComponentEditor, [{
+  _createClass(ComplexComponentEditor, [{
     key: "begin",
     value: function begin() {
       var complex = this._complexVisual.getComplex(); // init component matrices
@@ -22230,7 +22878,7 @@ var ComplexComponentEditor = /*#__PURE__*/function (_ComplexEditor) {
 
       for (var i = 0; i < complex._components.length; ++i) {
         var component = complex._components[i];
-        this._componentTransforms[component._index] = new Object3D();
+        this._componentTransforms[component._index] = new THREE.Object3D();
       }
 
       this._inProgress = true;
@@ -22271,7 +22919,7 @@ var ComplexComponentEditor = /*#__PURE__*/function (_ComplexEditor) {
     value: function getAltObj() {
       var res = {
         objects: [],
-        pivot: new Vector3(0, 0, 0)
+        pivot: new THREE.Vector3(0, 0, 0)
       };
       var visual = this._complexVisual;
       var component = visual.getSelectedComponent();
@@ -22307,8 +22955,8 @@ var ComplexComponentEditor = /*#__PURE__*/function (_ComplexEditor) {
 
 
       res.objects.push(this._componentTransforms[component._index]);
-      var bbmin = new Vector3(Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE);
-      var bbmax = new Vector3(-Number.MAX_VALUE, -Number.MAX_VALUE, -Number.MAX_VALUE);
+      var bbmin = new THREE.Vector3(Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE);
+      var bbmax = new THREE.Vector3(-Number.MAX_VALUE, -Number.MAX_VALUE, -Number.MAX_VALUE);
       component.forEachResidue(function (residue) {
         var atoms = residue._atoms;
 
@@ -22390,20 +23038,22 @@ var ComplexComponentEditor = /*#__PURE__*/function (_ComplexEditor) {
 }(ComplexEditor);
 
 var ComplexFragmentEditor = /*#__PURE__*/function (_ComplexEditor2) {
-  inherits(ComplexFragmentEditor, _ComplexEditor2);
+  _inherits(ComplexFragmentEditor, _ComplexEditor2);
+
+  var _super2 = _createSuper$y(ComplexFragmentEditor);
 
   function ComplexFragmentEditor(complexVisual) {
     var _this2;
 
-    classCallCheck(this, ComplexFragmentEditor);
+    _classCallCheck(this, ComplexFragmentEditor);
 
-    _this2 = possibleConstructorReturn(this, getPrototypeOf(ComplexFragmentEditor).call(this));
+    _this2 = _super2.call(this);
     _this2._complexVisual = complexVisual;
     _this2._inProgress = false;
     return _this2;
   }
 
-  createClass(ComplexFragmentEditor, [{
+  _createClass(ComplexFragmentEditor, [{
     key: "begin",
     value: function begin() {
       var visual = this._complexVisual;
@@ -22433,12 +23083,12 @@ var ComplexFragmentEditor = /*#__PURE__*/function (_ComplexEditor2) {
         pivotPos.lerp(atoms[1].position, 0.5);
       }
 
-      this._fragmentGeo = new Group();
+      this._fragmentGeo = new THREE.Group();
       visual.add(this._fragmentGeo);
 
       this._fragmentGeo.position.copy(pivotPos);
 
-      this._fragmentSelectionGeo = new Group();
+      this._fragmentSelectionGeo = new THREE.Group();
       selection.add(this._fragmentSelectionGeo);
 
       this._fragmentSelectionGeo.position.copy(pivotPos);
@@ -22453,11 +23103,11 @@ var ComplexFragmentEditor = /*#__PURE__*/function (_ComplexEditor2) {
           continue;
         }
 
-        var vg = new Group();
+        var vg = new THREE.Group();
 
         this._fragmentGeo.add(vg);
 
-        var sg = new Group();
+        var sg = new THREE.Group();
 
         this._fragmentSelectionGeo.add(sg);
 
@@ -22495,7 +23145,7 @@ var ComplexFragmentEditor = /*#__PURE__*/function (_ComplexEditor2) {
 
       var m = this._fragmentGeo.matrix.clone();
 
-      m.multiply(new Matrix4().makeTranslation(-p.x, -p.y, -p.z));
+      m.multiply(new THREE.Matrix4().makeTranslation(-p.x, -p.y, -p.z));
 
       this._bakeAtomTransform(m, 1 << selectionBit); // show selected fragment in main model
 
@@ -22542,7 +23192,7 @@ var ComplexFragmentEditor = /*#__PURE__*/function (_ComplexEditor2) {
     value: function getAltObj() {
       var res = {
         objects: [],
-        pivot: new Vector3(0, 0, 0)
+        pivot: new THREE.Vector3(0, 0, 0)
       };
       res.objects.push(this._fragmentGeo, this._fragmentSelectionGeo);
       var boundAtoms = this._fragmentBoundAtoms;
@@ -22551,13 +23201,13 @@ var ComplexFragmentEditor = /*#__PURE__*/function (_ComplexEditor2) {
         if (boundAtoms[0].bonds.length === 1) {
           // single external bond allows rotation about bond axis
           var bond = boundAtoms[0].bonds[0];
-          res.axis = new Vector3().subVectors(bond._right.position, bond._left.position);
+          res.axis = new THREE.Vector3().subVectors(bond._right.position, bond._left.position);
           res.axis.normalize();
           res.axis.transformDirection(this._complexVisual.matrixWorld);
         }
       } else if (boundAtoms.length === 2) {
         // two bound atoms allow rotation only about axis running through their centers
-        res.axis = new Vector3().subVectors(boundAtoms[1].position, boundAtoms[0].position);
+        res.axis = new THREE.Vector3().subVectors(boundAtoms[1].position, boundAtoms[0].position);
         res.axis.normalize();
         res.axis.transformDirection(this._complexVisual.matrixWorld);
       }
@@ -22610,7 +23260,10 @@ var ComplexVisualEdit = {
   FragmentEditor: ComplexFragmentEditor
 };
 
-var selectors$3 = chem.selectors;
+function _createSuper$x(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$x(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$x() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var selectors$2 = chem.selectors;
 
 function lookupAndCreate(entityList, specs) {
   if (!Array.isArray(specs)) {
@@ -22618,7 +23271,7 @@ function lookupAndCreate(entityList, specs) {
   }
 
   var _specs = specs,
-      _specs2 = slicedToArray(_specs, 2),
+      _specs2 = _slicedToArray(_specs, 2),
       id = _specs2[0],
       opts = _specs2[1];
 
@@ -22627,14 +23280,16 @@ function lookupAndCreate(entityList, specs) {
 }
 
 var ComplexVisual = /*#__PURE__*/function (_Visual) {
-  inherits(ComplexVisual, _Visual);
+  _inherits(ComplexVisual, _Visual);
+
+  var _super = _createSuper$x(ComplexVisual);
 
   function ComplexVisual(name, dataSource) {
     var _this;
 
-    classCallCheck(this, ComplexVisual);
+    _classCallCheck(this, ComplexVisual);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(ComplexVisual).call(this, name, dataSource));
+    _this = _super.call(this, name, dataSource);
     _this._complex = dataSource;
     /** @type {Representation[]} */
 
@@ -22646,11 +23301,11 @@ var ComplexVisual = /*#__PURE__*/function (_Visual) {
     _this._selectionBit = 0;
     _this._reprUsedBits = 0;
     _this._selectionCount = 0;
-    _this._selectionGeometry = new Group();
+    _this._selectionGeometry = new THREE.Group();
     return _this;
   }
 
-  createClass(ComplexVisual, [{
+  _createClass(ComplexVisual, [{
     key: "getBoundaries",
     value: function getBoundaries() {
       return this._complex.getBoundaries();
@@ -22709,13 +23364,13 @@ var ComplexVisual = /*#__PURE__*/function (_Visual) {
         if (typeof rep.selector === 'string') {
           selectorString = rep.selector;
 
-          var _selectors$parse = selectors$3.parse(selectorString);
+          var _selectors$parse = selectors$2.parse(selectorString);
 
           selector = _selectors$parse.selector;
         } else if (typeof rep.selector === 'undefined') {
-          selectorString = settings.now.presets["default"][0].selector;
+          selectorString = settings$1.now.presets["default"][0].selector;
 
-          var _selectors$parse2 = selectors$3.parse(selectorString);
+          var _selectors$parse2 = selectors$2.parse(selectorString);
 
           selector = _selectors$parse2.selector;
         } else {
@@ -22723,9 +23378,9 @@ var ComplexVisual = /*#__PURE__*/function (_Visual) {
           selectorString = selector.toString();
         }
 
-        var mode = lookupAndCreate(modes, rep.mode);
-        var colorer = lookupAndCreate(colorers, rep.colorer);
-        var material = materials.get(rep.material) || materials.first;
+        var mode = lookupAndCreate(modes$1, rep.mode);
+        var colorer = lookupAndCreate(colorers$1, rep.colorer);
+        var material = materials$1.get(rep.material) || materials$1.first;
         this._reprList[i] = new Representation(i, mode, colorer, selector);
 
         this._reprList[i].setMaterialPreset(material);
@@ -22826,7 +23481,7 @@ var ComplexVisual = /*#__PURE__*/function (_Visual) {
 
       if (_rep) {
         // modify
-        var diff = target.change(_rep, this._complex, lookupAndCreate(modes, _rep.mode), lookupAndCreate(colorers, _rep.colorer)); // something was changed
+        var diff = target.change(_rep, this._complex, lookupAndCreate(modes$1, _rep.mode), lookupAndCreate(colorers$1, _rep.colorer)); // something was changed
 
         if (!_.isEmpty(diff)) {
           target.needsRebuild = true;
@@ -22839,9 +23494,9 @@ var ComplexVisual = /*#__PURE__*/function (_Visual) {
           } // safety trick: lower resolution for surface modes
 
 
-          if (diff.mode && target.mode.isSurface && (settings.now.resolution === 'ultra' || settings.now.resolution === 'high')) {
+          if (diff.mode && target.mode.isSurface && (settings$1.now.resolution === 'ultra' || settings$1.now.resolution === 'high')) {
             logger.report('Surface resolution was changed to "medium" to avoid hang-ups.');
-            settings.set('resolution', 'medium');
+            settings$1.set('resolution', 'medium');
           }
 
           return {
@@ -22913,7 +23568,7 @@ var ComplexVisual = /*#__PURE__*/function (_Visual) {
 
       var originalSelection = this.buildSelectorFromMask(1 << this._selectionBit); // Fill in default values
 
-      var def = settings.now.presets["default"][0];
+      var def = settings$1.now.presets["default"][0];
 
       var desc = _.merge({
         selector: def.selector,
@@ -22922,10 +23577,10 @@ var ComplexVisual = /*#__PURE__*/function (_Visual) {
         material: def.material
       }, rep);
 
-      var selector = typeof desc.selector === 'string' ? selectors$3.parse(desc.selector).selector : desc.selector;
-      var target = new Representation(this._selectionBit, lookupAndCreate(modes, desc.mode), lookupAndCreate(colorers, desc.colorer), selector);
+      var selector = typeof desc.selector === 'string' ? selectors$2.parse(desc.selector).selector : desc.selector;
+      var target = new Representation(this._selectionBit, lookupAndCreate(modes$1, desc.mode), lookupAndCreate(colorers$1, desc.colorer), selector);
       target.selectorString = selector.toString();
-      target.setMaterialPreset(materials.get(desc.material));
+      target.setMaterialPreset(materials$1.get(desc.material));
       target.markAtoms(this._complex);
 
       this._reprList.push(target); // change selection bit
@@ -23280,7 +23935,7 @@ var ComplexVisual = /*#__PURE__*/function (_Visual) {
         setTimeout(function () {
           console.time('build');
           var reprList = self._reprList;
-          var palette = palettes.get(settings.now.palette) || palettes.first;
+          var palette = palettes$1.get(settings$1.now.palette) || palettes$1.first;
           var hasGeometry = false;
 
           for (var i = 0, n = reprList.length; i < n; ++i) {
@@ -23378,7 +24033,7 @@ var ComplexVisual = /*#__PURE__*/function (_Visual) {
             last = value;
           } else {
             if (!Number.isNaN(first)) {
-              result[k++] = new selectors$3.Range(first, last);
+              result[k++] = new selectors$2.Range(first, last);
             }
 
             first = last = value;
@@ -23386,7 +24041,7 @@ var ComplexVisual = /*#__PURE__*/function (_Visual) {
         }
 
         if (!Number.isNaN(first)) {
-          result[k] = new selectors$3.Range(first, last);
+          result[k] = new selectors$2.Range(first, last);
         }
 
         return result;
@@ -23395,31 +24050,31 @@ var ComplexVisual = /*#__PURE__*/function (_Visual) {
       var expression = null;
 
       if (chains.length === complex._chains.length) {
-        expression = selectors$3.all();
+        expression = selectors$2.all();
       } else {
         var selector;
 
         if (chains.length > 0) {
-          selector = selectors$3.chain(chains);
-          expression = expression ? selectors$3.or(expression, selector) : selector; // NOSONAR
+          selector = selectors$2.chain(chains);
+          expression = expression ? selectors$2.or(expression, selector) : selector; // NOSONAR
         }
 
         if (Object.keys(residues).length > 0) {
           for (var ch in residues) {
             if (residues.hasOwnProperty(ch)) {
-              selector = selectors$3.and(selectors$3.chain(ch), selectors$3.residx(optimizeList(residues[ch])));
-              expression = expression ? selectors$3.or(expression, selector) : selector;
+              selector = selectors$2.and(selectors$2.chain(ch), selectors$2.residx(optimizeList(residues[ch])));
+              expression = expression ? selectors$2.or(expression, selector) : selector;
             }
           }
         }
 
         if (atoms.length > 0) {
-          selector = selectors$3.serial(optimizeList(atoms));
-          expression = expression ? selectors$3.or(expression, selector) : selector;
+          selector = selectors$2.serial(optimizeList(atoms));
+          expression = expression ? selectors$2.or(expression, selector) : selector;
         }
 
         if (!expression) {
-          expression = selectors$3.none();
+          expression = selectors$2.none();
         }
       }
 
@@ -23516,7 +24171,7 @@ var ComplexVisual = /*#__PURE__*/function (_Visual) {
 
         if (needTraverse) {
           rep.geo.traverse(function (object) {
-            if (object instanceof Mesh$5) {
+            if (object instanceof THREE.Mesh) {
               object.material.setValues(values);
 
               if (process !== undefined) {
@@ -23592,10 +24247,13 @@ var vertexFarPlane = "varying vec4 volPos;\nuniform float aspectRatio;\nuniform 
 
 var fragmentFarPlane = "varying vec4 volPos;\n\nvoid main() {\n  gl_FragColor = volPos;\n}";
 
-var volumeUniforms = UniformsUtils.merge([{
+function _createSuper$w(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$w(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$w() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var volumeUniforms = THREE.UniformsUtils.merge([{
   volumeDim: {
     type: 'v3',
-    value: new Vector3(512, 512, 512)
+    value: new THREE.Vector3(512, 512, 512)
   },
   tileTex: {
     type: 't',
@@ -23603,23 +24261,23 @@ var volumeUniforms = UniformsUtils.merge([{
   },
   tileTexSize: {
     type: 'v2',
-    value: new Vector2(512, 512)
+    value: new THREE.Vector2(512, 512)
   },
   tileStride: {
     type: 'v2',
-    value: new Vector2(512, 512)
+    value: new THREE.Vector2(512, 512)
   },
   boxAngles: {
     type: 'v3',
-    value: new Vector3(1, 1, 1)
+    value: new THREE.Vector3(1, 1, 1)
   },
   delta: {
     type: 'v3',
-    value: new Vector3(0, 0, 0)
+    value: new THREE.Vector3(0, 0, 0)
   },
   _isoLevel0: {
     type: 'v2',
-    value: new Vector3(0.5, 0.75, 1.0)
+    value: new THREE.Vector3(0.5, 0.75, 1.0)
   },
   _flipV: {
     type: 'f',
@@ -23652,7 +24310,7 @@ var volumeUniforms = UniformsUtils.merge([{
 }]);
 
 function overrideUniforms(params, defUniforms) {
-  var uniforms = UniformsUtils.clone(defUniforms);
+  var uniforms = THREE.UniformsUtils.clone(defUniforms);
 
   for (var p in params) {
     if (uniforms.hasOwnProperty(p)) {
@@ -23676,20 +24334,22 @@ function facesPosMaterialParams(params, sideType) {
 }
 
 var BackFacePosMaterial = /*#__PURE__*/function (_THREE$ShaderMaterial) {
-  inherits(BackFacePosMaterial, _THREE$ShaderMaterial);
+  _inherits(BackFacePosMaterial, _THREE$ShaderMaterial);
+
+  var _super = _createSuper$w(BackFacePosMaterial);
 
   function BackFacePosMaterial(params) {
-    classCallCheck(this, BackFacePosMaterial);
+    _classCallCheck(this, BackFacePosMaterial);
 
-    var backFaceParams = facesPosMaterialParams(params, BackSide);
-    return possibleConstructorReturn(this, getPrototypeOf(BackFacePosMaterial).call(this, backFaceParams));
+    var backFaceParams = facesPosMaterialParams(params, THREE.BackSide);
+    return _super.call(this, backFaceParams);
   }
 
   return BackFacePosMaterial;
-}(ShaderMaterial);
+}(THREE.ShaderMaterial);
 
 var ShaderParams = function ShaderParams(params, uniforms, vertexShader, fragmentShader) {
-  classCallCheck(this, ShaderParams);
+  _classCallCheck(this, ShaderParams);
 
   this.uniforms = overrideUniforms(params, uniforms);
   this.vertexShader = vertexShader;
@@ -23697,16 +24357,18 @@ var ShaderParams = function ShaderParams(params, uniforms, vertexShader, fragmen
   this.transparent = false;
   this.depthTest = false;
   this.depthWrite = false;
-  this.side = FrontSide;
+  this.side = THREE.FrontSide;
 };
 
 var BackFacePosMaterialFarPlane = /*#__PURE__*/function (_THREE$ShaderMaterial2) {
-  inherits(BackFacePosMaterialFarPlane, _THREE$ShaderMaterial2);
+  _inherits(BackFacePosMaterialFarPlane, _THREE$ShaderMaterial2);
+
+  var _super2 = _createSuper$w(BackFacePosMaterialFarPlane);
 
   function BackFacePosMaterialFarPlane(params) {
-    classCallCheck(this, BackFacePosMaterialFarPlane);
+    _classCallCheck(this, BackFacePosMaterialFarPlane);
 
-    var matUniforms = UniformsUtils.merge([{
+    var matUniforms = THREE.UniformsUtils.merge([{
       aspectRatio: {
         type: 'f',
         value: 0.0
@@ -23721,60 +24383,64 @@ var BackFacePosMaterialFarPlane = /*#__PURE__*/function (_THREE$ShaderMaterial2)
       },
       matWorld2Volume: {
         type: '4fv',
-        value: new Matrix4()
+        value: new THREE.Matrix4()
       }
     }]);
     var shaderParams = new ShaderParams(params, matUniforms, vertexFarPlane, fragmentFarPlane);
-    return possibleConstructorReturn(this, getPrototypeOf(BackFacePosMaterialFarPlane).call(this, shaderParams));
+    return _super2.call(this, shaderParams);
   }
 
   return BackFacePosMaterialFarPlane;
-}(ShaderMaterial);
+}(THREE.ShaderMaterial);
 
 var FrontFacePosMaterial = /*#__PURE__*/function (_THREE$ShaderMaterial3) {
-  inherits(FrontFacePosMaterial, _THREE$ShaderMaterial3);
+  _inherits(FrontFacePosMaterial, _THREE$ShaderMaterial3);
+
+  var _super3 = _createSuper$w(FrontFacePosMaterial);
 
   function FrontFacePosMaterial(params) {
-    classCallCheck(this, FrontFacePosMaterial);
+    _classCallCheck(this, FrontFacePosMaterial);
 
-    var frontFaceParams = facesPosMaterialParams(params, FrontSide);
-    return possibleConstructorReturn(this, getPrototypeOf(FrontFacePosMaterial).call(this, frontFaceParams));
+    var frontFaceParams = facesPosMaterialParams(params, THREE.FrontSide);
+    return _super3.call(this, frontFaceParams);
   }
 
   return FrontFacePosMaterial;
-}(ShaderMaterial);
+}(THREE.ShaderMaterial);
 
 var VolumeMaterial = /*#__PURE__*/function (_THREE$ShaderMaterial4) {
-  inherits(VolumeMaterial, _THREE$ShaderMaterial4);
+  _inherits(VolumeMaterial, _THREE$ShaderMaterial4);
+
+  var _super4 = _createSuper$w(VolumeMaterial);
 
   function VolumeMaterial(params) {
     var _this;
 
-    classCallCheck(this, VolumeMaterial);
+    _classCallCheck(this, VolumeMaterial);
 
     var shaderParams = new ShaderParams(params, volumeUniforms, vertexVolume, fragmentVolume);
     shaderParams.transparent = true;
     shaderParams.depthTest = true;
-    _this = possibleConstructorReturn(this, getPrototypeOf(VolumeMaterial).call(this, shaderParams));
+    _this = _super4.call(this, shaderParams);
 
     _this.updateDefines();
 
     return _this;
   }
 
-  createClass(VolumeMaterial, [{
+  _createClass(VolumeMaterial, [{
     key: "updateDefines",
     value: function updateDefines() {
       this.defines = {
-        ISO_MODE: settings.now.modes.VD.isoMode,
-        STEPS_COUNT: settings.now.modes.VD.polyComplexity[settings.now.resolution] * 100
+        ISO_MODE: settings$1.now.modes.VD.isoMode,
+        STEPS_COUNT: settings$1.now.modes.VD.polyComplexity[settings$1.now.resolution] * 100
       };
       this.needsUpdate = true;
     }
   }]);
 
   return VolumeMaterial;
-}(ShaderMaterial);
+}(THREE.ShaderMaterial);
 
 var VolumeMaterial$1 = {
   BackFacePosMaterial: BackFacePosMaterial,
@@ -23783,54 +24449,60 @@ var VolumeMaterial$1 = {
   VolumeMaterial: VolumeMaterial
 };
 
+function _createSuper$v(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$v(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$v() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var VolumeMesh = /*#__PURE__*/function (_THREE$Mesh) {
-  inherits(VolumeMesh, _THREE$Mesh);
+  _inherits(VolumeMesh, _THREE$Mesh);
+
+  var _super = _createSuper$v(VolumeMesh);
 
   // data for noise filter
   function VolumeMesh() {
     var _this;
 
-    classCallCheck(this, VolumeMesh);
+    _classCallCheck(this, VolumeMesh);
 
-    var geo = new BufferGeometry();
-    _this = possibleConstructorReturn(this, getPrototypeOf(VolumeMesh).call(this, geo));
+    var geo = new THREE.BufferGeometry();
+    _this = _super.call(this, geo);
 
-    defineProperty(assertThisInitialized(_this), "volumeInfo", {});
+    _defineProperty(_assertThisInitialized(_this), "volumeInfo", {});
 
-    _this.clipPlane = new Plane();
-    var size = new Vector3(0.5, 0.5, 0.5);
+    _this.clipPlane = new THREE.Plane();
+    var size = new THREE.Vector3(0.5, 0.5, 0.5);
     _this.size = size;
     _this.cullFlag = [true, true, true, true, true, true, true, true, false, false, false, false, false, false];
     _this.faces = [{
       indices: [],
-      norm: new Vector3(0, 0, -1)
+      norm: new THREE.Vector3(0, 0, -1)
     }, {
       indices: [],
-      norm: new Vector3(0, 0, 1)
+      norm: new THREE.Vector3(0, 0, 1)
     }, {
       indices: [],
-      norm: new Vector3(0, -1, 0)
+      norm: new THREE.Vector3(0, -1, 0)
     }, {
       indices: [],
-      norm: new Vector3(0, 1, 0)
+      norm: new THREE.Vector3(0, 1, 0)
     }, {
       indices: [],
-      norm: new Vector3(-1, 0, 0)
+      norm: new THREE.Vector3(-1, 0, 0)
     }, {
       indices: [],
-      norm: new Vector3(1, 0, 0)
+      norm: new THREE.Vector3(1, 0, 0)
     }, {
       indices: [],
-      norm: new Vector3(0, 0, 0)
+      norm: new THREE.Vector3(0, 0, 0)
     }];
-    _this.vertices = [new Vector3(-size.x, -size.y, -size.z), new Vector3(-size.x, size.y, -size.z), new Vector3(size.x, -size.y, -size.z), new Vector3(size.x, size.y, -size.z), new Vector3(-size.x, -size.y, size.z), new Vector3(-size.x, size.y, size.z), new Vector3(size.x, -size.y, size.z), new Vector3(size.x, size.y, size.z), new Vector3(0.0, 0.0, 0.0), // Placeholder for section
-    new Vector3(0.0, 0.0, 0.0), new Vector3(0.0, 0.0, 0.0), new Vector3(0.0, 0.0, 0.0), new Vector3(0.0, 0.0, 0.0), new Vector3(0.0, 0.0, 0.0)];
-    geo.setAttribute('position', new BufferAttribute(new Float32Array(_this.vertices.length * 3), 3));
+    _this.vertices = [new THREE.Vector3(-size.x, -size.y, -size.z), new THREE.Vector3(-size.x, size.y, -size.z), new THREE.Vector3(size.x, -size.y, -size.z), new THREE.Vector3(size.x, size.y, -size.z), new THREE.Vector3(-size.x, -size.y, size.z), new THREE.Vector3(-size.x, size.y, size.z), new THREE.Vector3(size.x, -size.y, size.z), new THREE.Vector3(size.x, size.y, size.z), new THREE.Vector3(0.0, 0.0, 0.0), // Placeholder for section
+    new THREE.Vector3(0.0, 0.0, 0.0), new THREE.Vector3(0.0, 0.0, 0.0), new THREE.Vector3(0.0, 0.0, 0.0), new THREE.Vector3(0.0, 0.0, 0.0), new THREE.Vector3(0.0, 0.0, 0.0)];
+    geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(_this.vertices.length * 3), 3));
     _this.name = 'VolumeMesh';
     return _this;
   }
 
-  createClass(VolumeMesh, [{
+  _createClass(VolumeMesh, [{
     key: "_updateVertices",
     value: function _updateVertices() {
       // Algorithm:
@@ -23847,7 +24519,7 @@ var VolumeMesh = /*#__PURE__*/function (_THREE$Mesh) {
       var size = this.size;
       var cornerMark = [0, 0, 0, 0, 0, 0, 0, 0];
       var edgeMark = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-      var curEdge = new Vector3();
+      var curEdge = new THREE.Vector3();
       var curEdgeInter = null;
 
       function CheckX() {
@@ -23942,8 +24614,8 @@ var VolumeMesh = /*#__PURE__*/function (_THREE$Mesh) {
       }
 
       this.faces[6] = face;
-      var diff = new Vector3();
-      var coplanarPoint = new Vector3();
+      var diff = new THREE.Vector3();
+      var coplanarPoint = new THREE.Vector3();
       this.clipPlane.coplanarPoint(coplanarPoint);
 
       for (i = 0; i < vert.length; ++i) {
@@ -23991,7 +24663,7 @@ var VolumeMesh = /*#__PURE__*/function (_THREE$Mesh) {
       var j;
       var vert = this.vertices;
       var angle = [];
-      var dir = new Vector3();
+      var dir = new THREE.Vector3();
 
       for (i = 1; i < face.indices.length; ++i) {
         dir.subVectors(vert[face.indices[i]], vert[face.indices[0]]);
@@ -24054,9 +24726,9 @@ var VolumeMesh = /*#__PURE__*/function (_THREE$Mesh) {
         return vertex.x === size.x;
       });
 
-      var vCenter = new Vector3();
-      var vRight = new Vector3();
-      var vDir = new Vector3();
+      var vCenter = new THREE.Vector3();
+      var vRight = new THREE.Vector3();
+      var vDir = new THREE.Vector3();
 
       for (faceIdx = 0; faceIdx < this.faces.length; ++faceIdx) {
         face = this.faces[faceIdx];
@@ -24084,7 +24756,7 @@ var VolumeMesh = /*#__PURE__*/function (_THREE$Mesh) {
             rightProj[0] = rightProj[i];
             rightProj[i] = t;
 
-            var _face$indices = slicedToArray(face.indices, 1);
+            var _face$indices = _slicedToArray(face.indices, 1);
 
             t = _face$indices[0];
             face.indices[0] = face.indices[i];
@@ -24120,7 +24792,7 @@ var VolumeMesh = /*#__PURE__*/function (_THREE$Mesh) {
         }
       }
 
-      this.geometry.setIndex(new BufferAttribute(indices, 1));
+      this.geometry.setIndex(new THREE.BufferAttribute(indices, 1));
     }
   }, {
     key: "setDataSource",
@@ -24145,7 +24817,7 @@ var VolumeMesh = /*#__PURE__*/function (_THREE$Mesh) {
   }, {
     key: "_updateIsoLevel",
     value: function _updateIsoLevel() {
-      var _settings$now$modes$V = settings.now.modes.VD,
+      var _settings$now$modes$V = settings$1.now.modes.VD,
           kSigma = _settings$now$modes$V.kSigma,
           kSigmaMed = _settings$now$modes$V.kSigmaMed,
           kSigmaMax = _settings$now$modes$V.kSigmaMax;
@@ -24197,58 +24869,58 @@ var VolumeMesh = /*#__PURE__*/function (_THREE$Mesh) {
   }]);
 
   return VolumeMesh;
-}(Mesh$5);
+}(THREE.Mesh);
 
-defineProperty(VolumeMesh, "_corners", [// x, y, z, edge1, edge2, edge3
+_defineProperty(VolumeMesh, "_corners", [// x, y, z, edge1, edge2, edge3
 [-1, -1, -1, 0, 4, 8], [1, -1, -1, 0, 5, 9], [1, 1, -1, 1, 5, 10], [-1, 1, -1, 1, 4, 11], [-1, -1, 1, 2, 6, 8], [1, -1, 1, 2, 7, 9], [1, 1, 1, 3, 7, 10], [-1, 1, 1, 3, 6, 11]]);
 
-defineProperty(VolumeMesh, "_edges", [// corner1, corner2, center_x, center_y, center_z
+_defineProperty(VolumeMesh, "_edges", [// corner1, corner2, center_x, center_y, center_z
 [0, 1, 0, -1, -1], [2, 3, 0, 1, -1], [4, 5, 0, -1, 1], [6, 7, 0, 1, 1], [0, 3, -1, 0, -1], [1, 2, 1, 0, -1], [4, 7, -1, 0, 1], [5, 6, 1, 0, 1], [0, 4, -1, -1, 0], [1, 5, 1, -1, 0], [2, 6, -1, 1, 0], [3, 7, 1, 1, 0]]);
 
-defineProperty(VolumeMesh, "_edgeIntersections", function () {
+_defineProperty(VolumeMesh, "_edgeIntersections", function () {
   var edgeIntersections = [];
 
   for (var j = 0; j < 12; ++j) {
-    edgeIntersections.push(new Vector3());
+    edgeIntersections.push(new THREE.Vector3());
   }
 
   return edgeIntersections;
 }());
 
-defineProperty(VolumeMesh, "_nearClipPlaneOffset", 0.2);
+_defineProperty(VolumeMesh, "_nearClipPlaneOffset", 0.2);
 
-defineProperty(VolumeMesh, "_pos", new Vector3());
+_defineProperty(VolumeMesh, "_pos", new THREE.Vector3());
 
-defineProperty(VolumeMesh, "_norm", new Vector3());
+_defineProperty(VolumeMesh, "_norm", new THREE.Vector3());
 
-defineProperty(VolumeMesh, "_norm4D", new Vector4());
+_defineProperty(VolumeMesh, "_norm4D", new THREE.Vector4());
 
-defineProperty(VolumeMesh, "_matrixWorldToLocal", new Matrix4());
+_defineProperty(VolumeMesh, "_matrixWorldToLocal", new THREE.Matrix4());
 
-defineProperty(VolumeMesh, "_clipPlane", new Plane());
+_defineProperty(VolumeMesh, "_clipPlane", new THREE.Plane());
 
 var VolumeBounds = /*#__PURE__*/function () {
   function VolumeBounds(bBox, volInfo) {
-    classCallCheck(this, VolumeBounds);
+    _classCallCheck(this, VolumeBounds);
 
     var delta = volInfo.delta; // {x: XY, y : XZ, z: YZ}
 
     var obtuseAngle = volInfo.obtuseAngle; // 1 - obtuse, 0 - acute
 
-    var bSize = new Vector3();
+    var bSize = new THREE.Vector3();
     bBox.getSize(bSize);
     bSize.multiplyScalar(0.5);
 
     var offsetVert = this._getBaseVertices(delta, obtuseAngle);
 
-    var geometry = new Geometry();
+    var geometry = new THREE.Geometry();
 
     for (var i = 0; i < 4; i++) {
       geometry.vertices.push(offsetVert[i].clone().multiply(bSize));
       geometry.vertices.push(offsetVert[(i + 1) % 4].clone().multiply(bSize));
     }
 
-    var translation = new Vector3(2 * bSize.x * (1 - delta.x - delta.y), 0, 0);
+    var translation = new THREE.Vector3(2 * bSize.x * (1 - delta.x - delta.y), 0, 0);
 
     for (var _i = 0; _i < 8; _i++) {
       geometry.vertices.push(geometry.vertices[_i].clone().add(translation));
@@ -24259,13 +24931,13 @@ var VolumeBounds = /*#__PURE__*/function () {
       geometry.vertices.push(geometry.vertices[_i2 * 2 + 8].clone());
     }
 
-    var center = new Vector3();
+    var center = new THREE.Vector3();
     bBox.getCenter(center);
     geometry.vertices.forEach(function (vertex) {
       return vertex.add(center);
     }); // pivot shift
 
-    this._lines = new LineSegments(geometry, new LineBasicMaterial({
+    this._lines = new THREE.LineSegments(geometry, new THREE.LineBasicMaterial({
       color: 0xFFFFFF
     }));
 
@@ -24273,7 +24945,7 @@ var VolumeBounds = /*#__PURE__*/function () {
   } // Set one edge (4 points) of frame, from which with parallel transfer  the rest of the frame points can be obtained
 
 
-  createClass(VolumeBounds, [{
+  _createClass(VolumeBounds, [{
     key: "_getBaseVertices",
     value: function _getBaseVertices(delta, obtuseAngle) {
       var projTable = VolumeBounds._projectionTable;
@@ -24286,7 +24958,7 @@ var VolumeBounds = /*#__PURE__*/function () {
         return angleValue * currDelta;
       };
 
-      var offsetVert = [new Vector3(-1 + 2 * (proj('XZ', 1) + proj('XY', 1)), -1 + 2 * proj('YZ', 1), -1), new Vector3(-1 + 2 * (proj('XZ', -1) + proj('XY', 1)), -1 + 2 * proj('YZ', -1), 1), new Vector3(-1 + 2 * (proj('XZ', -1) + proj('XY', -1)), 1 - 2 * proj('YZ', 1), 1), new Vector3(-1 + 2 * (proj('XZ', 1) + proj('XY', -1)), 1 - 2 * proj('YZ', -1), -1)];
+      var offsetVert = [new THREE.Vector3(-1 + 2 * (proj('XZ', 1) + proj('XY', 1)), -1 + 2 * proj('YZ', 1), -1), new THREE.Vector3(-1 + 2 * (proj('XZ', -1) + proj('XY', 1)), -1 + 2 * proj('YZ', -1), 1), new THREE.Vector3(-1 + 2 * (proj('XZ', -1) + proj('XY', -1)), 1 - 2 * proj('YZ', 1), 1), new THREE.Vector3(-1 + 2 * (proj('XZ', 1) + proj('XY', -1)), 1 - 2 * proj('YZ', -1), -1)];
       return offsetVert;
     }
   }, {
@@ -24299,7 +24971,7 @@ var VolumeBounds = /*#__PURE__*/function () {
   return VolumeBounds;
 }();
 
-defineProperty(VolumeBounds, "_projectionTable", {
+_defineProperty(VolumeBounds, "_projectionTable", {
   // corresponds between (origin axes and angles between them) and between saving vector coordinates
   XY: ['x', 2],
   XZ: ['y', 1],
@@ -24313,7 +24985,7 @@ defineProperty(VolumeBounds, "_projectionTable", {
 var VolumeFarPlane = /*#__PURE__*/function () {
   // create plane with unit corners coords (for future rescale in vshader according to camera properties)
   function VolumeFarPlane(volume, width, height) {
-    classCallCheck(this, VolumeFarPlane);
+    _classCallCheck(this, VolumeFarPlane);
 
     var planeGeo = this._initPlaneGeo(width, height);
 
@@ -24321,7 +24993,7 @@ var VolumeFarPlane = /*#__PURE__*/function () {
     this._plane = new meshes.Mesh(planeGeo, mat);
     this._plane.frustumCulled = false;
     this._plane.doubleSided = true;
-    var matWorldToVolume = new Matrix4();
+    var matWorldToVolume = new THREE.Matrix4();
 
     this._plane._onBeforeRender = function (_renderer, _scene, camera, _geometry, _material, _group) {
       var material = this.material;
@@ -24331,7 +25003,7 @@ var VolumeFarPlane = /*#__PURE__*/function () {
       } // count point in world at farplane place
 
 
-      var planeCamPos = new Vector4(0, 0, -(camera.far - 0.1), 1);
+      var planeCamPos = new THREE.Vector4(0, 0, -(camera.far - 0.1), 1);
       planeCamPos.applyMatrix4(camera.matrixWorld); // recalc matrices to make plane be placed as farplane in the World relative to camera
 
       this.matrix.identity();
@@ -24345,7 +25017,7 @@ var VolumeFarPlane = /*#__PURE__*/function () {
 
       material.uniforms.aspectRatio.value = camera.aspect;
       material.uniforms.farZ.value = camera.far;
-      material.uniforms.tanHalfFOV.value = Math.tan(Math$1.DEG2RAD * 0.5 * camera.fov);
+      material.uniforms.tanHalfFOV.value = Math.tan(THREE.Math.DEG2RAD * 0.5 * camera.fov);
       material.uniforms.matWorld2Volume.value = matWorldToVolume;
     }; // set it to special layer to draw only into BFTexture
 
@@ -24353,18 +25025,18 @@ var VolumeFarPlane = /*#__PURE__*/function () {
     this._plane.layers.set(gfxutils.LAYERS.VOLUME_BFPLANE);
   }
 
-  createClass(VolumeFarPlane, [{
+  _createClass(VolumeFarPlane, [{
     key: "_initPlaneGeo",
     value: function _initPlaneGeo(width, height) {
-      var planeGeo = new Geometry();
+      var planeGeo = new THREE.Geometry();
       width = width || 1;
       height = height || 1;
-      planeGeo.vertices.push(new Vector3(-0.5 * width, 0.5 * height, 0));
-      planeGeo.vertices.push(new Vector3(0.5 * width, 0.5 * height, 0));
-      planeGeo.vertices.push(new Vector3(-0.5 * width, -0.5 * height, 0));
-      planeGeo.vertices.push(new Vector3(0.5 * width, -0.5 * height, 0));
-      planeGeo.faces.push(new Face3(0, 2, 1));
-      planeGeo.faces.push(new Face3(2, 3, 1));
+      planeGeo.vertices.push(new THREE.Vector3(-0.5 * width, 0.5 * height, 0));
+      planeGeo.vertices.push(new THREE.Vector3(0.5 * width, 0.5 * height, 0));
+      planeGeo.vertices.push(new THREE.Vector3(-0.5 * width, -0.5 * height, 0));
+      planeGeo.vertices.push(new THREE.Vector3(0.5 * width, -0.5 * height, 0));
+      planeGeo.faces.push(new THREE.Face3(0, 2, 1));
+      planeGeo.faces.push(new THREE.Face3(2, 3, 1));
       return planeGeo;
     }
   }, {
@@ -24386,7 +25058,7 @@ function VolumeVisual(name, dataSource) {
   this.add(this._mesh);
   this._frame = new VolumeBounds(this.getBoundaries().boundingBox, this._mesh.volumeInfo);
   this.add(this._frame.getMesh());
-  this.showFrame(settings.now.modes.VD.frame);
+  this.showFrame(settings$1.now.modes.VD.frame);
   this._farPlane = new VolumeFarPlane(this._mesh, 2, 2);
   this.add(this._farPlane.getMesh());
 }
@@ -24396,7 +25068,7 @@ utils.deriveClass(VolumeVisual, Visual);
 VolumeVisual.prototype.getBoundaries = function () {
   var box = this._dataSource.getBox();
 
-  var sphere = new Sphere();
+  var sphere = new THREE.Sphere();
   box.getBoundingSphere(sphere);
   return {
     boundingBox: box,
@@ -24512,19 +25184,19 @@ function GfxProfiler(renderer) {
 }
 
 GfxProfiler.prototype._prepareTest = function () {
-  this._scene = new Scene();
-  var geo = new PlaneGeometry(10, 10, 128, 128);
-  var mat = new MeshBasicMaterial({
+  this._scene = new THREE.Scene();
+  var geo = new THREE.PlaneGeometry(10, 10, 128, 128);
+  var mat = new THREE.MeshBasicMaterial({
     color: this._renderer.getClearColor()
   });
 
   for (var j = 0; j < 300; ++j) {
-    var plane = new Mesh$5(geo, mat);
+    var plane = new THREE.Mesh(geo, mat);
 
     this._scene.add(plane);
   }
 
-  this._camera = new PerspectiveCamera(45, 1, 1, 2000);
+  this._camera = new THREE.PerspectiveCamera(45, 1, 1, 2000);
   this._camera.position.z = 30;
   this._prof = new Profiler();
 };
@@ -24593,13 +25265,18 @@ GfxProfiler.prototype.min = function () {
   return this._prof ? this._prof.min() : 0.0;
 };
 
+function _createSuper$u(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$u(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$u() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * A list of available loaders.
  * @extends EntityList
  */
 
 var LoaderList = /*#__PURE__*/function (_EntityList) {
-  inherits(LoaderList, _EntityList);
+  _inherits(LoaderList, _EntityList);
+
+  var _super = _createSuper$u(LoaderList);
 
   /**
    * Create a list of loaders.
@@ -24614,9 +25291,9 @@ var LoaderList = /*#__PURE__*/function (_EntityList) {
   function LoaderList() {
     var someLoaders = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
-    classCallCheck(this, LoaderList);
+    _classCallCheck(this, LoaderList);
 
-    return possibleConstructorReturn(this, getPrototypeOf(LoaderList).call(this, someLoaders, ['types']));
+    return _super.call(this, someLoaders, ['types']);
   }
   /**
    * Find a suitable loader for a source type.
@@ -24627,7 +25304,7 @@ var LoaderList = /*#__PURE__*/function (_EntityList) {
    */
 
 
-  createClass(LoaderList, [{
+  _createClass(LoaderList, [{
     key: "find",
     value: function find(specs) {
       var list = [];
@@ -24640,22 +25317,28 @@ var LoaderList = /*#__PURE__*/function (_EntityList) {
         });
       }
 
-      return toConsumableArray(list);
+      return _toConsumableArray(list);
     }
   }]);
 
   return LoaderList;
 }(EntityList);
 
+function _createSuper$t(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$t(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$t() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var Loader = /*#__PURE__*/function (_EventDispatcher) {
-  inherits(Loader, _EventDispatcher);
+  _inherits(Loader, _EventDispatcher);
+
+  var _super = _createSuper$t(Loader);
 
   function Loader(source, options) {
     var _this;
 
-    classCallCheck(this, Loader);
+    _classCallCheck(this, Loader);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(Loader).call(this));
+    _this = _super.call(this);
     _this._source = source;
     _this._options = options || {};
     _this._abort = false;
@@ -24663,7 +25346,7 @@ var Loader = /*#__PURE__*/function (_EventDispatcher) {
     return _this;
   }
 
-  createClass(Loader, [{
+  _createClass(Loader, [{
     key: "load",
     value: function load() {
       return Promise.reject(new Error('Loading from this source is not implemented'));
@@ -24688,21 +25371,27 @@ var Loader = /*#__PURE__*/function (_EventDispatcher) {
 }(EventDispatcher);
 makeContextDependent(Loader.prototype);
 
+function _createSuper$s(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$s(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$s() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var FileLoader = /*#__PURE__*/function (_Loader) {
-  inherits(FileLoader, _Loader);
+  _inherits(FileLoader, _Loader);
+
+  var _super = _createSuper$s(FileLoader);
 
   function FileLoader(source, options) {
     var _this;
 
-    classCallCheck(this, FileLoader);
+    _classCallCheck(this, FileLoader);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(FileLoader).call(this, source, options));
+    _this = _super.call(this, source, options);
     options = _this._options;
     _this._binary = options.binary === true;
     return _this;
   }
 
-  createClass(FileLoader, [{
+  _createClass(FileLoader, [{
     key: "load",
     value: function load() {
       var _this2 = this;
@@ -24750,23 +25439,29 @@ var FileLoader = /*#__PURE__*/function (_Loader) {
 }(Loader);
 FileLoader.types = ['file', 'blob'];
 
+function _createSuper$r(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$r(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$r() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var urlStartRegexp = /^(https?|ftp):\/\//i;
 
 var XHRLoader = /*#__PURE__*/function (_Loader) {
-  inherits(XHRLoader, _Loader);
+  _inherits(XHRLoader, _Loader);
+
+  var _super = _createSuper$r(XHRLoader);
 
   function XHRLoader(source, options) {
     var _this;
 
-    classCallCheck(this, XHRLoader);
+    _classCallCheck(this, XHRLoader);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(XHRLoader).call(this, source, options));
+    _this = _super.call(this, source, options);
     options = _this._options;
     _this._binary = options.binary === true;
     return _this;
   }
 
-  createClass(XHRLoader, [{
+  _createClass(XHRLoader, [{
     key: "load",
     value: function load() {
       var _this2 = this;
@@ -24826,16 +25521,22 @@ var XHRLoader = /*#__PURE__*/function (_Loader) {
 }(Loader);
 XHRLoader.types = ['url'];
 
+function _createSuper$q(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$q(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$q() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var ImmediateLoader = /*#__PURE__*/function (_Loader) {
-  inherits(ImmediateLoader, _Loader);
+  _inherits(ImmediateLoader, _Loader);
+
+  var _super = _createSuper$q(ImmediateLoader);
 
   function ImmediateLoader() {
-    classCallCheck(this, ImmediateLoader);
+    _classCallCheck(this, ImmediateLoader);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ImmediateLoader).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(ImmediateLoader, [{
+  _createClass(ImmediateLoader, [{
     key: "load",
     value: function load() {
       var _this = this;
@@ -24862,13 +25563,18 @@ ImmediateLoader.types = ['immediate'];
 var loaders = new LoaderList([// note: order might be important
 FileLoader, XHRLoader, ImmediateLoader]);
 
+function _createSuper$p(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$p(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$p() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * A list of available parsers.
  * @extends EntityList
  */
 
 var ParserList = /*#__PURE__*/function (_EntityList) {
-  inherits(ParserList, _EntityList);
+  _inherits(ParserList, _EntityList);
+
+  var _super = _createSuper$p(ParserList);
 
   /**
    * Create a list of parsers.
@@ -24883,9 +25589,9 @@ var ParserList = /*#__PURE__*/function (_EntityList) {
   function ParserList() {
     var someParsers = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
-    classCallCheck(this, ParserList);
+    _classCallCheck(this, ParserList);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ParserList).call(this, someParsers, ['formats', 'extensions']));
+    return _super.call(this, someParsers, ['formats', 'extensions']);
   }
   /**
    * Find a suitable parser for data.
@@ -24897,7 +25603,7 @@ var ParserList = /*#__PURE__*/function (_EntityList) {
    */
 
 
-  createClass(ParserList, [{
+  _createClass(ParserList, [{
     key: "find",
     value: function find(specs) {
       var list = [];
@@ -24915,7 +25621,7 @@ var ParserList = /*#__PURE__*/function (_EntityList) {
         });
       }
 
-      return toConsumableArray(list);
+      return _toConsumableArray(list);
     }
   }]);
 
@@ -24924,14 +25630,14 @@ var ParserList = /*#__PURE__*/function (_EntityList) {
 
 var Parser = /*#__PURE__*/function () {
   function Parser(data, options) {
-    classCallCheck(this, Parser);
+    _classCallCheck(this, Parser);
 
     this._data = data;
     this._options = options || {};
     this._abort = false;
   }
 
-  createClass(Parser, [{
+  _createClass(Parser, [{
     key: "parseSync",
     value: function parseSync() {
       throw new Error('Parsing this type of data is not implemented');
@@ -24983,7 +25689,7 @@ makeContextDependent(Parser.prototype);
 
 var Remark290 = /*#__PURE__*/function () {
   function Remark290() {
-    classCallCheck(this, Remark290);
+    _classCallCheck(this, Remark290);
 
     /** @type {THREE.Matrix4[]} */
     this.matrices = [];
@@ -25000,7 +25706,7 @@ var Remark290 = /*#__PURE__*/function () {
    */
 
 
-  createClass(Remark290, [{
+  _createClass(Remark290, [{
     key: "parse",
     value: function parse(stream) {
       /** @type {?THREE.Matrix4} */
@@ -25015,7 +25721,7 @@ var Remark290 = /*#__PURE__*/function () {
         if (this._matrix === null || matrixIndex !== this._matrixIndex) {
           // TODO: assert(matrixIndex === this.matrices.length + 1);
           this._matrixIndex = matrixIndex;
-          this._matrix = matrix = new Matrix4();
+          this._matrix = matrix = new THREE.Matrix4();
           this.matrices[this.matrices.length] = matrix;
         }
 
@@ -25034,7 +25740,7 @@ var Remark290 = /*#__PURE__*/function () {
 
 Remark290.prototype.id = 290;
 
-var Assembly$1 = chem.Assembly;
+var Assembly$2 = chem.Assembly;
 /**
  * Parser helper for PDB tag "REMARK 350".
  *
@@ -25044,7 +25750,7 @@ var Assembly$1 = chem.Assembly;
 
 var Remark350 = /*#__PURE__*/function () {
   function Remark350(complex) {
-    classCallCheck(this, Remark350);
+    _classCallCheck(this, Remark350);
 
     /** @type {Complex} */
     this._complex = complex;
@@ -25067,7 +25773,7 @@ var Remark350 = /*#__PURE__*/function () {
    */
 
 
-  createClass(Remark350, [{
+  _createClass(Remark350, [{
     key: "parse",
     value: function parse(stream) {
       /** @type {?Assembly} */
@@ -25085,7 +25791,7 @@ var Remark350 = /*#__PURE__*/function () {
         if (this._matrix === null || matrixIndex !== this._matrixIndex) {
           // TODO: assert(matrixIndex === assembly.matrices.length + 1);
           this._matrixIndex = matrixIndex;
-          this._matrix = matrix = new Matrix4();
+          this._matrix = matrix = new THREE.Matrix4();
           assembly.addMatrix(matrix);
         }
 
@@ -25109,7 +25815,7 @@ var Remark350 = /*#__PURE__*/function () {
         // assert molIndex === this.assemblies.length + 1
         this._matrix = null;
         this._matrixIndex = -1;
-        this._assembly = assembly = new Assembly$1(this._complex);
+        this._assembly = assembly = new Assembly$2(this._complex);
         this.assemblies.push(assembly);
       }
     }
@@ -25127,7 +25833,7 @@ var PDBStream = /*#__PURE__*/function () {
    * @param {String} data Input data
    */
   function PDBStream(data) {
-    classCallCheck(this, PDBStream);
+    _classCallCheck(this, PDBStream);
 
     /** @type String */
     this._data = data; // Input file
@@ -25160,7 +25866,7 @@ var PDBStream = /*#__PURE__*/function () {
    */
 
 
-  createClass(PDBStream, [{
+  _createClass(PDBStream, [{
     key: "readLine",
     value: function readLine() {
       return this._data.slice(this._start, this._next);
@@ -25264,16 +25970,19 @@ var PDBStream = /*#__PURE__*/function () {
   return PDBStream;
 }();
 
-var Complex$1 = chem.Complex,
-    Element$2 = chem.Element,
-    Helix$1 = chem.Helix,
-    Sheet$1 = chem.Sheet,
-    Strand$1 = chem.Strand,
-    Bond$1 = chem.Bond,
-    Molecule$1 = chem.Molecule;
+function _createSuper$o(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$o(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$o() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var Complex$8 = chem.Complex,
+    Element$8 = chem.Element,
+    Helix$2 = chem.Helix,
+    Sheet$2 = chem.Sheet,
+    Strand$2 = chem.Strand,
+    Bond$4 = chem.Bond,
+    Molecule$7 = chem.Molecule;
 var TAG_LENGTH = 6;
 
-function nameToElement(name) {
+function nameToElement$1(name) {
   // http://www.wwpdb.org/documentation/file-format-content/format33/sect9.html#ATOM
   //
   // http://www.cgl.ucsf.edu/chimera/docs/UsersGuide/tutorials/pdbintro.html#note1
@@ -25297,14 +26006,16 @@ var remarkParsers = {
 };
 
 var PDBParser = /*#__PURE__*/function (_Parser) {
-  inherits(PDBParser, _Parser);
+  _inherits(PDBParser, _Parser);
+
+  var _super = _createSuper$o(PDBParser);
 
   function PDBParser(data, options) {
     var _this;
 
-    classCallCheck(this, PDBParser);
+    _classCallCheck(this, PDBParser);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(PDBParser).call(this, data, options));
+    _this = _super.call(this, data, options);
     _this._complex = null;
     _this._chain = null;
     _this._residue = null;
@@ -25324,7 +26035,7 @@ var PDBParser = /*#__PURE__*/function (_Parser) {
     return _this;
   }
 
-  createClass(PDBParser, [{
+  _createClass(PDBParser, [{
     key: "_finalize",
     value: function _finalize() {
       this._fixBondsArray();
@@ -25373,7 +26084,7 @@ var PDBParser = /*#__PURE__*/function (_Parser) {
           residues = residues.concat(chain._residues.slice());
         }
 
-        var molecule = new Molecule$1(this._complex, m._name, i + 1);
+        var molecule = new Molecule$7(this._complex, m._name, i + 1);
         molecule.residues = residues;
         this._complex._molecules[i] = molecule;
       }
@@ -25440,7 +26151,7 @@ var PDBParser = /*#__PURE__*/function (_Parser) {
       var z = stream.readFloat(47, 54);
       var occupancy = stream.readFloat(55, 60);
       var tempFactor = stream.readFloat(61, 66);
-      var element = stream.readString(77, 78).trim() || nameToElement(name);
+      var element = stream.readString(77, 78).trim() || nameToElement$1(name);
       var charge = stream.readInt(79, 80) || 0;
       /* eslint-enable no-magic-numbers */
       // skip waters (there may be lots of them)
@@ -25454,8 +26165,8 @@ var PDBParser = /*#__PURE__*/function (_Parser) {
 
 
       name = name.trim();
-      var type = Element$2.getByName(element);
-      var role = Element$2.Role[name]; // FIXME: Maybe should use type as additional index (" CA " vs. "CA  ")
+      var type = Element$8.getByName(element);
+      var role = Element$8.Role[name]; // FIXME: Maybe should use type as additional index (" CA " vs. "CA  ")
       // NOTE: Residues of a particular chain are not required to be listed next to each other.
       // https://github.com/biasmv/pv/commit/7319b898b7473ba380c26699e3b028b2b1a7e1a1
 
@@ -25472,7 +26183,7 @@ var PDBParser = /*#__PURE__*/function (_Parser) {
         this._residue = residue = chain.addResidue(resName, resSeq, iCode);
       }
 
-      var xyz = new Vector3(x, y, z);
+      var xyz = new THREE.Vector3(x, y, z);
       residue.addAtom(name, type, xyz, role, het, serial, altLoc, occupancy, tempFactor, charge);
     }
   }, {
@@ -25494,19 +26205,19 @@ var PDBParser = /*#__PURE__*/function (_Parser) {
       var complex = this._complex; // Keep bonds ordered by atom serial
 
       if (serial1 && serial1 > serial0) {
-        complex.addBond(serial0, serial1, 0, Bond$1.BondType.UNKNOWN, true);
+        complex.addBond(serial0, serial1, 0, Bond$4.BondType.UNKNOWN, true);
       }
 
       if (serial2 && serial2 > serial0) {
-        complex.addBond(serial0, serial2, 0, Bond$1.BondType.UNKNOWN, true);
+        complex.addBond(serial0, serial2, 0, Bond$4.BondType.UNKNOWN, true);
       }
 
       if (serial3 && serial3 > serial0) {
-        complex.addBond(serial0, serial3, 0, Bond$1.BondType.UNKNOWN, true);
+        complex.addBond(serial0, serial3, 0, Bond$4.BondType.UNKNOWN, true);
       }
 
       if (serial4 && serial4 > serial0) {
-        complex.addBond(serial0, serial4, 0, Bond$1.BondType.UNKNOWN, true);
+        complex.addBond(serial0, serial4, 0, Bond$4.BondType.UNKNOWN, true);
       }
     }
   }, {
@@ -25645,18 +26356,18 @@ var PDBParser = /*#__PURE__*/function (_Parser) {
         }
 
         if (cs === null) {
-          this._sheet = obj = new Sheet$1(structureName, shWidth);
+          this._sheet = obj = new Sheet$2(structureName, shWidth);
           adder(obj);
         } else {
           obj = cs;
         }
 
-        var strand = new Strand$1(obj, this._complex.getUnifiedSerial(startChainID, startSequenceNumber, startICode), this._complex.getUnifiedSerial(endChainID, endSequenceNumber, endICode), helixClass, shCur, shPrev);
+        var strand = new Strand$2(obj, this._complex.getUnifiedSerial(startChainID, startSequenceNumber, startICode), this._complex.getUnifiedSerial(endChainID, endSequenceNumber, endICode), helixClass, shCur, shPrev);
         obj.addStrand(strand);
 
         this._complex.structures.push(strand);
       } else {
-        obj = new Helix$1(helixClass, this._complex.getUnifiedSerial(startChainID, startSequenceNumber, startICode), this._complex.getUnifiedSerial(endChainID, endSequenceNumber, endICode), serialNumber, structureName, comment, helLength);
+        obj = new Helix$2(helixClass, this._complex.getUnifiedSerial(startChainID, startSequenceNumber, startICode), this._complex.getUnifiedSerial(endChainID, endSequenceNumber, endICode), serialNumber, structureName, comment, helLength);
         adder(obj);
       }
     }
@@ -25687,7 +26398,7 @@ var PDBParser = /*#__PURE__*/function (_Parser) {
     key: "parseSync",
     value: function parseSync() {
       var stream = new PDBStream(this._data);
-      var result = this._complex = new Complex$1(); // parse PDB line by line
+      var result = this._complex = new Complex$8(); // parse PDB line by line
 
       while (!stream.end()) {
         var tag = stream.readString(1, TAG_LENGTH);
@@ -25726,7 +26437,7 @@ var PDBParser = /*#__PURE__*/function (_Parser) {
   return PDBParser;
 }(Parser);
 
-defineProperty(PDBParser, "tagParsers", {
+_defineProperty(PDBParser, "tagParsers", {
   HEADER: PDBParser.prototype._parseHEADER,
   'TITLE ': PDBParser.prototype._parseTITLE,
   'ATOM  ': PDBParser.prototype._parseATOM,
@@ -25753,10 +26464,13 @@ defineProperty(PDBParser, "tagParsers", {
 PDBParser.formats = ['pdb'];
 PDBParser.extensions = ['.pdb', '.ent'];
 
-var Complex$2 = chem.Complex,
-    Element$3 = chem.Element,
-    SGroup$1 = chem.SGroup,
-    Bond$2 = chem.Bond;
+function _createSuper$n(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$n(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$n() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var Complex$7 = chem.Complex,
+    Element$7 = chem.Element,
+    SGroup = chem.SGroup,
+    Bond$3 = chem.Bond;
 var cOrderCharCodes = {
   A: 0,
   S: 1,
@@ -25766,14 +26480,16 @@ var cOrderCharCodes = {
 var cmlStartRegexp = /\s*<\?xml\b[^?>]*\?>\s*<(?:cml|molecule)\b/i;
 
 var CMLParser = /*#__PURE__*/function (_Parser) {
-  inherits(CMLParser, _Parser);
+  _inherits(CMLParser, _Parser);
+
+  var _super = _createSuper$n(CMLParser);
 
   function CMLParser(data, options) {
     var _this;
 
-    classCallCheck(this, CMLParser);
+    _classCallCheck(this, CMLParser);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(CMLParser).call(this, data, options));
+    _this = _super.call(this, data, options);
     _this._complex = null;
     _this._residue = null;
     _this._serialAtomMap = null;
@@ -25784,7 +26500,7 @@ var CMLParser = /*#__PURE__*/function (_Parser) {
     return _this;
   }
 
-  createClass(CMLParser, [{
+  _createClass(CMLParser, [{
     key: "_rebuidBondIndexes",
     value: function _rebuidBondIndexes(atoms, bonds) {
       var count = atoms.length;
@@ -25809,10 +26525,10 @@ var CMLParser = /*#__PURE__*/function (_Parser) {
   }, {
     key: "_createSGroup",
     value: function _createSGroup(molecule, moleculeArr) {
-      var newGroup = new SGroup$1(molecule.id, molecule.fieldData, new Vector3(parseFloat(molecule.x), parseFloat(molecule.y), 0), molecule.atomRefs, molecule);
+      var newGroup = new SGroup(molecule.id, molecule.fieldData, new THREE.Vector3(parseFloat(molecule.x), parseFloat(molecule.y), 0), molecule.atomRefs, molecule);
 
       if (molecule.placement === 'Relative') {
-        newGroup._center = new Vector3(0, 0, 0);
+        newGroup._center = new THREE.Vector3(0, 0, 0);
       }
 
       if (molecule.fieldName === 'MDLBG_FRAGMENT_CHARGE') {
@@ -25886,8 +26602,8 @@ var CMLParser = /*#__PURE__*/function (_Parser) {
 
       var mapEntry = null;
       var nLimon = 100000000;
-      var bLow = new Vector3(nLimon, nLimon, nLimon);
-      var bHight = new Vector3(-nLimon, -nLimon, -nLimon);
+      var bLow = new THREE.Vector3(nLimon, nLimon, nLimon);
+      var bHight = new THREE.Vector3(-nLimon, -nLimon, -nLimon);
 
       function cycleFuncInner(e) {
         mapEntry = atomMap[e];
@@ -26030,7 +26746,7 @@ var CMLParser = /*#__PURE__*/function (_Parser) {
               }
             }
           }
-        } else if (data[key] && data[key] !== null && _typeof_1(data[key]) === 'object') {
+        } else if (data[key] && data[key] !== null && _typeof(data[key]) === 'object') {
           this._findSuitableMolecule(data[key], molSet);
         }
       }
@@ -26118,7 +26834,7 @@ var CMLParser = /*#__PURE__*/function (_Parser) {
           var tc = parseInt(orderAttr, 10); // the default bond order is unknown
 
           localBond[_i].order = 0;
-          localBond[_i].type = Bond$2.BondType.UNKNOWN;
+          localBond[_i].type = Bond$3.BondType.UNKNOWN;
 
           if (tc > 1) {
             localBond[_i].order = tc;
@@ -26130,7 +26846,7 @@ var CMLParser = /*#__PURE__*/function (_Parser) {
               localBond[_i].order = order;
 
               if (orderAttr === 'A') {
-                localBond[_i].type = Bond$2.BondType.AROMATIC;
+                localBond[_i].type = Bond$3.BondType.AROMATIC;
               }
             }
           }
@@ -26291,7 +27007,7 @@ var CMLParser = /*#__PURE__*/function (_Parser) {
   }, {
     key: "_parseSet",
     value: function _parseSet(varData) {
-      var complex = this._complex = new Complex$2();
+      var complex = this._complex = new Complex$7();
       var data = varData;
       var currentLabel = data.curr;
       var atoms = data.atoms,
@@ -26381,23 +27097,23 @@ var CMLParser = /*#__PURE__*/function (_Parser) {
             var xyz = null;
 
             if (atom.x3) {
-              xyz = new Vector3(parseFloat(atom.x3), parseFloat(atom.y3), parseFloat(atom.z3));
+              xyz = new THREE.Vector3(parseFloat(atom.x3), parseFloat(atom.y3), parseFloat(atom.z3));
             } else if (atom.x2) {
-              xyz = new Vector3(parseFloat(atom.x2), parseFloat(atom.y2), 0);
+              xyz = new THREE.Vector3(parseFloat(atom.x2), parseFloat(atom.y2), 0);
             }
 
-            var element = Element$3.ByName[atom.elementType.toUpperCase()];
+            var element = Element$7.ByName[atom.elementType.toUpperCase()];
 
             if (!element) {
-              element = JSON.parse(JSON.stringify(Element$3.ByName[Object.keys(Element$3.ByName)[Object.keys(Element$3.ByName).length - 1]]));
+              element = JSON.parse(JSON.stringify(Element$7.ByName[Object.keys(Element$7.ByName)[Object.keys(Element$7.ByName).length - 1]]));
               element.number += 1;
               element.name = atom.elementType.toUpperCase();
               element.fullName = 'Unknown';
-              Element$3.ByName[atom.elementType.toUpperCase()] = element;
+              Element$7.ByName[atom.elementType.toUpperCase()] = element;
             }
 
             var atomSerial = parseInt(atom.id.replace(/[^0-9]/, ''), 10);
-            var added = residue.addAtom(atomFullNameStruct, element, xyz, Element$3.Role.SG, true, atomSerial, ' ', 1.0, 0.0, atomCharge);
+            var added = residue.addAtom(atomFullNameStruct, element, xyz, Element$7.Role.SG, true, atomSerial, ' ', 1.0, 0.0, atomCharge);
 
             if (atom.hydrogenCount) {
               added.hydrogenCount = parseInt(atom.hydrogenCount, 10);
@@ -26488,7 +27204,7 @@ var CMLParser = /*#__PURE__*/function (_Parser) {
       }
 
       if (complexes.length > 1) {
-        var joinedComplex = new Complex$2();
+        var joinedComplex = new Complex$7();
         joinedComplex.joinComplexes(complexes);
         joinedComplex.originalCML = complexes[0].originalCML;
         return joinedComplex;
@@ -26498,7 +27214,7 @@ var CMLParser = /*#__PURE__*/function (_Parser) {
         return complexes[0];
       }
 
-      return new Complex$2();
+      return new Complex$7();
     }
   }], [{
     key: "canProbablyParse",
@@ -26517,20 +27233,23 @@ var mmtf = createCommonjsModule(function (module, exports) {
 !function(r,t){t(exports);}(commonjsGlobal,function(r){function t(r,t,n){for(var e=(r.byteLength,0),i=n.length;i>e;e++){var o=n.charCodeAt(e);if(128>o)r.setUint8(t++,o>>>0&127|0);else if(2048>o)r.setUint8(t++,o>>>6&31|192),r.setUint8(t++,o>>>0&63|128);else if(65536>o)r.setUint8(t++,o>>>12&15|224),r.setUint8(t++,o>>>6&63|128),r.setUint8(t++,o>>>0&63|128);else {if(!(1114112>o))throw new Error("bad codepoint "+o);r.setUint8(t++,o>>>18&7|240),r.setUint8(t++,o>>>12&63|128),r.setUint8(t++,o>>>6&63|128),r.setUint8(t++,o>>>0&63|128);}}}function n(r){for(var t=0,n=0,e=r.length;e>n;n++){var i=r.charCodeAt(n);if(128>i)t+=1;else if(2048>i)t+=2;else if(65536>i)t+=3;else {if(!(1114112>i))throw new Error("bad codepoint "+i);t+=4;}}return t}function e(r,i,o){var a=typeof r;if("string"===a){var u=n(r);if(32>u)return i.setUint8(o,160|u),t(i,o+1,r),1+u;if(256>u)return i.setUint8(o,217),i.setUint8(o+1,u),t(i,o+2,r),2+u;if(65536>u)return i.setUint8(o,218),i.setUint16(o+1,u),t(i,o+3,r),3+u;if(4294967296>u)return i.setUint8(o,219),i.setUint32(o+1,u),t(i,o+5,r),5+u}if(r instanceof Uint8Array){var u=r.byteLength,s=new Uint8Array(i.buffer);if(256>u)return i.setUint8(o,196),i.setUint8(o+1,u),s.set(r,o+2),2+u;if(65536>u)return i.setUint8(o,197),i.setUint16(o+1,u),s.set(r,o+3),3+u;if(4294967296>u)return i.setUint8(o,198),i.setUint32(o+1,u),s.set(r,o+5),5+u}if("number"===a){if(!isFinite(r))throw new Error("Number not finite: "+r);if(Math.floor(r)!==r)return i.setUint8(o,203),i.setFloat64(o+1,r),9;if(r>=0){if(128>r)return i.setUint8(o,r),1;if(256>r)return i.setUint8(o,204),i.setUint8(o+1,r),2;if(65536>r)return i.setUint8(o,205),i.setUint16(o+1,r),3;if(4294967296>r)return i.setUint8(o,206),i.setUint32(o+1,r),5;throw new Error("Number too big 0x"+r.toString(16))}if(r>=-32)return i.setInt8(o,r),1;if(r>=-128)return i.setUint8(o,208),i.setInt8(o+1,r),2;if(r>=-32768)return i.setUint8(o,209),i.setInt16(o+1,r),3;if(r>=-2147483648)return i.setUint8(o,210),i.setInt32(o+1,r),5;throw new Error("Number too small -0x"+(-r).toString(16).substr(1))}if(null===r)return i.setUint8(o,192),1;if("boolean"===a)return i.setUint8(o,r?195:194),1;if("object"===a){var u,f=0,c=Array.isArray(r);if(c)u=r.length;else {var d=Object.keys(r);u=d.length;}var f;if(16>u?(i.setUint8(o,u|(c?144:128)),f=1):65536>u?(i.setUint8(o,c?220:222),i.setUint16(o+1,u),f=3):4294967296>u&&(i.setUint8(o,c?221:223),i.setUint32(o+1,u),f=5),c)for(var l=0;u>l;l++)f+=e(r[l],i,o+f);else for(var l=0;u>l;l++){var v=d[l];f+=e(v,i,o+f),f+=e(r[v],i,o+f);}return f}throw new Error("Unknown type "+a)}function i(r){var t=typeof r;if("string"===t){var e=n(r);if(32>e)return 1+e;if(256>e)return 2+e;if(65536>e)return 3+e;if(4294967296>e)return 5+e}if(r instanceof Uint8Array){var e=r.byteLength;if(256>e)return 2+e;if(65536>e)return 3+e;if(4294967296>e)return 5+e}if("number"===t){if(Math.floor(r)!==r)return 9;if(r>=0){if(128>r)return 1;if(256>r)return 2;if(65536>r)return 3;if(4294967296>r)return 5;throw new Error("Number too big 0x"+r.toString(16))}if(r>=-32)return 1;if(r>=-128)return 2;if(r>=-32768)return 3;if(r>=-2147483648)return 5;throw new Error("Number too small -0x"+r.toString(16).substr(1))}if("boolean"===t||null===r)return 1;if("object"===t){var e,o=0;if(Array.isArray(r)){e=r.length;for(var a=0;e>a;a++)o+=i(r[a]);}else {var u=Object.keys(r);e=u.length;for(var a=0;e>a;a++){var s=u[a];o+=i(s)+i(r[s]);}}if(16>e)return 1+o;if(65536>e)return 3+o;if(4294967296>e)return 5+o;throw new Error("Array or object too long 0x"+e.toString(16))}throw new Error("Unknown type "+t)}function o(r){var t=new ArrayBuffer(i(r)),n=new DataView(t);return e(r,n,0),new Uint8Array(t)}function a(r,t,n){return t?new r(t.buffer,t.byteOffset,t.byteLength/(n||1)):void 0}function u(r){return a(DataView,r)}function s(r){return a(Uint8Array,r)}function f(r){return a(Int8Array,r)}function c(r){return a(Int32Array,r,4)}function d(r){return a(Float32Array,r,4)}function l(r,t){var n=r.length/2;t||(t=new Int16Array(n));for(var e=0,i=0;n>e;++e,i+=2)t[e]=r[i]<<8^r[i+1]<<0;return t}function v(r,t){var n=r.length;t||(t=new Uint8Array(2*n));for(var e=u(t),i=0;n>i;++i)e.setInt16(2*i,r[i]);return s(t)}function g(r,t){var n=r.length/4;t||(t=new Int32Array(n));for(var e=0,i=0;n>e;++e,i+=4)t[e]=r[i]<<24^r[i+1]<<16^r[i+2]<<8^r[i+3]<<0;return t}function L(r,t){var n=r.length;t||(t=new Uint8Array(4*n));for(var e=u(t),i=0;n>i;++i)e.setInt32(4*i,r[i]);return s(t)}function h(r,t){var n=r.length;t||(t=new Float32Array(n/4));for(var e=u(t),i=u(r),o=0,a=0,s=n/4;s>o;++o,a+=4)e.setFloat32(a,i.getFloat32(a),!0);return t}function y(r,t,n){var e=r.length,i=1/t;n||(n=new Float32Array(e));for(var o=0;e>o;++o)n[o]=r[o]*i;return n}function m(r,t,n){var e=r.length;n||(n=new Int32Array(e));for(var i=0;e>i;++i)n[i]=Math.round(r[i]*t);return n}function p(r,t){var n,e;if(!t){var i=0;for(n=0,e=r.length;e>n;n+=2)i+=r[n+1];t=new r.constructor(i);}var o=0;for(n=0,e=r.length;e>n;n+=2)for(var a=r[n],u=r[n+1],s=0;u>s;++s)t[o]=a,++o;return t}function U(r){if(0===r.length)return new Int32Array;var t,n,e=2;for(t=1,n=r.length;n>t;++t)r[t-1]!==r[t]&&(e+=2);var i=new Int32Array(e),o=0,a=1;for(t=1,n=r.length;n>t;++t)r[t-1]!==r[t]?(i[o]=r[t-1],i[o+1]=a,a=1,o+=2):++a;return i[o]=r[r.length-1],i[o+1]=a,i}function b(r,t){var n=r.length;t||(t=new r.constructor(n)),n&&(t[0]=r[0]);for(var e=1;n>e;++e)t[e]=r[e]+t[e-1];return t}function I(r,t){var n=r.length;t||(t=new r.constructor(n)),t[0]=r[0];for(var e=1;n>e;++e)t[e]=r[e]-r[e-1];return t}function w(r,t){var n,e,i=r instanceof Int8Array?127:32767,o=-i-1,a=r.length;if(!t){var u=0;for(n=0;a>n;++n)r[n]<i&&r[n]>o&&++u;t=new Int32Array(u);}for(n=0,e=0;a>n;){for(var s=0;r[n]===i||r[n]===o;)s+=r[n],++n;s+=r[n],++n,t[e]=s,++e;}return t}function C(r,t){var n,e=t?127:32767,i=-e-1,o=r.length,a=0;for(n=0;o>n;++n){var u=r[n];0===u?++a:a+=u===e||u===i?2:u>0?Math.ceil(u/e):Math.ceil(u/i);}var s=t?new Int8Array(a):new Int16Array(a),f=0;for(n=0;o>n;++n){var u=r[n];if(u>=0)for(;u>=e;)s[f]=e,++f,u-=e;else for(;i>=u;)s[f]=i,++f,u-=i;s[f]=u,++f;}return s}function A(r,t){return b(p(r),t)}function x(r){return U(I(r))}function M(r,t,n){return y(p(r,c(n)),t,n)}function F(r,t){return U(m(r,t))}function S(r,t,n){return y(b(r,c(n)),t,n)}function E(r,t,n){return I(m(r,t),n)}function N(r,t,n){return y(w(r,c(n)),t,n)}function O(r,t,n){var e=w(r,c(n));return S(e,t,d(e))}function T(r,t,n){return C(E(r,t),n)}function k(r){var t=u(r),n=t.getInt32(0),e=t.getInt32(4),i=r.subarray(8,12),r=r.subarray(12);return [n,r,e,i]}function j(r,t,n,e){var i=new ArrayBuffer(12+e.byteLength),o=new Uint8Array(i),a=new DataView(i);return a.setInt32(0,r),a.setInt32(4,t),n&&o.set(n,8),o.set(e,12),o}function q(r){var t=r.length,n=s(r);return j(2,t,void 0,n)}function D(r){var t=r.length,n=L(r);return j(4,t,void 0,n)}function P(r,t){var n=r.length/t,e=L([t]),i=s(r);return j(5,n,e,i)}function z(r){var t=r.length,n=L(U(r));return j(6,t,void 0,n)}function B(r){var t=r.length,n=L(x(r));return j(8,t,void 0,n)}function V(r,t){var n=r.length,e=L([t]),i=L(F(r,t));return j(9,n,e,i)}function G(r,t){var n=r.length,e=L([t]),i=v(T(r,t));return j(10,n,e,i)}function R(r){var t={};return rr.forEach(function(n){void 0!==r[n]&&(t[n]=r[n]);}),r.bondAtomList&&(t.bondAtomList=D(r.bondAtomList)),r.bondOrderList&&(t.bondOrderList=q(r.bondOrderList)),t.xCoordList=G(r.xCoordList,1e3),t.yCoordList=G(r.yCoordList,1e3),t.zCoordList=G(r.zCoordList,1e3),r.bFactorList&&(t.bFactorList=G(r.bFactorList,100)),r.atomIdList&&(t.atomIdList=B(r.atomIdList)),r.altLocList&&(t.altLocList=z(r.altLocList)),r.occupancyList&&(t.occupancyList=V(r.occupancyList,100)),t.groupIdList=B(r.groupIdList),t.groupTypeList=D(r.groupTypeList),r.secStructList&&(t.secStructList=q(r.secStructList)),r.insCodeList&&(t.insCodeList=z(r.insCodeList)),r.sequenceIndexList&&(t.sequenceIndexList=B(r.sequenceIndexList)),t.chainIdList=P(r.chainIdList,4),r.chainNameList&&(t.chainNameList=P(r.chainNameList,4)),t}function H(r){function t(r){for(var t={},n=0;r>n;n++){var e=o();t[e]=o();}return t}function n(t){var n=r.subarray(a,a+t);return a+=t,n}function e(t){var n=r.subarray(a,a+t);a+=t;var e=65535;if(t>e){for(var i=[],o=0;o<n.length;o+=e)i.push(String.fromCharCode.apply(null,n.subarray(o,o+e)));return i.join("")}return String.fromCharCode.apply(null,n)}function i(r){for(var t=new Array(r),n=0;r>n;n++)t[n]=o();return t}function o(){var o,s,f=r[a];if(0===(128&f))return a++,f;if(128===(240&f))return s=15&f,a++,t(s);if(144===(240&f))return s=15&f,a++,i(s);if(160===(224&f))return s=31&f,a++,e(s);if(224===(224&f))return o=u.getInt8(a),a++,o;switch(f){case 192:return a++,null;case 194:return a++,!1;case 195:return a++,!0;case 196:return s=u.getUint8(a+1),a+=2,n(s);case 197:return s=u.getUint16(a+1),a+=3,n(s);case 198:return s=u.getUint32(a+1),a+=5,n(s);case 202:return o=u.getFloat32(a+1),a+=5,o;case 203:return o=u.getFloat64(a+1),a+=9,o;case 204:return o=r[a+1],a+=2,o;case 205:return o=u.getUint16(a+1),a+=3,o;case 206:return o=u.getUint32(a+1),a+=5,o;case 208:return o=u.getInt8(a+1),a+=2,o;case 209:return o=u.getInt16(a+1),a+=3,o;case 210:return o=u.getInt32(a+1),a+=5,o;case 217:return s=u.getUint8(a+1),a+=2,e(s);case 218:return s=u.getUint16(a+1),a+=3,e(s);case 219:return s=u.getUint32(a+1),a+=5,e(s);case 220:return s=u.getUint16(a+1),a+=3,i(s);case 221:return s=u.getUint32(a+1),a+=5,i(s);case 222:return s=u.getUint16(a+1),a+=3,t(s);case 223:return s=u.getUint32(a+1),a+=5,t(s)}throw new Error("Unknown type 0x"+f.toString(16))}var a=0,u=new DataView(r.buffer);return o()}function W(r,t,n,e){switch(r){case 1:return h(t);case 2:return f(t);case 3:return l(t);case 4:return g(t);case 5:return s(t);case 6:return p(g(t),new Uint8Array(n));case 7:return p(g(t));case 8:return A(g(t));case 9:return M(g(t),g(e)[0]);case 10:return O(l(t),g(e)[0]);case 11:return y(l(t),g(e)[0]);case 12:return N(l(t),g(e)[0]);case 13:return N(f(t),g(e)[0]);case 14:return w(l(t));case 15:return w(f(t))}}function X(r,t){t=t||{};var n=t.ignoreFields,e={};return nr.forEach(function(t){var i=n?-1!==n.indexOf(t):!1,o=r[t];i||void 0===o||(o instanceof Uint8Array?e[t]=W.apply(null,k(o)):e[t]=o);}),e}function J(r){return String.fromCharCode.apply(null,r).replace(/\0/g,"")}function K(r,t,n){n=n||{};var e,i,o,a,u,s,f=n.firstModelOnly,c=t.onModel,d=t.onChain,l=t.onGroup,v=t.onAtom,g=t.onBond,L=0,h=0,y=0,m=0,p=0,U=-1,b=r.chainNameList,I=r.secStructList,w=r.insCodeList,C=r.sequenceIndexList,A=r.atomIdList,x=r.bFactorList,M=r.altLocList,F=r.occupancyList,S=r.bondAtomList,E=r.bondOrderList;for(e=0,i=r.chainsPerModel.length;i>e&&!(f&&L>0);++e){var N=r.chainsPerModel[L];for(c&&c({chainCount:N,modelIndex:L}),o=0;N>o;++o){var O=r.groupsPerChain[h];if(d){var T=J(r.chainIdList.subarray(4*h,4*h+4)),k=null;b&&(k=J(b.subarray(4*h,4*h+4))),d({groupCount:O,chainIndex:h,modelIndex:L,chainId:T,chainName:k});}for(a=0;O>a;++a){var j=r.groupList[r.groupTypeList[y]],q=j.atomNameList.length;if(l){var D=null;I&&(D=I[y]);var P=null;r.insCodeList&&(P=String.fromCharCode(w[y]));var z=null;C&&(z=C[y]),l({atomCount:q,groupIndex:y,chainIndex:h,modelIndex:L,groupId:r.groupIdList[y],groupType:r.groupTypeList[y],groupName:j.groupName,singleLetterCode:j.singleLetterCode,chemCompType:j.chemCompType,secStruct:D,insCode:P,sequenceIndex:z});}for(u=0;q>u;++u){if(v){var B=null;A&&(B=A[m]);var V=null;x&&(V=x[m]);var G=null;M&&(G=String.fromCharCode(M[m]));var R=null;F&&(R=F[m]),v({atomIndex:m,groupIndex:y,chainIndex:h,modelIndex:L,atomId:B,element:j.elementList[u],atomName:j.atomNameList[u],formalCharge:j.formalChargeList[u],xCoord:r.xCoordList[m],yCoord:r.yCoordList[m],zCoord:r.zCoordList[m],bFactor:V,altLoc:G,occupancy:R});}m+=1;}if(g){var H=j.bondAtomList;for(u=0,s=j.bondOrderList.length;s>u;++u)g({atomIndex1:m-q+H[2*u],atomIndex2:m-q+H[2*u+1],bondOrder:j.bondOrderList[u]});}y+=1;}h+=1;}if(p=U+1,U=m-1,g&&S)for(u=0,s=S.length;s>u;u+=2){var W=S[u],X=S[u+1];(W>=p&&U>=W||X>=p&&U>=X)&&g({atomIndex1:W,atomIndex2:X,bondOrder:E?E[u/2]:null});}L+=1;}}function Q(r){return o(R(r))}function Y(r,t){r instanceof ArrayBuffer&&(r=new Uint8Array(r));var n;return n=r instanceof Uint8Array?H(r):r,X(n,t)}function Z(r,t,n,e){function i(){try{var r=Y(o.response);n(r);}catch(t){e(t);}}var o=new XMLHttpRequest;o.addEventListener("load",i,!0),o.addEventListener("error",e,!0),o.responseType="arraybuffer",o.open("GET",t+r.toUpperCase()),o.send();}function $(r,t,n){Z(r,or,t,n);}function _(r,t,n){Z(r,ar,t,n);}var rr=["mmtfVersion","mmtfProducer","unitCell","spaceGroup","structureId","title","depositionDate","releaseDate","experimentalMethods","resolution","rFree","rWork","bioAssemblyList","ncsOperatorList","entityList","groupList","numBonds","numAtoms","numGroups","numChains","numModels","groupsPerChain","chainsPerModel"],tr=["xCoordList","yCoordList","zCoordList","groupIdList","groupTypeList","chainIdList","bFactorList","atomIdList","altLocList","occupancyList","secStructList","insCodeList","sequenceIndexList","chainNameList","bondAtomList","bondOrderList"],nr=rr.concat(tr),er="v1.1.0dev",ir="//mmtf.rcsb.org/v1.0/",or=ir+"full/",ar=ir+"reduced/";r.encode=Q,r.decode=Y,r.traverse=K,r.fetch=$,r.fetchReduced=_,r.version=er,r.fetchUrl=or,r.fetchReducedUrl=ar,r.encodeMsgpack=o,r.encodeMmtf=R,r.decodeMsgpack=H,r.decodeMmtf=X;});
 });
 
-var Complex$3 = chem.Complex,
+function _createSuper$m(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$m(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$m() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var Complex$6 = chem.Complex,
     Chain$1 = chem.Chain,
     Atom$1 = chem.Atom,
-    Element$4 = chem.Element,
-    Helix$2 = chem.Helix,
-    Sheet$2 = chem.Sheet,
-    Strand$2 = chem.Strand,
-    Bond$3 = chem.Bond,
-    Assembly$2 = chem.Assembly,
-    Molecule$2 = chem.Molecule;
+    Element$6 = chem.Element,
+    Helix$1 = chem.Helix,
+    Sheet$1 = chem.Sheet,
+    Strand$1 = chem.Strand,
+    Bond$2 = chem.Bond,
+    Assembly$1 = chem.Assembly,
+    Molecule$6 = chem.Molecule;
 
 var ArrayComparator = /*#__PURE__*/function () {
   function ArrayComparator(original) {
-    classCallCheck(this, ArrayComparator);
+    _classCallCheck(this, ArrayComparator);
 
     this._original = Array.from(original);
 
@@ -26543,7 +27262,7 @@ var ArrayComparator = /*#__PURE__*/function () {
     }
   }
 
-  createClass(ArrayComparator, [{
+  _createClass(ArrayComparator, [{
     key: "compare",
     value: function compare(candidate) {
       var len = candidate.length;
@@ -26580,16 +27299,16 @@ var ArrayComparator = /*#__PURE__*/function () {
 }();
 
 ArrayComparator.prototype.constructor = ArrayComparator;
-var StructuralElementType$5 = StructuralElement.Type; // see https://github.com/rcsb/mmtf-javascript/blob/master/src/mmtf-traverse.js
+var StructuralElementType = StructuralElement.Type; // see https://github.com/rcsb/mmtf-javascript/blob/master/src/mmtf-traverse.js
 
-var secStructToType = [StructuralElementType$5.HELIX_PI, // 0
-StructuralElementType$5.BEND, // 1
-StructuralElementType$5.HELIX_ALPHA, // 2
-StructuralElementType$5.STRAND, // 3
-StructuralElementType$5.HELIX_310, // 4
-StructuralElementType$5.BRIDGE, // 5
-StructuralElementType$5.TURN, // 6
-StructuralElementType$5.COIL // 7
+var secStructToType = [StructuralElementType.HELIX_PI, // 0
+StructuralElementType.BEND, // 1
+StructuralElementType.HELIX_ALPHA, // 2
+StructuralElementType.STRAND, // 3
+StructuralElementType.HELIX_310, // 4
+StructuralElementType.BRIDGE, // 5
+StructuralElementType.TURN, // 6
+StructuralElementType.COIL // 7
 ];
 
 function getFirstByte(buf) {
@@ -26598,19 +27317,21 @@ function getFirstByte(buf) {
 }
 
 var MMTFParser = /*#__PURE__*/function (_Parser) {
-  inherits(MMTFParser, _Parser);
+  _inherits(MMTFParser, _Parser);
+
+  var _super = _createSuper$m(MMTFParser);
 
   function MMTFParser(data, options) {
     var _this;
 
-    classCallCheck(this, MMTFParser);
+    _classCallCheck(this, MMTFParser);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(MMTFParser).call(this, data, options));
+    _this = _super.call(this, data, options);
     _this._options.fileType = 'mmtf';
     return _this;
   }
 
-  createClass(MMTFParser, [{
+  _createClass(MMTFParser, [{
     key: "_onModel",
     value: function _onModel(_modelData) {}
   }, {
@@ -26654,7 +27375,7 @@ var MMTFParser = /*#__PURE__*/function (_Parser) {
 
       var altLoc = !atomData.altLoc.charCodeAt(0) ? '' : atomData.altLoc;
       var atom = new Atom$1(atomData.groupIndex, // we store residue index here to replace it later with actual reference
-      atomData.atomName, Element$4.getByName(atomData.element.toUpperCase()), new Vector3(atomData.xCoord, atomData.yCoord, atomData.zCoord), Element$4.Role[atomData.atomName], false, // hetero atoms will be marked later
+      atomData.atomName, Element$6.getByName(atomData.element.toUpperCase()), new THREE.Vector3(atomData.xCoord, atomData.yCoord, atomData.zCoord), Element$6.Role[atomData.atomName], false, // hetero atoms will be marked later
       atomData.atomId, altLoc, atomData.occupancy, atomData.bFactor, atomData.formalCharge);
       this._complex._atoms[atomData.atomIndex] = atom;
       atom.index = atomData.atomIndex;
@@ -26671,7 +27392,7 @@ var MMTFParser = /*#__PURE__*/function (_Parser) {
 
       var left = Math.min(bondData.atomIndex1, bondData.atomIndex2);
 
-      this._complex.addBond(this._complex._atoms[left], this._complex._atoms[right], bondData.bondOrder, Bond$3.BondType.UNKNOWN, true);
+      this._complex.addBond(this._complex._atoms[left], this._complex._atoms[right], bondData.bondOrder, Bond$2.BondType.UNKNOWN, true);
     }
   }, {
     key: "_updateSecStructure",
@@ -26708,7 +27429,7 @@ var MMTFParser = /*#__PURE__*/function (_Parser) {
 
           case 4:
             // 3-10 helix
-            struct = new Helix$2(helixClasses[this._ssType], residue, residue, 0, '', '', 0);
+            struct = new Helix$1(helixClasses[this._ssType], residue, residue, 0, '', '', 0);
 
             complex._helices.push(struct);
 
@@ -26717,11 +27438,11 @@ var MMTFParser = /*#__PURE__*/function (_Parser) {
           case 3:
             {
               // extended
-              var sheet = new Sheet$2('', 0);
+              var sheet = new Sheet$1('', 0);
 
               complex._sheets.push(sheet);
 
-              struct = new Strand$2(sheet, residue, residue, 0, null, null);
+              struct = new Strand$1(sheet, residue, residue, 0, null, null);
               break;
             }
 
@@ -26768,7 +27489,7 @@ var MMTFParser = /*#__PURE__*/function (_Parser) {
           residues = residues.concat(chain._residues.slice());
         }
 
-        var molecule = new Molecule$2(this._complex, entity.description, i + 1);
+        var molecule = new Molecule$6(this._complex, entity.description, i + 1);
         molecule.residues = residues;
         this._complex._molecules[i] = molecule;
       }
@@ -26890,7 +27611,7 @@ var MMTFParser = /*#__PURE__*/function (_Parser) {
           logger.debug('MMTF: Assembly is missing some of the synonymous chains. Skipping...');
         }
 
-        var a = new Assembly$2(this._complex); // add chains to assembly
+        var a = new Assembly$1(this._complex); // add chains to assembly
 
         for (name in chainNames) {
           if (chainNames.hasOwnProperty(name)) {
@@ -26899,7 +27620,7 @@ var MMTFParser = /*#__PURE__*/function (_Parser) {
         } // add unique matrices to assembly
 
 
-        a.addMatrix(new Matrix4().fromArray(baInfo.transformList[0].matrix).transpose());
+        a.addMatrix(new THREE.Matrix4().fromArray(baInfo.transformList[0].matrix).transpose());
 
         for (j = 1; j < baInfo.transformList.length; ++j) {
           var transform = baInfo.transformList[j];
@@ -26911,7 +27632,7 @@ var MMTFParser = /*#__PURE__*/function (_Parser) {
             continue;
           }
 
-          var m = new Matrix4().fromArray(transform.matrix).transpose(); // check if matrix is already in the list
+          var m = new THREE.Matrix4().fromArray(transform.matrix).transpose(); // check if matrix is already in the list
 
           for (k = 0; k < a.matrices.length; ++k) {
             if (a.matrices[k].equals(m)) {
@@ -27002,7 +27723,7 @@ var MMTFParser = /*#__PURE__*/function (_Parser) {
     key: "parseSync",
     value: function parseSync() {
       var mmtfData = mmtf.decode(this._data);
-      this._complex = new Complex$3();
+      this._complex = new Complex$6();
       this._serialAtomMap = {}; // filled during traversal
 
       this._traverse(mmtfData);
@@ -27041,18 +27762,24 @@ MMTFParser.formats = ['mmtf'];
 MMTFParser.extensions = ['.mmtf'];
 MMTFParser.binary = true;
 
+function _createSuper$l(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$l(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$l() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var ParsingError = /*#__PURE__*/function (_Error) {
-  inherits(ParsingError, _Error);
+  _inherits(ParsingError, _Error);
+
+  var _super = _createSuper$l(ParsingError);
 
   function ParsingError(message, line, column) {
     var _this;
 
-    classCallCheck(this, ParsingError);
+    _classCallCheck(this, ParsingError);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(ParsingError).call(this, "data:".concat(line, ":").concat(column, ": ").concat(message)));
+    _this = _super.call(this, "data:".concat(line, ":").concat(column, ": ").concat(message));
 
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(assertThisInitialized(_this), ParsingError);
+      Error.captureStackTrace(_assertThisInitialized(_this), ParsingError);
     }
 
     _this.name = 'ParsingError';
@@ -27062,7 +27789,7 @@ var ParsingError = /*#__PURE__*/function (_Error) {
   }
 
   return ParsingError;
-}( /*#__PURE__*/wrapNativeSuper(Error));
+}( /*#__PURE__*/_wrapNativeSuper(Error));
 
 function _isWhitespace(ch) {
   return ch === 32 || ch === 10 || ch === 13 || ch === 9;
@@ -27386,13 +28113,16 @@ function readCIF(source) {
   return result;
 }
 
-var Complex$4 = chem.Complex,
+function _createSuper$k(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$k(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$k() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var Complex$5 = chem.Complex,
     Element$5 = chem.Element,
-    Helix$3 = chem.Helix,
-    Sheet$3 = chem.Sheet,
-    Strand$3 = chem.Strand,
-    Assembly$3 = chem.Assembly,
-    Molecule$3 = chem.Molecule;
+    Helix = chem.Helix,
+    Sheet = chem.Sheet,
+    Strand = chem.Strand,
+    Assembly = chem.Assembly,
+    Molecule$5 = chem.Molecule;
 var cRequiredAtomFields = ['auth_seq_id', 'Cartn_x', 'Cartn_y', 'Cartn_z', 'label_atom_id'];
 var cSecondaryCoding = {
   helx: 'helix',
@@ -27424,7 +28154,7 @@ function arrize(arrayLikeObject) {
   return [arrayLikeObject];
 }
 
-function nameToElement$1(name) {
+function nameToElement(name) {
   // http://www.wwpdb.org/documentation/file-format-content/format33/sect9.html#ATOM
   //
   // http://www.cgl.ucsf.edu/chimera/docs/UsersGuide/tutorials/pdbintro.html#note1
@@ -27440,21 +28170,23 @@ function nameToElement$1(name) {
 }
 
 var AtomDataError = /*#__PURE__*/function (_Error) {
-  inherits(AtomDataError, _Error);
+  _inherits(AtomDataError, _Error);
+
+  var _super = _createSuper$k(AtomDataError);
 
   function AtomDataError(message) {
     var _this;
 
-    classCallCheck(this, AtomDataError);
+    _classCallCheck(this, AtomDataError);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(AtomDataError).call(this));
+    _this = _super.call(this);
     _this.name = 'AtomDataError';
     _this.message = message;
     return _this;
   }
 
   return AtomDataError;
-}( /*#__PURE__*/wrapNativeSuper(Error));
+}( /*#__PURE__*/_wrapNativeSuper(Error));
 
 function _getOperations(operList) {
   if (!operList) {
@@ -27472,7 +28204,7 @@ function _getOperations(operList) {
   var ops = [];
 
   for (var i = 0, n = idc.length; i < n; ++i) {
-    var mtx = new Matrix4();
+    var mtx = new THREE.Matrix4();
     var elements = mtx.elements;
 
     for (var row = 0; row < 3; ++row) {
@@ -27525,7 +28257,7 @@ function _extractOperations(assemblyGen, opsDict) {
 
   function traverse(level, mtx) {
     for (var ii = 0, nn = gps[level].length; ii < nn; ++ii) {
-      var newMtx = mtx ? mtx.clone() : new Matrix4();
+      var newMtx = mtx ? mtx.clone() : new THREE.Matrix4();
       newMtx.multiplyMatrices(gps[level][ii], newMtx);
 
       if (level === 0) {
@@ -27541,21 +28273,23 @@ function _extractOperations(assemblyGen, opsDict) {
 }
 
 var CIFParser = /*#__PURE__*/function (_Parser) {
-  inherits(CIFParser, _Parser);
+  _inherits(CIFParser, _Parser);
+
+  var _super2 = _createSuper$k(CIFParser);
 
   function CIFParser(data, options) {
     var _this2;
 
-    classCallCheck(this, CIFParser);
+    _classCallCheck(this, CIFParser);
 
-    _this2 = possibleConstructorReturn(this, getPrototypeOf(CIFParser).call(this, data, options));
+    _this2 = _super2.call(this, data, options);
     _this2.asymDict = {};
     _this2.molecules = [];
     _this2._options.fileType = 'cif';
     return _this2;
   }
 
-  createClass(CIFParser, [{
+  _createClass(CIFParser, [{
     key: "parseSync",
     value: function parseSync() {
       this.logger.info('Parsing CIF file..');
@@ -27572,7 +28306,7 @@ var CIFParser = /*#__PURE__*/function (_Parser) {
   }, {
     key: "_toComplex",
     value: function _toComplex(cifData) {
-      var complex = new Complex$4();
+      var complex = new Complex$5();
       var complexData = cifData[Object.keys(cifData)[0]];
 
       this._extractAtoms(complex, complexData);
@@ -27634,7 +28368,7 @@ var CIFParser = /*#__PURE__*/function (_Parser) {
 
       for (i = 0; i < count; i++) {
         var molecule = this.molecules[i];
-        molecules[i] = new Molecule$3(complex, molecule.name, i + 1);
+        molecules[i] = new Molecule$5(complex, molecule.name, i + 1);
         molecules[i].residues = molecule.residues;
       }
     }
@@ -27721,10 +28455,10 @@ var CIFParser = /*#__PURE__*/function (_Parser) {
         }
 
         var name = names[i];
-        var element = elements[i] || nameToElement$1(name);
+        var element = elements[i] || nameToElement(name);
         var type = Element$5.getByName(element);
         var role = Element$5.Role[name.trim()];
-        var xyz = new Vector3(x[i], y[i], z[i]);
+        var xyz = new THREE.Vector3(x[i], y[i], z[i]);
         var het = group[i] === 'HETATM' || false;
         var serial = serials[i] || i;
         var tempFactor = tempFactors[i] || 0.0;
@@ -27782,7 +28516,7 @@ var CIFParser = /*#__PURE__*/function (_Parser) {
           }
         }
 
-        sheets[n] = new Sheet$3(name, 0);
+        sheets[n] = new Sheet(name, 0);
         return sheets[n];
       }
 
@@ -27808,7 +28542,7 @@ var CIFParser = /*#__PURE__*/function (_Parser) {
           continue;
         }
 
-        var strand = new Strand$3(sheet, start[0], end[0], 0, null, null);
+        var strand = new Strand(sheet, start[0], end[0], 0, null, null);
         var residues = chain.getResidues();
 
         for (var r = start[1]; r <= end[1]; ++r) {
@@ -27874,7 +28608,7 @@ var CIFParser = /*#__PURE__*/function (_Parser) {
 
         if (type === 'helix') {
           var idx = complex._helices.length;
-          struct = new Helix$3(helixClass, start[0], end[0], idx, name, comment, length);
+          struct = new Helix(helixClass, start[0], end[0], idx, name, comment, length);
           complex.addHelix(struct);
           complex.structures.push(struct);
         } else if (type === 'turn') {
@@ -27927,7 +28661,7 @@ var CIFParser = /*#__PURE__*/function (_Parser) {
       }
 
       for (var i = 0, n = asmIdx.length; i < n; ++i) {
-        var asm = new Assembly$3(complex);
+        var asm = new Assembly(complex);
 
         var assemblyOps = _extractOperations(asmOper[i], operList);
 
@@ -27967,29 +28701,29 @@ var valueType = {
 
 var VolumeModel = /*#__PURE__*/function () {
   function VolumeModel() {
-    classCallCheck(this, VolumeModel);
+    _classCallCheck(this, VolumeModel);
 
-    defineProperty(this, "_xyz2crs", []);
+    _defineProperty(this, "_xyz2crs", []);
 
-    defineProperty(this, "_origin", new Vector3(0, 0, 0));
+    _defineProperty(this, "_origin", new THREE.Vector3(0, 0, 0));
 
     this._header = {};
-    this._boxSize = new Vector3();
-    this._boxStart = new Vector3();
+    this._boxSize = new THREE.Vector3();
+    this._boxStart = new THREE.Vector3();
     this._header.delta = {};
     this._header.extent = [];
     this._header.nstart = [];
     this._header.grid = [];
     this._header.crs2xyz = [];
-    this._header.cellDims = new Vector3();
+    this._header.cellDims = new THREE.Vector3();
     this._header.angles = [];
-    this._header.origin = new Vector3(0, 0, 0);
+    this._header.origin = new THREE.Vector3(0, 0, 0);
     this._header.dmin = 0;
     this._header.dmean = 0;
     this._header.dmax = 0;
   }
 
-  createClass(VolumeModel, [{
+  _createClass(VolumeModel, [{
     key: "_typedCheck",
     value: function _typedCheck() {
       if (_.isTypedArray(this._buff)) {
@@ -28057,7 +28791,7 @@ var VolumeModel = /*#__PURE__*/function () {
       var yScale = header.cellDims.y / header.grid[1];
       var zScale = header.cellDims.z / header.grid[2];
 
-      var _header$angles = slicedToArray(header.angles, 3),
+      var _header$angles = _slicedToArray(header.angles, 3),
           alpha = _header$angles[0],
           beta = _header$angles[1],
           gamma = _header$angles[2];
@@ -28065,9 +28799,9 @@ var VolumeModel = /*#__PURE__*/function () {
       var z1 = Math.cos(beta);
       var z2 = (Math.cos(alpha) - Math.cos(beta) * Math.cos(gamma)) / Math.sin(gamma);
       var z3 = Math.sqrt(1.0 - z1 * z1 - z2 * z2);
-      var xaxis = new Vector3(xScale, 0, 0);
-      var yaxis = new Vector3(Math.cos(gamma) * yScale, Math.sin(gamma) * yScale, 0);
-      var zaxis = new Vector3(z1 * zScale, z2 * zScale, z3 * zScale);
+      var xaxis = new THREE.Vector3(xScale, 0, 0);
+      var yaxis = new THREE.Vector3(Math.cos(gamma) * yScale, Math.sin(gamma) * yScale, 0);
+      var zaxis = new THREE.Vector3(z1 * zScale, z2 * zScale, z3 * zScale);
       return [xaxis, yaxis, zaxis];
     }
   }, {
@@ -28094,7 +28828,7 @@ var VolumeModel = /*#__PURE__*/function () {
       var shiftX = 0;
       var shiftY = 0;
 
-      var _this$_header$angles = slicedToArray(this._header.angles, 3),
+      var _this$_header$angles = _slicedToArray(this._header.angles, 3),
           alpha = _this$_header$angles[0],
           beta = _this$_header$angles[1],
           gamma = _this$_header$angles[2];
@@ -28111,8 +28845,8 @@ var VolumeModel = /*#__PURE__*/function () {
         shiftY += Math.abs(zaxis.y);
       }
 
-      this._boxStart = new Vector3(this._origin.x - shiftX, this._origin.y - shiftY, this._origin.z);
-      this._boxSize = new Vector3(Math.abs(xaxis.x) + Math.abs(yaxis.x) + Math.abs(zaxis.x), Math.abs(yaxis.y) + Math.abs(zaxis.y), Math.abs(zaxis.z));
+      this._boxStart = new THREE.Vector3(this._origin.x - shiftX, this._origin.y - shiftY, this._origin.z);
+      this._boxSize = new THREE.Vector3(Math.abs(xaxis.x) + Math.abs(yaxis.x) + Math.abs(zaxis.x), Math.abs(yaxis.y) + Math.abs(zaxis.y), Math.abs(zaxis.z));
 
       var delta = function delta(axe, proj) {
         return Math.abs(axe[proj]) / _this._boxSize[proj];
@@ -28125,7 +28859,7 @@ var VolumeModel = /*#__PURE__*/function () {
   }, {
     key: "_getXYZbox",
     value: function _getXYZbox() {
-      return new Box3(this._boxStart.clone(), this._boxStart.clone().add(this._boxSize));
+      return new THREE.Box3(this._boxStart.clone(), this._boxStart.clone().add(this._boxSize));
     }
   }, {
     key: "_toXYZData",
@@ -28137,13 +28871,16 @@ var VolumeModel = /*#__PURE__*/function () {
 
       this._setOrigins();
 
-      return new Volume(Float32Array, this._getXYZdim(), this._getXYZbox(), 1, this._toXYZData(), this._getVolumeInfo());
+      return new Volume$2(Float32Array, this._getXYZdim(), this._getXYZbox(), 1, this._toXYZData(), this._getVolumeInfo());
     }
   }]);
 
   return VolumeModel;
 }();
 
+function _createSuper$j(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$j(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$j() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 var CCP4Header = {
   extent: [valueType.array, 'u32', 0],
   type: [valueType.singular, 'u32', 3],
@@ -28168,18 +28905,20 @@ var CCP4Header = {
 };
 
 var Ccp4Model = /*#__PURE__*/function (_VolumeModel) {
-  inherits(Ccp4Model, _VolumeModel);
+  _inherits(Ccp4Model, _VolumeModel);
+
+  var _super = _createSuper$j(Ccp4Model);
 
   function Ccp4Model() {
-    classCallCheck(this, Ccp4Model);
+    _classCallCheck(this, Ccp4Model);
 
-    return possibleConstructorReturn(this, getPrototypeOf(Ccp4Model).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(Ccp4Model, [{
+  _createClass(Ccp4Model, [{
     key: "_parseHeader",
-    // read header (http://www.ccp4.ac.uk/html/maplib.html)
-    value: function _parseHeader(_buffer) {
+    value: // read header (http://www.ccp4.ac.uk/html/maplib.html)
+    function _parseHeader(_buffer) {
       this._buff = _buffer;
 
       this._typedCheck();
@@ -28228,7 +28967,7 @@ var Ccp4Model = /*#__PURE__*/function (_VolumeModel) {
     key: "_setOrigins",
     value: function _setOrigins() {
       var _this$_getAxis = this._getAxis(),
-          _this$_getAxis2 = slicedToArray(_this$_getAxis, 3),
+          _this$_getAxis2 = _slicedToArray(_this$_getAxis, 3),
           xaxis = _this$_getAxis2[0],
           yaxis = _this$_getAxis2[1],
           zaxis = _this$_getAxis2[2];
@@ -28303,20 +29042,22 @@ var Ccp4Model = /*#__PURE__*/function (_VolumeModel) {
 }(VolumeModel);
 
 var CCP4Parser = /*#__PURE__*/function (_Parser) {
-  inherits(CCP4Parser, _Parser);
+  _inherits(CCP4Parser, _Parser);
+
+  var _super2 = _createSuper$j(CCP4Parser);
 
   function CCP4Parser(data, options) {
     var _this;
 
-    classCallCheck(this, CCP4Parser);
+    _classCallCheck(this, CCP4Parser);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(CCP4Parser).call(this, data, options));
+    _this = _super2.call(this, data, options);
     _this._options.fileType = 'ccp4';
     _this.model = new Ccp4Model();
     return _this;
   }
 
-  createClass(CCP4Parser, [{
+  _createClass(CCP4Parser, [{
     key: "parseSync",
     value: function parseSync() {
       return this.model.parse(this._data);
@@ -28335,19 +29076,24 @@ CCP4Parser.formats = ['ccp4'];
 CCP4Parser.extensions = ['.ccp4', '.map', '.mrc'];
 CCP4Parser.binary = true;
 
-var Complex$5 = chem.Complex,
-    Element$6 = chem.Element,
+function _createSuper$i(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$i(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$i() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var Complex$4 = chem.Complex,
+    Element$4 = chem.Element,
     Molecule$4 = chem.Molecule;
 
 var XYZParser = /*#__PURE__*/function (_Parser) {
-  inherits(XYZParser, _Parser);
+  _inherits(XYZParser, _Parser);
+
+  var _super = _createSuper$i(XYZParser);
 
   function XYZParser(data, options) {
     var _this;
 
-    classCallCheck(this, XYZParser);
+    _classCallCheck(this, XYZParser);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(XYZParser).call(this, data, options));
+    _this = _super.call(this, data, options);
     _this._complex = null;
     _this._atomsInf = null;
     _this._options.fileType = 'xyz';
@@ -28355,7 +29101,7 @@ var XYZParser = /*#__PURE__*/function (_Parser) {
     return _this;
   }
 
-  createClass(XYZParser, [{
+  _createClass(XYZParser, [{
     key: "_parseToAtomsInf",
     value: function _parseToAtomsInf(source) {
       var endnAtoms = source.indexOf('\n');
@@ -28405,8 +29151,8 @@ var XYZParser = /*#__PURE__*/function (_Parser) {
 
         var serial = i + 1;
         var name = words[0];
-        var xyz = new Vector3(parseFloat(words[1]), parseFloat(words[2]), parseFloat(words[3]));
-        var type = Element$6.getByName(name);
+        var xyz = new THREE.Vector3(parseFloat(words[1]), parseFloat(words[2]), parseFloat(words[3]));
+        var type = Element$4.getByName(name);
         var role = undefined;
         residue.addAtom(name, type, xyz, role, het, serial, altLoc, occupancy, tempFactor, charge);
       }
@@ -28418,7 +29164,7 @@ var XYZParser = /*#__PURE__*/function (_Parser) {
   }, {
     key: "parseSync",
     value: function parseSync() {
-      var result = this._complex = new Complex$5();
+      var result = this._complex = new Complex$4();
 
       this._parseToAtomsInf(this._data);
 
@@ -28450,27 +29196,32 @@ var XYZParser = /*#__PURE__*/function (_Parser) {
   return XYZParser;
 }(Parser);
 
-defineProperty(XYZParser, "formats", ['xyz']);
+_defineProperty(XYZParser, "formats", ['xyz']);
 
-defineProperty(XYZParser, "extensions", ['.xyz']);
+_defineProperty(XYZParser, "extensions", ['.xyz']);
 
-var Complex$6 = chem.Complex,
-    Element$7 = chem.Element;
+function _createSuper$h(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$h(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$h() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var Complex$3 = chem.Complex,
+    Element$3 = chem.Element;
 
 var PubChemParser = /*#__PURE__*/function (_Parser) {
-  inherits(PubChemParser, _Parser);
+  _inherits(PubChemParser, _Parser);
+
+  var _super = _createSuper$h(PubChemParser);
 
   function PubChemParser(data, options) {
     var _this;
 
-    classCallCheck(this, PubChemParser);
+    _classCallCheck(this, PubChemParser);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(PubChemParser).call(this, data, options));
+    _this = _super.call(this, data, options);
     _this._options.fileType = 'pubchem+json';
     return _this;
   }
 
-  createClass(PubChemParser, [{
+  _createClass(PubChemParser, [{
     key: "parseSync",
     value: function parseSync() {
       this.logger.info('Parsing PubChem JSON file...');
@@ -28479,7 +29230,7 @@ var PubChemParser = /*#__PURE__*/function (_Parser) {
   }, {
     key: "_toComplex",
     value: function _toComplex(jsonData) {
-      var complex = new Complex$6();
+      var complex = new Complex$3();
       var complexData = jsonData.PC_Compounds && jsonData.PC_Compounds[0];
 
       if (complexData) {
@@ -28522,8 +29273,8 @@ var PubChemParser = /*#__PURE__*/function (_Parser) {
 
       for (var i = 0, n = aids.length; i < n; ++i) {
         var aid = aids[i];
-        var element = Element$7.ByAtomicNumber[elements[aid]];
-        var xyz = new Vector3(xs[i], ys[i], zs[i] || 0.0);
+        var element = Element$3.ByAtomicNumber[elements[aid]];
+        var xyz = new THREE.Vector3(xs[i], ys[i], zs[i] || 0.0);
         atoms[aid] = residue.addAtom(element.name, element, xyz, undefined, true, aid, ' ', 1.0, 0.0, 0);
       }
 
@@ -28554,14 +29305,14 @@ PubChemParser.extensions = ['.json'];
 
 var SDFStream = /*#__PURE__*/function () {
   function SDFStream(data) {
-    classCallCheck(this, SDFStream);
+    _classCallCheck(this, SDFStream);
 
     this._strings = data.split(/\r?\n|\r/);
     this._currentStart = 0;
     this._currentStringIndx = 0;
   }
 
-  createClass(SDFStream, [{
+  _createClass(SDFStream, [{
     key: "setStart",
     value: function setStart(start) {
       if (start >= this._strings.length) {
@@ -28627,20 +29378,23 @@ var SDFStream = /*#__PURE__*/function () {
   return SDFStream;
 }();
 
-var Complex$7 = chem.Complex,
-    Element$8 = chem.Element,
-    Bond$4 = chem.Bond,
-    Molecule$5 = chem.Molecule;
+function _createSuper$g(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$g(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$g() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var Complex$2 = chem.Complex,
+    Element$2 = chem.Element,
+    Bond$1 = chem.Bond,
+    Molecule$3 = chem.Molecule;
 var chargeMap = [0, 3, 2, 1, 0, -1, -2, -3];
-var orderMap = [0, 1, 2, 3, 1, 1, 1, 2];
-var typeMap = [Bond$4.BondType.UNKNOWN, // 0 - error
-Bond$4.BondType.COVALENT, // 1 - single
-Bond$4.BondType.COVALENT, // 2 - double
-Bond$4.BondType.COVALENT, // 3 - triple
-Bond$4.BondType.AROMATIC, // 4 - aromatic
-Bond$4.BondType.UNKNOWN, // 5 - single or double
-Bond$4.BondType.AROMATIC, // 6 - single or aromatic
-Bond$4.BondType.AROMATIC // 7 - double or aromatic
+var orderMap$1 = [0, 1, 2, 3, 1, 1, 1, 2];
+var typeMap$1 = [Bond$1.BondType.UNKNOWN, // 0 - error
+Bond$1.BondType.COVALENT, // 1 - single
+Bond$1.BondType.COVALENT, // 2 - double
+Bond$1.BondType.COVALENT, // 3 - triple
+Bond$1.BondType.AROMATIC, // 4 - aromatic
+Bond$1.BondType.UNKNOWN, // 5 - single or double
+Bond$1.BondType.AROMATIC, // 6 - single or aromatic
+Bond$1.BondType.AROMATIC // 7 - double or aromatic
 // 8 - any
 // 9 - coordination
 // 10 - hydrogen
@@ -28682,14 +29436,16 @@ function buildChainID(index) {
 }
 
 var SDFParser = /*#__PURE__*/function (_Parser) {
-  inherits(SDFParser, _Parser);
+  _inherits(SDFParser, _Parser);
+
+  var _super = _createSuper$g(SDFParser);
 
   function SDFParser(data, options) {
     var _this;
 
-    classCallCheck(this, SDFParser);
+    _classCallCheck(this, SDFParser);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(SDFParser).call(this, data, options));
+    _this = _super.call(this, data, options);
     _this._format = 'sdf';
     _this._complex = null;
     _this._chain = null;
@@ -28705,7 +29461,7 @@ var SDFParser = /*#__PURE__*/function (_Parser) {
     return _this;
   }
 
-  createClass(SDFParser, [{
+  _createClass(SDFParser, [{
     key: "canProbablyParse",
     value: function canProbablyParse(data) {
       return _.isString(data) && sdfAndMolRegexp.test(data);
@@ -28740,9 +29496,9 @@ var SDFParser = /*#__PURE__*/function (_Parser) {
         var y = parseFloat(curStr.substr(10, 10));
         var z = parseFloat(curStr.substr(20, 10));
         var charge = chargeMap[parseInt(curStr.substr(36, 3), 10)];
-        var xyz = new Vector3(x, y, z);
+        var xyz = new THREE.Vector3(x, y, z);
         var name = curStr.substr(31, 3).trim().toUpperCase();
-        var type = Element$8.getByName(name);
+        var type = Element$2.getByName(name);
 
         if (!this._atomsIndexes[name]) {
           this._atomsIndexes[name] = 0;
@@ -28774,7 +29530,7 @@ var SDFParser = /*#__PURE__*/function (_Parser) {
           atom2 = _ref[1];
         }
 
-        this._complex.addBond(atom1, atom2, orderMap[bondType] || 1, typeMap[bondType] || Bond$4.BondType.UNKNOWN, true);
+        this._complex.addBond(atom1, atom2, orderMap$1[bondType] || 1, typeMap$1[bondType] || Bond$1.BondType.UNKNOWN, true);
       }
     }
   }, {
@@ -28812,7 +29568,7 @@ var SDFParser = /*#__PURE__*/function (_Parser) {
       if (data.length === 1) {
         var _data = data;
 
-        var _data2 = slicedToArray(_data, 1);
+        var _data2 = _slicedToArray(_data, 1);
 
         data = _data2[0];
       }
@@ -28868,8 +29624,8 @@ var SDFParser = /*#__PURE__*/function (_Parser) {
       }
 
       for (var i = 0; i < chains.length; i++) {
-        var assembly = new Assembly(this._complex);
-        var matrix = new Matrix4();
+        var assembly = new Assembly$3(this._complex);
+        var matrix = new THREE.Matrix4();
         assembly.addMatrix(matrix);
         assembly.addChain(chains[i]._name);
 
@@ -28885,7 +29641,7 @@ var SDFParser = /*#__PURE__*/function (_Parser) {
       var molecules = this._metadata.molecules;
 
       for (var i = 0; i < molecules.length; i++) {
-        var molecule = new Molecule$5(this._complex, molecules[i].name, i + 1);
+        var molecule = new Molecule$3(this._complex, molecules[i].name, i + 1);
         molecule.residues = molecules[i]._residues;
         this._complex._molecules[i] = molecule;
       }
@@ -29011,7 +29767,7 @@ var SDFParser = /*#__PURE__*/function (_Parser) {
   }, {
     key: "parseSync",
     value: function parseSync() {
-      var result = this._complex = new Complex$7();
+      var result = this._complex = new Complex$2();
       var stream = new SDFStream(this._data);
       this._format = this.defineFormat(this._data);
       result.metadata.format = this._format;
@@ -29031,6 +29787,10 @@ var SDFParser = /*#__PURE__*/function (_Parser) {
 SDFParser.formats = ['mol', 'sdf'];
 SDFParser.extensions = ['.mol', '.sdf'];
 
+function _createSuper$f(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$f(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$f() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var DSN6Header = {
   nstart: [valueType.array, 'i16', 0],
   extent: [valueType.array, 'i16', 3],
@@ -29043,15 +29803,17 @@ var DSN6Header = {
 };
 
 var DSN6Model = /*#__PURE__*/function (_VolumeModel) {
-  inherits(DSN6Model, _VolumeModel);
+  _inherits(DSN6Model, _VolumeModel);
+
+  var _super = _createSuper$f(DSN6Model);
 
   function DSN6Model() {
-    classCallCheck(this, DSN6Model);
+    _classCallCheck(this, DSN6Model);
 
-    return possibleConstructorReturn(this, getPrototypeOf(DSN6Model).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(DSN6Model, [{
+  _createClass(DSN6Model, [{
     key: "_parseHeader",
     value: function _parseHeader(_buffer) {
       this._buff = _buffer;
@@ -29095,7 +29857,7 @@ var DSN6Model = /*#__PURE__*/function (_VolumeModel) {
       var header = this._header;
 
       var _this$_getAxis = this._getAxis(),
-          _this$_getAxis2 = slicedToArray(_this$_getAxis, 3),
+          _this$_getAxis2 = _slicedToArray(_this$_getAxis, 3),
           xaxis = _this$_getAxis2[0],
           yaxis = _this$_getAxis2[1],
           zaxis = _this$_getAxis2[2];
@@ -29155,7 +29917,7 @@ var DSN6Model = /*#__PURE__*/function (_VolumeModel) {
       var header = this._header;
       var byteBuffer = new Uint8Array(this._buff);
       var xyzData = new Float32Array(header.extent[0] * header.extent[1] * header.extent[2]);
-      var blocks = new Vector3(header.extent[0] / 8, header.extent[1] / 8, header.extent[2] / 8);
+      var blocks = new THREE.Vector3(header.extent[0] / 8, header.extent[1] / 8, header.extent[2] / 8);
       var pos = {};
       pos.counter = 512;
 
@@ -29201,20 +29963,22 @@ var DSN6Model = /*#__PURE__*/function (_VolumeModel) {
 }(VolumeModel);
 
 var DSN6Parser = /*#__PURE__*/function (_Parser) {
-  inherits(DSN6Parser, _Parser);
+  _inherits(DSN6Parser, _Parser);
+
+  var _super2 = _createSuper$f(DSN6Parser);
 
   function DSN6Parser(data, options) {
     var _this;
 
-    classCallCheck(this, DSN6Parser);
+    _classCallCheck(this, DSN6Parser);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(DSN6Parser).call(this, data, options));
+    _this = _super2.call(this, data, options);
     _this._options.fileType = 'dsn6';
     _this.model = new DSN6Model();
     return _this;
   }
 
-  createClass(DSN6Parser, [{
+  _createClass(DSN6Parser, [{
     key: "parseSync",
     value: function parseSync() {
       return this.model.parse(this._data);
@@ -29242,20 +30006,25 @@ DSN6Parser.formats = ['dsn6'];
 DSN6Parser.extensions = ['.dsn6', '.omap'];
 DSN6Parser.binary = true;
 
+function _createSuper$e(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$e(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$e() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * Little helper class for GRO Parser usage.
  * @extends PDBStream
  */
 
 var GROReader = /*#__PURE__*/function (_PDBStream) {
-  inherits(GROReader, _PDBStream);
+  _inherits(GROReader, _PDBStream);
+
+  var _super = _createSuper$e(GROReader);
 
   function GROReader(data) {
     var _this;
 
-    classCallCheck(this, GROReader);
+    _classCallCheck(this, GROReader);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(GROReader).call(this, data));
+    _this = _super.call(this, data);
     /** @type Number */
 
     _this._next = -1; // End position of line
@@ -29270,7 +30039,7 @@ var GROReader = /*#__PURE__*/function (_PDBStream) {
    */
 
 
-  createClass(GROReader, [{
+  _createClass(GROReader, [{
     key: "getNext",
     value: function getNext() {
       return this._next;
@@ -29280,16 +30049,21 @@ var GROReader = /*#__PURE__*/function (_PDBStream) {
   return GROReader;
 }(PDBStream);
 
-var Complex$8 = chem.Complex,
-    Element$9 = chem.Element,
-    Molecule$6 = chem.Molecule;
+function _createSuper$d(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$d(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$d() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var Complex$1 = chem.Complex,
+    Element$1 = chem.Element,
+    Molecule$2 = chem.Molecule;
 /**
  * Gromos87 file format parser.
  * @extends Parser
  */
 
 var GROParser = /*#__PURE__*/function (_Parser) {
-  inherits(GROParser, _Parser);
+  _inherits(GROParser, _Parser);
+
+  var _super = _createSuper$d(GROParser);
 
   /**
    * Create parser for .gro file format
@@ -29300,9 +30074,9 @@ var GROParser = /*#__PURE__*/function (_Parser) {
   function GROParser(data, options) {
     var _this;
 
-    classCallCheck(this, GROParser);
+    _classCallCheck(this, GROParser);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(GROParser).call(this, data, options));
+    _this = _super.call(this, data, options);
     /** @type Date */
 
     _this._time = null; // Time in ps, optional field for animations
@@ -29360,7 +30134,7 @@ var GROParser = /*#__PURE__*/function (_Parser) {
    */
 
 
-  createClass(GROParser, [{
+  _createClass(GROParser, [{
     key: "canProbablyParse",
     value: function canProbablyParse(data) {
       return _.isString(this._data) && /^\s*[^\n]*\n\s*\d+ *\n\s*\d+[^\n\d]{3}\s*\w+\s*\d+\s*-?\d/.test(data);
@@ -29424,7 +30198,7 @@ var GROParser = /*#__PURE__*/function (_Parser) {
       /* Adding residue and atom to complex structure */
 
 
-      var type = Element$9.getByName(this._atomName[0]);
+      var type = Element$1.getByName(this._atomName[0]);
       /* MAGIC 0. REASONS: This name is something like "CA", where
       C - is an element an A is something else. But what about Calcium? */
 
@@ -29435,7 +30209,7 @@ var GROParser = /*#__PURE__*/function (_Parser) {
         return;
       }
 
-      var role = Element$9.Role[this._atomName];
+      var role = Element$1.Role[this._atomName];
       /* Firstly, create a dummy chain */
 
       var chain = this._chain;
@@ -29454,7 +30228,7 @@ var GROParser = /*#__PURE__*/function (_Parser) {
       /* Lastly, add atom to that residue */
 
 
-      this._atomPosition = new Vector3(positionX, positionY, positionZ);
+      this._atomPosition = new THREE.Vector3(positionX, positionY, positionZ);
       /* Adding default constants to correct atom addition process */
 
       var het = true;
@@ -29471,7 +30245,7 @@ var GROParser = /*#__PURE__*/function (_Parser) {
   }, {
     key: "_finalize",
     value: function _finalize() {
-      var molecule = new Molecule$6(this._complex, this._complex.metadata.name, 1); // aggregate residues from chain
+      var molecule = new Molecule$2(this._complex, this._complex.metadata.name, 1); // aggregate residues from chain
 
       molecule.residues = this._chain._residues;
       molecule._chains = this._chain;
@@ -29495,7 +30269,7 @@ var GROParser = /*#__PURE__*/function (_Parser) {
     key: "parseSync",
     value: function parseSync() {
       /* Create "Complex" variable */
-      var result = this._complex = new Complex$8();
+      var result = this._complex = new Complex$1();
       /* Parse input file line-by-line */
 
       var reader = new GROReader(this._data);
@@ -29556,11 +30330,14 @@ var GROParser = /*#__PURE__*/function (_Parser) {
 GROParser.formats = ['gro'];
 GROParser.extensions = ['.gro'];
 
-var Complex$9 = chem.Complex,
-    Element$a = chem.Element,
-    Bond$5 = chem.Bond,
-    Molecule$7 = chem.Molecule;
-var orderMap$1 = {
+function _createSuper$c(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$c(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$c() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var Complex = chem.Complex,
+    Element = chem.Element,
+    Bond = chem.Bond,
+    Molecule$1 = chem.Molecule;
+var orderMap = {
   un: 0,
   1: 1,
   2: 2,
@@ -29570,22 +30347,22 @@ var orderMap$1 = {
   nc: 0,
   du: 1
 };
-var typeMap$1 = {
-  un: Bond$5.BondType.UNKNOWN,
+var typeMap = {
+  un: Bond.BondType.UNKNOWN,
   // unknown (cannot be determined from the parameter tables)
-  1: Bond$5.BondType.COVALENT,
+  1: Bond.BondType.COVALENT,
   // single
-  2: Bond$5.BondType.COVALENT,
+  2: Bond.BondType.COVALENT,
   // double
-  3: Bond$5.BondType.COVALENT,
+  3: Bond.BondType.COVALENT,
   // triple
-  ar: Bond$5.BondType.AROMATIC,
+  ar: Bond.BondType.AROMATIC,
   // aromatic
-  am: Bond$5.BondType.COVALENT,
+  am: Bond.BondType.COVALENT,
   // amide
-  nc: Bond$5.BondType.UNKNOWN,
+  nc: Bond.BondType.UNKNOWN,
   // not connected
-  du: Bond$5.BondType.COVALENT // dummy
+  du: Bond.BondType.COVALENT // dummy
 
 };
 var resNumberRegex = /\d+$/;
@@ -29600,14 +30377,16 @@ function splitToFields(str) {
 
 
 var MOL2Parser = /*#__PURE__*/function (_Parser) {
-  inherits(MOL2Parser, _Parser);
+  _inherits(MOL2Parser, _Parser);
+
+  var _super = _createSuper$c(MOL2Parser);
 
   function MOL2Parser(data, options) {
     var _this;
 
-    classCallCheck(this, MOL2Parser);
+    _classCallCheck(this, MOL2Parser);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(MOL2Parser).call(this, data, options));
+    _this = _super.call(this, data, options);
     _this._complex = null;
     _this._chain = null;
     _this._residue = null;
@@ -29621,7 +30400,7 @@ var MOL2Parser = /*#__PURE__*/function (_Parser) {
     return _this;
   }
 
-  createClass(MOL2Parser, [{
+  _createClass(MOL2Parser, [{
     key: "_parseRawStrings",
     value: function _parseRawStrings(data) {
       return data.split(/\r?\n|\r/);
@@ -29750,9 +30529,9 @@ var MOL2Parser = /*#__PURE__*/function (_Parser) {
         var altLoc = ' ';
         var occupancy = 1.0;
         var tempFactor = 0.0;
-        var type = Element$a.getByName(element);
-        var role = Element$a.Role[atomName];
-        var xyz = new Vector3(x, y, z);
+        var type = Element.getByName(element);
+        var role = Element.Role[atomName];
+        var xyz = new THREE.Vector3(x, y, z);
 
         this._residue.addAtom(atomName, type, xyz, role, het, atomId, altLoc, occupancy, tempFactor, charge);
       }
@@ -29812,7 +30591,7 @@ var MOL2Parser = /*#__PURE__*/function (_Parser) {
           targetAtomId = _ref[1];
         }
 
-        this._complex.addBond(originAtomId, targetAtomId, orderMap$1[bondType] || 0, typeMap$1[bondType] || Bond$5.BondType.UNKNOWN, true);
+        this._complex.addBond(originAtomId, targetAtomId, orderMap[bondType] || 0, typeMap[bondType] || Bond.BondType.UNKNOWN, true);
       }
     }
   }, {
@@ -29854,7 +30633,7 @@ var MOL2Parser = /*#__PURE__*/function (_Parser) {
       for (var i = 0; i < this._molecules.length; i++) {
         var currMolecule = this._molecules[i];
         var molResidues = chain._residues;
-        var molecule = new Molecule$7(this._complex, currMolecule._name, i + 1);
+        var molecule = new Molecule$1(this._complex, currMolecule._name, i + 1);
         molecule.residues = molResidues;
         this._complex._molecules[i] = molecule;
       }
@@ -29899,7 +30678,7 @@ var MOL2Parser = /*#__PURE__*/function (_Parser) {
   }, {
     key: "parseSync",
     value: function parseSync() {
-      var result = this._complex = new Complex$9();
+      var result = this._complex = new Complex();
 
       var MOL2Data = this._parseRawStrings(this._data);
 
@@ -29922,13 +30701,18 @@ MOL2Parser.extensions = ['.mol2', '.ml2', '.sy2'];
 var parsers = new ParserList([// note: order might be important
 PDBParser, CIFParser, MMTFParser, XYZParser, CMLParser, PubChemParser, SDFParser, CCP4Parser, DSN6Parser, GROParser, MOL2Parser]);
 
+function _createSuper$b(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$b(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$b() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * A list of available exporters.
  * @extends EntityList
  */
 
 var ExporterList = /*#__PURE__*/function (_EntityList) {
-  inherits(ExporterList, _EntityList);
+  _inherits(ExporterList, _EntityList);
+
+  var _super = _createSuper$b(ExporterList);
 
   /**
    * Create a list of exporters.
@@ -29943,9 +30727,9 @@ var ExporterList = /*#__PURE__*/function (_EntityList) {
   function ExporterList() {
     var someExporters = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
-    classCallCheck(this, ExporterList);
+    _classCallCheck(this, ExporterList);
 
-    return possibleConstructorReturn(this, getPrototypeOf(ExporterList).call(this, someExporters, ['formats']));
+    return _super.call(this, someExporters, ['formats']);
   }
   /**
    * Find a suitable exporter for data.
@@ -29956,7 +30740,7 @@ var ExporterList = /*#__PURE__*/function (_EntityList) {
    */
 
 
-  createClass(ExporterList, [{
+  _createClass(ExporterList, [{
     key: "find",
     value: function find(specs) {
       var list = [];
@@ -29965,7 +30749,7 @@ var ExporterList = /*#__PURE__*/function (_EntityList) {
         list = this._dict.formats[specs.format.toLowerCase()] || [];
       }
 
-      return toConsumableArray(list);
+      return _toConsumableArray(list);
     }
   }]);
 
@@ -29974,14 +30758,14 @@ var ExporterList = /*#__PURE__*/function (_EntityList) {
 
 var Exporter = /*#__PURE__*/function () {
   function Exporter(source, options) {
-    classCallCheck(this, Exporter);
+    _classCallCheck(this, Exporter);
 
     this._source = source;
     this._options = options || {};
     this._abort = false;
   }
 
-  createClass(Exporter, [{
+  _createClass(Exporter, [{
     key: "exportSync",
     value: function exportSync() {
       throw new Error('Exporting to this source is not implemented');
@@ -30018,7 +30802,7 @@ makeContextDependent(Exporter.prototype);
 
 var PDBResult = /*#__PURE__*/function () {
   function PDBResult() {
-    classCallCheck(this, PDBResult);
+    _classCallCheck(this, PDBResult);
 
     this._resultArray = [];
     this._currentStr = -1;
@@ -30028,7 +30812,7 @@ var PDBResult = /*#__PURE__*/function () {
     this._tagStrNum = 0;
   }
 
-  createClass(PDBResult, [{
+  _createClass(PDBResult, [{
     key: "getResult",
     value: function getResult() {
       this.writeString('\n', 81, 81);
@@ -30243,15 +31027,21 @@ var PDBResult = /*#__PURE__*/function () {
   return PDBResult;
 }();
 
+function _createSuper$a(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$a(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$a() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var PDBExporter = /*#__PURE__*/function (_Exporter) {
-  inherits(PDBExporter, _Exporter);
+  _inherits(PDBExporter, _Exporter);
+
+  var _super = _createSuper$a(PDBExporter);
 
   function PDBExporter(source, options) {
     var _this;
 
-    classCallCheck(this, PDBExporter);
+    _classCallCheck(this, PDBExporter);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(PDBExporter).call(this, source, options));
+    _this = _super.call(this, source, options);
     _this._tags = ['HEADER', 'TITLE', 'COMPND', 'REMARK', 'HELIX', 'SHEET', 'ATOM and HETATM', 'CONECT'];
     _this._result = null;
     _this._tagExtractors = {
@@ -30269,7 +31059,7 @@ var PDBExporter = /*#__PURE__*/function (_Exporter) {
     return _this;
   }
 
-  createClass(PDBExporter, [{
+  _createClass(PDBExporter, [{
     key: "exportSync",
     value: function exportSync() {
       var result = new PDBResult();
@@ -30511,7 +31301,7 @@ var PDBExporter = /*#__PURE__*/function (_Exporter) {
       result.newString();
       result.writeEntireString(this._stringForRemark350);
       var assemblies = units.filter(function (unit) {
-        return unit instanceof Assembly;
+        return unit instanceof Assembly$3;
       });
 
       for (var i = 0; i < assemblies.length; i++) {
@@ -30548,7 +31338,7 @@ var PDBExporter = /*#__PURE__*/function (_Exporter) {
   return PDBExporter;
 }(Exporter);
 PDBExporter.formats = ['pdb'];
-PDBExporter.SourceClass = Complex;
+PDBExporter.SourceClass = Complex$9;
 
 var FBX_POS_SIZE = 3;
 var FBX_NORM_SIZE = 3;
@@ -30567,7 +31357,7 @@ function copyFbxPoint4(src, srcIdx, dst, dstIdx, value) {
   dst[dstIdx + 3] = value;
 }
 
-var vector4 = new Vector4();
+var vector4 = new THREE.Vector4();
 
 function copyTransformedPoint3(src, srcIdx, dst, dstIdx, opts) {
   vector4.set(src[srcIdx], src[srcIdx + 1], src[srcIdx + 2], opts.w);
@@ -30597,7 +31387,7 @@ function setSubArray(src, dst, count, copyFunctor, functorOpts) {
 
 var FBXModel = /*#__PURE__*/function () {
   function FBXModel() {
-    classCallCheck(this, FBXModel);
+    _classCallCheck(this, FBXModel);
 
     this.positions = null;
     this.normals = null;
@@ -30609,7 +31399,7 @@ var FBXModel = /*#__PURE__*/function () {
     this.lastIdx = 0;
   }
 
-  createClass(FBXModel, [{
+  _createClass(FBXModel, [{
     key: "init",
     value: function init(vertsCount, indsCount) {
       this.positions = new Float32Array(vertsCount * FBX_POS_SIZE);
@@ -30739,7 +31529,7 @@ var FBXGeometry = /*#__PURE__*/function () {
    * Create a base geo with necessary members.
    */
   function FBXGeometry() {
-    classCallCheck(this, FBXGeometry);
+    _classCallCheck(this, FBXGeometry);
 
     this.positions = null;
     this.normals = null;
@@ -30754,7 +31544,7 @@ var FBXGeometry = /*#__PURE__*/function () {
    */
 
 
-  createClass(FBXGeometry, [{
+  _createClass(FBXGeometry, [{
     key: "init",
     value: function init(geo, _info) {
       var attributes = geo.attributes; // save item size
@@ -30770,29 +31560,34 @@ var FBXGeometry = /*#__PURE__*/function () {
   return FBXGeometry;
 }();
 
+function _createSuper$9(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$9(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$9() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * Fbx geometry, that copies positions+normals, indexes and creates colors filled with defined value.
  * @extends FBXGeometry
  */
 
 var FBX1CGeometry = /*#__PURE__*/function (_FBXGeometry) {
-  inherits(FBX1CGeometry, _FBXGeometry);
+  _inherits(FBX1CGeometry, _FBXGeometry);
+
+  var _super = _createSuper$9(FBX1CGeometry);
 
   function FBX1CGeometry() {
-    classCallCheck(this, FBX1CGeometry);
+    _classCallCheck(this, FBX1CGeometry);
 
-    return possibleConstructorReturn(this, getPrototypeOf(FBX1CGeometry).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
-  createClass(FBX1CGeometry, [{
+  _createClass(FBX1CGeometry, [{
     key: "init",
-
+    value:
     /**
      * Initialize geo storing positions, normals, indices and create colors.
      * @param {Object} geo - THREE.Geometry.
      */
-    value: function init(geo, _info) {
-      get(getPrototypeOf(FBX1CGeometry.prototype), "init", this).call(this, geo, _info);
+    function init(geo, _info) {
+      _get(_getPrototypeOf(FBX1CGeometry.prototype), "init", this).call(this, geo, _info);
 
       var _geo$attributes = geo.attributes,
           position = _geo$attributes.position,
@@ -30828,6 +31623,9 @@ var FBX1CGeometry = /*#__PURE__*/function (_FBXGeometry) {
   return FBX1CGeometry;
 }(FBXGeometry);
 
+function _createSuper$8(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$8(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$8() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * Fbx geometry, that copies positions+normals, indexes from cylinder  geometry and creates colors filled with two
  * defined values.
@@ -30835,14 +31633,16 @@ var FBX1CGeometry = /*#__PURE__*/function (_FBXGeometry) {
  */
 
 var FBX2CCylinder = /*#__PURE__*/function (_FBXGeometry) {
-  inherits(FBX2CCylinder, _FBXGeometry);
+  _inherits(FBX2CCylinder, _FBXGeometry);
+
+  var _super = _createSuper$8(FBX2CCylinder);
 
   function FBX2CCylinder() {
     var _this;
 
-    classCallCheck(this, FBX2CCylinder);
+    _classCallCheck(this, FBX2CCylinder);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(FBX2CCylinder).call(this));
+    _this = _super.call(this);
     _this._cutRawStart = 0;
     _this._cutRawEnd = 0;
     _this._facesPerSlice = 0;
@@ -30858,10 +31658,10 @@ var FBX2CCylinder = /*#__PURE__*/function (_FBXGeometry) {
    */
 
 
-  createClass(FBX2CCylinder, [{
+  _createClass(FBX2CCylinder, [{
     key: "init",
     value: function init(geo, info) {
-      get(getPrototypeOf(FBX2CCylinder.prototype), "init", this).call(this, geo, info);
+      _get(_getPrototypeOf(FBX2CCylinder.prototype), "init", this).call(this, geo, info);
 
       var position = geo.attributes.position,
           index = geo.index; // extend vertices arrays
@@ -30978,13 +31778,13 @@ var FBX2CCylinder = /*#__PURE__*/function (_FBXGeometry) {
 
 var FBXInfoExtractor = /*#__PURE__*/function () {
   function FBXInfoExtractor() {
-    classCallCheck(this, FBXInfoExtractor);
+    _classCallCheck(this, FBXInfoExtractor);
 
     this._materials = [];
     this._models = [];
   }
 
-  createClass(FBXInfoExtractor, [{
+  _createClass(FBXInfoExtractor, [{
     key: "process",
     value: function process(data) {
       this._extractModelsAndMaterials(data);
@@ -31007,11 +31807,11 @@ var FBXInfoExtractor = /*#__PURE__*/function () {
     value: function _extractModelsAndMaterials(data) {
       var _this = this;
 
-      var layersOfInterest = new Layers();
+      var layersOfInterest = new THREE.Layers();
       layersOfInterest.set(gfxutils.LAYERS.DEFAULT);
       layersOfInterest.enable(gfxutils.LAYERS.TRANSPARENT);
       data.traverse(function (object) {
-        if (object instanceof Mesh$5 && object.layers.test(layersOfInterest) && _this.checkExportAbility(object)) {
+        if (object instanceof THREE.Mesh && object.layers.test(layersOfInterest) && _this.checkExportAbility(object)) {
           if (object.geometry.type === 'InstancedBufferGeometry') {
             _this._collectInstancedGeoInfo(object);
           } else {
@@ -31172,9 +31972,9 @@ var FBXInfoExtractor = /*#__PURE__*/function () {
       model.init(instCount * vertCount, instCount * indsCount);
       var geo = new FBX1CGeometry();
       geo.init(mesh.geometry);
-      var instMatrix = new Matrix4();
-      var objMatrix = new Matrix4();
-      var sphereColor = new Color();
+      var instMatrix = new THREE.Matrix4();
+      var objMatrix = new THREE.Matrix4();
+      var sphereColor = new THREE.Color();
 
       for (var instanceIndex = 0; instanceIndex < instCount; ++instanceIndex) {
         // update colors in geometry
@@ -31226,10 +32026,10 @@ var FBXInfoExtractor = /*#__PURE__*/function () {
       var vertCount = position.count;
       var indsCount = index.count;
       model.init(instCount * vertCount + additionalVertsCount, instCount * indsCount);
-      var instMatrix = new Matrix4();
-      var objMatrix = new Matrix4();
-      var colorStart = new Color();
-      var colorEnd = new Color();
+      var instMatrix = new THREE.Matrix4();
+      var objMatrix = new THREE.Matrix4();
+      var colorStart = new THREE.Color();
+      var colorEnd = new THREE.Color();
       var geo = {};
 
       for (var instanceIndex = 0; instanceIndex < instCount; ++instanceIndex) {
@@ -31311,8 +32111,8 @@ var FBXInfoExtractor = /*#__PURE__*/function () {
       var colIdx = 0;
 
       for (var i = 0; i < instCount; i++, colIdx += stride) {
-        var differs = Math.abs(color1[colIdx] - color2[colIdx]) > 0.0000001 || // compare ending colors
-        Math.abs(color1[colIdx + 1] - color2[colIdx + 1]) > 0.0000001 || Math.abs(color1[colIdx + 2] - color2[colIdx + 2]) > 0.0000001;
+        var differs = Math.abs(color1[colIdx] - color2[colIdx]) > 0.0000001 // compare ending colors
+        || Math.abs(color1[colIdx + 1] - color2[colIdx + 1]) > 0.0000001 || Math.abs(color1[colIdx + 2] - color2[colIdx + 2]) > 0.0000001;
         is2Colored[i] = differs;
         needToSplit += differs; // count number of 2-colored cylinders
       } // calc number of vertices to add into 2-colored
@@ -31399,13 +32199,13 @@ var globalSettings = "GlobalSettings: {\n    Version: 1000\n    Properties60:  {
 
 var FBXResult = /*#__PURE__*/function () {
   function FBXResult() {
-    classCallCheck(this, FBXResult);
+    _classCallCheck(this, FBXResult);
 
     this._resultArray = [];
     this._info = null;
   }
 
-  createClass(FBXResult, [{
+  _createClass(FBXResult, [{
     key: "getResult",
     value: function getResult(info) {
       this._info = info;
@@ -31578,7 +32378,7 @@ var FBXResult = /*#__PURE__*/function () {
       // As said [..Array(...)] - fastest and easiest way to produce [0, 1, .....] array
 
 
-      var colorIndices = toConsumableArray(Array(vertCount).keys());
+      var colorIndices = _toConsumableArray(Array(vertCount).keys());
 
       return "\n    LayerElementColor: ".concat(layerElementColorNumber, " {\n      Version: ").concat(layerElementColorVersion, "\n      Name: \"").concat(layerElementColorName, "\"\n      MappingInformationType: \"ByVertice\"\n      ReferenceInformationType: \"Direct\"\n      Colors: ").concat(colorsStr, "\n      ColorIndex: ").concat(colorIndices, "\n    }");
     }
@@ -31638,15 +32438,21 @@ var FBXResult = /*#__PURE__*/function () {
   return FBXResult;
 }();
 
+function _createSuper$7(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$7(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$7() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var FBXExporter = /*#__PURE__*/function (_Exporter) {
-  inherits(FBXExporter, _Exporter);
+  _inherits(FBXExporter, _Exporter);
+
+  var _super = _createSuper$7(FBXExporter);
 
   function FBXExporter(source, options) {
     var _this;
 
-    classCallCheck(this, FBXExporter);
+    _classCallCheck(this, FBXExporter);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(FBXExporter).call(this, source, options)); // Data
+    _this = _super.call(this, source, options); // Data
 
     _this._data = source;
     _this._version = options.miewVersion || '0.0-UNSPECIFIED';
@@ -31658,7 +32464,7 @@ var FBXExporter = /*#__PURE__*/function (_Exporter) {
    */
 
 
-  createClass(FBXExporter, [{
+  _createClass(FBXExporter, [{
     key: "exportSync",
     value: function exportSync() {
       // Creating mandatory blocks
@@ -31689,19 +32495,19 @@ var io = {
   exporters: exporters
 };
 
-var tempColor = new Color();
+var tempColor = new THREE.Color();
 
 var CSS2DRenderer = /*#__PURE__*/function () {
   function CSS2DRenderer() {
-    classCallCheck(this, CSS2DRenderer);
+    _classCallCheck(this, CSS2DRenderer);
 
     this._width = 0;
     this._height = 0;
     this._widthHalf = 0;
     this._heightHalf = 0;
-    this._vector = new Vector3();
-    this._viewMatrix = new Matrix4();
-    this._projectionMatrix = new Matrix4();
+    this._vector = new THREE.Vector3();
+    this._viewMatrix = new THREE.Matrix4();
+    this._projectionMatrix = new THREE.Matrix4();
     this._domElement = document.createElement('div');
     this._domElement.style.overflow = 'hidden';
     this._domElement.style.position = 'absolute';
@@ -31711,7 +32517,7 @@ var CSS2DRenderer = /*#__PURE__*/function () {
     this._domElement.style.pointerEvents = 'none';
   }
 
-  createClass(CSS2DRenderer, [{
+  _createClass(CSS2DRenderer, [{
     key: "getElement",
     value: function getElement() {
       return this._domElement;
@@ -31753,7 +32559,7 @@ var CSS2DRenderer = /*#__PURE__*/function () {
         this._vector.setFromMatrixPosition(object.matrixWorld);
 
         if (object.userData !== undefined && object.userData.offset !== undefined) {
-          var localOffset = new Vector3(object.userData.offset.x, object.userData.offset.y, 0);
+          var localOffset = new THREE.Vector3(object.userData.offset.x, object.userData.offset.y, 0);
 
           this._vector.add(localOffset.multiplyScalar(object.matrixWorld.getMaxScaleOnAxis()));
         }
@@ -31771,7 +32577,7 @@ var CSS2DRenderer = /*#__PURE__*/function () {
             element.style.background = colorAsHex(object.userData.background);
           }
         } else {
-          var fogFactor = Math$1.smoothstep(-this._vector.z, scene.fog.near, scene.fog.far);
+          var fogFactor = THREE.Math.smoothstep(-this._vector.z, scene.fog.near, scene.fog.far);
           element.style.color = lerpColorAsHex(object.userData.color, scene.fog.color, fogFactor);
 
           if (object.userData.background !== 'transparent') {
@@ -31834,30 +32640,30 @@ var STATE = {
 }; // pausing for this amount of time before releasing mouse button prevents inertial rotation (seconds)
 
 var FULL_STOP_THRESHOLD = 0.1;
-var quaternion = new Quaternion();
-var matrix4 = new Matrix4(); // pivot -- local offset of the rotation pivot point
+var quaternion = new THREE.Quaternion();
+var matrix4 = new THREE.Matrix4(); // pivot -- local offset of the rotation pivot point
 
 function ObjectHandler(objects, camera, pivot, options) {
   this.objects = objects;
 
-  var _objects = slicedToArray(objects, 1);
+  var _objects = _slicedToArray(objects, 1);
 
   this.object = _objects[0];
   this.camera = camera;
   this.pivot = pivot;
-  this.axis = new Vector3(0, 0, 1);
+  this.axis = new THREE.Vector3(0, 0, 1);
   this.options = options;
   this.lastRotation = {
-    axis: new Vector3(),
+    axis: new THREE.Vector3(),
     angle: 0.0
   };
 }
 
 ObjectHandler.prototype._rotate = function () {
-  var p = new Vector3();
-  var q = new Quaternion();
-  var s = new Vector3();
-  var m = new Matrix4();
+  var p = new THREE.Vector3();
+  var q = new THREE.Quaternion();
+  var s = new THREE.Vector3();
+  var m = new THREE.Matrix4();
   return function (quat) {
     var zeroPivot = this.pivot.x === 0.0 && this.pivot.y === 0.0 && this.pivot.z === 0.0;
     m.copy(this.object.matrix);
@@ -31888,14 +32694,14 @@ ObjectHandler.prototype._rotate = function () {
 ObjectHandler.prototype.setObjects = function (objects) {
   this.objects = objects;
 
-  var _objects2 = slicedToArray(objects, 1);
+  var _objects2 = _slicedToArray(objects, 1);
 
   this.object = _objects2[0];
 };
 
 ObjectHandler.prototype.rotate = function () {
   var rot = {
-    axis: new Vector3(),
+    axis: new THREE.Vector3(),
     angle: 0.0
   };
   return function (quat, mousePrevPos, mouseCurPos, aboutAxis) {
@@ -31911,8 +32717,8 @@ ObjectHandler.prototype.rotate = function () {
 }();
 
 ObjectHandler.prototype.translate = function () {
-  var dir = new Vector3();
-  var pivot = new Vector3();
+  var dir = new THREE.Vector3();
+  var pivot = new THREE.Vector3();
   return function (delta) {
     // reverse-project viewport movement to view coords (compensate for screen aspect ratio)
     dir.set(delta.x / this.camera.projectionMatrix.elements[0], delta.y / this.camera.projectionMatrix.elements[5], 0);
@@ -31935,12 +32741,12 @@ ObjectHandler.prototype.translate = function () {
 }();
 
 ObjectHandler.prototype.update = function () {
-  var axis = new Vector3();
+  var axis = new THREE.Vector3();
   return function (timeSinceLastUpdate, timeSinceMove) {
-    if (settings.now.autoRotation !== 0.0) {
+    if (settings$1.now.autoRotation !== 0.0) {
       // auto-rotation with constant speed
       // if rotation axis is fixed or hasn't been defined yet
-      if (settings.now.autoRotationAxisFixed || this.lastRotation.axis.length() === 0.0) {
+      if (settings$1.now.autoRotationAxisFixed || this.lastRotation.axis.length() === 0.0) {
         // use Y-axis (transformed to local object coords)
         axis.set(0, 1, 0).transformDirection(matrix4.getInverse(this.object.matrixWorld));
       } else {
@@ -31948,7 +32754,7 @@ ObjectHandler.prototype.update = function () {
         axis.copy(this.lastRotation.axis);
       }
 
-      this._rotate(quaternion.setFromAxisAngle(axis, settings.now.autoRotation * timeSinceLastUpdate));
+      this._rotate(quaternion.setFromAxisAngle(axis, settings$1.now.autoRotation * timeSinceLastUpdate));
 
       return true;
     }
@@ -31976,13 +32782,13 @@ ObjectHandler.prototype.stop = function () {
 
 
 ObjectHandler.prototype.mouse2rotation = function () {
-  var center = new Vector3();
-  var eye = new Vector3();
-  var eyeDirection = new Vector3();
-  var cameraUpDirection = new Vector3();
-  var cameraSidewaysDirection = new Vector3();
-  var moveDirection = new Vector3();
-  var mouseDelta = new Vector2();
+  var center = new THREE.Vector3();
+  var eye = new THREE.Vector3();
+  var eyeDirection = new THREE.Vector3();
+  var cameraUpDirection = new THREE.Vector3();
+  var cameraSidewaysDirection = new THREE.Vector3();
+  var moveDirection = new THREE.Vector3();
+  var mouseDelta = new THREE.Vector2();
   return function (rot, mousePrev, mouseCur, aboutAxis) {
     if (aboutAxis) {
       rot.axis.copy(this.axis);
@@ -32061,10 +32867,10 @@ function ObjectControls(object, objectPivot, camera, domElement, getAltObj) {
   }; // internals
 
   this._state = STATE.NONE;
-  this._mousePrevPos = new Vector2();
-  this._mouseCurPos = new Vector2();
-  this._mainObj = new ObjectHandler([this.object], this.camera, new Vector3(0, 0, 0), this.options);
-  this._altObj = new ObjectHandler([this.object], this.camera, new Vector3(0, 0, 0), this.options);
+  this._mousePrevPos = new THREE.Vector2();
+  this._mouseCurPos = new THREE.Vector2();
+  this._mainObj = new ObjectHandler([this.object], this.camera, new THREE.Vector3(0, 0, 0), this.options);
+  this._altObj = new ObjectHandler([this.object], this.camera, new THREE.Vector3(0, 0, 0), this.options);
   this._affectedObj = this._mainObj;
   this._isAltObjFreeRotationAllowed = true;
   this._isTranslationAllowed = true;
@@ -32263,7 +33069,7 @@ ObjectControls.prototype.stop = function () {
 
 
 ObjectControls.prototype.rotateByMouse = function () {
-  var quat = new Quaternion();
+  var quat = new THREE.Quaternion();
   return function (aboutZAxis) {
     this._affectedObj.rotate(quat, this._mousePrevPos, this._mouseCurPos, aboutZAxis);
 
@@ -32297,7 +33103,7 @@ ObjectControls.prototype.setOrientation = function (quat) {
 
 
 ObjectControls.prototype.translate = function () {
-  var delta = new Vector2();
+  var delta = new THREE.Vector2();
   return function () {
     delta.subVectors(this._mouseCurPos, this._mousePrevPos);
 
@@ -32335,7 +33141,7 @@ ObjectControls.prototype.scale = function (factor) {
 };
 
 ObjectControls.prototype.update = function () {
-  var shift = new Vector2();
+  var shift = new THREE.Vector2();
   return function () {
     var curTime = this._clock.getElapsedTime();
 
@@ -32481,7 +33287,7 @@ ObjectControls.prototype.mousemove = function (event) {
 };
 
 ObjectControls.prototype.mousewheel = function (event) {
-  if (this.enabled === false || !settings.now.zooming || this._state !== STATE.NONE || event.shiftKey) {
+  if (this.enabled === false || !settings$1.now.zooming || this._state !== STATE.NONE || event.shiftKey) {
     return;
   }
 
@@ -32570,7 +33376,7 @@ ObjectControls.prototype.touchmove = function (event) {
       break;
 
     case STATE.SCALE:
-      if (settings.now.zooming) {
+      if (settings$1.now.zooming) {
         // update scale
         var dx = event.touches[0].pageX - event.touches[1].pageX;
         var dy = event.touches[0].pageY - event.touches[1].pageY;
@@ -32614,10 +33420,10 @@ ObjectControls.prototype.dispose = function () {
 };
 
 ObjectControls.prototype.translatePivotByMouse = function () {
-  var delta = new Vector2();
+  var delta = new THREE.Vector2();
   return function () {
     delta.subVectors(this._mouseCurPos, this._mousePrevPos);
-    this.translatePivotInWorld(settings.now.translationSpeed * delta.x, settings.now.translationSpeed * delta.y, 0);
+    this.translatePivotInWorld(settings$1.now.translationSpeed * delta.x, settings$1.now.translationSpeed * delta.y, 0);
   };
 }(); // Translate in WorldCS, translation is scaled with root scale matrix
 
@@ -32668,10 +33474,10 @@ function Picker(gfxObj, camera, domElement) {
     width: 0,
     height: 0
   };
-  this._lastMousePos = new Vector2(0, 0);
+  this._lastMousePos = new THREE.Vector2(0, 0);
   this._mouseTotalDist = 0.0;
   this._lastClickBeginTime = -1000.0;
-  this._lastClickPos = new Vector2(0, 0);
+  this._lastClickPos = new THREE.Vector2(0, 0);
   this._clickBeginTime = 0.0;
   this._clock = new Timer();
 
@@ -32762,11 +33568,11 @@ Picker.prototype.pickObject = function (screenPos) {
   }
 
   var gfxObj = this.gfxObj;
-  var rayCaster = new Raycaster();
+  var rayCaster = new THREE.Raycaster();
   rayCaster.ray.origin.setFromMatrixPosition(this.camera.matrixWorld);
   rayCaster.ray.direction.set(screenPos.x, screenPos.y, 0.5).unproject(this.camera).sub(rayCaster.ray.origin).normalize();
-  var clipPlane = settings.now.draft.clipPlane && this.clipPlaneValue ? this.clipPlaneValue : Infinity;
-  var fogFarPlane = settings.now.fog && this.fogFarValue ? this.fogFarValue : Infinity;
+  var clipPlane = settings$1.now.draft.clipPlane && this.clipPlaneValue ? this.clipPlaneValue : Infinity;
+  var fogFarPlane = settings$1.now.fog && this.fogFarValue ? this.fogFarValue : Infinity;
   var point = rayCaster.intersectVisibleObject(gfxObj, this.camera, clipPlane, fogFarPlane);
 
   if (!point) {
@@ -32783,15 +33589,15 @@ Picker.prototype.pickObject = function (screenPos) {
   if (point.residue || point.atom) {
     var residue = point.residue || point.atom.residue;
 
-    if (settings.now.pick === 'chain') {
+    if (settings$1.now.pick === 'chain') {
       picked = {
         chain: residue.getChain()
       };
-    } else if (settings.now.pick === 'molecule') {
+    } else if (settings$1.now.pick === 'molecule') {
       picked = {
         molecule: residue.getMolecule()
       };
-    } else if (point.residue || settings.now.pick === 'residue') {
+    } else if (point.residue || settings$1.now.pick === 'residue') {
       picked = {
         residue: residue
       };
@@ -32810,7 +33616,7 @@ Picker.prototype.pickObject = function (screenPos) {
 };
 
 Picker.prototype.getMouseInViewport = function (pageX, pageY) {
-  return new Vector2((pageX - this.screen.left) / this.screen.width * 2 - 1, -(pageY - this.screen.top) / this.screen.height * 2 + 1);
+  return new THREE.Vector2((pageX - this.screen.left) / this.screen.width * 2 - 1, -(pageY - this.screen.top) / this.screen.height * 2 + 1);
 };
 
 Picker.prototype.mousedown = function (event) {
@@ -32844,7 +33650,7 @@ Picker.prototype.mouseup = function (event) {
       var timeSinceLastClickBegin = curTime - this._lastClickBeginTime;
 
       if (timeSinceLastClickBegin < 0.7) {
-        var clickDist = new Vector2().subVectors(curPos, this._lastClickPos);
+        var clickDist = new THREE.Vector2().subVectors(curPos, this._lastClickPos);
 
         if (clickDist.length() < 0.01) {
           // it's a double click
@@ -32903,22 +33709,22 @@ Picker.prototype.dispose = function () {
 
 var Axes = /*#__PURE__*/function () {
   function Axes(target, targetCamera) {
-    classCallCheck(this, Axes);
+    _classCallCheck(this, Axes);
 
     this._target = target;
     this._targetCamera = targetCamera;
-    this._camera = new PerspectiveCamera(targetCamera.fov, targetCamera.aspect, 1, 100);
-    this._object = new AxesHelper(1);
-    this._scene = new Scene();
+    this._camera = new THREE.PerspectiveCamera(targetCamera.fov, targetCamera.aspect, 1, 100);
+    this._object = new THREE.AxesHelper(1);
+    this._scene = new THREE.Scene();
 
     this._scene.add(this._object);
 
-    this._full = new Vector2();
+    this._full = new THREE.Vector2();
 
     this._update();
   }
 
-  createClass(Axes, [{
+  _createClass(Axes, [{
     key: "_update",
     value: function _update() {
       var fov = this._targetCamera.fov;
@@ -33010,7 +33816,7 @@ function fromUInt20ToInt20(uint20) {
 
 var FrameInfo = /*#__PURE__*/function () {
   function FrameInfo(complex, payload, callbacks) {
-    classCallCheck(this, FrameInfo);
+    _classCallCheck(this, FrameInfo);
 
     this._complex = complex;
     this._secondary = null;
@@ -33035,7 +33841,7 @@ var FrameInfo = /*#__PURE__*/function () {
     this.setFrame(0);
   }
 
-  createClass(FrameInfo, [{
+  _createClass(FrameInfo, [{
     key: "_prepareBuffer",
     value: function _prepareBuffer(framesStart, framesEnd) {
       if (framesStart === undefined || framesStart === null) {
@@ -33335,7 +34141,7 @@ var FrameInfo = /*#__PURE__*/function () {
   return FrameInfo;
 }();
 
-defineProperty(FrameInfo, "_vec", new Vector3());
+_defineProperty(FrameInfo, "_vec", new THREE.Vector3());
 
 /**
  * Create new scene object.
@@ -33355,7 +34161,7 @@ defineProperty(FrameInfo, "_vec", new Vector3());
 
 var SceneObject = /*#__PURE__*/function () {
   function SceneObject(params, opts) {
-    classCallCheck(this, SceneObject);
+    _classCallCheck(this, SceneObject);
 
     if (this.constructor === SceneObject) {
       throw new Error('Can not instantiate abstract class!');
@@ -33367,7 +34173,7 @@ var SceneObject = /*#__PURE__*/function () {
 
 
     this.params = params;
-    this.opts = _.merge(utils.deriveDeep(settings.now.objects[this.type], true), opts);
+    this.opts = _.merge(utils.deriveDeep(settings$1.now.objects[this.type], true), opts);
     this.needsRebuild = false;
     this._mesh = null;
     this.id = null;
@@ -33380,14 +34186,14 @@ var SceneObject = /*#__PURE__*/function () {
    */
 
 
-  createClass(SceneObject, [{
+  _createClass(SceneObject, [{
     key: "identify",
     value: function identify() {
       var result = {
         type: this.type,
         params: this.params
       };
-      var diff = utils.objectsDiff(this.opts, settings.now.modes[this.id]);
+      var diff = utils.objectsDiff(this.opts, settings$1.now.modes[this.id]);
 
       if (!_.isEmpty(diff)) {
         result.opts = diff;
@@ -33399,7 +34205,7 @@ var SceneObject = /*#__PURE__*/function () {
     key: "toString",
     value: function toString() {
       var paramsStr = "o=".concat(this.type, ",").concat(this.params.join(','));
-      var optsStr = utils.compareOptionsWithDefaults(this.opts, settings.defaults.objects[this.type]);
+      var optsStr = utils.compareOptionsWithDefaults(this.opts, settings$1.defaults.objects[this.type]);
       return paramsStr + optsStr;
     }
   }, {
@@ -33426,28 +34232,34 @@ var SceneObject = /*#__PURE__*/function () {
 
 SceneObject.prototype.type = '__';
 
+function _createSuper$6(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$6(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$6() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 var LinesObj = /*#__PURE__*/function (_SceneObject) {
-  inherits(LinesObj, _SceneObject);
+  _inherits(LinesObj, _SceneObject);
+
+  var _super = _createSuper$6(LinesObj);
 
   function LinesObj(params, opts) {
     var _this;
 
-    classCallCheck(this, LinesObj);
+    _classCallCheck(this, LinesObj);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(LinesObj).call(this, params, opts));
+    _this = _super.call(this, params, opts);
 
     if (params.length < 2) {
       throw new Error('Wrong number of argumets on line object creation!');
     }
 
-    var _params = slicedToArray(params, 2);
+    var _params = _slicedToArray(params, 2);
 
     _this._id1 = _params[0];
     _this._id2 = _params[1];
     return _this;
   }
 
-  createClass(LinesObj, [{
+  _createClass(LinesObj, [{
     key: "_getAtomFromName",
     value: function _getAtomFromName(complex, atomId) {
       var err = ' - Wrong atom format it must be \'#CHAIN_NAME.#RESIDUE_NUMBER.#ATOM_NAME\' (e.g. \'A.38.CO1\')';
@@ -33462,7 +34274,7 @@ var LinesObj = /*#__PURE__*/function (_SceneObject) {
   }, {
     key: "build",
     value: function build(complex) {
-      var geom = new Geometry();
+      var geom = new THREE.Geometry();
       this._atom1 = this._getAtomFromName(complex, this._id1);
       this._atom2 = this._getAtomFromName(complex, this._id2);
       geom.vertices[0] = this._atom1.position.clone();
@@ -33473,13 +34285,13 @@ var LinesObj = /*#__PURE__*/function (_SceneObject) {
         lights: false,
         overrideColor: true,
         dashedLine: true,
-        fogTransparent: settings.now.bg.transparent
+        fogTransparent: settings$1.now.bg.transparent
       }));
 
       this._line.computeLineDistances();
 
       this._line.material.setUberOptions({
-        fixedColor: new Color(this.opts.color),
+        fixedColor: new THREE.Color(this.opts.color),
         dashedLineSize: this.opts.dashSize,
         dashedLinePeriod: this.opts.dashSize + this.opts.gapSize
       });
@@ -33492,7 +34304,7 @@ var LinesObj = /*#__PURE__*/function (_SceneObject) {
       var transforms = complex.getTransforms();
 
       if (transforms.length > 0) {
-        this._mesh = new Group();
+        this._mesh = new THREE.Group();
 
         this._mesh.add(this._line);
 
@@ -33523,18 +34335,24 @@ var LinesObj = /*#__PURE__*/function (_SceneObject) {
 LinesObj.prototype.constructor = LinesObj;
 LinesObj.prototype.type = 'line';
 
-var fragmentShader$1 = "precision highp float;\n\nuniform sampler2D srcTex;\nuniform vec2 srcTexSize;\nuniform vec2 thickness;\nvarying vec2 vUv;\n\n#ifdef DEPTH_OUTLINE\n  uniform sampler2D srcDepthTex; //depthTexture\n  uniform vec3 color;\n  uniform float threshold;\n#endif\n\nvoid main() {\n\n  vec2 pixelSize = thickness / srcTexSize;\n\n  #ifdef DEPTH_OUTLINE\n    float c00 = texture2D(srcDepthTex, vUv + vec2(-pixelSize.x,-pixelSize.y)).x;\n    float c01 = texture2D(srcDepthTex, vUv + vec2(0,-pixelSize.y)).x;\n    float c02 = texture2D(srcDepthTex, vUv + vec2(pixelSize.x,-pixelSize.y)).x;\n    float c10 = texture2D(srcDepthTex, vUv + vec2(-pixelSize.x,0)).x;\n    float c12 = texture2D(srcDepthTex, vUv + vec2(pixelSize.x,0)).x;\n    float c20 = texture2D(srcDepthTex, vUv + vec2(-pixelSize.x,pixelSize.y)).x;\n    float c21 = texture2D(srcDepthTex, vUv + vec2(0,pixelSize.y)).x;\n    float c22 = texture2D(srcDepthTex, vUv + vec2(pixelSize.x,pixelSize.y)).x;\n\n    float horizEdge = - c00 - 2.0 * c01 - c02 + c20 + 2.0 * c21 + c22;\n    float vertEdge  = - c00 - 2.0 * c10 - c20 + c02 + 2.0 * c12 + c22;\n\n    float grad = sqrt(horizEdge * horizEdge + vertEdge * vertEdge);\n\n    gl_FragColor = ( grad > threshold ) ? vec4(color.rgb, 1.0) : gl_FragColor = texture2D(srcTex, vUv);\n\n  #else\n    vec4 c00 = texture2D(srcTex, vUv + vec2(-pixelSize.x,-pixelSize.y));\n    vec4 c01 = texture2D(srcTex, vUv + vec2(0,-pixelSize.y));\n    vec4 c02 = texture2D(srcTex, vUv + vec2(pixelSize.x,-pixelSize.y));\n    vec4 c10 = texture2D(srcTex, vUv + vec2(-pixelSize.x,0));\n    vec4 c12 = texture2D(srcTex, vUv + vec2(pixelSize.x,0));\n    vec4 c20 = texture2D(srcTex, vUv + vec2(-pixelSize.x,pixelSize.y));\n    vec4 c21 = texture2D(srcTex, vUv + vec2(0,pixelSize.y));\n    vec4 c22 = texture2D(srcTex, vUv + vec2(pixelSize.x,pixelSize.y));\n\n    vec4 horizEdge = - c00 - 2.0 * c01 - c02 + c20 + 2.0 * c21 + c22;\n    vec4 vertEdge  = - c00 - 2.0 * c10 - c20 + c02 + 2.0 * c12 + c22;\n\n    vec4 grad = sqrt(horizEdge * horizEdge + vertEdge * vertEdge);\n    gl_FragColor = grad;\n  #endif\n}\n";
+var fragmentShader$5 = "precision highp float;\n\nuniform sampler2D srcTex;\nuniform vec2 srcTexSize;\nuniform vec2 thickness;\nvarying vec2 vUv;\n\n#ifdef DEPTH_OUTLINE\n  uniform sampler2D srcDepthTex; //depthTexture\n  uniform vec3 color;\n  uniform float threshold;\n#endif\n\nvoid main() {\n\n  vec2 pixelSize = thickness / srcTexSize;\n\n  #ifdef DEPTH_OUTLINE\n    float c00 = texture2D(srcDepthTex, vUv + vec2(-pixelSize.x,-pixelSize.y)).x;\n    float c01 = texture2D(srcDepthTex, vUv + vec2(0,-pixelSize.y)).x;\n    float c02 = texture2D(srcDepthTex, vUv + vec2(pixelSize.x,-pixelSize.y)).x;\n    float c10 = texture2D(srcDepthTex, vUv + vec2(-pixelSize.x,0)).x;\n    float c12 = texture2D(srcDepthTex, vUv + vec2(pixelSize.x,0)).x;\n    float c20 = texture2D(srcDepthTex, vUv + vec2(-pixelSize.x,pixelSize.y)).x;\n    float c21 = texture2D(srcDepthTex, vUv + vec2(0,pixelSize.y)).x;\n    float c22 = texture2D(srcDepthTex, vUv + vec2(pixelSize.x,pixelSize.y)).x;\n\n    float horizEdge = - c00 - 2.0 * c01 - c02 + c20 + 2.0 * c21 + c22;\n    float vertEdge  = - c00 - 2.0 * c10 - c20 + c02 + 2.0 * c12 + c22;\n\n    float grad = sqrt(horizEdge * horizEdge + vertEdge * vertEdge);\n\n    gl_FragColor = ( grad > threshold ) ? vec4(color.rgb, 1.0) : gl_FragColor = texture2D(srcTex, vUv);\n\n  #else\n    vec4 c00 = texture2D(srcTex, vUv + vec2(-pixelSize.x,-pixelSize.y));\n    vec4 c01 = texture2D(srcTex, vUv + vec2(0,-pixelSize.y));\n    vec4 c02 = texture2D(srcTex, vUv + vec2(pixelSize.x,-pixelSize.y));\n    vec4 c10 = texture2D(srcTex, vUv + vec2(-pixelSize.x,0));\n    vec4 c12 = texture2D(srcTex, vUv + vec2(pixelSize.x,0));\n    vec4 c20 = texture2D(srcTex, vUv + vec2(-pixelSize.x,pixelSize.y));\n    vec4 c21 = texture2D(srcTex, vUv + vec2(0,pixelSize.y));\n    vec4 c22 = texture2D(srcTex, vUv + vec2(pixelSize.x,pixelSize.y));\n\n    vec4 horizEdge = - c00 - 2.0 * c01 - c02 + c20 + 2.0 * c21 + c22;\n    vec4 vertEdge  = - c00 - 2.0 * c10 - c20 + c02 + 2.0 * c12 + c22;\n\n    vec4 grad = sqrt(horizEdge * horizEdge + vertEdge * vertEdge);\n    gl_FragColor = grad;\n  #endif\n}\n";
+
+function _createSuper$5(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$5(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$5() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 var OutlineMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
-  inherits(OutlineMaterial, _THREE$RawShaderMater);
+  _inherits(OutlineMaterial, _THREE$RawShaderMater);
+
+  var _super = _createSuper$5(OutlineMaterial);
 
   function OutlineMaterial(params) {
     var _this;
 
-    classCallCheck(this, OutlineMaterial);
+    _classCallCheck(this, OutlineMaterial);
 
     // add depth outline
-    _this = possibleConstructorReturn(this, getPrototypeOf(OutlineMaterial).call(this, params));
+    _this = _super.call(this, params);
     var settings = {
       uniforms: {
         srcTex: {
@@ -33547,7 +34365,7 @@ var OutlineMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
         },
         srcTexSize: {
           type: 'v2',
-          value: new Vector2(512, 512)
+          value: new THREE.Vector2(512, 512)
         },
         color: {
           type: 'v3',
@@ -33563,11 +34381,11 @@ var OutlineMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
         },
         thickness: {
           type: 'v2',
-          value: new Vector2(1, 1)
+          value: new THREE.Vector2(1, 1)
         }
       },
       vertexShader: vertexScreenQuadShader,
-      fragmentShader: fragmentShader$1,
+      fragmentShader: fragmentShader$5,
       transparent: true,
       depthTest: false,
       depthWrite: false
@@ -33578,10 +34396,10 @@ var OutlineMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
     return _this;
   }
 
-  createClass(OutlineMaterial, [{
+  _createClass(OutlineMaterial, [{
     key: "copy",
     value: function copy(source) {
-      get(getPrototypeOf(OutlineMaterial.prototype), "copy", this).call(this, source);
+      _get(_getPrototypeOf(OutlineMaterial.prototype), "copy", this).call(this, source);
 
       this.depth = source.depth;
     }
@@ -33593,7 +34411,7 @@ var OutlineMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
       } // set direct values
 
 
-      get(getPrototypeOf(OutlineMaterial.prototype), "setValues", this).call(this, values);
+      _get(_getPrototypeOf(OutlineMaterial.prototype), "setValues", this).call(this, values);
 
       var defines = {};
 
@@ -33607,23 +34425,29 @@ var OutlineMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
   }]);
 
   return OutlineMaterial;
-}(RawShaderMaterial);
+}(THREE.RawShaderMaterial);
 
 OutlineMaterial.prototype.depth = false;
 
-var fragmentShader$2 = "precision highp float;\n\n// edge end finding algorithm parameters\n#define FXAA_QUALITY_PS 8\n#define FXAA_QUALITY_P0 1.0\n#define FXAA_QUALITY_P1 1.5\n#define FXAA_QUALITY_P2 2.0\n#define FXAA_QUALITY_P3 2.0\n#define FXAA_QUALITY_P4 2.0\n#define FXAA_QUALITY_P5 2.0\n#define FXAA_QUALITY_P6 4.0\n#define FXAA_QUALITY_P7 12.0\n// constants\nfloat fxaaQualityEdgeThreshold = 0.125;\nfloat fxaaQualityEdgeThresholdMin = 0.0625;\nfloat fxaaQualitySubpix = 0.7; //0.65;\n// global params\nuniform sampler2D srcTex;\nuniform vec2 srcTexelSize;\nuniform vec3 bgColor;\n// from vs\nvarying vec2 vUv;\n//=====================================================================//\n// calc luminance from rgb\n//'float FxaaLuma(vec3 rgb) {return rgb.y * (0.587/0.299) + rgb.x; } // Lotte's idea about game luminance\nfloat FxaaLuma(vec3 rgb) {return dot(rgb, vec3(0.299, 0.587, 0.114)); } // real luminance calculation\n                                                                           // for non-real scene rendering\n// texture sampling by pixel position(coords) and offset(in pixels)\n vec3 FxaaTex(sampler2D tex, vec2 pos, vec2 off,  vec2 res ) {\n  #ifdef BG_TRANSPARENT\n    vec4 color = texture2D( tex, pos + off * res );\n    return mix(color.rgb, bgColor, 1.0 - color.a);\n  #else\n    return texture2D( tex, pos + off * res ).xyz;\n  #endif\n}\nvec3 FxaaTexTop(sampler2D tex, vec2 pos) {\n  #ifdef BG_TRANSPARENT\n    vec4 color = texture2D( tex, pos );\n    return mix(color.rgb, bgColor, 1.0 - color.a);\n  #else\n    return texture2D( tex, pos).xyz;\n  #endif\n}\nvec4 FxaaTexTopAlpha(sampler2D tex, vec2 pos) {\n  return texture2D( tex, pos);\n}\n\n//=====================================================================//\nvoid main() {\n  // renaming\n  vec2 posM = vUv;\n  // get luminance for neighbours\n  float lumaS = FxaaLuma(FxaaTex(srcTex, posM, vec2( 0.0, 1.0 ), srcTexelSize));\n  float lumaE = FxaaLuma(FxaaTex(srcTex, posM, vec2( 1.0, 0.0 ), srcTexelSize));\n  float lumaN = FxaaLuma(FxaaTex(srcTex, posM, vec2( 0.0, -1.0 ), srcTexelSize));\n  float lumaW = FxaaLuma(FxaaTex(srcTex, posM, vec2( -1.0, 0.0 ), srcTexelSize));\n  float lumaM = FxaaLuma(FxaaTexTop(srcTex, posM));\n  // find max and min luminance\n  float rangeMax = max(max(lumaN, lumaW), max(lumaE, max(lumaS, lumaM)));\n  float rangeMin = min(min(lumaN, lumaW), min(lumaE, min(lumaS, lumaM)));\n  // calc maximum non-edge range\n  float rangeMaxScaled = rangeMax * fxaaQualityEdgeThreshold;\n  float range = rangeMax - rangeMin;\n  float rangeMaxClamped = max(fxaaQualityEdgeThresholdMin, rangeMaxScaled);\n  // exit when luma contrast is small (is not edge)\n  if(range < rangeMaxClamped){\n    gl_FragColor = FxaaTexTopAlpha(srcTex, posM);\n    return;\n  }\n  float subpixRcpRange = 1.0/range;\n  // note: the sampling coordinates can be calculated in vertex shader but the approach doesn't affect performance\n  // visibly, thus we decided to leave calculation here for better readability.\n  // calc other neighbours luminance\n  float lumaNE = FxaaLuma(FxaaTex(srcTex, posM, vec2(  1.0, -1.0 ), srcTexelSize));\n  float lumaSW = FxaaLuma(FxaaTex(srcTex, posM, vec2( -1.0,  1.0 ), srcTexelSize));\n  float lumaSE = FxaaLuma(FxaaTex(srcTex, posM, vec2(  1.0,  1.0 ), srcTexelSize));\n  float lumaNW = FxaaLuma(FxaaTex(srcTex, posM, vec2( -1.0, -1.0 ), srcTexelSize));\n/*--------------span calculation and subpix amount calulation-----------------*/\n  float lumaNS = lumaN + lumaS;\n  float lumaWE = lumaW + lumaE;\n  float subpixNSWE = lumaNS + lumaWE;\n  float edgeHorz1 = (-2.0 * lumaM) + lumaNS;\n  float edgeVert1 = (-2.0 * lumaM) + lumaWE;\n/*--------------------------------------------------------------------------*/\n  float lumaNESE = lumaNE + lumaSE;\n  float lumaNWNE = lumaNW + lumaNE;\n  float edgeHorz2 = (-2.0 * lumaE) + lumaNESE;\n  float edgeVert2 = (-2.0 * lumaN) + lumaNWNE;\n/*--------------------------------------------------------------------------*/\n  float lumaNWSW = lumaNW + lumaSW;\n  float lumaSWSE = lumaSW + lumaSE;\n  float edgeHorz4 = (abs(edgeHorz1) * 2.0) + abs(edgeHorz2);\n  float edgeVert4 = (abs(edgeVert1) * 2.0) + abs(edgeVert2);\n  float edgeHorz3 = (-2.0 * lumaW) + lumaNWSW;\n  float edgeVert3 = (-2.0 * lumaS) + lumaSWSE;\n  float edgeHorz = abs(edgeHorz3) + edgeHorz4;\n  float edgeVert = abs(edgeVert3) + edgeVert4;\n/*--------------------subpix amount calulation------------------------------*/\n  float subpixNWSWNESE = lumaNWSW + lumaNESE;\n  float lengthSign = srcTexelSize.x;\n  bool horzSpan = edgeHorz >= edgeVert;\n   // debug  code edge span visualization\n/*'  if (horzSpan)\n      gl_FragColor = vec4(0.0, 0.0, 1.0, 1.0);\n  else\n    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);\n  return;*/\n  float subpixA = subpixNSWE * 2.0 + subpixNWSWNESE;\n/*--------------------------------------------------------------------------*/\n  if(!horzSpan) lumaN = lumaW;\n  if(!horzSpan) lumaS = lumaE;\n  if(horzSpan) lengthSign = srcTexelSize.y;\n  float subpixB = (subpixA * (1.0/12.0)) - lumaM;\n/*--------------------------------------------------------------------------*/\n  float gradientN = lumaN - lumaM;\n  float gradientS = lumaS - lumaM;\n  float lumaNN = lumaN + lumaM;\n  float lumaSS = lumaS + lumaM;\n  bool pairN = abs(gradientN) >= abs(gradientS);\n  float gradient = max(abs(gradientN), abs(gradientS));\n  if(pairN) lengthSign = -lengthSign;\n  float subpixC = clamp(abs(subpixB) * subpixRcpRange, 0.0, 1.0);\n/*--------------------------------------------------------------------------*/\n  vec2 posB;\n  posB = posM;\n  vec2 offNP;\n  offNP.x = (!horzSpan) ? 0.0 : srcTexelSize.x;\n  offNP.y = ( horzSpan) ? 0.0 : srcTexelSize.y;\n  if(!horzSpan) posB.x += lengthSign * 0.5;\n  if( horzSpan) posB.y += lengthSign * 0.5;\n/*--------------------------------------------------------------------------*/\n  vec2 posN;\n  posN = posB - offNP * FXAA_QUALITY_P0;\n  vec2 posP;\n  posP = posB + offNP * FXAA_QUALITY_P0;\n  float subpixD = ((-2.0)*subpixC) + 3.0;\n  float lumaEndN = FxaaLuma(FxaaTexTop(srcTex, posN));\n  float subpixE = subpixC * subpixC;\n  float lumaEndP = FxaaLuma(FxaaTexTop(srcTex, posP));\n/*--------------------------------------------------------------------------*/\n  if(!pairN) lumaNN = lumaSS;\n  float gradientScaled = gradient * 1.0/4.0;\n  float lumaMM = lumaM - lumaNN * 0.5;\n  float subpixF = subpixD * subpixE;\n  bool lumaMLTZero = lumaMM < 0.0;\n/*---------------------looped edge-end search-------------------------------*/\n  lumaEndN -= lumaNN * 0.5;\n  lumaEndP -= lumaNN * 0.5;\n  bool doneN = abs(lumaEndN) >= gradientScaled;\n  bool doneP = abs(lumaEndP) >= gradientScaled;\n  if(!doneN) posN -= offNP * FXAA_QUALITY_P1;\n  bool doneNP = (!doneN) || (!doneP);\n  if(!doneP) posP += offNP * FXAA_QUALITY_P1;\n/*--------------------------------------------------------------------------*/\n  if(doneNP) {\n    if(!doneN) lumaEndN = FxaaLuma(FxaaTexTop(srcTex, posN.xy));\n    if(!doneP) lumaEndP = FxaaLuma(FxaaTexTop(srcTex, posP.xy));\n    if(!doneN) lumaEndN = lumaEndN - lumaNN * 0.5;\n    if(!doneP) lumaEndP = lumaEndP - lumaNN * 0.5;\n    doneN = abs(lumaEndN) >= gradientScaled;\n    doneP = abs(lumaEndP) >= gradientScaled;\n    if(!doneN) posN -= offNP * FXAA_QUALITY_P2;\n    doneNP = (!doneN) || (!doneP);\n    if(!doneP) posP += offNP * FXAA_QUALITY_P2;\n/*--------------------------------------------------------------------------*/\n    #if (FXAA_QUALITY_PS > 3)\n      if(doneNP) {\n        if(!doneN) lumaEndN = FxaaLuma(FxaaTexTop(srcTex, posN.xy));\n        if(!doneP) lumaEndP = FxaaLuma(FxaaTexTop(srcTex, posP.xy));\n        if(!doneN) lumaEndN = lumaEndN - lumaNN * 0.5;\n        if(!doneP) lumaEndP = lumaEndP - lumaNN * 0.5;\n        doneN = abs(lumaEndN) >= gradientScaled;\n        doneP = abs(lumaEndP) >= gradientScaled;\n        if(!doneN) posN -= offNP * FXAA_QUALITY_P3;\n        doneNP = (!doneN) || (!doneP);\n        if(!doneP) posP += offNP * FXAA_QUALITY_P3;\n/*--------------------------------------------------------------------------*/\n        #if (FXAA_QUALITY_PS > 4)\n          if(doneNP) {\n            if(!doneN) lumaEndN = FxaaLuma(FxaaTexTop(srcTex, posN.xy));\n            if(!doneP) lumaEndP = FxaaLuma(FxaaTexTop(srcTex, posP.xy));\n            if(!doneN) lumaEndN = lumaEndN - lumaNN * 0.5;\n            if(!doneP) lumaEndP = lumaEndP - lumaNN * 0.5;\n            doneN = abs(lumaEndN) >= gradientScaled;\n            doneP = abs(lumaEndP) >= gradientScaled;\n            if(!doneN) posN -= offNP * FXAA_QUALITY_P4;\n            doneNP = (!doneN) || (!doneP);\n            if(!doneP) posP += offNP * FXAA_QUALITY_P4;\n/*--------------------------------------------------------------------------*/\n            #if (FXAA_QUALITY_PS > 5)\n               if(doneNP) {\n                 if(!doneN) lumaEndN = FxaaLuma(FxaaTexTop(srcTex, posN.xy));\n                 if(!doneP) lumaEndP = FxaaLuma(FxaaTexTop(srcTex, posP.xy));\n                 if(!doneN) lumaEndN = lumaEndN - lumaNN * 0.5;\n                 if(!doneP) lumaEndP = lumaEndP - lumaNN * 0.5;\n                 doneN = abs(lumaEndN) >= gradientScaled;\n                 doneP = abs(lumaEndP) >= gradientScaled;\n                 if(!doneN) posN -= offNP * FXAA_QUALITY_P5;\n                 doneNP = (!doneN) || (!doneP);\n                 if(!doneP) posP += offNP * FXAA_QUALITY_P5;\n/*--------------------------------------------------------------------------*/\n                 #if (FXAA_QUALITY_PS > 6)\n                   if(doneNP) {\n                     if(!doneN) lumaEndN = FxaaLuma(FxaaTexTop(srcTex, posN.xy));\n                     if(!doneP) lumaEndP = FxaaLuma(FxaaTexTop(srcTex, posP.xy));\n                     if(!doneN) lumaEndN = lumaEndN - lumaNN * 0.5;\n                     if(!doneP) lumaEndP = lumaEndP - lumaNN * 0.5;\n                     doneN = abs(lumaEndN) >= gradientScaled;\n                     doneP = abs(lumaEndP) >= gradientScaled;\n                     if(!doneN) posN -= offNP * FXAA_QUALITY_P6;\n                     doneNP = (!doneN) || (!doneP);\n                     if(!doneP) posP += offNP * FXAA_QUALITY_P6;\n/*--------------------------------------------------------------------------*/\n                     #if (FXAA_QUALITY_PS > 7)\n                       if(doneNP) {\n                         if(!doneN) lumaEndN = FxaaLuma(FxaaTexTop(srcTex, posN.xy));\n                         if(!doneP) lumaEndP = FxaaLuma(FxaaTexTop(srcTex, posP.xy));\n                         if(!doneN) lumaEndN = lumaEndN - lumaNN * 0.5;\n                         if(!doneP) lumaEndP = lumaEndP - lumaNN * 0.5;\n                         doneN = abs(lumaEndN) >= gradientScaled;\n                         doneP = abs(lumaEndP) >= gradientScaled;\n                         if(!doneN) posN -= offNP * FXAA_QUALITY_P7;\n                         doneNP = (!doneN) || (!doneP);\n                         if(!doneP) posP += offNP * FXAA_QUALITY_P7;\n/*--------------------------------------------------------------------------*/\n                       }\n                     #endif\n                   }\n                 #endif\n               }\n             #endif\n           }\n         #endif\n      }\n    #endif\n  }\n/*----------------calculate subpix offset due to edge ends-------------------*/\n  float dstN = posM.x - posN.x;\n  float dstP = posP.x - posM.x;\n  if(!horzSpan) dstN = posM.y - posN.y;\n  if(!horzSpan) dstP = posP.y - posM.y;\n/*--------------------------------------------------------------------------*/\n  bool goodSpanN = (lumaEndN < 0.0) != lumaMLTZero;\n  float spanLength = (dstP + dstN);\n  bool goodSpanP = (lumaEndP < 0.0) != lumaMLTZero;\n  float spanLengthRcp = 1.0 / spanLength;\n/*--------------------------------------------------------------------------*/\n  bool directionN = dstN < dstP;\n  float dst = min(dstN, dstP);\n  bool goodSpan = directionN ? goodSpanN : goodSpanP;\n  float subpixG = subpixF * subpixF;\n  float pixelOffset = (dst * (-spanLengthRcp)) + 0.5;\n  float subpixH = subpixG * fxaaQualitySubpix;\n/*-----------------calc texture offest using subpix-------------------------*/\n  float pixelOffsetGood = goodSpan ? pixelOffset : 0.0;\n  float pixelOffsetSubpix = max(pixelOffsetGood, subpixH);\n\n  float offset = pixelOffsetSubpix * lengthSign;\n  #ifdef BG_TRANSPARENT\n    // get original texel\n    vec4 rgbaA = FxaaTexTopAlpha(srcTex, posM);\n    // calc step to blended texel\n    vec2 step = sign((!horzSpan) ? vec2 (offset, 0.0) : vec2 (0.0, offset));\n    // get neighboring texel\n    vec4 rgbaB = FxaaTexTopAlpha(srcTex, posM + step * srcTexelSize);\n    //  calc blend factor from offset\n    float f = (!horzSpan) ? offset / srcTexelSize.x : offset / srcTexelSize.y;\n    f = abs(f);\n    // calc alpha (special formula to emulate blending with bg)\n    gl_FragColor.a = 1.0 - mix(1.0 - rgbaA.a, 1.0 - rgbaB.a, f);\n    // calc color (special formula to emulate blending with bg)\n    gl_FragColor.rgb = mix(rgbaA.rgb * rgbaA.a, rgbaB.rgb * rgbaB.a, f) / gl_FragColor.a;\n  #else\n    if(!horzSpan) {\n       posM.x += offset;\n    } else {\n       posM.y += offset;\n    }\n    gl_FragColor = FxaaTexTopAlpha(srcTex, posM);\n  #endif\n  return;\n}\n";
+var fragmentShader$4 = "precision highp float;\n\n// edge end finding algorithm parameters\n#define FXAA_QUALITY_PS 8\n#define FXAA_QUALITY_P0 1.0\n#define FXAA_QUALITY_P1 1.5\n#define FXAA_QUALITY_P2 2.0\n#define FXAA_QUALITY_P3 2.0\n#define FXAA_QUALITY_P4 2.0\n#define FXAA_QUALITY_P5 2.0\n#define FXAA_QUALITY_P6 4.0\n#define FXAA_QUALITY_P7 12.0\n// constants\nfloat fxaaQualityEdgeThreshold = 0.125;\nfloat fxaaQualityEdgeThresholdMin = 0.0625;\nfloat fxaaQualitySubpix = 0.7; //0.65;\n// global params\nuniform sampler2D srcTex;\nuniform vec2 srcTexelSize;\nuniform vec3 bgColor;\n// from vs\nvarying vec2 vUv;\n//=====================================================================//\n// calc luminance from rgb\n//'float FxaaLuma(vec3 rgb) {return rgb.y * (0.587/0.299) + rgb.x; } // Lotte's idea about game luminance\nfloat FxaaLuma(vec3 rgb) {return dot(rgb, vec3(0.299, 0.587, 0.114)); } // real luminance calculation\n                                                                           // for non-real scene rendering\n// texture sampling by pixel position(coords) and offset(in pixels)\n vec3 FxaaTex(sampler2D tex, vec2 pos, vec2 off,  vec2 res ) {\n  #ifdef BG_TRANSPARENT\n    vec4 color = texture2D( tex, pos + off * res );\n    return mix(color.rgb, bgColor, 1.0 - color.a);\n  #else\n    return texture2D( tex, pos + off * res ).xyz;\n  #endif\n}\nvec3 FxaaTexTop(sampler2D tex, vec2 pos) {\n  #ifdef BG_TRANSPARENT\n    vec4 color = texture2D( tex, pos );\n    return mix(color.rgb, bgColor, 1.0 - color.a);\n  #else\n    return texture2D( tex, pos).xyz;\n  #endif\n}\nvec4 FxaaTexTopAlpha(sampler2D tex, vec2 pos) {\n  return texture2D( tex, pos);\n}\n\n//=====================================================================//\nvoid main() {\n  // renaming\n  vec2 posM = vUv;\n  // get luminance for neighbours\n  float lumaS = FxaaLuma(FxaaTex(srcTex, posM, vec2( 0.0, 1.0 ), srcTexelSize));\n  float lumaE = FxaaLuma(FxaaTex(srcTex, posM, vec2( 1.0, 0.0 ), srcTexelSize));\n  float lumaN = FxaaLuma(FxaaTex(srcTex, posM, vec2( 0.0, -1.0 ), srcTexelSize));\n  float lumaW = FxaaLuma(FxaaTex(srcTex, posM, vec2( -1.0, 0.0 ), srcTexelSize));\n  float lumaM = FxaaLuma(FxaaTexTop(srcTex, posM));\n  // find max and min luminance\n  float rangeMax = max(max(lumaN, lumaW), max(lumaE, max(lumaS, lumaM)));\n  float rangeMin = min(min(lumaN, lumaW), min(lumaE, min(lumaS, lumaM)));\n  // calc maximum non-edge range\n  float rangeMaxScaled = rangeMax * fxaaQualityEdgeThreshold;\n  float range = rangeMax - rangeMin;\n  float rangeMaxClamped = max(fxaaQualityEdgeThresholdMin, rangeMaxScaled);\n  // exit when luma contrast is small (is not edge)\n  if(range < rangeMaxClamped){\n    gl_FragColor = FxaaTexTopAlpha(srcTex, posM);\n    return;\n  }\n  float subpixRcpRange = 1.0/range;\n  // note: the sampling coordinates can be calculated in vertex shader but the approach doesn't affect performance\n  // visibly, thus we decided to leave calculation here for better readability.\n  // calc other neighbours luminance\n  float lumaNE = FxaaLuma(FxaaTex(srcTex, posM, vec2(  1.0, -1.0 ), srcTexelSize));\n  float lumaSW = FxaaLuma(FxaaTex(srcTex, posM, vec2( -1.0,  1.0 ), srcTexelSize));\n  float lumaSE = FxaaLuma(FxaaTex(srcTex, posM, vec2(  1.0,  1.0 ), srcTexelSize));\n  float lumaNW = FxaaLuma(FxaaTex(srcTex, posM, vec2( -1.0, -1.0 ), srcTexelSize));\n/*--------------span calculation and subpix amount calulation-----------------*/\n  float lumaNS = lumaN + lumaS;\n  float lumaWE = lumaW + lumaE;\n  float subpixNSWE = lumaNS + lumaWE;\n  float edgeHorz1 = (-2.0 * lumaM) + lumaNS;\n  float edgeVert1 = (-2.0 * lumaM) + lumaWE;\n/*--------------------------------------------------------------------------*/\n  float lumaNESE = lumaNE + lumaSE;\n  float lumaNWNE = lumaNW + lumaNE;\n  float edgeHorz2 = (-2.0 * lumaE) + lumaNESE;\n  float edgeVert2 = (-2.0 * lumaN) + lumaNWNE;\n/*--------------------------------------------------------------------------*/\n  float lumaNWSW = lumaNW + lumaSW;\n  float lumaSWSE = lumaSW + lumaSE;\n  float edgeHorz4 = (abs(edgeHorz1) * 2.0) + abs(edgeHorz2);\n  float edgeVert4 = (abs(edgeVert1) * 2.0) + abs(edgeVert2);\n  float edgeHorz3 = (-2.0 * lumaW) + lumaNWSW;\n  float edgeVert3 = (-2.0 * lumaS) + lumaSWSE;\n  float edgeHorz = abs(edgeHorz3) + edgeHorz4;\n  float edgeVert = abs(edgeVert3) + edgeVert4;\n/*--------------------subpix amount calulation------------------------------*/\n  float subpixNWSWNESE = lumaNWSW + lumaNESE;\n  float lengthSign = srcTexelSize.x;\n  bool horzSpan = edgeHorz >= edgeVert;\n   // debug  code edge span visualization\n/*'  if (horzSpan)\n      gl_FragColor = vec4(0.0, 0.0, 1.0, 1.0);\n  else\n    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);\n  return;*/\n  float subpixA = subpixNSWE * 2.0 + subpixNWSWNESE;\n/*--------------------------------------------------------------------------*/\n  if(!horzSpan) lumaN = lumaW;\n  if(!horzSpan) lumaS = lumaE;\n  if(horzSpan) lengthSign = srcTexelSize.y;\n  float subpixB = (subpixA * (1.0/12.0)) - lumaM;\n/*--------------------------------------------------------------------------*/\n  float gradientN = lumaN - lumaM;\n  float gradientS = lumaS - lumaM;\n  float lumaNN = lumaN + lumaM;\n  float lumaSS = lumaS + lumaM;\n  bool pairN = abs(gradientN) >= abs(gradientS);\n  float gradient = max(abs(gradientN), abs(gradientS));\n  if(pairN) lengthSign = -lengthSign;\n  float subpixC = clamp(abs(subpixB) * subpixRcpRange, 0.0, 1.0);\n/*--------------------------------------------------------------------------*/\n  vec2 posB;\n  posB = posM;\n  vec2 offNP;\n  offNP.x = (!horzSpan) ? 0.0 : srcTexelSize.x;\n  offNP.y = ( horzSpan) ? 0.0 : srcTexelSize.y;\n  if(!horzSpan) posB.x += lengthSign * 0.5;\n  if( horzSpan) posB.y += lengthSign * 0.5;\n/*--------------------------------------------------------------------------*/\n  vec2 posN;\n  posN = posB - offNP * FXAA_QUALITY_P0;\n  vec2 posP;\n  posP = posB + offNP * FXAA_QUALITY_P0;\n  float subpixD = ((-2.0)*subpixC) + 3.0;\n  float lumaEndN = FxaaLuma(FxaaTexTop(srcTex, posN));\n  float subpixE = subpixC * subpixC;\n  float lumaEndP = FxaaLuma(FxaaTexTop(srcTex, posP));\n/*--------------------------------------------------------------------------*/\n  if(!pairN) lumaNN = lumaSS;\n  float gradientScaled = gradient * 1.0/4.0;\n  float lumaMM = lumaM - lumaNN * 0.5;\n  float subpixF = subpixD * subpixE;\n  bool lumaMLTZero = lumaMM < 0.0;\n/*---------------------looped edge-end search-------------------------------*/\n  lumaEndN -= lumaNN * 0.5;\n  lumaEndP -= lumaNN * 0.5;\n  bool doneN = abs(lumaEndN) >= gradientScaled;\n  bool doneP = abs(lumaEndP) >= gradientScaled;\n  if(!doneN) posN -= offNP * FXAA_QUALITY_P1;\n  bool doneNP = (!doneN) || (!doneP);\n  if(!doneP) posP += offNP * FXAA_QUALITY_P1;\n/*--------------------------------------------------------------------------*/\n  if(doneNP) {\n    if(!doneN) lumaEndN = FxaaLuma(FxaaTexTop(srcTex, posN.xy));\n    if(!doneP) lumaEndP = FxaaLuma(FxaaTexTop(srcTex, posP.xy));\n    if(!doneN) lumaEndN = lumaEndN - lumaNN * 0.5;\n    if(!doneP) lumaEndP = lumaEndP - lumaNN * 0.5;\n    doneN = abs(lumaEndN) >= gradientScaled;\n    doneP = abs(lumaEndP) >= gradientScaled;\n    if(!doneN) posN -= offNP * FXAA_QUALITY_P2;\n    doneNP = (!doneN) || (!doneP);\n    if(!doneP) posP += offNP * FXAA_QUALITY_P2;\n/*--------------------------------------------------------------------------*/\n    #if (FXAA_QUALITY_PS > 3)\n      if(doneNP) {\n        if(!doneN) lumaEndN = FxaaLuma(FxaaTexTop(srcTex, posN.xy));\n        if(!doneP) lumaEndP = FxaaLuma(FxaaTexTop(srcTex, posP.xy));\n        if(!doneN) lumaEndN = lumaEndN - lumaNN * 0.5;\n        if(!doneP) lumaEndP = lumaEndP - lumaNN * 0.5;\n        doneN = abs(lumaEndN) >= gradientScaled;\n        doneP = abs(lumaEndP) >= gradientScaled;\n        if(!doneN) posN -= offNP * FXAA_QUALITY_P3;\n        doneNP = (!doneN) || (!doneP);\n        if(!doneP) posP += offNP * FXAA_QUALITY_P3;\n/*--------------------------------------------------------------------------*/\n        #if (FXAA_QUALITY_PS > 4)\n          if(doneNP) {\n            if(!doneN) lumaEndN = FxaaLuma(FxaaTexTop(srcTex, posN.xy));\n            if(!doneP) lumaEndP = FxaaLuma(FxaaTexTop(srcTex, posP.xy));\n            if(!doneN) lumaEndN = lumaEndN - lumaNN * 0.5;\n            if(!doneP) lumaEndP = lumaEndP - lumaNN * 0.5;\n            doneN = abs(lumaEndN) >= gradientScaled;\n            doneP = abs(lumaEndP) >= gradientScaled;\n            if(!doneN) posN -= offNP * FXAA_QUALITY_P4;\n            doneNP = (!doneN) || (!doneP);\n            if(!doneP) posP += offNP * FXAA_QUALITY_P4;\n/*--------------------------------------------------------------------------*/\n            #if (FXAA_QUALITY_PS > 5)\n               if(doneNP) {\n                 if(!doneN) lumaEndN = FxaaLuma(FxaaTexTop(srcTex, posN.xy));\n                 if(!doneP) lumaEndP = FxaaLuma(FxaaTexTop(srcTex, posP.xy));\n                 if(!doneN) lumaEndN = lumaEndN - lumaNN * 0.5;\n                 if(!doneP) lumaEndP = lumaEndP - lumaNN * 0.5;\n                 doneN = abs(lumaEndN) >= gradientScaled;\n                 doneP = abs(lumaEndP) >= gradientScaled;\n                 if(!doneN) posN -= offNP * FXAA_QUALITY_P5;\n                 doneNP = (!doneN) || (!doneP);\n                 if(!doneP) posP += offNP * FXAA_QUALITY_P5;\n/*--------------------------------------------------------------------------*/\n                 #if (FXAA_QUALITY_PS > 6)\n                   if(doneNP) {\n                     if(!doneN) lumaEndN = FxaaLuma(FxaaTexTop(srcTex, posN.xy));\n                     if(!doneP) lumaEndP = FxaaLuma(FxaaTexTop(srcTex, posP.xy));\n                     if(!doneN) lumaEndN = lumaEndN - lumaNN * 0.5;\n                     if(!doneP) lumaEndP = lumaEndP - lumaNN * 0.5;\n                     doneN = abs(lumaEndN) >= gradientScaled;\n                     doneP = abs(lumaEndP) >= gradientScaled;\n                     if(!doneN) posN -= offNP * FXAA_QUALITY_P6;\n                     doneNP = (!doneN) || (!doneP);\n                     if(!doneP) posP += offNP * FXAA_QUALITY_P6;\n/*--------------------------------------------------------------------------*/\n                     #if (FXAA_QUALITY_PS > 7)\n                       if(doneNP) {\n                         if(!doneN) lumaEndN = FxaaLuma(FxaaTexTop(srcTex, posN.xy));\n                         if(!doneP) lumaEndP = FxaaLuma(FxaaTexTop(srcTex, posP.xy));\n                         if(!doneN) lumaEndN = lumaEndN - lumaNN * 0.5;\n                         if(!doneP) lumaEndP = lumaEndP - lumaNN * 0.5;\n                         doneN = abs(lumaEndN) >= gradientScaled;\n                         doneP = abs(lumaEndP) >= gradientScaled;\n                         if(!doneN) posN -= offNP * FXAA_QUALITY_P7;\n                         doneNP = (!doneN) || (!doneP);\n                         if(!doneP) posP += offNP * FXAA_QUALITY_P7;\n/*--------------------------------------------------------------------------*/\n                       }\n                     #endif\n                   }\n                 #endif\n               }\n             #endif\n           }\n         #endif\n      }\n    #endif\n  }\n/*----------------calculate subpix offset due to edge ends-------------------*/\n  float dstN = posM.x - posN.x;\n  float dstP = posP.x - posM.x;\n  if(!horzSpan) dstN = posM.y - posN.y;\n  if(!horzSpan) dstP = posP.y - posM.y;\n/*--------------------------------------------------------------------------*/\n  bool goodSpanN = (lumaEndN < 0.0) != lumaMLTZero;\n  float spanLength = (dstP + dstN);\n  bool goodSpanP = (lumaEndP < 0.0) != lumaMLTZero;\n  float spanLengthRcp = 1.0 / spanLength;\n/*--------------------------------------------------------------------------*/\n  bool directionN = dstN < dstP;\n  float dst = min(dstN, dstP);\n  bool goodSpan = directionN ? goodSpanN : goodSpanP;\n  float subpixG = subpixF * subpixF;\n  float pixelOffset = (dst * (-spanLengthRcp)) + 0.5;\n  float subpixH = subpixG * fxaaQualitySubpix;\n/*-----------------calc texture offest using subpix-------------------------*/\n  float pixelOffsetGood = goodSpan ? pixelOffset : 0.0;\n  float pixelOffsetSubpix = max(pixelOffsetGood, subpixH);\n\n  float offset = pixelOffsetSubpix * lengthSign;\n  #ifdef BG_TRANSPARENT\n    // get original texel\n    vec4 rgbaA = FxaaTexTopAlpha(srcTex, posM);\n    // calc step to blended texel\n    vec2 step = sign((!horzSpan) ? vec2 (offset, 0.0) : vec2 (0.0, offset));\n    // get neighboring texel\n    vec4 rgbaB = FxaaTexTopAlpha(srcTex, posM + step * srcTexelSize);\n    //  calc blend factor from offset\n    float f = (!horzSpan) ? offset / srcTexelSize.x : offset / srcTexelSize.y;\n    f = abs(f);\n    // calc alpha (special formula to emulate blending with bg)\n    gl_FragColor.a = 1.0 - mix(1.0 - rgbaA.a, 1.0 - rgbaB.a, f);\n    // calc color (special formula to emulate blending with bg)\n    gl_FragColor.rgb = mix(rgbaA.rgb * rgbaA.a, rgbaB.rgb * rgbaB.a, f) / gl_FragColor.a;\n  #else\n    if(!horzSpan) {\n       posM.x += offset;\n    } else {\n       posM.y += offset;\n    }\n    gl_FragColor = FxaaTexTopAlpha(srcTex, posM);\n  #endif\n  return;\n}\n";
+
+function _createSuper$4(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$4(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$4() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 var FXAAMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
-  inherits(FXAAMaterial, _THREE$RawShaderMater);
+  _inherits(FXAAMaterial, _THREE$RawShaderMater);
+
+  var _super = _createSuper$4(FXAAMaterial);
 
   function FXAAMaterial(params) {
     var _this;
 
-    classCallCheck(this, FXAAMaterial);
+    _classCallCheck(this, FXAAMaterial);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(FXAAMaterial).call(this, params)); // set default values
+    _this = _super.call(this, params); // set default values
 
-    _this.setValues.call(assertThisInitialized(_this), {
+    _this.setValues.call(_assertThisInitialized(_this), {
       uniforms: {
         srcTex: {
           type: 't',
@@ -33631,15 +34455,15 @@ var FXAAMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
         },
         srcTexelSize: {
           type: 'v2',
-          value: new Vector2(1.0 / 512.0, 1.0 / 512.0)
+          value: new THREE.Vector2(1.0 / 512.0, 1.0 / 512.0)
         },
         bgColor: {
           type: 'c',
-          value: new Color(0xffffff)
+          value: new THREE.Color(0xffffff)
         }
       },
       vertexShader: vertexScreenQuadShader,
-      fragmentShader: fragmentShader$2,
+      fragmentShader: fragmentShader$4,
       transparent: false,
       depthTest: false,
       depthWrite: false
@@ -33650,10 +34474,10 @@ var FXAAMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
     return _this;
   }
 
-  createClass(FXAAMaterial, [{
+  _createClass(FXAAMaterial, [{
     key: "copy",
     value: function copy(source) {
-      get(getPrototypeOf(FXAAMaterial.prototype), "copy", this).call(this, source);
+      _get(_getPrototypeOf(FXAAMaterial.prototype), "copy", this).call(this, source);
 
       this.depth = source.depth;
     }
@@ -33665,7 +34489,7 @@ var FXAAMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
       } // set direct values
 
 
-      get(getPrototypeOf(FXAAMaterial.prototype), "setValues", this).call(this, values);
+      _get(_getPrototypeOf(FXAAMaterial.prototype), "setValues", this).call(this, values);
 
       var defines = {};
 
@@ -33679,26 +34503,31 @@ var FXAAMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
   }]);
 
   return FXAAMaterial;
-}(RawShaderMaterial);
+}(THREE.RawShaderMaterial);
 
 FXAAMaterial.prototype.bgTransparent = false;
 
 var fragmentShader$3 = "precision highp float;\n#define EPSILON 0.0000001\n\n#define MAX_SAMPLES_COUNT 32\nuniform vec3 samplesKernel[MAX_SAMPLES_COUNT];\nuniform sampler2D noiseTexture;\nuniform vec2      noiseTexelSize;\nuniform sampler2D diffuseTexture;\nuniform sampler2D depthTexture;\nuniform sampler2D normalTexture;\nuniform vec2      srcTexelSize;\nuniform vec2      camNearFar;\nuniform mat4      projMatrix;\n\nuniform float aspectRatio;\nuniform float tanHalfFOV;\n\nuniform float kernelRadius;\nuniform float depthThreshold;\nuniform float factor;\n\nvarying vec2 vUv;\n\nfloat CalcViewZ(vec2 screenPos)\n{\n  float depth = texture2D(depthTexture, screenPos).x;\n  // [0, 1]->[-1, 1]\n  float clipedZ = 2.0 * depth - 1.0;\n  // see THREE.js camera.makeFrustum for projection details\n  return (-projMatrix[3][2] / (clipedZ + projMatrix[2][2]));\n}\n\nvec3 ViewPosFromDepth(vec2 screenPos)\n{\n  vec3 viewPos;\n  viewPos.z = CalcViewZ(screenPos);\n  //[0, 1]->[-1, 1]\n  vec2 projPos = 2.0 * screenPos - 1.0;\n  // reconstruct viewposition in right-handed sc with z to viewer\n  viewPos.xy = vec2(\n                    projPos.x * aspectRatio * tanHalfFOV * abs(viewPos.z),\n                    projPos.y * tanHalfFOV * abs(viewPos.z)\n                   );\n  return viewPos;\n}\n\nvoid main() {\n  vec3 viewPos = ViewPosFromDepth(vUv);\n  // remap coordinates to prevent noise exture rescale\n  vec2 vUvNoise = vUv / srcTexelSize * noiseTexelSize;\n  vec4 normalData = texture2D(normalTexture, vUv);\n  // return for background fragments (their normals are zero vectors)\n  if (length(normalData.rgb) < EPSILON) {\n    // 0.0 in alpha component means that it is background fragment\n    gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);\n    return;\n  }\n  //[0, 1] -> [-1, 1]\n  vec3 normal = (normalData.rgb * 2.0 - 1.0);\n  // normalData.a store 1.0 if normal was build for frontfaced surface\n  // and 0.0 in other case\n  if (normalData.a < EPSILON) {\n    normal *= -1.0;\n  }\n  // get random vector for sampling sphere rotation\n  vec3 randN = texture2D(noiseTexture, vUvNoise).rgb * 2.0 - 1.0;\n  randN = normalize(randN);\n  // build TBN (randomly rotated around normal)\n  vec3 tangent   = normalize(randN - normal * dot(randN, normal));\n  vec3 bitangent = cross(tangent, normal);\n  mat3 TBN = mat3(tangent, bitangent, normal);\n  // calc AO value\n  float AO = 0.0;\n  for (int i = 0 ; i < MAX_SAMPLES_COUNT ; i++) {\n    // rotate sampling kernel around normal\n    vec3 reflectedSample = TBN * samplesKernel[i];\n    // get sample\n    vec3 samplePos = viewPos + reflectedSample * kernelRadius;\n\n    // project sample to screen to get sample's screen pos\n    vec4 SampleScrPos = vec4(samplePos, 1.0);\n    // eye -> clip\n    SampleScrPos = projMatrix * SampleScrPos;\n    // normalize\n    SampleScrPos.xy /= SampleScrPos.w;\n    //[-1, 1] -> [0, 1]\n    SampleScrPos.xy = (SampleScrPos.xy + vec2(1.0)) * 0.5;\n\n    // get view z for sample projected to the objct surface\n    float sampleDepth = CalcViewZ(SampleScrPos.xy);\n    // calc occlusion made by object surface at the sample\n    AO += step(samplePos.z, sampleDepth);\n  }\n  // calc result AO-map color\n  AO = 1.0 - max(0.0, AO / float(MAX_SAMPLES_COUNT) * factor);\n  // write value to AO-map\n  gl_FragColor = vec4(AO, AO, AO, 1.0);\n}\n";
 
-var _samplesKernel$1 = [// hemisphere samples adopted to sphere
-new Vector3(0.295184, 0.077723, 0.068429), new Vector3(-0.271976, -0.365221, 0.838363), new Vector3(0.547713, 0.467576, 0.488515), new Vector3(0.662808, -0.031733, 0.584758), new Vector3(-0.025717, 0.218955, 0.657094), new Vector3(-0.310153, -0.365223, 0.370701), new Vector3(-0.101407, -0.006313, 0.747665), new Vector3(-0.769138, 0.360399, 0.086847), new Vector3(-0.271988, -0.275140, 0.905353), new Vector3(0.096740, -0.566901, 0.700151), new Vector3(0.562872, -0.735136, 0.094647), new Vector3(0.379877, 0.359278, 0.190061), new Vector3(0.519064, -0.023055, 0.405068), new Vector3(-0.301036, 0.114696, 0.088885), new Vector3(-0.282922, 0.598305, 0.487214), new Vector3(-0.181859, 0.251670, 0.679702), new Vector3(-0.191463, -0.635818, 0.512919), new Vector3(-0.293655, 0.427423, 0.078921), new Vector3(-0.267983, 0.680534, 0.132880), new Vector3(0.139611, 0.319637, 0.477439), new Vector3(-0.352086, 0.311040, 0.653913), new Vector3(0.321032, 0.805279, 0.487345), new Vector3(0.073516, 0.820734, 0.414183), new Vector3(-0.155324, 0.589983, 0.411460), new Vector3(0.335976, 0.170782, 0.527627), new Vector3(0.463460, -0.355658, 0.167689), new Vector3(0.222654, 0.596550, 0.769406), new Vector3(0.922138, -0.042070, 0.147555), new Vector3(-0.727050, -0.329192, 0.369826), new Vector3(-0.090731, 0.533820, 0.463767), new Vector3(-0.323457, -0.876559, 0.238524), new Vector3(-0.663277, -0.372384, 0.342856)];
+function _createSuper$3(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$3(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$3() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var _samplesKernel = [// hemisphere samples adopted to sphere
+new THREE.Vector3(0.295184, 0.077723, 0.068429), new THREE.Vector3(-0.271976, -0.365221, 0.838363), new THREE.Vector3(0.547713, 0.467576, 0.488515), new THREE.Vector3(0.662808, -0.031733, 0.584758), new THREE.Vector3(-0.025717, 0.218955, 0.657094), new THREE.Vector3(-0.310153, -0.365223, 0.370701), new THREE.Vector3(-0.101407, -0.006313, 0.747665), new THREE.Vector3(-0.769138, 0.360399, 0.086847), new THREE.Vector3(-0.271988, -0.275140, 0.905353), new THREE.Vector3(0.096740, -0.566901, 0.700151), new THREE.Vector3(0.562872, -0.735136, 0.094647), new THREE.Vector3(0.379877, 0.359278, 0.190061), new THREE.Vector3(0.519064, -0.023055, 0.405068), new THREE.Vector3(-0.301036, 0.114696, 0.088885), new THREE.Vector3(-0.282922, 0.598305, 0.487214), new THREE.Vector3(-0.181859, 0.251670, 0.679702), new THREE.Vector3(-0.191463, -0.635818, 0.512919), new THREE.Vector3(-0.293655, 0.427423, 0.078921), new THREE.Vector3(-0.267983, 0.680534, 0.132880), new THREE.Vector3(0.139611, 0.319637, 0.477439), new THREE.Vector3(-0.352086, 0.311040, 0.653913), new THREE.Vector3(0.321032, 0.805279, 0.487345), new THREE.Vector3(0.073516, 0.820734, 0.414183), new THREE.Vector3(-0.155324, 0.589983, 0.411460), new THREE.Vector3(0.335976, 0.170782, 0.527627), new THREE.Vector3(0.463460, -0.355658, 0.167689), new THREE.Vector3(0.222654, 0.596550, 0.769406), new THREE.Vector3(0.922138, -0.042070, 0.147555), new THREE.Vector3(-0.727050, -0.329192, 0.369826), new THREE.Vector3(-0.090731, 0.533820, 0.463767), new THREE.Vector3(-0.323457, -0.876559, 0.238524), new THREE.Vector3(-0.663277, -0.372384, 0.342856)];
 
 var AOMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
-  inherits(AOMaterial, _THREE$RawShaderMater);
+  _inherits(AOMaterial, _THREE$RawShaderMater);
+
+  var _super = _createSuper$3(AOMaterial);
 
   function AOMaterial() {
     var _this;
 
-    classCallCheck(this, AOMaterial);
+    _classCallCheck(this, AOMaterial);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(AOMaterial).call(this)); // set default values
+    _this = _super.call(this); // set default values
 
-    _this.setValues.call(assertThisInitialized(_this), {
+    _this.setValues.call(_assertThisInitialized(_this), {
       uniforms: {
         noiseTexture: {
           type: 't',
@@ -33706,7 +34535,7 @@ var AOMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
         },
         noiseTexelSize: {
           type: 'v2',
-          value: new Vector2(1.0 / noise.noiseWidth, 1.0 / noise.noiseHeight)
+          value: new THREE.Vector2(1.0 / noise.noiseWidth, 1.0 / noise.noiseHeight)
         },
         diffuseTexture: {
           type: 't',
@@ -33722,15 +34551,15 @@ var AOMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
         },
         srcTexelSize: {
           type: 'v2',
-          value: new Vector2(1.0 / 512.0, 1.0 / 512.0)
+          value: new THREE.Vector2(1.0 / 512.0, 1.0 / 512.0)
         },
         camNearFar: {
           type: 'v2',
-          value: new Vector2(1.0, 10.0)
+          value: new THREE.Vector2(1.0, 10.0)
         },
         projMatrix: {
           type: 'mat4',
-          value: new Matrix4()
+          value: new THREE.Matrix4()
         },
         aspectRatio: {
           type: 'f',
@@ -33742,7 +34571,7 @@ var AOMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
         },
         samplesKernel: {
           type: 'v3v',
-          value: _samplesKernel$1
+          value: _samplesKernel
         },
         kernelRadius: {
           type: 'f',
@@ -33768,23 +34597,28 @@ var AOMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
   }
 
   return AOMaterial;
-}(RawShaderMaterial);
+}(THREE.RawShaderMaterial);
 
-var fragmentShader$4 = "precision highp float;\n#define EPSILON 0.0000001\n\n#define MAX_SAMPLES_COUNT 5\nuniform float samplesOffsets[MAX_SAMPLES_COUNT];\nuniform sampler2D aoMap;\nuniform sampler2D depthTexture;\nuniform vec2      srcTexelSize;\n\nvarying vec2 vUv;\n\nvoid main() {\n  float x = vUv.x;\n  float y = vUv.y;\n  vec4 res = vec4(0.0);\n  res.a = texture2D(aoMap, vec2(x, y )).a;\n  // return for background fragments (0.0 in alpha component means that it is background fragment)\n  if (res.a < EPSILON) {\n    gl_FragColor = res;\n    return;\n  }\n\n  float pixelDepth = texture2D(depthTexture, vec2(x, y)).x;\n  float weightSum = 0.0;\n  for (int i = 0; i < MAX_SAMPLES_COUNT; ++i) {\n    if (texture2D(aoMap, vec2(x + samplesOffsets[i] * srcTexelSize.x, y )).a < EPSILON) {\n      continue;\n    }\n    vec2 samplePos = vec2(x + samplesOffsets[i] * srcTexelSize.x, y);\n    float depth = texture2D(depthTexture, samplePos).x;\n    float weight = (1.0 / (0.0001 + abs(depth - pixelDepth)));\n    res.rgb += texture2D(aoMap, vec2(x + samplesOffsets[i] * srcTexelSize.x, y )).rgb * weight;\n    weightSum += weight;\n  }\n  res.rgb = res.rgb / weightSum;\n  gl_FragColor = res;\n}\n";
+var fragmentShader$2 = "precision highp float;\n#define EPSILON 0.0000001\n\n#define MAX_SAMPLES_COUNT 5\nuniform float samplesOffsets[MAX_SAMPLES_COUNT];\nuniform sampler2D aoMap;\nuniform sampler2D depthTexture;\nuniform vec2      srcTexelSize;\n\nvarying vec2 vUv;\n\nvoid main() {\n  float x = vUv.x;\n  float y = vUv.y;\n  vec4 res = vec4(0.0);\n  res.a = texture2D(aoMap, vec2(x, y )).a;\n  // return for background fragments (0.0 in alpha component means that it is background fragment)\n  if (res.a < EPSILON) {\n    gl_FragColor = res;\n    return;\n  }\n\n  float pixelDepth = texture2D(depthTexture, vec2(x, y)).x;\n  float weightSum = 0.0;\n  for (int i = 0; i < MAX_SAMPLES_COUNT; ++i) {\n    if (texture2D(aoMap, vec2(x + samplesOffsets[i] * srcTexelSize.x, y )).a < EPSILON) {\n      continue;\n    }\n    vec2 samplePos = vec2(x + samplesOffsets[i] * srcTexelSize.x, y);\n    float depth = texture2D(depthTexture, samplePos).x;\n    float weight = (1.0 / (0.0001 + abs(depth - pixelDepth)));\n    res.rgb += texture2D(aoMap, vec2(x + samplesOffsets[i] * srcTexelSize.x, y )).rgb * weight;\n    weightSum += weight;\n  }\n  res.rgb = res.rgb / weightSum;\n  gl_FragColor = res;\n}\n";
 
-var _kernelOffsets = [-2.0, -1.0, 0.0, 1.0, 2.0];
+function _createSuper$2(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$2(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$2() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var _kernelOffsets$1 = [-2.0, -1.0, 0.0, 1.0, 2.0];
 
 var AOHorBlurMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
-  inherits(AOHorBlurMaterial, _THREE$RawShaderMater);
+  _inherits(AOHorBlurMaterial, _THREE$RawShaderMater);
+
+  var _super = _createSuper$2(AOHorBlurMaterial);
 
   function AOHorBlurMaterial() {
     var _this;
 
-    classCallCheck(this, AOHorBlurMaterial);
+    _classCallCheck(this, AOHorBlurMaterial);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(AOHorBlurMaterial).call(this)); // set default values
+    _this = _super.call(this); // set default values
 
-    _this.setValues.call(assertThisInitialized(_this), {
+    _this.setValues.call(_assertThisInitialized(_this), {
       uniforms: {
         depthTexture: {
           type: 't',
@@ -33792,7 +34626,7 @@ var AOHorBlurMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
         },
         srcTexelSize: {
           type: 'v2',
-          value: new Vector2(1.0 / 512.0, 1.0 / 512.0)
+          value: new THREE.Vector2(1.0 / 512.0, 1.0 / 512.0)
         },
         aoMap: {
           type: 't',
@@ -33800,11 +34634,11 @@ var AOHorBlurMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
         },
         samplesOffsets: {
           type: 'fv1',
-          value: _kernelOffsets
+          value: _kernelOffsets$1
         }
       },
       vertexShader: vertexScreenQuadShader,
-      fragmentShader: fragmentShader$4,
+      fragmentShader: fragmentShader$2,
       transparent: false,
       depthTest: false,
       depthWrite: false
@@ -33814,23 +34648,28 @@ var AOHorBlurMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
   }
 
   return AOHorBlurMaterial;
-}(RawShaderMaterial);
+}(THREE.RawShaderMaterial);
 
-var fragmentShader$5 = "precision highp float;\n#define EPSILON 0.0000001\n\n#define MAX_SAMPLES_COUNT 5\nuniform float samplesOffsets[MAX_SAMPLES_COUNT];\nuniform sampler2D diffuseTexture;\nuniform sampler2D aoMap;\nuniform sampler2D depthTexture;\nuniform vec2      srcTexelSize;\n\nuniform mat4  projMatrix;\nuniform float aspectRatio;\nuniform float tanHalfFOV;\n\n#ifdef USE_FOG\n  uniform vec2 fogNearFar;\n  uniform vec4 fogColor;\n#endif\nvarying vec2 vUv;\n\nfloat CalcViewZ(vec2 screenPos)\n{\n  float depth = texture2D(depthTexture, screenPos).x;\n  // [0, 1]->[-1, 1]\n  float clipedZ = 2.0 * depth - 1.0;\n  // see THREE.js camera.makeFrustum for projection details\n  return (-projMatrix[3][2] / (clipedZ + projMatrix[2][2]));\n}\n\nvec3 ViewPosFromDepth(vec2 screenPos)\n{\n  vec3 viewPos;\n  viewPos.z = CalcViewZ(screenPos);\n  //[0, 1]->[-1, 1]\n  vec2 projPos = 2.0 * screenPos - 1.0;\n  // reconstruct viewposition in right-handed sc with z to viewer\n  viewPos.xy = vec2(\n  projPos.x * aspectRatio * tanHalfFOV * abs(viewPos.z),\n  projPos.y * tanHalfFOV * abs(viewPos.z)\n  );\n  return viewPos;\n}\n\nvoid main() {\n  vec3 viewPos = ViewPosFromDepth(vUv);\n  float x = vUv.x;\n  float y = vUv.y;\n  vec4 color = texture2D(diffuseTexture, vec2(x, y));\n  vec4 res = vec4(0.0);\n  res.a = texture2D(aoMap, vec2(x, y )).a;\n  // return for background fragments (0.0 in alpha component means that it is background fragment)\n  if (res.a < EPSILON) {\n    gl_FragColor = color;\n    return;\n  }\n\n  float pixelDepth = texture2D(depthTexture, vec2(x, y)).x;\n  float weightSum = 0.0;\n  for (int i = 0; i < MAX_SAMPLES_COUNT; ++i) {\n    if (texture2D(aoMap, vec2(x, y + samplesOffsets[i] * srcTexelSize.y)).a < EPSILON) {\n      continue;\n    }\n    vec2 samplePos = vec2(x, y + samplesOffsets[i] * srcTexelSize.y);\n    float depth = texture2D(depthTexture, samplePos).x;\n    float weight = (1.0 / (0.0001 + abs(depth - pixelDepth)));\n    res.rgb += texture2D(aoMap, vec2(x, y + samplesOffsets[i] * srcTexelSize.y)).rgb * weight;\n    weightSum += weight;\n  }\n  res.rgb /= weightSum;\n\n  #if defined(USE_FOG) && !defined(FOG_TRANSPARENT)\n    // Add fog to the result value\n    // Proper way to get an image with fog and ao requires formula:\n    //          gl_FragColor = fragColor*AO*(1-fogFactor) + fogColor*fogFactor\n    // But we have already fogged molecule to add AO too. Let's split the straight formula into our real steps!\n    // We have:  AO, fogFactor, fogColor,\n    //          color = fragColor*(1-fogFactor) + fogColor*fogFactor (it comes from diffuseTexture,\n    //                                                                where molecule has been already drawn with fog)\n    // Transform:\n    //          fragColor*AO*(1-fogFactor) + fogColor*fogFactor =\n    //        = [fragColor*(1-fogFactor) = color - fogColor*fogFactor] =\n    //        = (color - fogColor*fogFactor)*AO + fogColor*fogFactor =\n    //        = color*AO + fogColor*fogFactor*(1 - AO)\n    // Result:  gl_FragColor = color*AO + fogColor*fogFactor*(1 - AO)\n    float fogFactor = smoothstep(fogNearFar.x, fogNearFar.y, - viewPos.z) * fogColor.a;\n    gl_FragColor.rgb = color.rgb * res.rgb + fogColor.rgb * fogFactor *(vec3(1.0, 1.0, 1.0) - res.rgb);\n  #else\n    gl_FragColor.rgb = color.rgb * res.rgb;\n  #endif\n  gl_FragColor.a = color.a;\n}\n";
+var fragmentShader$1 = "precision highp float;\n#define EPSILON 0.0000001\n\n#define MAX_SAMPLES_COUNT 5\nuniform float samplesOffsets[MAX_SAMPLES_COUNT];\nuniform sampler2D diffuseTexture;\nuniform sampler2D aoMap;\nuniform sampler2D depthTexture;\nuniform vec2      srcTexelSize;\n\nuniform mat4  projMatrix;\nuniform float aspectRatio;\nuniform float tanHalfFOV;\n\n#ifdef USE_FOG\n  uniform vec2 fogNearFar;\n  uniform vec4 fogColor;\n#endif\nvarying vec2 vUv;\n\nfloat CalcViewZ(vec2 screenPos)\n{\n  float depth = texture2D(depthTexture, screenPos).x;\n  // [0, 1]->[-1, 1]\n  float clipedZ = 2.0 * depth - 1.0;\n  // see THREE.js camera.makeFrustum for projection details\n  return (-projMatrix[3][2] / (clipedZ + projMatrix[2][2]));\n}\n\nvec3 ViewPosFromDepth(vec2 screenPos)\n{\n  vec3 viewPos;\n  viewPos.z = CalcViewZ(screenPos);\n  //[0, 1]->[-1, 1]\n  vec2 projPos = 2.0 * screenPos - 1.0;\n  // reconstruct viewposition in right-handed sc with z to viewer\n  viewPos.xy = vec2(\n  projPos.x * aspectRatio * tanHalfFOV * abs(viewPos.z),\n  projPos.y * tanHalfFOV * abs(viewPos.z)\n  );\n  return viewPos;\n}\n\nvoid main() {\n  vec3 viewPos = ViewPosFromDepth(vUv);\n  float x = vUv.x;\n  float y = vUv.y;\n  vec4 color = texture2D(diffuseTexture, vec2(x, y));\n  vec4 res = vec4(0.0);\n  res.a = texture2D(aoMap, vec2(x, y )).a;\n  // return for background fragments (0.0 in alpha component means that it is background fragment)\n  if (res.a < EPSILON) {\n    gl_FragColor = color;\n    return;\n  }\n\n  float pixelDepth = texture2D(depthTexture, vec2(x, y)).x;\n  float weightSum = 0.0;\n  for (int i = 0; i < MAX_SAMPLES_COUNT; ++i) {\n    if (texture2D(aoMap, vec2(x, y + samplesOffsets[i] * srcTexelSize.y)).a < EPSILON) {\n      continue;\n    }\n    vec2 samplePos = vec2(x, y + samplesOffsets[i] * srcTexelSize.y);\n    float depth = texture2D(depthTexture, samplePos).x;\n    float weight = (1.0 / (0.0001 + abs(depth - pixelDepth)));\n    res.rgb += texture2D(aoMap, vec2(x, y + samplesOffsets[i] * srcTexelSize.y)).rgb * weight;\n    weightSum += weight;\n  }\n  res.rgb /= weightSum;\n\n  #if defined(USE_FOG) && !defined(FOG_TRANSPARENT)\n    // Add fog to the result value\n    // Proper way to get an image with fog and ao requires formula:\n    //          gl_FragColor = fragColor*AO*(1-fogFactor) + fogColor*fogFactor\n    // But we have already fogged molecule to add AO too. Let's split the straight formula into our real steps!\n    // We have:  AO, fogFactor, fogColor,\n    //          color = fragColor*(1-fogFactor) + fogColor*fogFactor (it comes from diffuseTexture,\n    //                                                                where molecule has been already drawn with fog)\n    // Transform:\n    //          fragColor*AO*(1-fogFactor) + fogColor*fogFactor =\n    //        = [fragColor*(1-fogFactor) = color - fogColor*fogFactor] =\n    //        = (color - fogColor*fogFactor)*AO + fogColor*fogFactor =\n    //        = color*AO + fogColor*fogFactor*(1 - AO)\n    // Result:  gl_FragColor = color*AO + fogColor*fogFactor*(1 - AO)\n    float fogFactor = smoothstep(fogNearFar.x, fogNearFar.y, - viewPos.z) * fogColor.a;\n    gl_FragColor.rgb = color.rgb * res.rgb + fogColor.rgb * fogFactor *(vec3(1.0, 1.0, 1.0) - res.rgb);\n  #else\n    gl_FragColor.rgb = color.rgb * res.rgb;\n  #endif\n  gl_FragColor.a = color.a;\n}\n";
 
-var _kernelOffsets$1 = [-2.0, -1.0, 0.0, 1.0, 2.0];
+function _createSuper$1(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var _kernelOffsets = [-2.0, -1.0, 0.0, 1.0, 2.0];
 
 var AOVertBlurWithBlendMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
-  inherits(AOVertBlurWithBlendMaterial, _THREE$RawShaderMater);
+  _inherits(AOVertBlurWithBlendMaterial, _THREE$RawShaderMater);
+
+  var _super = _createSuper$1(AOVertBlurWithBlendMaterial);
 
   function AOVertBlurWithBlendMaterial(params) {
     var _this;
 
-    classCallCheck(this, AOVertBlurWithBlendMaterial);
+    _classCallCheck(this, AOVertBlurWithBlendMaterial);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(AOVertBlurWithBlendMaterial).call(this, params)); // set default values
+    _this = _super.call(this, params); // set default values
 
-    _this.setValues.call(assertThisInitialized(_this), {
+    _this.setValues.call(_assertThisInitialized(_this), {
       uniforms: {
         diffuseTexture: {
           type: 't',
@@ -33842,7 +34681,7 @@ var AOVertBlurWithBlendMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) 
         },
         srcTexelSize: {
           type: 'v2',
-          value: new Vector2(1.0 / 512.0, 1.0 / 512.0)
+          value: new THREE.Vector2(1.0 / 512.0, 1.0 / 512.0)
         },
         aoMap: {
           type: 't',
@@ -33850,11 +34689,11 @@ var AOVertBlurWithBlendMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) 
         },
         samplesOffsets: {
           type: 'fv1',
-          value: _kernelOffsets$1
+          value: _kernelOffsets
         },
         projMatrix: {
           type: 'mat4',
-          value: new Matrix4()
+          value: new THREE.Matrix4()
         },
         aspectRatio: {
           type: 'f',
@@ -33866,15 +34705,15 @@ var AOVertBlurWithBlendMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) 
         },
         fogNearFar: {
           type: 'v2',
-          value: new Vector2(100.0, 100.0)
+          value: new THREE.Vector2(100.0, 100.0)
         },
         fogColor: {
           type: 'v4',
-          value: new Vector4(0.0, 0.5, 0.0, 1.0)
+          value: new THREE.Vector4(0.0, 0.5, 0.0, 1.0)
         }
       },
       vertexShader: vertexScreenQuadShader,
-      fragmentShader: fragmentShader$5,
+      fragmentShader: fragmentShader$1,
       transparent: false,
       depthTest: false,
       depthWrite: false
@@ -33885,7 +34724,7 @@ var AOVertBlurWithBlendMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) 
     return _this;
   }
 
-  createClass(AOVertBlurWithBlendMaterial, [{
+  _createClass(AOVertBlurWithBlendMaterial, [{
     key: "setValues",
     value: function setValues(values) {
       if (typeof values === 'undefined') {
@@ -33893,7 +34732,7 @@ var AOVertBlurWithBlendMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) 
       } // set direct values
 
 
-      get(getPrototypeOf(AOVertBlurWithBlendMaterial.prototype), "setValues", this).call(this, values);
+      _get(_getPrototypeOf(AOVertBlurWithBlendMaterial.prototype), "setValues", this).call(this, values);
 
       var defines = {};
 
@@ -33911,22 +34750,28 @@ var AOVertBlurWithBlendMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) 
   }]);
 
   return AOVertBlurWithBlendMaterial;
-}(RawShaderMaterial);
+}(THREE.RawShaderMaterial);
 
 AOVertBlurWithBlendMaterial.prototype.useFog = true;
 AOVertBlurWithBlendMaterial.prototype.fogTransparent = false;
 
-var fragmentShader$6 = "precision highp float;\n\nuniform sampler2D srcL;\nuniform sampler2D srcR;\nvarying vec2 vUv;\n\nvoid main() {\n  vec4 l = texture2D(srcL, vUv);\n  vec4 r = texture2D(srcR, vUv);\n  gl_FragColor = vec4(l.r, r.g, r.b, 1.0);\n}\n";
+var fragmentShader = "precision highp float;\n\nuniform sampler2D srcL;\nuniform sampler2D srcR;\nvarying vec2 vUv;\n\nvoid main() {\n  vec4 l = texture2D(srcL, vUv);\n  vec4 r = texture2D(srcR, vUv);\n  gl_FragColor = vec4(l.r, r.g, r.b, 1.0);\n}\n";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 var AnaglyphMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
-  inherits(AnaglyphMaterial, _THREE$RawShaderMater);
+  _inherits(AnaglyphMaterial, _THREE$RawShaderMater);
+
+  var _super = _createSuper(AnaglyphMaterial);
 
   function AnaglyphMaterial() {
     var _this;
 
-    classCallCheck(this, AnaglyphMaterial);
+    _classCallCheck(this, AnaglyphMaterial);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(AnaglyphMaterial).call(this));
+    _this = _super.call(this);
     var settings = {
       uniforms: {
         srcL: {
@@ -33939,7 +34784,7 @@ var AnaglyphMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
         }
       },
       vertexShader: vertexScreenQuadShader,
-      fragmentShader: fragmentShader$6,
+      fragmentShader: fragmentShader,
       transparent: false,
       depthTest: false,
       depthWrite: false
@@ -33951,18 +34796,18 @@ var AnaglyphMaterial = /*#__PURE__*/function (_THREE$RawShaderMater) {
   }
 
   return AnaglyphMaterial;
-}(RawShaderMaterial);
+}(THREE.RawShaderMaterial);
 
 var View = /*#__PURE__*/function () {
   function View() {
-    classCallCheck(this, View);
+    _classCallCheck(this, View);
 
-    this.position = new Vector3(0, 0, 0);
+    this.position = new THREE.Vector3(0, 0, 0);
     this.scale = 1;
-    this.orientation = new Quaternion(0, 0, 0, 1);
+    this.orientation = new THREE.Quaternion(0, 0, 0, 1);
   }
 
-  createClass(View, [{
+  _createClass(View, [{
     key: "set",
     value: function set(position, scale, orientation) {
       this.position = position;
@@ -33978,10 +34823,10 @@ var _transitionTime = 1.5; // in seconds
 
 var ViewInterpolator = /*#__PURE__*/function () {
   function ViewInterpolator() {
-    classCallCheck(this, ViewInterpolator);
+    _classCallCheck(this, ViewInterpolator);
   }
 
-  createClass(ViewInterpolator, [{
+  _createClass(ViewInterpolator, [{
     key: "setup",
     value: function setup(startView, endView) {
       this._startTime = undefined;
@@ -34005,7 +34850,7 @@ var ViewInterpolator = /*#__PURE__*/function () {
     key: "start",
     value: function start() {
       this._startTime = Date.now();
-      var transTime = settings.now.interpolateViews ? _transitionTime * 1000 : 0;
+      var transTime = settings$1.now.interpolateViews ? _transitionTime * 1000 : 0;
       this._endTime = this._startTime + transTime;
       this._isMoving = true;
     }
@@ -34221,9 +35066,9 @@ function createWebVRButton (webVRPoC) {
     button.textContent = 'ENTER VR';
     var currentSession = null;
 
-    function onSessionEnded()
-    /* event */
-    {
+    function
+      /* event */
+    onSessionEnded() {
       currentSession.removeEventListener('end', onSessionEnded);
       button.textContent = 'ENTER VR';
       currentSession = null;
@@ -34315,14 +35160,14 @@ function createWebVRButton (webVRPoC) {
 
 var WebVRPoC = /*#__PURE__*/function () {
   function WebVRPoC(onToggle) {
-    classCallCheck(this, WebVRPoC);
+    _classCallCheck(this, WebVRPoC);
 
-    this._mainCamera = new PerspectiveCamera();
+    this._mainCamera = new THREE.PerspectiveCamera();
     this._button = null;
     this._onToggle = onToggle;
     this._molContainer = new gfxutils.RCGroup();
     this._user = new gfxutils.RCGroup();
-    this._scalingPivot = new Object3D();
+    this._scalingPivot = new THREE.Object3D();
 
     this._user.add(this._scalingPivot);
 
@@ -34333,7 +35178,7 @@ var WebVRPoC = /*#__PURE__*/function () {
     this._gfx = null;
   }
 
-  createClass(WebVRPoC, [{
+  _createClass(WebVRPoC, [{
     key: "startScalingByControllers",
     value: function startScalingByControllers() {
       // reset scale
@@ -34410,8 +35255,8 @@ var WebVRPoC = /*#__PURE__*/function () {
       } // store fog setting
 
 
-      this._mainFog = settings.now.fog;
-      settings.set('fog', false);
+      this._mainFog = settings$1.now.fog;
+      settings$1.set('fog', false);
 
       this._plugVRNodesIntoScene(gfx, renderer);
 
@@ -34515,7 +35360,7 @@ var WebVRPoC = /*#__PURE__*/function () {
       } // restore fog param
 
 
-      settings.set('fog', this._mainFog);
+      settings$1.set('fog', this._mainFog);
 
       this._unplugVRNodesFromScene(camera); // make some Miew job
 
@@ -34557,16 +35402,16 @@ var WebVRPoC = /*#__PURE__*/function () {
     key: "_createControllerMesh",
     value: function _createControllerMesh() {
       // visualize controllers with cylinders
-      var geometry = new CylinderGeometry(0.04, 0.04, 0.3);
+      var geometry = new THREE.CylinderGeometry(0.04, 0.04, 0.3);
       var material = new UberMaterial({
         lights: false,
         overrideColor: true
       });
       material.setUberOptions({
-        fixedColor: new Color(0x4444ff)
+        fixedColor: new THREE.Color(0x4444ff)
       });
       material.updateUniforms();
-      var cylinder = new Mesh$5(geometry, material);
+      var cylinder = new THREE.Mesh(geometry, material);
       cylinder.rotateX(-Math.PI / 2);
       return cylinder;
     }
@@ -34632,11 +35477,11 @@ var WebVRPoC = /*#__PURE__*/function () {
 
 var fragmentScreenQuadFromDistTex = "precision highp float;\n\nvarying vec2 vUv;\nuniform sampler2D srcTex;\nuniform vec3 aberration;\n\nvoid main() {\n  vec2 uv = vUv * 2.0 - 1.0;\n  \n  gl_FragColor.r = texture2D(srcTex, 0.5 * (uv * aberration[0] + 1.0)).r;\n  gl_FragColor.g = texture2D(srcTex, 0.5 * (uv * aberration[1] + 1.0)).g;\n  gl_FragColor.b = texture2D(srcTex, 0.5 * (uv * aberration[2] + 1.0)).b;\n  gl_FragColor.a = 1.0;\n}";
 
-var selectors$4 = chem.selectors,
-    Atom$2 = chem.Atom,
-    Residue$1 = chem.Residue,
-    Chain$2 = chem.Chain,
-    Molecule$8 = chem.Molecule;
+var selectors$1 = chem.selectors,
+    Atom = chem.Atom,
+    Residue = chem.Residue,
+    Chain = chem.Chain,
+    Molecule = chem.Molecule;
 var EDIT_MODE = {
   COMPLEX: 0,
   COMPONENT: 1,
@@ -34644,11 +35489,11 @@ var EDIT_MODE = {
 };
 var LOADER_NOT_FOUND = 'Could not find suitable loader for this source';
 var PARSER_NOT_FOUND = 'Could not find suitable parser for this source';
-var createElement$2 = utils.createElement;
+var createElement = utils.createElement;
 
 function updateFogRange(fog, center, radius) {
-  fog.near = center - radius * settings.now.fogNearFactor;
-  fog.far = center + radius * settings.now.fogFarFactor;
+  fog.near = center - radius * settings$1.now.fogNearFactor;
+  fog.far = center + radius * settings$1.now.fogFarFactor;
 }
 
 function removeExtension(fileName) {
@@ -34684,7 +35529,7 @@ function reportProgress(log, action, percent) {
 }
 
 function chooseFogColor() {
-  return settings.now.fogColorEnable ? settings.now.fogColor : settings.now.bg.color;
+  return settings$1.now.fogColorEnable ? settings$1.now.fogColor : settings$1.now.bg.color;
 } // ////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -34736,10 +35581,10 @@ function Miew(opts) {
   this._hotKeysEnabled = true;
   /** @type {Settings} */
 
-  this.settings = settings;
+  this.settings = settings$1;
   var log = logger;
   log.console = false;
-  log.level =  'info';
+  log.level = 'info';
   /**
    * @type {Logger}
    * @example
@@ -34780,6 +35625,7 @@ function Miew(opts) {
 
   this._sourceWindow = null;
   this._resizeEventHandler = null;
+  this.Representation = Representation;
   this.reset();
 
   if (this._repr) {
@@ -34824,11 +35670,11 @@ function _setContainerContents(container, element) {
 
 
 Miew.prototype._updateShadowCamera = function () {
-  var shadowMatrix = new Matrix4();
-  var direction = new Vector3();
+  var shadowMatrix = new THREE.Matrix4();
+  var direction = new THREE.Vector3();
   var OBB = {
-    center: new Vector3(),
-    halfSize: new Vector3()
+    center: new THREE.Vector3(),
+    halfSize: new THREE.Vector3()
   };
   return function () {
     this._gfx.scene.updateMatrixWorld();
@@ -34871,12 +35717,12 @@ Miew.prototype.init = function () {
 
   this._container = elem;
   var frag = document.createDocumentFragment();
-  frag.appendChild(this._msgMode = createElement$2('div', {
+  frag.appendChild(this._msgMode = createElement('div', {
     "class": 'mode-message overlay'
-  }, createElement$2('p', {}, 'COMPONENT EDIT MODE')));
-  frag.appendChild(this._msgAtomInfo = createElement$2('div', {
+  }, createElement('p', {}, 'COMPONENT EDIT MODE')));
+  frag.appendChild(this._msgAtomInfo = createElement('div', {
     "class": 'atom-info overlay'
-  }, createElement$2('p', {}, '')));
+  }, createElement('p', {}, '')));
   container.appendChild(frag);
 
   if (this._gfx !== null) {
@@ -34912,7 +35758,7 @@ Miew.prototype.init = function () {
     });
 
     this._objectControls.addEventListener('change', function (e) {
-      if (settings.now.shadow.on) {
+      if (settings$1.now.shadow.on) {
         self._updateShadowCamera();
       } // route rotate, zoom, translate and translatePivot events to the external API
 
@@ -35060,60 +35906,60 @@ Miew.prototype._initGfx = function () {
     premultipliedAlpha: false
   };
 
-  if (settings.now.antialias) {
+  if (settings$1.now.antialias) {
     webGLOptions.antialias = true;
   }
 
   gfx.renderer2d = new CSS2DRenderer();
-  gfx.renderer = new WebGLRenderer(webGLOptions);
-  gfx.renderer.shadowMap.enabled = settings.now.shadow.on;
+  gfx.renderer = new THREE.WebGLRenderer(webGLOptions);
+  gfx.renderer.shadowMap.enabled = settings$1.now.shadow.on;
   gfx.renderer.shadowMap.autoUpdate = false;
-  gfx.renderer.shadowMap.type = PCFShadowMap;
+  gfx.renderer.shadowMap.type = THREE.PCFShadowMap;
   capabilities.init(gfx.renderer); // z-sprites and ambient occlusion possibility
 
   if (!arezSpritesSupported(gfx.renderer.getContext())) {
-    settings.set('zSprites', false);
+    settings$1.set('zSprites', false);
   }
 
   if (!isAOSupported(gfx.renderer.getContext())) {
-    settings.set('ao', false);
+    settings$1.set('ao', false);
   }
 
   gfx.renderer.autoClear = false;
   gfx.renderer.setPixelRatio(window.devicePixelRatio);
   gfx.renderer.setSize(gfx.width, gfx.height);
-  gfx.renderer.setClearColor(settings.now.bg.color, Number(!settings.now.bg.transparent));
+  gfx.renderer.setClearColor(settings$1.now.bg.color, Number(!settings$1.now.bg.transparent));
   gfx.renderer.clearColor();
   gfx.renderer2d.setSize(gfx.width, gfx.height);
-  gfx.camera = new PerspectiveCamera(settings.now.camFov, gfx.width / gfx.height, settings.now.camNear, settings.now.camFar);
-  gfx.camera.setMinimalFov(settings.now.camFov);
-  gfx.camera.position.z = settings.now.camDistance;
+  gfx.camera = new THREE.PerspectiveCamera(settings$1.now.camFov, gfx.width / gfx.height, settings$1.now.camNear, settings$1.now.camFar);
+  gfx.camera.setMinimalFov(settings$1.now.camFov);
+  gfx.camera.position.z = settings$1.now.camDistance;
   gfx.camera.updateProjectionMatrix();
   gfx.camera.layers.set(gfxutils.LAYERS.DEFAULT);
   gfx.camera.layers.enable(gfxutils.LAYERS.VOLUME);
   gfx.camera.layers.enable(gfxutils.LAYERS.VOLUME_BFPLANE);
-  gfx.stereoCam = new StereoCamera();
-  gfx.scene = new Scene();
+  gfx.stereoCam = new THREE.StereoCamera();
+  gfx.scene = new THREE.Scene();
   var color = chooseFogColor();
-  gfx.scene.fog = new Fog(color, settings.now.camNear, settings.now.camFar);
+  gfx.scene.fog = new THREE.Fog(color, settings$1.now.camNear, settings$1.now.camFar);
   gfx.root = new gfxutils.RCGroup();
   gfx.scene.add(gfx.root);
   gfx.pivot = new gfxutils.RCGroup();
   gfx.root.add(gfx.pivot);
-  gfx.selectionScene = new Scene();
-  gfx.selectionRoot = new Group();
+  gfx.selectionScene = new THREE.Scene();
+  gfx.selectionRoot = new THREE.Group();
   gfx.selectionRoot.matrixAutoUpdate = false;
   gfx.selectionScene.add(gfx.selectionRoot);
-  gfx.selectionPivot = new Group();
+  gfx.selectionPivot = new THREE.Group();
   gfx.selectionPivot.matrixAutoUpdate = false;
   gfx.selectionRoot.add(gfx.selectionPivot);
-  var light12 = new DirectionalLight(0xffffff, 0.45);
+  var light12 = new THREE.DirectionalLight(0xffffff, 0.45);
   light12.position.set(0, 0.414, 1);
   light12.layers.enable(gfxutils.LAYERS.TRANSPARENT);
   light12.castShadow = true;
-  light12.shadow = new DirectionalLightShadow();
+  light12.shadow = new THREE.DirectionalLightShadow();
   light12.shadow.bias = 0.09;
-  light12.shadow.radius = settings.now.shadow.radius;
+  light12.shadow.radius = settings$1.now.shadow.radius;
   light12.shadow.camera.layers.set(gfxutils.LAYERS.SHADOWMAP);
   var pixelRatio = gfx.renderer.getPixelRatio();
   var shadowMapSize = Math.max(gfx.width, gfx.height) * pixelRatio;
@@ -35122,41 +35968,41 @@ Miew.prototype._initGfx = function () {
   light12.target.position.set(0.0, 0.0, 0.0);
   gfx.scene.add(light12);
   gfx.scene.add(light12.target);
-  var light3 = new AmbientLight(0x666666);
+  var light3 = new THREE.AmbientLight(0x666666);
   light3.layers.enable(gfxutils.LAYERS.TRANSPARENT);
   gfx.scene.add(light3); // add axes
 
   gfx.axes = new Axes(gfx.root, gfx.camera);
   var deviceWidth = gfx.width * pixelRatio;
   var deviceHeight = gfx.height * pixelRatio;
-  gfx.offscreenBuf = new WebGLRenderTarget(deviceWidth, deviceHeight, {
-    minFilter: LinearFilter,
-    magFilter: NearestFilter,
-    format: RGBAFormat,
+  gfx.offscreenBuf = new THREE.WebGLRenderTarget(deviceWidth, deviceHeight, {
+    minFilter: THREE.LinearFilter,
+    magFilter: THREE.NearestFilter,
+    format: THREE.RGBAFormat,
     depthBuffer: true
   });
 
   if (gfx.renderer.getContext().getExtension('WEBGL_depth_texture')) {
-    gfx.offscreenBuf.depthTexture = new DepthTexture();
-    gfx.offscreenBuf.depthTexture.type = UnsignedShortType;
+    gfx.offscreenBuf.depthTexture = new THREE.DepthTexture();
+    gfx.offscreenBuf.depthTexture.type = THREE.UnsignedShortType;
   }
 
-  gfx.offscreenBuf2 = new WebGLRenderTarget(deviceWidth, deviceHeight, {
-    minFilter: LinearFilter,
-    magFilter: LinearFilter,
-    format: RGBAFormat,
+  gfx.offscreenBuf2 = new THREE.WebGLRenderTarget(deviceWidth, deviceHeight, {
+    minFilter: THREE.LinearFilter,
+    magFilter: THREE.LinearFilter,
+    format: THREE.RGBAFormat,
     depthBuffer: false
   });
-  gfx.offscreenBuf3 = new WebGLRenderTarget(deviceWidth, deviceHeight, {
-    minFilter: LinearFilter,
-    magFilter: LinearFilter,
-    format: RGBAFormat,
+  gfx.offscreenBuf3 = new THREE.WebGLRenderTarget(deviceWidth, deviceHeight, {
+    minFilter: THREE.LinearFilter,
+    magFilter: THREE.LinearFilter,
+    format: THREE.RGBAFormat,
     depthBuffer: false
   });
-  gfx.offscreenBuf4 = new WebGLRenderTarget(deviceWidth, deviceHeight, {
-    minFilter: LinearFilter,
-    magFilter: LinearFilter,
-    format: RGBAFormat,
+  gfx.offscreenBuf4 = new THREE.WebGLRenderTarget(deviceWidth, deviceHeight, {
+    minFilter: THREE.LinearFilter,
+    magFilter: THREE.LinearFilter,
+    format: THREE.RGBAFormat,
     depthBuffer: false
   });
   gfx.volBFTex = gfx.offscreenBuf3;
@@ -35164,25 +36010,25 @@ Miew.prototype._initGfx = function () {
   gfx.volWFFTex = gfx.offscreenBuf; // use float textures for volume rendering if possible
 
   if (gfx.renderer.getContext().getExtension('OES_texture_float')) {
-    gfx.offscreenBuf5 = new WebGLRenderTarget(deviceWidth, deviceHeight, {
-      minFilter: LinearFilter,
-      magFilter: LinearFilter,
-      format: RGBAFormat,
-      type: FloatType,
+    gfx.offscreenBuf5 = new THREE.WebGLRenderTarget(deviceWidth, deviceHeight, {
+      minFilter: THREE.LinearFilter,
+      magFilter: THREE.LinearFilter,
+      format: THREE.RGBAFormat,
+      type: THREE.FloatType,
       depthBuffer: false
     });
-    gfx.offscreenBuf6 = new WebGLRenderTarget(deviceWidth, deviceHeight, {
-      minFilter: LinearFilter,
-      magFilter: LinearFilter,
-      format: RGBAFormat,
-      type: FloatType,
+    gfx.offscreenBuf6 = new THREE.WebGLRenderTarget(deviceWidth, deviceHeight, {
+      minFilter: THREE.LinearFilter,
+      magFilter: THREE.LinearFilter,
+      format: THREE.RGBAFormat,
+      type: THREE.FloatType,
       depthBuffer: false
     });
-    gfx.offscreenBuf7 = new WebGLRenderTarget(deviceWidth, deviceHeight, {
-      minFilter: LinearFilter,
-      magFilter: LinearFilter,
-      format: RGBAFormat,
-      type: FloatType,
+    gfx.offscreenBuf7 = new THREE.WebGLRenderTarget(deviceWidth, deviceHeight, {
+      minFilter: THREE.LinearFilter,
+      magFilter: THREE.LinearFilter,
+      format: THREE.RGBAFormat,
+      type: THREE.FloatType,
       depthBuffer: true
     });
     gfx.volBFTex = gfx.offscreenBuf5;
@@ -35192,23 +36038,23 @@ Miew.prototype._initGfx = function () {
     this.logger.warn('Device doesn\'t support OES_texture_float extension');
   }
 
-  gfx.stereoBufL = new WebGLRenderTarget(deviceWidth, deviceHeight, {
-    minFilter: LinearFilter,
-    magFilter: LinearFilter,
-    format: RGBAFormat,
+  gfx.stereoBufL = new THREE.WebGLRenderTarget(deviceWidth, deviceHeight, {
+    minFilter: THREE.LinearFilter,
+    magFilter: THREE.LinearFilter,
+    format: THREE.RGBAFormat,
     depthBuffer: false
   });
-  gfx.stereoBufR = new WebGLRenderTarget(deviceWidth, deviceHeight, {
-    minFilter: LinearFilter,
-    magFilter: LinearFilter,
-    format: RGBAFormat,
+  gfx.stereoBufR = new THREE.WebGLRenderTarget(deviceWidth, deviceHeight, {
+    minFilter: THREE.LinearFilter,
+    magFilter: THREE.LinearFilter,
+    format: THREE.RGBAFormat,
     depthBuffer: false
   });
   this._gfx = gfx;
 
   this._showCanvas();
 
-  this._embedWebXR(settings.now.stereo === 'WEBVR');
+  this._embedWebXR(settings$1.now.stereo === 'WEBVR');
 
   this._container.appendChild(gfx.renderer2d.getElement()); // add FPS counter
 
@@ -35222,7 +36068,7 @@ Miew.prototype._initGfx = function () {
 
   this._fps = stats;
 
-  this._fps.show(settings.now.fps);
+  this._fps.show(settings$1.now.fps);
 };
 /**
  * Setup event listeners.
@@ -35547,7 +36393,7 @@ Miew.prototype._onResize = function () {
   gfx.width = this._container.clientWidth;
   gfx.height = this._container.clientHeight;
   gfx.camera.aspect = gfx.width / gfx.height;
-  gfx.camera.setMinimalFov(settings.now.camFov);
+  gfx.camera.setMinimalFov(settings$1.now.camFov);
   gfx.camera.updateProjectionMatrix();
   gfx.renderer.setSize(gfx.width, gfx.height);
   gfx.renderer2d.setSize(gfx.width, gfx.height);
@@ -35609,7 +36455,7 @@ Miew.prototype._onTick = function () {
   if (this._needRender) {
     this._onRender();
 
-    this._needRender = !settings.now.suspendRender || settings.now.stereo === 'WEBVR';
+    this._needRender = !settings$1.now.suspendRender || settings$1.now.stereo === 'WEBVR';
   }
 };
 
@@ -35634,15 +36480,15 @@ Miew.prototype._getBSphereRadius = function () {
 
 
 Miew.prototype.getOBB = function () {
-  var _bSphereForOneVisual = new Sphere();
+  var _bSphereForOneVisual = new THREE.Sphere();
 
-  var _bBoxForOneVisual = new Box3();
+  var _bBoxForOneVisual = new THREE.Box3();
 
-  var _bBox = new Box3();
+  var _bBox = new THREE.Box3();
 
-  var _invMatrix = new Matrix4();
+  var _invMatrix = new THREE.Matrix4();
 
-  var _points = [new Vector3(), new Vector3(), new Vector3(), new Vector3()];
+  var _points = [new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()];
   return function (matrix, OBB) {
     _bBox.makeEmpty();
 
@@ -35687,13 +36533,13 @@ Miew.prototype.getOBB = function () {
 Miew.prototype._updateFog = function () {
   var gfx = this._gfx;
 
-  if (settings.now.fog) {
+  if (settings$1.now.fog) {
     if (typeof gfx.scene.fog === 'undefined' || gfx.scene.fog === null) {
       var color = chooseFogColor();
-      gfx.scene.fog = new Fog(color);
+      gfx.scene.fog = new THREE.Fog(color);
 
       this._setUberMaterialValues({
-        fog: settings.now.fog
+        fog: settings$1.now.fog
       });
     }
 
@@ -35702,7 +36548,7 @@ Miew.prototype._updateFog = function () {
     gfx.scene.fog = undefined;
 
     this._setUberMaterialValues({
-      fog: settings.now.fog
+      fog: settings$1.now.fog
     });
   }
 };
@@ -35718,7 +36564,7 @@ Miew.prototype._onUpdate = function () {
     visual.getComplex().update();
   });
 
-  if (settings.now.autobuild && !this._loading.length && !this._building && this._needRebuild()) {
+  if (settings$1.now.autobuild && !this._loading.length && !this._building && this._needRebuild()) {
     this.rebuild();
   }
 
@@ -35746,13 +36592,13 @@ Miew.prototype._onRender = function () {
   gfx.renderer.setRenderTarget(null);
   gfx.renderer.clear();
 
-  this._renderFrame(settings.now.stereo);
+  this._renderFrame(settings$1.now.stereo);
 };
 
 Miew.prototype._renderFrame = function () {
   var _anaglyphMat = new AnaglyphMaterial();
 
-  var _size = new Vector2();
+  var _size = new THREE.Vector2();
 
   return function (stereo) {
     var gfx = this._gfx;
@@ -35768,7 +36614,7 @@ Miew.prototype._renderFrame = function () {
       if (stereo === 'ANAGLYPH') {
         gfx.stereoCam.update(gfx.camera);
       } else {
-        gfx.stereoCam.updateHalfSized(gfx.camera, settings.now.camFov);
+        gfx.stereoCam.updateHalfSized(gfx.camera, settings$1.now.camFov);
       }
     } // resize offscreen buffers to match the target
 
@@ -35816,7 +36662,7 @@ Miew.prototype._renderFrame = function () {
 
     gfx.renderer2d.render(gfx.scene, gfx.camera);
 
-    if (settings.now.axes && gfx.axes && !gfx.renderer.xr.enabled) {
+    if (settings$1.now.axes && gfx.axes && !gfx.renderer.xr.enabled) {
       gfx.axes.render(renderer);
     }
   };
@@ -35831,7 +36677,7 @@ Miew.prototype._onBgColorChanged = function () {
       gfx.scene.fog.color.set(color);
     }
 
-    gfx.renderer.setClearColor(settings.now.bg.color, Number(!settings.now.bg.transparent));
+    gfx.renderer.setClearColor(settings$1.now.bg.color, Number(!settings$1.now.bg.transparent));
   }
 
   this._needRender = true;
@@ -35850,7 +36696,7 @@ Miew.prototype._onFogColorChanged = function () {
 
 Miew.prototype._setUberMaterialValues = function (values) {
   this._gfx.root.traverse(function (obj) {
-    if ((obj instanceof Mesh$5 || obj instanceof LineSegments || obj instanceof Line) && obj.material instanceof UberMaterial) {
+    if ((obj instanceof THREE.Mesh || obj instanceof THREE.LineSegments || obj instanceof THREE.Line) && obj.material instanceof UberMaterial) {
       obj.material.setValues(values);
       obj.material.needsUpdate = true;
     }
@@ -35897,7 +36743,7 @@ Miew.prototype._renderScene = function () {
     target = target || null;
     var gfx = this._gfx; // render to offscreen buffer
 
-    gfx.renderer.setClearColor(settings.now.bg.color, Number(!settings.now.bg.transparent));
+    gfx.renderer.setClearColor(settings$1.now.bg.color, Number(!settings$1.now.bg.transparent));
     gfx.renderer.setRenderTarget(target);
     gfx.renderer.clear();
 
@@ -35910,22 +36756,22 @@ Miew.prototype._renderScene = function () {
     gfx.renderer.setClearColor(0x000000, 0.0);
     gfx.renderer.setRenderTarget(gfx.offscreenBuf4);
     gfx.renderer.clearColor();
-    gfx.renderer.setClearColor(settings.now.bg.color, Number(!settings.now.bg.transparent));
+    gfx.renderer.setClearColor(settings$1.now.bg.color, Number(!settings$1.now.bg.transparent));
     gfx.renderer.setRenderTarget(gfx.offscreenBuf);
     gfx.renderer.clear();
     var bHaveComplexes = this._getComplexVisual() !== null;
 
     var volumeVisual = this._getVolumeVisual();
 
-    var ssao = bHaveComplexes && settings.now.ao;
+    var ssao = bHaveComplexes && settings$1.now.ao;
 
     if (ssao) {
       this._enableMRT(true, gfx.offscreenBuf, gfx.offscreenBuf4);
     }
 
-    if (settings.now.transparency === 'prepass') {
+    if (settings$1.now.transparency === 'prepass') {
       this._renderWithPrepassTransparency(camera, gfx.offscreenBuf);
-    } else if (settings.now.transparency === 'standard') {
+    } else if (settings$1.now.transparency === 'standard') {
       gfx.renderer.setRenderTarget(gfx.offscreenBuf);
       gfx.renderer.render(gfx.scene, camera);
     }
@@ -35936,8 +36782,8 @@ Miew.prototype._renderScene = function () {
     // otherwise we render to canvas
 
 
-    var outline = bHaveComplexes && settings.now.outline.on;
-    var fxaa = bHaveComplexes && settings.now.fxaa;
+    var outline = bHaveComplexes && settings$1.now.outline.on;
+    var fxaa = bHaveComplexes && settings$1.now.fxaa;
     var volume = volumeVisual !== null && volumeVisual.getMesh().material != null;
     var dstBuffer = ssao || outline || volume || fxaa || distortion ? gfx.offscreenBuf2 : target;
     var srcBuffer = gfx.offscreenBuf;
@@ -36005,11 +36851,11 @@ Miew.prototype._renderScene = function () {
 }();
 
 Miew.prototype._performDistortion = function () {
-  var _scene = new Scene();
+  var _scene = new THREE.Scene();
 
-  var _camera = new OrthographicCamera(-1.0, 1.0, 1.0, -1.0, -500, 1000);
+  var _camera = new THREE.OrthographicCamera(-1.0, 1.0, 1.0, -1.0, -500, 1000);
 
-  var _material = new RawShaderMaterial({
+  var _material = new THREE.RawShaderMaterial({
     uniforms: {
       srcTex: {
         type: 't',
@@ -36017,7 +36863,7 @@ Miew.prototype._performDistortion = function () {
       },
       aberration: {
         type: 'fv3',
-        value: new Vector3(1.0)
+        value: new THREE.Vector3(1.0)
       }
     },
     vertexShader: vertexScreenQuadShader,
@@ -36027,7 +36873,7 @@ Miew.prototype._performDistortion = function () {
     depthWrite: false
   });
 
-  var _geo = gfxutils.buildDistorionMesh(10, 10, settings.now.debug.stereoBarrel);
+  var _geo = gfxutils.buildDistorionMesh(10, 10, settings$1.now.debug.stereoBarrel);
 
   _scene.add(new meshes.Mesh(_geo, _material));
 
@@ -36043,7 +36889,7 @@ Miew.prototype._performDistortion = function () {
 
       this._gfx.renderer.render(_scene, _camera);
     } else {
-      this._gfx.renderer.renderScreenQuadFromTexWithDistortion(srcBuffer, settings.now.debug.stereoBarrel);
+      this._gfx.renderer.renderScreenQuadFromTexWithDistortion(srcBuffer, settings$1.now.debug.stereoBarrel);
     }
   };
 }();
@@ -36062,9 +36908,9 @@ Miew.prototype._renderOutline = function () {
 
     _outlineMaterial.uniforms.srcTexSize.value.set(srcDepthBuffer.width, srcDepthBuffer.height);
 
-    _outlineMaterial.uniforms.color.value = new Color(settings.now.outline.color);
-    _outlineMaterial.uniforms.threshold.value = settings.now.outline.threshold;
-    _outlineMaterial.uniforms.thickness.value = new Vector2(settings.now.outline.thickness, settings.now.outline.thickness);
+    _outlineMaterial.uniforms.color.value = new THREE.Color(settings$1.now.outline.color);
+    _outlineMaterial.uniforms.threshold.value = settings$1.now.outline.threshold;
+    _outlineMaterial.uniforms.thickness.value = new THREE.Vector2(settings$1.now.outline.thickness, settings$1.now.outline.thickness);
     gfx.renderer.setRenderTarget(targetBuffer);
     gfx.renderer.renderScreenQuad(_outlineMaterial);
   };
@@ -36072,12 +36918,12 @@ Miew.prototype._renderOutline = function () {
 
 Miew.prototype._renderShadowMap = function () {
   var pars = {
-    minFilter: NearestFilter,
-    magFilter: NearestFilter,
-    format: RGBAFormat
+    minFilter: THREE.NearestFilter,
+    magFilter: THREE.NearestFilter,
+    format: THREE.RGBAFormat
   };
   return function () {
-    if (!settings.now.shadow.on) {
+    if (!settings$1.now.shadow.on) {
       return;
     }
 
@@ -36087,7 +36933,7 @@ Miew.prototype._renderShadowMap = function () {
     var activeMipmapLevel = gfx.renderer.getActiveMipmapLevel();
     var _state = gfx.renderer.state; // Set GL state for depth map.
 
-    _state.setBlending(NoBlending);
+    _state.setBlending(THREE.NoBlending);
 
     _state.buffers.color.setClear(1, 1, 1, 1);
 
@@ -36100,7 +36946,7 @@ Miew.prototype._renderShadowMap = function () {
         var light = gfx.scene.children[i];
 
         if (light.shadow.map == null) {
-          light.shadow.map = new WebGLRenderTarget(light.shadow.mapSize.width, light.shadow.mapSize.height, pars);
+          light.shadow.map = new THREE.WebGLRenderTarget(light.shadow.mapSize.width, light.shadow.mapSize.height, pars);
           light.shadow.camera.updateProjectionMatrix();
         }
 
@@ -36192,8 +37038,8 @@ Miew.prototype._checkVolumeRenderingSupport = function (renderTarget) {
 Miew.prototype._renderVolume = function () {
   var volumeBFMat = new VolumeMaterial$1.BackFacePosMaterial();
   var volumeFFMat = new VolumeMaterial$1.FrontFacePosMaterial();
-  var cubeOffsetMat = new Matrix4().makeTranslation(0.5, 0.5, 0.5);
-  var world2colorMat = new Matrix4();
+  var cubeOffsetMat = new THREE.Matrix4().makeTranslation(0.5, 0.5, 0.5);
+  var world2colorMat = new THREE.Matrix4();
   var volumeRenderingSupported;
   return function (volumeVisual, camera, dstBuf, tmpBuf1, tmpBuf2, tmpBuf3) {
     var gfx = this._gfx;
@@ -36290,7 +37136,7 @@ Miew.prototype._performFXAA = function () {
 
     var gfx = this._gfx; // clear canvas
 
-    gfx.renderer.setClearColor(settings.now.bg.color, Number(!settings.now.bg.transparent));
+    gfx.renderer.setClearColor(settings$1.now.bg.color, Number(!settings$1.now.bg.transparent));
     gfx.renderer.setRenderTarget(targetBuffer);
     gfx.renderer.clear(); // do fxaa processing of offscreen buff2
 
@@ -36298,11 +37144,11 @@ Miew.prototype._performFXAA = function () {
 
     _fxaaMaterial.uniforms.srcTexelSize.value.set(1.0 / srcBuffer.width, 1.0 / srcBuffer.height);
 
-    _fxaaMaterial.uniforms.bgColor.value.set(settings.now.bg.color);
+    _fxaaMaterial.uniforms.bgColor.value.set(settings$1.now.bg.color);
 
-    if (_fxaaMaterial.bgTransparent !== settings.now.bg.transparent) {
+    if (_fxaaMaterial.bgTransparent !== settings$1.now.bg.transparent) {
       _fxaaMaterial.setValues({
-        bgTransparent: settings.now.bg.transparent
+        bgTransparent: settings$1.now.bg.transparent
       });
 
       _fxaaMaterial.needsUpdate = true;
@@ -36319,7 +37165,7 @@ Miew.prototype._performAO = function () {
 
   var _vertBlurMaterial = new AOVertBlurWithBlendMaterial();
 
-  var _scale = new Vector3();
+  var _scale = new THREE.Vector3();
 
   return function (srcColorBuffer, normalBuffer, srcDepthTexture, targetBuffer, tempBuffer, tempBuffer1) {
     if (!srcColorBuffer || !normalBuffer || !srcDepthTexture || !targetBuffer || !tempBuffer || !tempBuffer1) {
@@ -36327,7 +37173,7 @@ Miew.prototype._performAO = function () {
     }
 
     var gfx = this._gfx;
-    var tanHalfFOV = Math.tan(Math$1.DEG2RAD * 0.5 * gfx.camera.fov);
+    var tanHalfFOV = Math.tan(THREE.Math.DEG2RAD * 0.5 * gfx.camera.fov);
     _aoMaterial.uniforms.diffuseTexture.value = srcColorBuffer.texture;
     _aoMaterial.uniforms.depthTexture.value = srcDepthTexture;
     _aoMaterial.uniforms.normalTexture.value = normalBuffer.texture;
@@ -36340,10 +37186,10 @@ Miew.prototype._performAO = function () {
     _aoMaterial.uniforms.aspectRatio.value = gfx.camera.aspect;
     _aoMaterial.uniforms.tanHalfFOV.value = tanHalfFOV;
     gfx.root.matrix.extractScale(_scale);
-    _aoMaterial.uniforms.kernelRadius.value = settings.now.debug.ssaoKernelRadius * _scale.x;
+    _aoMaterial.uniforms.kernelRadius.value = settings$1.now.debug.ssaoKernelRadius * _scale.x;
     _aoMaterial.uniforms.depthThreshold.value = 2.0 * this._getBSphereRadius(); // diameter
 
-    _aoMaterial.uniforms.factor.value = settings.now.debug.ssaoFactor; // N: should be tempBuffer1 for proper use of buffers (see buffers using outside the function)
+    _aoMaterial.uniforms.factor.value = settings$1.now.debug.ssaoFactor; // N: should be tempBuffer1 for proper use of buffers (see buffers using outside the function)
 
     gfx.renderer.setRenderTarget(tempBuffer1);
     gfx.renderer.renderScreenQuad(_aoMaterial);
@@ -36368,13 +37214,13 @@ Miew.prototype._performAO = function () {
     if (fog) {
       _vertBlurMaterial.uniforms.fogNearFar.value.set(fog.near, fog.far);
 
-      _vertBlurMaterial.uniforms.fogColor.value.set(fog.color.r, fog.color.g, fog.color.b, settings.now.fogAlpha);
+      _vertBlurMaterial.uniforms.fogColor.value.set(fog.color.r, fog.color.g, fog.color.b, settings$1.now.fogAlpha);
     }
 
-    if (_vertBlurMaterial.useFog !== settings.now.fog || _vertBlurMaterial.fogTransparent !== settings.now.bg.transparent) {
+    if (_vertBlurMaterial.useFog !== settings$1.now.fog || _vertBlurMaterial.fogTransparent !== settings$1.now.bg.transparent) {
       _vertBlurMaterial.setValues({
-        useFog: settings.now.fog,
-        fogTransparent: settings.now.bg.transparent
+        useFog: settings$1.now.fog,
+        fogTransparent: settings$1.now.bg.transparent
       });
 
       _vertBlurMaterial.needsUpdate = true;
@@ -36390,9 +37236,9 @@ Miew.prototype._performAO = function () {
  */
 
 
-Miew.prototype.reset = function ()
-/* keepReps */
-{
+Miew.prototype.reset = function
+  /* keepReps */
+() {
   if (this._picker) {
     this._picker.reset();
   }
@@ -36462,7 +37308,7 @@ Miew.prototype._export = function (format) {
 
     if (TheExporter.SourceClass === ComplexVisual) {
       dataSource = this._visuals[this._curVisualName];
-    } else if (TheExporter.SourceClass === Complex) {
+    } else if (TheExporter.SourceClass === Complex$9) {
       dataSource = this._visuals[this._curVisualName]._complex;
     }
 
@@ -36494,7 +37340,7 @@ function resolveSourceShortcut(source, opts) {
   var matchesPdbId = rePdbId.exec(source);
 
   if (matchesPdbId) {
-    var _matchesPdbId = slicedToArray(matchesPdbId, 3),
+    var _matchesPdbId = _slicedToArray(matchesPdbId, 3),
         _matchesPdbId$ = _matchesPdbId[1],
         format = _matchesPdbId$ === void 0 ? 'pdb' : _matchesPdbId$,
         id = _matchesPdbId[2];
@@ -36625,7 +37471,7 @@ function _fetchData(source, opts, job) {
 
     if (fileName) {
       var _utils$splitFileName = utils.splitFileName(fileName),
-          _utils$splitFileName2 = slicedToArray(_utils$splitFileName, 2),
+          _utils$splitFileName2 = _slicedToArray(_utils$splitFileName, 2),
           name = _utils$splitFileName2[0],
           fileExt = _utils$splitFileName2[1];
 
@@ -36655,7 +37501,7 @@ function _fetchData(source, opts, job) {
           var value = _.get(newOptions.settings, key);
 
           if (!_.isUndefined(value)) {
-            settings.set(key, value);
+            settings$1.set(key, value);
           }
         }
       }
@@ -36879,7 +37725,7 @@ Miew.prototype.unload = function (name) {
 
   this.resetPivot();
 
-  if (settings.now.shadow.on) {
+  if (settings$1.now.shadow.on) {
     this._updateShadowCamera();
   }
 };
@@ -36962,7 +37808,7 @@ Miew.prototype._pauseAnimation = function () {
 
 Miew.prototype._continueAnimation = function () {
   this._isAnimating = true;
-  var minFrameTime = 1000 / settings.now.maxfps;
+  var minFrameTime = 1000 / settings$1.now.maxfps;
   minFrameTime = Number.isNaN(minFrameTime) ? 0 : minFrameTime;
   var self = this;
   var pivot = self._gfx.pivot;
@@ -37075,7 +37921,7 @@ Miew.prototype._onLoad = function (dataSource, opts) {
       complex.setCurrentUnit(this._opts.unit);
     }
 
-    if (opts.preset) ; else if (settings.now.autoPreset) {
+    if (opts.preset) ; else if (settings$1.now.autoPreset) {
       switch (opts.fileType) {
         case 'cml':
           this.resetReps('small');
@@ -37112,15 +37958,15 @@ Miew.prototype._onLoad = function (dataSource, opts) {
   gfx.root.resetTransform();
   this.resetPivot(); // set scale to fit everything on the screen
 
-  this._objectControls.setScale(settings.now.radiusToFit / this._getBSphereRadius());
+  this._objectControls.setScale(settings$1.now.radiusToFit / this._getBSphereRadius());
 
   this._resetObjects();
 
-  if (settings.now.autoResolution) {
+  if (settings$1.now.autoResolution) {
     this._tweakResolution();
   }
 
-  if (settings.now.shadow.on) {
+  if (settings$1.now.shadow.on) {
     this._updateShadowCamera();
   }
 
@@ -37395,7 +38241,7 @@ Miew.prototype._extractRepresentation = function () {
     }
 
     var selector = visual.buildSelectorFromMask(1 << visual.getSelectionBit());
-    var defPreset = settings.now.presets["default"];
+    var defPreset = settings$1.now.presets["default"];
     var res = visual.repAdd({
       selector: selector,
       mode: defPreset[0].mode.id,
@@ -37450,16 +38296,16 @@ Miew.prototype._setReps = function (reps) {
 
 
 Miew.prototype.applyPreset = function (preset) {
-  var presets = settings.now.presets;
-  var presList = [preset || settings.defaults.preset, settings.defaults.preset, Object.keys(presets)[0]];
+  var presets = settings$1.now.presets;
+  var presList = [preset || settings$1.defaults.preset, settings$1.defaults.preset, Object.keys(presets)[0]];
   var reps = null;
 
   for (var i = 0; !reps && i < presList.length; ++i) {
-    settings.set('preset', presList[i]);
-    reps = presets[settings.now.preset];
+    settings$1.set('preset', presList[i]);
+    reps = presets[settings$1.now.preset];
 
     if (!reps) {
-      this.logger.warn("Unknown preset \"".concat(settings.now.preset, "\""));
+      this.logger.warn("Unknown preset \"".concat(settings$1.now.preset, "\""));
     }
   }
 
@@ -37794,7 +38640,7 @@ Miew.prototype._discardFragmentEdit = function () {
 };
 
 Miew.prototype._onPick = function (event) {
-  if (!settings.now.picking) {
+  if (!settings$1.now.picking) {
     // picking is disabled
     return;
   }
@@ -37865,14 +38711,14 @@ Miew.prototype._onKeyDown = function (event) {
 
   switch (event.keyCode) {
     case 'C'.charCodeAt(0):
-      if (settings.now.editing) {
+      if (settings$1.now.editing) {
         this._enterComponentEditMode();
       }
 
       break;
 
     case 'F'.charCodeAt(0):
-      if (settings.now.editing) {
+      if (settings$1.now.editing) {
         this._enterFragmentEditMode();
       }
 
@@ -37911,7 +38757,7 @@ Miew.prototype._onKeyDown = function (event) {
     case 'S'.charCodeAt(0):
       event.preventDefault();
       event.stopPropagation();
-      settings.set('ao', !settings.now.ao);
+      settings$1.set('ao', !settings$1.now.ao);
       this._needRender = true;
       break;
 
@@ -37985,7 +38831,7 @@ Miew.prototype._updateInfoPanel = function () {
   var aName = '';
   var coordLine = '';
 
-  if (this._lastPick instanceof Atom$2) {
+  if (this._lastPick instanceof Atom) {
     atom = this._lastPick;
     residue = atom.residue;
     aName = atom.name;
@@ -37994,12 +38840,12 @@ Miew.prototype._updateInfoPanel = function () {
     secondLine = "".concat(atom.element.fullName, " #").concat(atom.serial).concat(location, ":       ").concat(residue._chain._name, ".").concat(residue._type._name).concat(residue._sequence).concat(residue._icode.trim(), ".");
     secondLine += aName;
     coordLine = "Coord: (".concat(atom.position.x.toFixed(2).toString(), ",     ").concat(atom.position.y.toFixed(2).toString(), ",     ").concat(atom.position.z.toFixed(2).toString(), ")");
-  } else if (this._lastPick instanceof Residue$1) {
+  } else if (this._lastPick instanceof Residue) {
     residue = this._lastPick;
     secondLine = "".concat(residue._type._fullName, ":       ").concat(residue._chain._name, ".").concat(residue._type._name).concat(residue._sequence).concat(residue._icode.trim());
-  } else if (this._lastPick instanceof Chain$2) {
+  } else if (this._lastPick instanceof Chain) {
     secondLine = "chain ".concat(this._lastPick._name);
-  } else if (this._lastPick instanceof Molecule$8) {
+  } else if (this._lastPick instanceof Molecule) {
     secondLine = "molecule ".concat(this._lastPick._name);
   }
 
@@ -38043,13 +38889,13 @@ Miew.prototype._getAltObj = function () {
 
   return {
     objects: [],
-    pivot: new Vector3(0, 0, 0)
+    pivot: new THREE.Vector3(0, 0, 0)
   };
 };
 
 Miew.prototype.resetPivot = function () {
-  var boundingBox = new Box3();
-  var center = new Vector3();
+  var boundingBox = new THREE.Box3();
+  var center = new THREE.Vector3();
   return function () {
     boundingBox.makeEmpty();
 
@@ -38068,7 +38914,7 @@ Miew.prototype.resetPivot = function () {
 }();
 
 Miew.prototype.setPivotResidue = function () {
-  var center = new Vector3();
+  var center = new THREE.Vector3();
   return function (residue) {
     var visual = this._getVisualForComplex(residue.getChain().getComplex());
 
@@ -38105,7 +38951,7 @@ Miew.prototype.setPivotResidue = function () {
 }();
 
 Miew.prototype.setPivotAtom = function () {
-  var center = new Vector3();
+  var center = new THREE.Vector3();
   return function (atom) {
     var visual = this._getVisualForComplex(atom.residue.getChain().getComplex());
 
@@ -38125,7 +38971,7 @@ Miew.prototype.setPivotAtom = function () {
 }();
 
 Miew.prototype.getSelectionCenter = function () {
-  var _centerInVisual = new Vector3(0.0, 0.0, 0.0);
+  var _centerInVisual = new THREE.Vector3(0.0, 0.0, 0.0);
 
   return function (center, includesAtom, selector) {
     center.set(0.0, 0.0, 0.0);
@@ -38149,7 +38995,7 @@ Miew.prototype.getSelectionCenter = function () {
 }();
 
 Miew.prototype.setPivotSubset = function () {
-  var _center = new Vector3(0.0, 0.0, 0.0);
+  var _center = new THREE.Vector3(0.0, 0.0, 0.0);
 
   function _includesInCurSelection(atom, selectionBit) {
     return atom.mask & 1 << selectionBit;
@@ -38185,7 +39031,7 @@ Miew.prototype.benchmarkGfx = function (force) {
   var self = this;
   var prof = new GfxProfiler(this._gfx.renderer);
   return new Promise(function (resolve) {
-    if (!force && !settings.now.autoResolution) {
+    if (!force && !settings$1.now.autoResolution) {
       resolve();
       return;
     } // deprecated event since 0.8.6
@@ -38231,11 +39077,11 @@ Miew.prototype.screenshot = function (width, height) {
   var deviceHeight = gfx.renderer.domElement.height;
 
   function fov2Tan(fov) {
-    return Math.tan(Math$1.degToRad(0.5 * fov));
+    return Math.tan(THREE.Math.degToRad(0.5 * fov));
   }
 
   function tan2Fov(tan) {
-    return Math$1.radToDeg(Math.atan(tan)) * 2.0;
+    return THREE.Math.radToDeg(Math.atan(tan)) * 2.0;
   }
 
   function getDataURL() {
@@ -38281,7 +39127,7 @@ Miew.prototype.screenshot = function (width, height) {
 
     gfx.renderer.setDrawingBufferSize(width, height, 1); // make screenshot
 
-    this._renderFrame(settings.now.stereo);
+    this._renderFrame(settings$1.now.stereo);
 
     screenshotURI = getDataURL(); // restore original camera & canvas proportions
 
@@ -38358,11 +39204,11 @@ Miew.prototype._tweakResolution = function () {
 };
 
 Miew.prototype._autoChangeResolution = function (resolution) {
-  if (resolution !== settings.now.resolution) {
+  if (resolution !== settings$1.now.resolution) {
     this.logger.report("Your rendering resolution was changed to \"".concat(resolution, "\" for best performance."));
   }
 
-  settings.now.resolution = resolution;
+  settings$1.now.resolution = resolution;
 };
 /**
  * Save current settings to cookies.
@@ -38428,7 +39274,7 @@ Miew.prototype.setOptions = function (opts) {
   }
 
   if (opts.preset) {
-    settings.now.preset = opts.preset;
+    settings$1.now.preset = opts.preset;
   }
 
   if (opts.reps) {
@@ -38562,7 +39408,7 @@ Miew.prototype.removeObject = function (index) {
 
 
 Miew.prototype.getURL = function (opts) {
-  return options.toURL(this.getState(_.defaults(opts, {
+  return options$1.toURL(this.getState(_.defaults(opts, {
     compact: true,
     settings: false,
     view: false
@@ -38580,7 +39426,7 @@ Miew.prototype.getURL = function (opts) {
 
 
 Miew.prototype.getScript = function (opts) {
-  return options.toScript(this.getState(_.defaults(opts, {
+  return options$1.toScript(this.getState(_.defaults(opts, {
     compact: true,
     settings: true,
     view: true
@@ -38601,14 +39447,14 @@ Miew.prototype._compareReps = function (complexVisual, compareWithDefaults) {
     repCount = complexVisual.repCount();
   }
 
-  var currPreset = settings.defaults.presets[settings.now.preset];
+  var currPreset = settings$1.defaults.presets[settings$1.now.preset];
   var compare = compareWithDefaults;
 
   if (currPreset === undefined || currPreset.length > repCount) {
     compare = false;
     ans.preset = 'empty';
-  } else if (settings.now.preset !== settings.defaults.preset) {
-    ans.preset = settings.now.preset;
+  } else if (settings$1.now.preset !== settings$1.defaults.preset) {
+    ans.preset = settings$1.now.preset;
   }
 
   var repsDiff = [];
@@ -38712,11 +39558,11 @@ Miew.prototype.getState = function (opts) {
 
 
 Miew.prototype.get = function (param, value) {
-  return settings.get(param, value);
+  return settings$1.get(param, value);
 };
 
 Miew.prototype._clipPlaneUpdateValue = function (radius) {
-  var clipPlaneValue = Math.max(this._gfx.camera.position.z - radius * settings.now.draft.clipPlaneFactor, settings.now.camNear);
+  var clipPlaneValue = Math.max(this._gfx.camera.position.z - radius * settings$1.now.draft.clipPlaneFactor, settings$1.now.camNear);
   var opts = {
     clipPlaneValue: clipPlaneValue
   };
@@ -38781,7 +39627,7 @@ Miew.prototype._updateMaterials = function (values) {
 Miew.prototype._fogAlphaChanged = function () {
   this._forEachComplexVisual(function (visual) {
     visual.setUberOptions({
-      fogAlpha: settings.now.fogAlpha
+      fogAlpha: settings$1.now.fogAlpha
     });
   });
 };
@@ -38790,7 +39636,7 @@ Miew.prototype._embedWebXR = function () {
   var _this9 = this;
 
   // switch off
-  if (settings.now.stereo !== 'WEBVR') {
+  if (settings$1.now.stereo !== 'WEBVR') {
     if (this.webVR) {
       this.webVR.disable();
     }
@@ -38829,7 +39675,7 @@ Miew.prototype._initOnSettingsChanged = function () {
     var volume = _this10._getVolumeVisual();
 
     if (volume === null) return;
-    volume.showFrame(settings.now.modes.VD.frame);
+    volume.showFrame(settings$1.now.modes.VD.frame);
     _this10._needRender = true;
   });
   on('modes.VD.isoMode', function () {
@@ -38843,23 +39689,23 @@ Miew.prototype._initOnSettingsChanged = function () {
     _this10._onBgColorChanged();
   });
   on('ao', function () {
-    if (settings.now.ao && !isAOSupported(_this10._gfx.renderer.getContext())) {
+    if (settings$1.now.ao && !isAOSupported(_this10._gfx.renderer.getContext())) {
       _this10.logger.warn('Your device or browser does not support ao');
 
-      settings.set('ao', false);
+      settings$1.set('ao', false);
     } else {
       var values = {
-        normalsToGBuffer: settings.now.ao
+        normalsToGBuffer: settings$1.now.ao
       };
 
       _this10._setUberMaterialValues(values);
     }
   });
   on('zSprites', function () {
-    if (settings.now.zSprites && !arezSpritesSupported(_this10._gfx.renderer.getContext())) {
+    if (settings$1.now.zSprites && !arezSpritesSupported(_this10._gfx.renderer.getContext())) {
       _this10.logger.warn('Your device or browser does not support zSprites');
 
-      settings.set('zSprites', false);
+      settings$1.set('zSprites', false);
     }
   });
   on('fogColor', function () {
@@ -38872,7 +39718,7 @@ Miew.prototype._initOnSettingsChanged = function () {
     var gfx = _this10._gfx;
 
     if (gfx) {
-      gfx.renderer.setClearColor(settings.now.bg.color, Number(!settings.now.bg.transparent));
+      gfx.renderer.setClearColor(settings$1.now.bg.color, Number(!settings$1.now.bg.transparent));
     } // update materials
 
 
@@ -38894,7 +39740,7 @@ Miew.prototype._initOnSettingsChanged = function () {
     // update materials
     var values = {
       shadowmap: evt.value,
-      shadowmapType: settings.now.shadow.type
+      shadowmapType: settings$1.now.shadow.type
     };
     var gfx = _this10._gfx;
 
@@ -38916,7 +39762,7 @@ Miew.prototype._initOnSettingsChanged = function () {
   });
   on('shadow.type', function (evt) {
     // update materials if shadowmap is enable
-    if (settings.now.shadow.on) {
+    if (settings$1.now.shadow.on) {
       _this10._updateMaterials({
         shadowmapType: evt.value
       }, true);
@@ -38934,7 +39780,7 @@ Miew.prototype._initOnSettingsChanged = function () {
     }
   });
   on('fps', function () {
-    _this10._fps.show(settings.now.fps);
+    _this10._fps.show(settings$1.now.fps);
   });
   on(['fog', 'fogNearFactor', 'fogFarFactor'], function () {
     _this10._updateFog();
@@ -38942,7 +39788,7 @@ Miew.prototype._initOnSettingsChanged = function () {
     _this10._needRender = true;
   });
   on('fogAlpha', function () {
-    var fogAlpha = settings.now.fogAlpha;
+    var fogAlpha = settings$1.now.fogAlpha;
 
     if (fogAlpha < 0 || fogAlpha > 1) {
       _this10.logger.warn('fogAlpha must belong range [0,1]');
@@ -38958,7 +39804,7 @@ Miew.prototype._initOnSettingsChanged = function () {
     }
   });
   on('stereo', function () {
-    _this10._embedWebXR(settings.now.stereo === 'WEBVR');
+    _this10._embedWebXR(settings$1.now.stereo === 'WEBVR');
 
     _this10._needRender = true;
   });
@@ -38989,7 +39835,7 @@ Miew.prototype._initOnSettingsChanged = function () {
 
 
 Miew.prototype.set = function (params, value) {
-  settings.set(params, value);
+  settings$1.set(params, value);
 };
 /**
  * Select atoms with selection string.
@@ -39008,7 +39854,7 @@ Miew.prototype.select = function (expression, append) {
   var sel = expression;
 
   if (_.isString(expression)) {
-    sel = selectors$4.parse(expression).selector;
+    sel = selectors$1.parse(expression).selector;
   }
 
   visual.select(sel, append);
@@ -39036,8 +39882,8 @@ Miew.prototype.view = function (expression) {
 
   function encode() {
     var pos = pivot.position;
-    var scale = self._objectControls.getScale() / settings.now.radiusToFit;
-    var euler = new Euler();
+    var scale = self._objectControls.getScale() / settings$1.now.radiusToFit;
+    var euler = new THREE.Euler();
     euler.setFromQuaternion(self._objectControls.getOrientation(), eulerOrder);
     transform = [pos.x, pos.y, pos.z, scale, euler.x, euler.y, euler.z];
     return VIEW_VERSION + utils.arrayToBase64(transform, Float32Array);
@@ -39078,7 +39924,7 @@ Miew.prototype.view = function (expression) {
 
     dstView.scale = transform[3]; // eslint-disable-line prefer-destructuring
 
-    dstView.orientation.setFromEuler(new Euler(transform[4], transform[5], transform[6], eulerOrder));
+    dstView.orientation.setFromEuler(new THREE.Euler(transform[4], transform[5], transform[6], eulerOrder));
     interpolator.setup(srcView, dstView);
   }
 
@@ -39113,7 +39959,7 @@ Miew.prototype._updateView = function () {
     var curr = res.view;
     pivot.position.copy(curr.position);
 
-    self._objectControls.setScale(curr.scale * settings.now.radiusToFit);
+    self._objectControls.setScale(curr.scale * settings$1.now.radiusToFit);
 
     self._objectControls.setOrientation(curr.orientation);
 
@@ -39148,7 +39994,7 @@ Miew.prototype.translate = function (x, y, z) {
 
 
 Miew.prototype.rotate = function (x, y, z) {
-  this._objectControls.rotate(new Quaternion().setFromEuler(new Euler(x, y, z, 'XYZ')));
+  this._objectControls.rotate(new THREE.Quaternion().setFromEuler(new THREE.Euler(x, y, z, 'XYZ')));
 
   this.dispatchEvent({
     type: 'transform'
@@ -39205,7 +40051,7 @@ Miew.prototype.center = function (selector) {
 
 
   if (selector.obj === undefined && selector !== '') {
-    var sel = selectors$4.parse(selector);
+    var sel = selectors$1.parse(selector);
 
     if (sel.error === undefined) {
       this.setPivotSubset(sel);
@@ -39230,11 +40076,11 @@ Miew.prototype.within = function (selector, radius) {
   var visual = this._getComplexVisual();
 
   if (!visual) {
-    return selectors$4.None();
+    return selectors$1.None();
   }
 
   if (selector instanceof String) {
-    selector = selectors$4.parse(selector);
+    selector = selectors$1.parse(selector);
   }
 
   var res = visual.within(selector, radius);
@@ -39313,14 +40159,14 @@ Miew.prototype.exportCML = function () {
   var self = this;
 
   function extractRotation(m) {
-    var xAxis = new Vector3();
-    var yAxis = new Vector3();
-    var zAxis = new Vector3();
+    var xAxis = new THREE.Vector3();
+    var yAxis = new THREE.Vector3();
+    var zAxis = new THREE.Vector3();
     m.extractBasis(xAxis, yAxis, zAxis);
     xAxis.normalize();
     yAxis.normalize();
     zAxis.normalize();
-    var retMat = new Matrix4();
+    var retMat = new THREE.Matrix4();
     retMat.identity();
     retMat.makeBasis(xAxis, yAxis, zAxis);
     return retMat;
@@ -39329,8 +40175,8 @@ Miew.prototype.exportCML = function () {
   function updateCMLData(complex) {
     var root = self._gfx.root;
     var mat = extractRotation(root.matrixWorld);
-    var v4 = new Vector4(0, 0, 0, 0);
-    var vCenter = new Vector4(0, 0, 0, 0);
+    var v4 = new THREE.Vector4(0, 0, 0, 0);
+    var vCenter = new THREE.Vector4(0, 0, 0, 0);
     var xml = null;
     var ap = null; // update atoms in cml
 
@@ -39395,7 +40241,7 @@ Miew.prototype.exportCML = function () {
 
 
 Miew.prototype.motm = function () {
-  settings.set({
+  settings$1.set({
     fogColorEnable: true,
     fogColor: 0x000000,
     outline: {
@@ -39410,7 +40256,7 @@ Miew.prototype.motm = function () {
   this._forEachComplexVisual(function (visual) {
     var rep = [];
     var complex = visual.getComplex();
-    var palette = palettes.get(settings.now.palette);
+    var palette = palettes$1.get(settings$1.now.palette);
 
     for (var i = 0; i < complex.getChainCount(); i++) {
       var curChainName = complex._chains[i]._name;
@@ -39431,14 +40277,14 @@ Miew.prototype.motm = function () {
 };
 
 Miew.prototype.getMaterials = function () {
-  return materials;
+  return materials$1;
 };
 
 Miew.prototype.getPalettes = function () {
-  return palettes;
+  return palettes$1;
 };
 
-Miew.prototype.VERSION =  "0.8.7+20200508.214028.ce3e43d-mod" ; // Uncomment this to get debug trace:
+Miew.prototype.VERSION = "0.8.7+20211209.134529.e4ac033-mod" ; // Uncomment this to get debug trace:
 // Miew.prototype.debugTracer = new utils.DebugTracer(Miew.prototype);
 
 _.assign(Miew,
@@ -39449,12 +40295,12 @@ _.assign(Miew,
   // export namespaces // TODO: WIP: refactoring external interface
   chem: chem,
   io: io,
-  modes: modes,
-  colorers: colorers,
-  materials: materials,
-  palettes: palettes,
-  options: options,
-  settings: settings,
+  modes: modes$1,
+  colorers: colorers$1,
+  materials: materials$1,
+  palettes: palettes$1,
+  options: options$1,
+  settings: settings$1,
   utils: utils,
   gfx: {
     Representation: Representation
@@ -39553,7 +40399,7 @@ _.assign(Miew,
     recoverable: (boolean: TRUE when the parser has a error recovery rule available for this particular error)
   }
 */
-var parser$1 = (function(){
+var parser = (function(){
 var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,60],$V1=[1,62],$V2=[1,63],$V3=[1,65],$V4=[1,66],$V5=[1,67],$V6=[1,68],$V7=[1,69],$V8=[1,80],$V9=[1,72],$Va=[1,73],$Vb=[1,74],$Vc=[1,75],$Vd=[1,99],$Ve=[1,76],$Vf=[1,100],$Vg=[1,79],$Vh=[1,51],$Vi=[1,81],$Vj=[1,82],$Vk=[1,84],$Vl=[1,83],$Vm=[1,85],$Vn=[1,96],$Vo=[1,97],$Vp=[1,98],$Vq=[1,86],$Vr=[1,87],$Vs=[1,64],$Vt=[1,70],$Vu=[1,71],$Vv=[1,77],$Vw=[1,78],$Vx=[1,53],$Vy=[1,54],$Vz=[1,55],$VA=[1,61],$VB=[1,88],$VC=[1,89],$VD=[1,90],$VE=[1,91],$VF=[1,92],$VG=[1,93],$VH=[1,94],$VI=[1,95],$VJ=[1,101],$VK=[1,102],$VL=[1,103],$VM=[1,104],$VN=[1,105],$VO=[1,56],$VP=[1,57],$VQ=[1,58],$VR=[1,59],$VS=[1,115],$VT=[1,111],$VU=[1,114],$VV=[1,112],$VW=[1,113],$VX=[1,118],$VY=[1,117],$VZ=[1,134],$V_=[1,149],$V$=[1,150],$V01=[1,157],$V11=[5,6,7,9,13,14,15,17,18,19,20,23,25,26,27,30,33,34,35,37,38,41,43,45,46,49,52,54,55,56,58,59,62,64,65,66,70,72,74,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,101],$V21=[5,6,7,9,13,14,15,17,18,19,20,23,25,26,27,30,33,34,35,37,38,41,43,45,46,49,52,54,55,56,58,59,62,64,65,66,70,71,72,74,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,101],$V31=[5,6,7,9,13,15,17,18,19,20,23,25,26,27,30,33,34,37,38,41,43,45,46,49,52,54,55,56,58,59,62,64,65,66,70,72,82,83,84,85,86,87,88,89,90,91,92,93,94,95],$V41=[5,70,72],$V51=[5,74],$V61=[71,101];
 var parser = {trace: function trace () { },
 yy: {},
@@ -40363,7 +41209,7 @@ Parser.prototype = parser;parser.Parser = Parser;
 return new Parser;
 })();
 
-var MiewCLIParser = {parser: parser$1};
+var MiewCLIParser = {parser: parser};
 var MiewCLIParser_1 = MiewCLIParser.parser;
 
 var modeIdDesc = {
@@ -40407,7 +41253,7 @@ var colorDesc = {
   UN: {
     $help: ['Parameters of coloring modes customization', '   Uniform', '      color = <number|color> #RGB->HEX->dec\n'],
     color: {
-      $help: Object.keys(palettes.get(settings.now.palette).namedColors).sort().join('\n')
+      $help: Object.keys(palettes$1.get(settings$1.now.palette).namedColors).sort().join('\n')
     }
   }
 };
@@ -40574,13 +41420,13 @@ var help = {
   }
 };
 
-var selectors$5 = Miew.chem.selectors,
-    modes$1 = Miew.modes,
-    colorers$1 = Miew.colorers,
-    materials$1 = Miew.materials,
-    palettes$1 = Miew.palettes,
-    options$1 = Miew.options,
-    settings$1 = Miew.settings;
+var selectors = Miew.chem.selectors,
+    modes = Miew.modes,
+    colorers = Miew.colorers,
+    materials = Miew.materials,
+    palettes = Miew.palettes,
+    options = Miew.options,
+    settings = Miew.settings;
 
 function None() {}
 
@@ -40593,13 +41439,13 @@ var NULL = function () {
 
 var RepresentationMap = /*#__PURE__*/function () {
   function RepresentationMap() {
-    classCallCheck(this, RepresentationMap);
+    _classCallCheck(this, RepresentationMap);
 
     this.representationMap = {};
     this.representationID = {};
   }
 
-  createClass(RepresentationMap, [{
+  _createClass(RepresentationMap, [{
     key: "get",
     value: function get(strId) {
       return this.representationMap[strId] || this.representationID[strId] || '<no name>';
@@ -40676,10 +41522,10 @@ function keyRemap(key) {
 
 var CLIUtils = /*#__PURE__*/function () {
   function CLIUtils() {
-    classCallCheck(this, CLIUtils);
+    _classCallCheck(this, CLIUtils);
   }
 
-  createClass(CLIUtils, [{
+  _createClass(CLIUtils, [{
     key: "list",
     value: function list(miew, repMap, key) {
       var ret = '';
@@ -40794,7 +41640,7 @@ var CLIUtils = /*#__PURE__*/function () {
     value: function checkArg(key, arg, modificate) {
       if (key !== undefined && arg !== undefined) {
         if (keyRemap(key) === 'selector') {
-          var res = selectors$5.parse(arg);
+          var res = selectors.parse(arg);
 
           if (res.error !== undefined) {
             var selExc = {
@@ -40811,9 +41657,9 @@ var CLIUtils = /*#__PURE__*/function () {
         }
 
         var modificators = {
-          colorers: colorers$1,
-          modes: modes$1,
-          materials: materials$1
+          colorers: colorers,
+          modes: modes,
+          materials: materials
         };
         var modificator = key;
         var temp;
@@ -40841,7 +41687,7 @@ var CLIUtils = /*#__PURE__*/function () {
       if (path !== undefined) {
         var argExc = {};
 
-        var adapter = options$1.adapters[_typeof_1(_.get(settings$1.defaults, path))];
+        var adapter = options.adapters[_typeof(_.get(settings.defaults, path))];
 
         if (adapter === undefined) {
           var pathExc = {
@@ -40851,12 +41697,12 @@ var CLIUtils = /*#__PURE__*/function () {
         }
 
         if ((path.endsWith('.color') || path.endsWith('.baseColor') || path.endsWith('.EL.carbon')) && typeof arg !== 'number') {
-          arg = palettes$1.get(settings$1.now.palette).getNamedColor(arg);
+          arg = palettes.get(settings.now.palette).getNamedColor(arg);
         }
 
         if (path.endsWith('.fg') || path.endsWith('.bg')) {
           if (typeof arg !== 'number') {
-            var val = palettes$1.get(settings$1.now.palette).getNamedColor(arg, true);
+            var val = palettes.get(settings.now.palette).getNamedColor(arg, true);
 
             if (val !== undefined) {
               arg = "0x".concat(val.toString(16));
@@ -40872,7 +41718,7 @@ var CLIUtils = /*#__PURE__*/function () {
 
         if (arg !== undefined && adapter(arg) !== arg && adapter(arg) !== arg > 0) {
           argExc = {
-            message: "".concat(path, " must be a \"").concat(_typeof_1(_.get(settings$1.defaults, path)), "\"")
+            message: "".concat(path, " must be a \"").concat(_typeof(_.get(settings.defaults, path)), "\"")
           };
           throw argExc;
         }
@@ -40956,8 +41802,8 @@ cliutils.utils = utilFunctions;
 cliutils._ = _;
 cliutils.CreateObjectPair = CreateObjectPair;
 cliutils.keyRemap = keyRemap;
-cliutils.Context = selectors$5.Context;
-cliutils.ClearContext = selectors$5.ClearContext;
+cliutils.Context = selectors.Context;
+cliutils.ClearContext = selectors.ClearContext;
 cliutils.NULL = NULL;
 
 cliutils.notimplemented = function () {
@@ -41017,6 +41863,5 @@ MiewCLIParser_1.yy = cliutils; // workaround for incorrect JISON parser generato
 
 MiewCLIParser_1.yy.parseError = MiewCLIParser_1.parseError;
 
-export default Miew;
-export { Palette, StructuralElement };
+export { Palette, Representation, StructuralElement, Miew as default };
 //# sourceMappingURL=Miew.module.js.map

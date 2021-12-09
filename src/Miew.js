@@ -182,6 +182,8 @@ function Miew(opts) {
 
   this._resizeEventHandler = null;
 
+  this.Representation = Representation;
+
   this.reset();
 
   if (this._repr) {
