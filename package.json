@@ -1,5 +1,5 @@
 {
-  "name": "miew",
+  "name": "@biorender-team/miew",
   "version": "0.8.7",
   "description": "Miew - 3D Molecular Viewer",
   "author": "EPAM Systems, Inc.",
@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/epam/miew.git"
+    "url": "https://github.com/BioRender-Team/miew.git"
   },
   "license": "MIT",
   "scripts": {
@@ -103,7 +103,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "three": "BioRender-Team/three.js#memory-leak-fix"
+    "three": "0.140.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
