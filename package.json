@@ -1,6 +1,6 @@
 {
   "name": "@biorender-team/miew",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "Miew - 3D Molecular Viewer",
   "author": "EPAM Systems, Inc.",
   "main": "dist/Miew.js",
@@ -103,7 +103,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "three": "0.119.1"
+    "three": "BioRender-Team/three.js#memory-leak-fix"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
