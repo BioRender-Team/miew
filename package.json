@@ -103,7 +103,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "three": "BioRender-Team/three.js#memory-leak-fix"
+    "three": "https://github.com/BioRender-Team/three.js.git#memory-leak-fix"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
@@ -185,3 +185,4 @@
     "yargs": "^15.3.0"
   }
 }
+
