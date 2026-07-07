@@ -196,13 +196,22 @@ class CIFParser extends Parser {
 
   _extractMetadata(complex, complexData) {
     const { metadata } = complex;
-    metadata.id = complexData.entry.id;
-    metadata.classification = complexData.struct_keywords.pdbx_keywords;
+    // AlphaFold (and other minimal) mmCIF files omit the entry/struct_keywords/struct
+    // categories a full PDB entry carries. Guard each access so a missing category is
+    // simply skipped instead of throwing (the atom data has already been extracted).
+    if (complexData.entry) {
+      metadata.id = complexData.entry.id;
+    }
+    if (complexData.struct_keywords) {
+      metadata.classification = complexData.struct_keywords.pdbx_keywords;
+    }
     const databaserev = complexData.database_PDB_rev;
     metadata.date = (databaserev && databaserev.date_original) ? databaserev.date_original : '';
     metadata.format = 'cif';
     metadata.title = [];
-    metadata.title[0] = complexData.struct.title;
+    if (complexData.struct) {
+      metadata.title[0] = complexData.struct.title;
+    }
   }
 
   /**
@@ -212,6 +221,11 @@ class CIFParser extends Parser {
    */
   _extractMolecules(complex, complexData) {
     const molData = complexData.entity;
+    // AlphaFold mmCIF files have no `entity` category; there are no named molecules to
+    // extract, so skip rather than dereferencing undefined.
+    if (!molData) {
+      return;
+    }
     const names = arrize(molData.pdbx_description);
     const count = names.length;
     let i;
