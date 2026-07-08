@@ -27603,13 +27603,13 @@ var CIFParser = /*#__PURE__*/function (_Parser) {
     key: "_extractMetadata",
     value: function _extractMetadata(complex, complexData) {
       var metadata = complex.metadata;
-      metadata.id = complexData.entry.id;
-      metadata.classification = complexData.struct_keywords.pdbx_keywords;
+      if (complexData.entry) metadata.id = complexData.entry.id;
+      if (complexData.struct_keywords) metadata.classification = complexData.struct_keywords.pdbx_keywords;
       var databaserev = complexData.database_PDB_rev;
       metadata.date = databaserev && databaserev.date_original ? databaserev.date_original : '';
       metadata.format = 'cif';
       metadata.title = [];
-      metadata.title[0] = complexData.struct.title;
+      if (complexData.struct) metadata.title[0] = complexData.struct.title;
     }
     /**
      * Extract molecules information from CIF structure (should be called strictly after _extractAtoms)
@@ -27621,6 +27621,7 @@ var CIFParser = /*#__PURE__*/function (_Parser) {
     key: "_extractMolecules",
     value: function _extractMolecules(complex, complexData) {
       var molData = complexData.entity;
+      if (!molData) return;
       var names = arrize(molData.pdbx_description);
       var count = names.length;
       var i; // molecules names from cif
